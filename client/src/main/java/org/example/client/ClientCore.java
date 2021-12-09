@@ -3,15 +3,13 @@ package org.example.client;
 import lombok.Data;
 import org.example.client.calculate.CalculationMain;
 import org.example.client.display.DisplayMain;
-import org.example.common.entity.Bullet;
 import org.example.common.entity.Level;
-import org.example.common.entity.Monster;
 import org.example.common.entity.Player;
+import org.example.common.protocal.Result;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 @Data
 public class ClientCore {
@@ -20,7 +18,7 @@ public class ClientCore {
 
     //以下是个人信息，需要进行显示
     private volatile int type;
-    private String playerId;
+    private volatile String playerId;
     private volatile int x;
     private volatile int y;
     private volatile double angle;
@@ -28,10 +26,9 @@ public class ClientCore {
     private volatile int blood;
     private volatile int score;
 
-    //以下是全局信息，需要进行显示（players列表里有自己的信息，这和上面重复了，所以请跳过列表中自己的信息，自己的信息以上面的为准）
-    private volatile List<Player> players;
-    private volatile List<Bullet> bullets;
-    private volatile List<Monster> monsters;
+    //显示的所有内容都是从下面这个队列里面取（包括自己的信息），不要管上面的个人信息
+    //如果发现Result里的players的playerId和上面一样，那这个人就是自己
+    private BlockingQueue<Result> frames;
     //表示游戏是否已经开始
     private volatile boolean start;
 
@@ -53,19 +50,16 @@ public class ClientCore {
         this.blood = player.getBlood();
         this.score = player.getScore();
 
-        this.players = new ArrayList<>();
-        this.bullets = new ArrayList<>();
-        this.monsters = new ArrayList<>();
+        this.frames = new LinkedBlockingQueue<>(5);
         this.start = false;
-        sendQueue = new ArrayBlockingQueue<>(50);
-        receiveQueue = new ArrayBlockingQueue<>(50);
+        sendQueue = new ArrayBlockingQueue<>(10);
+        receiveQueue = new ArrayBlockingQueue<>(10);
 
     }
 
     public void start() {
         Thread calculate = new Thread(new CalculationMain(this), "calculate");
         Thread display = new Thread(new DisplayMain(this), "display");
-
         calculate.start();
         display.start();
     }

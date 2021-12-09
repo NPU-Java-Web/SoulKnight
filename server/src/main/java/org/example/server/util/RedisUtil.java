@@ -10,12 +10,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RedisUtil {
     private static final AtomicInteger nextId = new AtomicInteger();
 
-    public static String getPlayKey(Player player) {
+    public static String getPlayerKey(Player player) {
         return "player:" + player.getPlayerId();
     }
 
     public static String getBulletKey() {
         return "bullet:" + nextId.incrementAndGet();
+    }
+
+    public static String getMonsterKey(Monster monster) {
+        return "monster:" + monster.getMonsterId();
     }
 
     public static Player restorePlayerByMap(Map<String, String> map) {
@@ -41,6 +45,7 @@ public class RedisUtil {
         bullet.setSpeed(Integer.parseInt(map.get("speed")));
         bullet.setRadius(Integer.parseInt(map.get("radius")));
         bullet.setPower(Integer.parseInt(map.get("power")));
+        bullet.setCreateTime(Long.parseLong(map.get("createTime")));
         return bullet;
     }
 
@@ -58,5 +63,6 @@ public class RedisUtil {
         monster.setReward(Integer.parseInt(map.get("reward")));
         return monster;
     }
+
 
 }

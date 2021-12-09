@@ -1,13 +1,14 @@
 package org.example.server;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import redis.clients.jedis.Jedis;
 
 public class ServerApplicationTest {
     @Test
     public void test1() {
-        int num1 = 2 * 3 * 4 * 5;
-        int num2 = 120;
-        Assertions.assertEquals(num1, num2);
+        Jedis jedis = new Jedis("localhost", 6379);
+
+        jedis.close();
+
     }
 }
