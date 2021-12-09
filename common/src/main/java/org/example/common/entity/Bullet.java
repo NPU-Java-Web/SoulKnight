@@ -16,11 +16,11 @@ public class Bullet {
      */
     private String playerId;
     /**
-     * 子弹的X坐标
+     * 子弹发射时的X坐标（不能更改）
      */
     private Integer x;
     /**
-     * 子弹的Y坐标
+     * 子弹发射时的Y坐标（不能更改）
      */
     private Integer y;
     /**
@@ -40,6 +40,11 @@ public class Bullet {
      */
     private Integer power;
 
+    /**
+     * 子弹创建的时刻（时间戳）
+     */
+    private Long createTime;
+
     public Bullet(Integer bulletType, String playerId, Integer x, Integer y, Double angle) {
         switch (bulletType) {
             case 2:
@@ -57,5 +62,6 @@ public class Bullet {
         this.x = x;
         this.y = y;
         this.angle = angle;
+        this.createTime = System.currentTimeMillis();
     }
 }
