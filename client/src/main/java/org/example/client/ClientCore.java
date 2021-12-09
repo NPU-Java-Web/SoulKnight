@@ -1,67 +1,42 @@
 package org.example.client;
 
-import lombok.Data;
-import org.example.client.calculate.CalculationMain;
-import org.example.client.display.DisplayMain;
-import org.example.common.entity.Level;
-import org.example.common.entity.Player;
-import org.example.common.protocal.Result;
+import org.example.client.calculate.gamestart.GameInput;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
-@Data
 public class ClientCore {
-    //地图信息
-    private volatile Level level;
 
-    //以下是个人信息，需要进行显示
-    private volatile int type;
-    private volatile String playerId;
-    private volatile int x;
-    private volatile int y;
-    private volatile double angle;
-    private volatile int speed;
-    private volatile int blood;
-    private volatile int score;
 
-    //显示的所有内容都是从下面这个队列里面取（包括自己的信息），不要管上面的个人信息
-    //如果发现Result里的players的playerId和上面一样，那这个人就是自己
-    private BlockingQueue<Result> frames;
-    //表示游戏是否已经开始
-    private volatile boolean start;
+    public static void Start(){
+        GameInput gameInput = new GameInput();
 
-    //以下是用于和服务器通信的队列，不进行显示
-    public static BlockingQueue<String> sendQueue;
-    public static BlockingQueue<String> receiveQueue;
+        while (true){
 
-    public ClientCore(String playerId) {
-        //level只能为1
-        this.level = new Level(1);
-        //playerType只能为1
-        Player player = new Player(1, playerId, 0, 0, 0.0);
-        this.type = player.getPlayerType();
-        this.playerId = player.getPlayerId();
-        this.x = player.getX();
-        this.y = player.getY();
-        this.angle = player.getAngle();
-        this.speed = player.getSpeed();
-        this.blood = player.getBlood();
-        this.score = player.getScore();
+            /**
+             * Part1
+             * 在此处调用菜单界面,下面这个playerId实际实在菜单界面用户写的
+             */
+            String playerId= "1";
+            boolean gameStart= true;
 
-        this.frames = new LinkedBlockingQueue<>(5);
-        this.start = false;
-        sendQueue = new ArrayBlockingQueue<>(10);
-        receiveQueue = new ArrayBlockingQueue<>(10);
+
+
+            /**
+             * Part2
+             * 上式象征用户点击开始游戏了,然后这个while循环不会继续，因为已经进入if里的gameStartCore.start()了
+             */
+            if(gameStart == true){
+                GameStartCore gameStartCore = new GameStartCore(playerId);
+                gameStartCore.start();
+            }
+
+
+            /**
+             * Part3
+             * 用户点击返回菜单界面就又会进入菜单界面渲染
+             * 用户直接退出，就关闭界面退出循环
+             */
+        }
+
 
     }
 
-    public void start() {
-        Thread calculate = new Thread(new CalculationMain(this), "calculate");
-        Thread display = new Thread(new DisplayMain(this), "display");
-        calculate.start();
-        display.start();
-    }
-    //mcl
 }

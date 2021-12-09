@@ -5,7 +5,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.example.client.ClientCore;
+import org.example.client.GameStartCore;
 
 /**
  * 这个类从【发送队列】里取东西，然后直接发给了服务器
@@ -22,7 +22,7 @@ public class UploadMessage implements Runnable {
     public void run() {
         while (true) {
             try {
-                String message = ClientCore.sendQueue.take();
+                String message = GameStartCore.sendQueue.take();
                 if (!message.contains("playerType") && !message.contains("bulletType")) {
                     log.warn("消息非法，客户端拒绝发送，消息为" + message);
                     continue;

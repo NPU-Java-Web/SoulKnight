@@ -2,7 +2,7 @@ package org.example.client.display.thread;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.example.client.ClientCore;
+import org.example.client.GameStartCore;
 import org.example.common.entity.Player;
 
 /**
@@ -10,10 +10,10 @@ import org.example.common.entity.Player;
  */
 @Slf4j
 public class DeliverPlayer implements Runnable {
-    private final ClientCore clientCore;
+    private final GameStartCore gameStartCore;
 
-    public DeliverPlayer(ClientCore clientCore) {
-        this.clientCore = clientCore;
+    public DeliverPlayer(GameStartCore gameStartCore) {
+        this.gameStartCore = gameStartCore;
     }
 
     @Override
@@ -24,16 +24,16 @@ public class DeliverPlayer implements Runnable {
                 //暂时设置为每一秒发1次，上线后要改成一秒发30次
                 Thread.sleep(1000);
                 Player player = new Player();
-                player.setPlayerType(clientCore.getType());
-                player.setPlayerId(clientCore.getPlayerId());
-                player.setX(clientCore.getX());
-                player.setY(clientCore.getY());
-                player.setAngle(clientCore.getAngle());
-                player.setSpeed(clientCore.getSpeed());
-                player.setBlood(clientCore.getBlood());
-                player.setScore(clientCore.getScore());
+                player.setPlayerType(gameStartCore.getType());
+                player.setPlayerId(gameStartCore.getPlayerId());
+                player.setX(gameStartCore.getX());
+                player.setY(gameStartCore.getY());
+                player.setAngle(gameStartCore.getAngle());
+                player.setSpeed(gameStartCore.getSpeed());
+                player.setBlood(gameStartCore.getBlood());
+                player.setScore(gameStartCore.getScore());
                 String message = JSON.toJSONString(player);
-                boolean success = ClientCore.sendQueue.offer(message);
+                boolean success = GameStartCore.sendQueue.offer(message);
                 if (!success) {
                     log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
                 }

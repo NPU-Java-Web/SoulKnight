@@ -4,7 +4,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.example.client.ClientCore;
+import org.example.client.GameStartCore;
 
 /**
  * 这个类读取服务器发过来的消息，往【接收队列】里放
@@ -14,7 +14,7 @@ public class MyClientInboundHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
-        boolean success = ClientCore.receiveQueue.offer((String) msg);
+        boolean success = GameStartCore.receiveQueue.offer((String) msg);
         if (!success) {
             log.warn("客户端无法往接收队列里放消息，消息是" + msg);
         }
