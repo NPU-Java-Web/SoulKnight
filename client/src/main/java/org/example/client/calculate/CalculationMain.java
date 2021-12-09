@@ -8,7 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
-import org.example.client.ClientCore;
+import org.example.client.GameStartCore;
 import org.example.client.calculate.handler.MyClientInboundHandler;
 import org.example.client.calculate.thread.AnalysisMessage;
 import org.example.client.calculate.thread.UploadMessage;
@@ -20,10 +20,10 @@ import java.net.InetSocketAddress;
  * 客户端计算模块
  */
 public class CalculationMain implements Runnable {
-    private final ClientCore clientCore;
+    private final GameStartCore gameStartCore;
 
-    public CalculationMain(ClientCore clientCore) {
-        this.clientCore = clientCore;
+    public CalculationMain(GameStartCore gameStartCore) {
+        this.gameStartCore = gameStartCore;
     }
 
 
@@ -48,7 +48,7 @@ public class CalculationMain implements Runnable {
             Thread uploadMessage = new Thread(new UploadMessage(channel), "uploadMessage");
             uploadMessage.start();
 
-            Thread analysisMessage = new Thread(new AnalysisMessage(clientCore), "analysisMessage");
+            Thread analysisMessage = new Thread(new AnalysisMessage(gameStartCore), "analysisMessage");
             analysisMessage.start();
 
         } catch (Exception e) {

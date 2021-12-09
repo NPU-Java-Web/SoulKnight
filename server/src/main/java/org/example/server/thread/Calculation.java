@@ -3,6 +3,7 @@ package org.example.server.thread;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.entity.Bullet;
+import org.example.common.entity.Monster;
 import org.example.common.entity.Player;
 import org.example.server.ServerCore;
 import org.example.server.util.RedisUtil;
@@ -23,6 +24,7 @@ public class Calculation implements Runnable {
 
     @Override
     public void run() {
+        initializeMonsters();
         while (true) {
             try {
                 String message = ServerCore.messages.take();
@@ -41,13 +43,34 @@ public class Calculation implements Runnable {
         }
     }
 
+    private void initializeMonsters() {
+        try (Jedis jedis = jedisPool.getResource()) {
+            for (Monster monster : ServerCore.level.getInitialMonsters()) {
+                String key = RedisUtil.getMonsterKey(monster);
+                jedis.hset(key, "monsterType", monster.getMonsterType().toString());
+                jedis.hset(key, "monsterId", monster.getMonsterId());
+                jedis.hset(key, "x", monster.getX().toString());
+                jedis.hset(key, "y", monster.getY().toString());
+                jedis.hset(key, "angle", monster.getAngle().toString());
+                jedis.hset(key, "speed", monster.getSpeed().toString());
+                jedis.hset(key, "blood", monster.getBlood().toString());
+                jedis.hset(key, "state", monster.getState().toString());
+                jedis.hset(key, "visibility", monster.getVisibility().toString());
+                jedis.hset(key, "reward", monster.getReward().toString());
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void handlePlayer(Player player) {
         if (!Verification.verifyLocation(player.getX(), player.getY())) {
             log.warn("无效的玩家位置" + player);
             return;
         }
         try (Jedis jedis = jedisPool.getResource()) {
-            String key = RedisUtil.getPlayKey(player);
+            String key = RedisUtil.getPlayerKey(player);
             Map<String, String> res = jedis.hgetAll(key);
             if (res.size() == 0) {
                 jedis.hset(key, "playerType", player.getPlayerType().toString());
@@ -68,7 +91,6 @@ public class Calculation implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void handleBullet(Bullet bullet) {
@@ -86,6 +108,7 @@ public class Calculation implements Runnable {
         jedis.hset(key, "speed", bullet.getSpeed().toString());
         jedis.hset(key, "radius", bullet.getRadius().toString());
         jedis.hset(key, "power", bullet.getPower().toString());
+        jedis.hset(key, "createTime", bullet.getCreateTime().toString());
         jedis.expire(key, 60L);
         jedis.close();
     }
