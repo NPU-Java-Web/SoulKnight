@@ -1,0 +1,59 @@
+package org.example.client.calculate;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
+import org.example.client.ClientCore;
+import org.example.client.calculate.handler.MyClientInboundHandler;
+import org.example.client.calculate.thread.AnalysisMessage;
+import org.example.client.calculate.thread.UploadMessage;
+import org.example.common.protocal.Connect;
+
+import java.net.InetSocketAddress;
+
+/**
+ * 客户端计算模块
+ */
+public class CalculationMain implements Runnable {
+    private final ClientCore clientCore;
+
+    public CalculationMain(ClientCore clientCore) {
+        this.clientCore = clientCore;
+    }
+
+
+    @Override
+    public void run() {
+        Bootstrap b = new Bootstrap();
+        b.group(new NioEventLoopGroup());
+        b.channel(NioSocketChannel.class);
+        b.handler(new ChannelInitializer<NioSocketChannel>() {
+            @Override
+            protected void initChannel(NioSocketChannel ch) {
+                ChannelPipeline pipeline = ch.pipeline();
+                pipeline.addLast(new LineBasedFrameDecoder(1024));
+                pipeline.addLast(new StringDecoder());
+                pipeline.addLast(new MyClientInboundHandler());
+            }
+        });
+        try {
+            Channel channel = b.connect(new InetSocketAddress(Connect.ADDRESS, Connect.PORT)).sync().channel();
+
+
+            Thread uploadMessage = new Thread(new UploadMessage(channel), "uploadMessage");
+            uploadMessage.start();
+
+            Thread analysisMessage = new Thread(new AnalysisMessage(clientCore), "analysisMessage");
+            analysisMessage.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
