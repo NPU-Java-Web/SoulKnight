@@ -24,6 +24,9 @@ public class DisplayMain implements Runnable {
     @Override
     public void run() {
 
+        //标注游戏开始了
+        clientCore.setStart(true);
+
         //在游戏开始后开启以下线程，这个线程能够不停地把玩家坐标发给服务器，服务器收到消息之后才会回应客户端
         Thread deliverPlayer = new Thread(new DeliverPlayer(clientCore), "deliverPlayer");
         deliverPlayer.start();
@@ -38,10 +41,9 @@ public class DisplayMain implements Runnable {
 
         //渲染的原理是高频地读取clientCore中的信息，例如下面这样
         while (true) {
-            System.out.println("玩家信息" + clientCore.getPlayers());
-            System.out.println("子弹信息" + clientCore.getBullets());
-            System.out.println("怪物信息" + clientCore.getMonsters());
-
+            //clientCore.getFrames().poll()是非阻塞方法，如果队列里啥都没有就会返回false，程序继续运行下去
+            //clientCore.getFrames().take()是阻塞方法，如果队列里啥都没有，程序就会停下来，一直等到队列里有东西为止
+            //请选择最合适的方法来取
             try {
                 //单位是毫秒
                 Thread.sleep(1000);
