@@ -1,6 +1,7 @@
 package org.example.client.display;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -20,7 +21,40 @@ public class Dialog extends JDialog{
         setLayout(null);
         // 设置对话框不可更改大小
         setResizable(false);
+        if(type == 1)
+        {
+            //设置弹窗
+            showSetting(jFrame);
+        }
+        else if(type == 2)
+        {
+            //说明弹窗
+            showInstruction(jFrame);
+
+        }
+
+        setVisible(true);
     }
+
+    public void showSetting(JFrame jFrame)
+    {
+        setTitle("设置");
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+    }
+
+    public void showInstruction(JFrame jFrame)
+    {
+        setTitle("游戏说明");
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+        String text = "<html>坦克大战游戏说明<br>test<html>";
+        jl01 = new JLabel(text);
+        jl01.setFont(new Font("KaiTi", Font.BOLD, 30));
+        // 设置前景颜色
+        jl01.setForeground(Color.black);
+        jl01.setBounds(40, 0, 400, 350);
+        add(jl01);
+    }
+
 
 
 }
