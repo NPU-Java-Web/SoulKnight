@@ -16,11 +16,11 @@ public class MyServerInboundHandler extends SimpleChannelInboundHandler<Object> 
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         Channel channel = ctx.channel();
         log.info("服务器收到了客户端传来的消息：" + msg);
-        boolean succes = ServerCore.messages.offer((String) msg);
+        boolean succes = ServerCore.messageQueue.offer((String) msg);
         if (!succes) {
             log.warn("服务器的队列已满，无法放入。消息内容为" + msg);
         }
-        channel.writeAndFlush(preTreat(ServerCore.GlobalInfo));
+        channel.writeAndFlush(preTreat(ServerCore.world.getGlobalInfo()));
     }
 
     public static ByteBuf preTreat(String message) {
