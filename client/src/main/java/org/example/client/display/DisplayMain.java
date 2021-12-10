@@ -7,7 +7,10 @@ import org.example.client.display.thread.DeliverPlayer;
 import org.example.common.entity.Bullet;
 
 /**
- * 客户端显示模块
+ *
+ * 此类只负责开启发送玩家坐标的线程
+ * 以及在控制台中打印信息
+ *
  * 负责人：孟辰林、翁宇哲
  */
 @Slf4j
