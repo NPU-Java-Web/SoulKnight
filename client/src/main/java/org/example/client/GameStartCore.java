@@ -7,7 +7,6 @@ import org.example.common.entity.Level;
 import org.example.common.entity.Player;
 import org.example.common.protocal.Result;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -16,7 +15,6 @@ public class GameStartCore {
     //地图信息
     private volatile Level level;
 
-    //以下是个人信息，需要进行显示
     private volatile int type;
     private volatile String playerId;
     private volatile int x;
@@ -36,11 +34,10 @@ public class GameStartCore {
     public static BlockingQueue<String> sendQueue;
     public static BlockingQueue<String> receiveQueue;
 
-    public GameStartCore(String playerId) {
+    public GameStartCore(Player player) {
         //level只能为1
         this.level = new Level(1);
         //playerType只能为1
-        Player player = new Player(1, playerId, 0, 0, 0.0);
         this.type = player.getPlayerType();
         this.playerId = player.getPlayerId();
         this.x = player.getX();
@@ -52,8 +49,8 @@ public class GameStartCore {
 
         this.frames = new LinkedBlockingQueue<>(5);
         this.start = false;
-        sendQueue = new ArrayBlockingQueue<>(10);
-        receiveQueue = new ArrayBlockingQueue<>(10);
+        sendQueue = new LinkedBlockingQueue<>(10);
+        receiveQueue = new LinkedBlockingQueue<>(10);
 
     }
 
@@ -63,5 +60,4 @@ public class GameStartCore {
         calculate.start();
         display.start();
     }
-    //mcl
 }
