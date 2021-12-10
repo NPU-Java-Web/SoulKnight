@@ -24,9 +24,16 @@ public class ClientCore {
         mainPanel.setVisible(true);
         //设置不可拉伸
         mainPanel.setResizable(false);
+        //居中显示
+        mainPanel.setLocationRelativeTo(null);//在屏幕中居中显示
+
         if(playSound == null)
         {
             playSound = new PlaySound();
+            playSound.open(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\帝国进行曲.wav");
+            playSound.play();
+            playSound.loop();
+            playSound.start();
         }
 //                GameInput gameInput = new GameInput();
 //
