@@ -6,6 +6,8 @@ import org.example.client.GameStartCore;
 import org.example.client.display.thread.DeliverPlayer;
 import org.example.common.entity.Bullet;
 
+import javax.swing.*;
+
 /**
  * 客户端显示模块
  * 负责人：孟辰林、翁宇哲
@@ -39,6 +41,7 @@ public class DisplayMain implements Runnable {
             log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
         }
 
+        GameWindowFrame window = new GameWindowFrame(650, 500, "Battle Game");
         //渲染的原理是高频地读取gameStartCore中的信息，例如下面这样
         while (true) {
             //gameStartCore.getFrames().poll()是非阻塞方法，如果队列里啥都没有就会返回false，程序继续运行下去
@@ -51,6 +54,11 @@ public class DisplayMain implements Runnable {
                 e.printStackTrace();
             }
         }
+
+
+
+
+
 
     }
 }
