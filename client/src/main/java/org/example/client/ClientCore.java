@@ -1,40 +1,32 @@
 package org.example.client;
 
-import org.example.client.calculate.gamestart.GameInput;
+import lombok.extern.slf4j.Slf4j;
+import org.example.client.display.thread.Welcome;
+import org.example.common.entity.Player;
 
+@Slf4j
 public class ClientCore {
 
+    public static void Start() {
+        //新开一个线程，这个线程专门显示菜单页面
+        Welcome welcome = new Welcome();
+        Thread homepage = new Thread(welcome, "homepage");
+        homepage.start();
 
-    public static void Start(){
-        GameInput gameInput = new GameInput();
-
-        while (true){
-
-            /**
-             * Part1
-             * 在此处调用菜单界面,下面这个playerId实际实在菜单界面用户写的
-             */
-            String playerId= "1";
-            boolean gameStart= true;
-
-
-
-            /**
-             * Part2
-             * 上式象征用户点击开始游戏了,然后这个while循环不会继续，因为已经进入if里的gameStartCore.start()了
-             */
-            if(gameStart == true){
-                GameStartCore gameStartCore = new GameStartCore(playerId);
-                gameStartCore.start();
-            }
-
-
-            /**
-             * Part3
-             * 用户点击返回菜单界面就又会进入菜单界面渲染
-             * 用户直接退出，就关闭界面退出循环
-             */
+        try {
+            homepage.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        Player player = welcome.getPlayer();
+        log.info("玩家信息设置成功：" + player);
+
+        GameStartCore gameStartCore = new GameStartCore(player);
+        gameStartCore.start();
+
+        //用户点击返回菜单界面就又会进入菜单界面渲染
+        //用户直接退出，就关闭界面退出循环
 
 
     }
