@@ -24,6 +24,9 @@ public class ClientCore {
         mainPanel.setVisible(true);
         //设置不可拉伸
         mainPanel.setResizable(false);
+        //居中显示
+        mainPanel.setLocationRelativeTo(null);//在屏幕中居中显示
+
         if(playSound == null)
         {
             playSound = new PlaySound();

@@ -16,7 +16,7 @@ public class MainPanel extends JFrame {
 
     private JLabel back, label_start, label_setting, label_instruction, label_quit, label05, label06,label07,label08;
     private PlaySound p;
-    private MainPanel m;// 本类对象
+    private MainPanel mainPanel;// 本类对象
     private int fouseIndex;
     public MainPanel()
     {
@@ -32,7 +32,7 @@ public class MainPanel extends JFrame {
 
         adapter();
 
-        m = this;
+        mainPanel = this;
     }
 
     public void setBackground()
@@ -162,37 +162,43 @@ public class MainPanel extends JFrame {
                         label_quit.setForeground(Color.red );
                     }
 
-                    //监听回车键
-                    if(key == KeyEvent.VK_ENTER)
+
+                }//
+                //监听回车键
+                if(key == KeyEvent.VK_ENTER)
+                {
+                    //若焦点在开始游戏，则进行游戏面板的渲染
+                    if(fouseIndex == 1)
                     {
-                        //若焦点在开始游戏，则进行游戏面板的渲染
-                        if(fouseIndex == 1)
-                        {
-                         //   GamePanel gamePanel = new GamePanel(this);
-                         //    add(gamePanel);
+                        //   GamePanel gamePanel = new GamePanel(this);
+                        //    add(gamePanel);
                         //    gamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
-                            // 移除组件
+                        // 移除组件
 //                            remove(label_start);
 //                            remove(label_instruction);
 //                            remove(label_quit);
 //                            remove(label_setting);
 
+                    }
+
+                    if(fouseIndex == 2)
+                    {
+                        new Dialog(mainPanel,1);
+                    }
+
+                    if(fouseIndex == 3)
+                    {
+                        new Dialog(mainPanel,2);
+                    }
+
+                    if(fouseIndex == 4)
+                    {
+                        int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认",JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                        if (result == JOptionPane.OK_OPTION) {
+                            // 退出
+                            System.exit(0);
                         }
 
-                        if(fouseIndex == 2)
-                        {
-                            new Dialog();
-                        }
-
-                        if(fouseIndex == 3)
-                        {
-                            new Dialog();
-                        }
-
-                        if(fouseIndex == 4)
-                        {
-                            new Dialog();
-                        }
                     }
                 }
 
