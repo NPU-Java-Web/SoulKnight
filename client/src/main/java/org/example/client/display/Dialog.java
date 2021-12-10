@@ -5,4 +5,5 @@ package org.example.client.display;
  *
  */
 public class Dialog {
+
 }

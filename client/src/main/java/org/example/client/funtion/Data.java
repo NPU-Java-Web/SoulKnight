@@ -5,7 +5,7 @@ import java.net.URL;
 
 public class Data {
 
-    public static URL backgroundURL = Data.class.getResource("src/main/java/org/example/client/images/background.jpg");
-    public static ImageIcon background = new ImageIcon(backgroundURL);
+    //背景图片
+    public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
 
 }

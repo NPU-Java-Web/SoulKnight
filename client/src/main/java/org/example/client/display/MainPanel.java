@@ -1,9 +1,12 @@
 package org.example.client.display;
 
+import org.example.client.funtion.Data;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Objects;
 
 /**
  * 此类为界面主体jframe
@@ -33,10 +36,9 @@ public class MainPanel extends JFrame {
     }
 
     public void setBackground()
-    {		// 背景图片
-        ImageIcon background = new ImageIcon(getClass().getResource("background.jpg"));
+    {
         // 设置背景标签
-        back = new JLabel(background);
+        back = new JLabel(Data.background);
         // 设置背景图片位置大小
         back.setBounds(0,0,getWidth(),getHeight());
         // 初始化一个内容面板
@@ -132,31 +134,31 @@ public class MainPanel extends JFrame {
                     // 如果指到label_start
                     if (fouseIndex == 1) {
                         label_start.setForeground(Color.red);
-                        label_setting.setForeground(Color.black);
-                        label_instruction.setForeground(Color.black);
-                        label_quit.setForeground(Color.black );
+                        label_setting.setForeground(Color.white);
+                        label_instruction.setForeground(Color.white);
+                        label_quit.setForeground(Color.white );
                     }
                     if (fouseIndex == 2) {
                         // label_setting
-                        label_start.setForeground(Color.black);
+                        label_start.setForeground(Color.white);
                         label_setting.setForeground(Color.red);
-                        label_instruction.setForeground(Color.black);
-                        label_quit.setForeground(Color.black );
+                        label_instruction.setForeground(Color.white);
+                        label_quit.setForeground(Color.white );
                     }
                     if(fouseIndex == 3)
                     {
                         //label_instruction
-                        label_start.setForeground(Color.black);
-                        label_setting.setForeground(Color.black);
+                        label_start.setForeground(Color.white);
+                        label_setting.setForeground(Color.white);
                         label_instruction.setForeground(Color.red);
-                        label_quit.setForeground(Color.black );
+                        label_quit.setForeground(Color.white );
                     }
                     if(fouseIndex == 4)
                     {
                         //label_quit
-                        label_start.setForeground(Color.black);
-                        label_setting.setForeground(Color.black);
-                        label_instruction.setForeground(Color.black);
+                        label_start.setForeground(Color.white);
+                        label_setting.setForeground(Color.white);
+                        label_instruction.setForeground(Color.white);
                         label_quit.setForeground(Color.red );
                     }
 
