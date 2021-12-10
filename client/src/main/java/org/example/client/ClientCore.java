@@ -1,32 +1,62 @@
 package org.example.client;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.client.display.thread.Welcome;
-import org.example.common.entity.Player;
+import org.example.client.calculate.gamestart.GameInput;
+import org.example.client.display.MainPanel;
+import org.example.client.display.PlaySound;
 
-@Slf4j
+import javax.swing.*;
+
+/**
+ * 此类为前端界面的启动类
+ * 以启动jframe
+ */
 public class ClientCore {
 
-    public static void Start() {
-        //新开一个线程，这个线程专门显示菜单页面
-        Welcome welcome = new Welcome();
-        Thread homepage = new Thread(welcome, "homepage");
-        homepage.start();
+    public static MainPanel mainPanel;//主界面对象
+    public static PlaySound playSound;//声音对象
 
-        try {
-            homepage.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public static void Start(){
+
+        mainPanel = new MainPanel();
+        //监听关闭窗体按钮
+        mainPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //设置可视
+        mainPanel.setVisible(true);
+        //设置不可拉伸
+        mainPanel.setResizable(false);
+        if(playSound == null)
+        {
+            playSound = new PlaySound();
         }
-
-        Player player = welcome.getPlayer();
-        log.info("玩家信息设置成功：" + player);
-
-        GameStartCore gameStartCore = new GameStartCore(player);
-        gameStartCore.start();
-
-        //用户点击返回菜单界面就又会进入菜单界面渲染
-        //用户直接退出，就关闭界面退出循环
+//                GameInput gameInput = new GameInput();
+//
+//                while (true){
+//
+//                    /**
+//                     * Part1
+//                     * 在此处调用菜单界面,下面这个playerId实际实在菜单界面用户写的
+//                     */
+//                    String playerId= "1";
+//                    boolean gameStart= true;
+//
+//
+//
+//                    /**
+//                     * Part2
+//                     * 上式象征用户点击开始游戏了,然后这个while循环不会继续，因为已经进入if里的gameStartCore.start()了
+//                     */
+//                    if(gameStart == true){
+//                        GameStartCore gameStartCore = new GameStartCore(playerId);
+//                        gameStartCore.start();
+//                    }
+//
+//
+//                    /**
+//                     * Part3
+//                     * 用户点击返回菜单界面就又会进入菜单界面渲染
+//                     * 用户直接退出，就关闭界面退出循环
+//                     */
+//                }
 
 
     }
