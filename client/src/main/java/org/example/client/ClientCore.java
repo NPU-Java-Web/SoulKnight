@@ -1,8 +1,8 @@
 package org.example.client;
 
-import org.example.client.calculate.gamestart.GameInput;
 import org.example.client.display.MainPanel;
 import org.example.client.display.PlaySound;
+import org.example.common.entity.Player;
 
 import javax.swing.*;
 
@@ -30,7 +30,7 @@ public class ClientCore {
         if(playSound == null)
         {
             playSound = new PlaySound();
-            playSound.open(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\帝国进行曲.wav");
+            playSound.open(System.getProperty("user.dir") + "\\client\\src\\main\\resources\\帝国进行曲.wav");
             playSound.play();
             playSound.loop();
             playSound.start();
@@ -52,10 +52,13 @@ public class ClientCore {
 //                     * Part2
 //                     * 上式象征用户点击开始游戏了,然后这个while循环不会继续，因为已经进入if里的gameStartCore.start()了
 //                     */
-//                    if(gameStart == true){
-//                        GameStartCore gameStartCore = new GameStartCore(playerId);
-//                        gameStartCore.start();
-//                    }
+
+//        if (gameStart == true) {
+        //为了调试方便，还是开着吧
+        GameStartCore gameStartCore = new GameStartCore(new Player(1, "testplayer", 5, 5, 45.0));
+        gameStartCore.setStart(true);
+        gameStartCore.start();
+//        }
 //
 //
 //                    /**
