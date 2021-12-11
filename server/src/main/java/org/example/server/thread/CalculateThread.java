@@ -27,7 +27,7 @@ public class CalculateThread {
 
     @Async
     public void run() {
-        monsterService.createInitialMonsters();
+        monsterService.initializeMonsters();
         while (true) {
 //            log.error("我真的在运行——calculate");
             try {

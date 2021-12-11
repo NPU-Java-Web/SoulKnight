@@ -1,11 +1,10 @@
 package org.example.server.dao;
 
 import org.example.common.entity.Monster;
-import org.example.server.config.RedisConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Map;
 import java.util.Set;
@@ -13,17 +12,17 @@ import java.util.Set;
 @Repository
 public class MonsterDAO {
 
-
-    private final JedisPool jedisPool;
+    @Autowired
+    private JedisPool jedisPool;
 
     private static final String PREFIX = "monster:";
 
-    public MonsterDAO() {
-        JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxTotal(20);
-        config.setMaxIdle(10);
-        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-    }
+//    public MonsterDAO() {
+//        JedisPoolConfig config = new JedisPoolConfig();
+//        config.setMaxTotal(20);
+//        config.setMaxIdle(10);
+//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
+//    }
 
 
     public Monster selectById(String monsterId) {
@@ -81,6 +80,15 @@ public class MonsterDAO {
     public Set<String> getAllMonsterKeys() {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.keys("monster*");
+        }
+    }
+
+    public void deleteAllMonsters() {
+        try (Jedis jedis = jedisPool.getResource()) {
+            Set<String> keys = jedis.keys("monster*");
+            for (String key : keys) {
+                jedis.del(key);
+            }
         }
     }
 
