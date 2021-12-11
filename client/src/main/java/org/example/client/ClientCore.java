@@ -30,7 +30,7 @@ public class ClientCore {
         if(playSound == null)
         {
             playSound = new PlaySound();
-            playSound.open(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\帝国进行曲.wav");
+            playSound.open(System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav");
             playSound.play();
             playSound.loop();
             playSound.start();
