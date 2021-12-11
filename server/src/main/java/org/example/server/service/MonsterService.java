@@ -16,7 +16,8 @@ public class MonsterService {
     @Autowired
     private MonsterDAO monsterDAO;
 
-    public void createInitialMonsters() {
+    public void initializeMonsters() {
+        monsterDAO.deleteAllMonsters();
         for (Monster monster : ServerCore.world.getInitialMonsters()) {
             monsterDAO.insert(monster);
         }
@@ -26,6 +27,9 @@ public class MonsterService {
         List<Monster> result = new ArrayList<>();
         Set<String> keys = monsterDAO.getAllMonsterKeys();
         for (String key : keys) {
+            if (key == null) {
+                continue;
+            }
             Monster monster = monsterDAO.selectByKey(key);
             result.add(monster);
         }

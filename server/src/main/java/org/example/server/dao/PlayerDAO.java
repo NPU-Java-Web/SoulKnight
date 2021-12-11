@@ -2,29 +2,29 @@ package org.example.server.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.entity.Player;
-import org.example.server.config.RedisConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Map;
 import java.util.Set;
+
 @Slf4j
 @Repository
 public class PlayerDAO {
 
-
-    private final JedisPool jedisPool;
+    @Autowired
+    private JedisPool jedisPool;
 
     private static final String PREFIX = "player:";
 
-    public PlayerDAO() {
-        JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxTotal(20);
-        config.setMaxIdle(10);
-        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-    }
+//    public PlayerDAO() {
+//        JedisPoolConfig config = new JedisPoolConfig();
+//        config.setMaxTotal(20);
+//        config.setMaxIdle(10);
+//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
+//    }
 
     public Player selectById(String playerId) {
         String key = PREFIX + playerId;

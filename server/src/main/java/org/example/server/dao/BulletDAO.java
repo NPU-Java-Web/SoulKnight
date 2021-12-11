@@ -2,6 +2,7 @@ package org.example.server.dao;
 
 import org.example.common.entity.Bullet;
 import org.example.server.config.RedisConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -13,17 +14,17 @@ import java.util.Set;
 @Repository
 public class BulletDAO {
 
-
-    private final JedisPool jedisPool;
+    @Autowired
+    private JedisPool jedisPool;
 
     private static final String PREFIX = "bullet:";
 
-    public BulletDAO() {
-        JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxTotal(20);
-        config.setMaxIdle(10);
-        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-    }
+//    public BulletDAO() {
+//        JedisPoolConfig config = new JedisPoolConfig();
+//        config.setMaxTotal(20);
+//        config.setMaxIdle(10);
+//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
+//    }
 
     public Bullet selectById(String bulletId) {
         String key = PREFIX + bulletId;
@@ -38,6 +39,7 @@ public class BulletDAO {
             Map<String, String> map = jedis.hgetAll(key);
             Bullet bullet = new Bullet();
             bullet.setBulletType(Integer.parseInt(map.get("bulletType")));
+            bullet.setBulletId(map.get("bulletId"));
             bullet.setPlayerId(map.get("playerId"));
             bullet.setX(Integer.parseInt(map.get("x")));
             bullet.setY(Integer.parseInt(map.get("y")));
@@ -67,6 +69,7 @@ public class BulletDAO {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + getNextBulletNumber();
             jedis.hset(key, "bulletType", bullet.getBulletType().toString());
+            jedis.hset(key, "bulletId", key);
             jedis.hset(key, "playerId", bullet.getPlayerId());
             jedis.hset(key, "x", bullet.getX().toString());
             jedis.hset(key, "y", bullet.getY().toString());

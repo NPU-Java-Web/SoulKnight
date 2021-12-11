@@ -12,6 +12,10 @@ public class Bullet {
      */
     private Integer bulletType;
     /**
+     * 子弹ID（由服务器分配，客户端不用管）
+     */
+    private String bulletId;
+    /**
      * 发射出子弹的玩家ID
      */
     private String playerId;
@@ -58,6 +62,7 @@ public class Bullet {
                 this.power = Bullet1.POWER;
                 break;
         }
+        this.bulletId = "待分配";
         this.playerId = playerId;
         this.x = x;
         this.y = y;
