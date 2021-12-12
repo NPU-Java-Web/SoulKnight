@@ -50,4 +50,17 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.jpg</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.wav</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
 </project>

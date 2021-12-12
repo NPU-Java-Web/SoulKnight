@@ -9,5 +9,6 @@ public class ClientApplicationTest {
         int num1 = 1 + 2 + 3 + 4;
         int num2 = 10;
         Assertions.assertEquals(num1, num2);
+//        System.out.println(getClass().getResource());
     }
 }
