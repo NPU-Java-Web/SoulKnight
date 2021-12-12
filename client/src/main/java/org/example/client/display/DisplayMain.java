@@ -44,8 +44,9 @@ public class DisplayMain implements Runnable {
             log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
         }
 
-        GameWindowFrame window = new GameWindowFrame(650, 500, "Battle Game");
+        GamePanel window = new GamePanel(1000, 1000, "Battle Game",gameStartCore);
         //渲染的原理是高频地读取gameStartCore中的信息，例如下面这样
+
         while (true) {
             //gameStartCore.getFrames().poll()是非阻塞方法，如果队列里啥都没有就会返回false，程序继续运行下去
             //gameStartCore.getFrames().take()是阻塞方法，如果队列里啥都没有，程序就会停下来，一直等到队列里有东西为止
@@ -57,6 +58,8 @@ public class DisplayMain implements Runnable {
                 e.printStackTrace();
             }
         }
+
+
 
 
 
