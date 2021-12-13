@@ -1,12 +1,11 @@
 package org.example.client.display;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
- * @author WarmCongee
- * @date 2021/12/13 14:29
- */
+@Slf4j
 public class GameMouseListener implements MouseListener {
     /**鼠标释放*/
     @Override
@@ -31,6 +30,6 @@ public class GameMouseListener implements MouseListener {
     /**鼠标单击*/
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        log.info("Mouse Clicked");
     }
 }
