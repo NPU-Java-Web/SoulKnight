@@ -7,6 +7,7 @@ import org.example.common.entity.Level;
 import org.example.common.entity.Player;
 import org.example.common.protocal.Result;
 
+import javax.swing.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -30,16 +31,17 @@ public class GameStartCore {
     private BlockingQueue<Result> frames;
     //表示游戏是否已经开始
     private volatile boolean start;
-
+    public JFrame jFrame;
     //以下是用于和服务器通信的队列，不进行显示
     public static BlockingQueue<String> sendQueue;
     public static BlockingQueue<String> receiveQueue;
 
-    public GameStartCore(Player player) {
+    public GameStartCore(Player player, JFrame jFrame) {
         //level只能为1
         this.level = new Level(1);
         //playerType只能为1
         this.player = player;
+        this.jFrame = jFrame;
         /*this.type = player.getPlayerType();
         this.playerId = player.getPlayerId();
         this.x = player.getX();
@@ -58,7 +60,7 @@ public class GameStartCore {
 
     public void start() {
         Thread calculate = new Thread(new CalculationMain(this), "calculate");
-        Thread display = new Thread(new DisplayMain(this), "display");
+        Thread display = new Thread(new DisplayMain(this,this.jFrame), "display");
         calculate.start();
         display.start();
     }

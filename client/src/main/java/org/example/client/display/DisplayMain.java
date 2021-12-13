@@ -18,9 +18,10 @@ import javax.swing.*;
 @Slf4j
 public class DisplayMain implements Runnable {
     private final GameStartCore gameStartCore;
-
-    public DisplayMain(GameStartCore gameStartCore) {
+    private JFrame jFrame;
+    public DisplayMain(GameStartCore gameStartCore,JFrame jFrame) {
         this.gameStartCore = gameStartCore;
+        this.jFrame = jFrame;
     }
 
     /**

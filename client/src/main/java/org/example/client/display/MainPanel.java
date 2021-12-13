@@ -178,15 +178,21 @@ public class MainPanel extends JFrame {
                     if(fouseIndex == 1)
                     {
 
-                            GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
-                            //Thread.sleep(1000);
-                            //GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);
-                            //add(window);
-                            //window.setSize(1000,1000);
-                            remove(label_setting);
-                            remove(label_quit);
-                            remove(label_instruction);
-                            remove(label_start);
+
+                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
+                               gameStartCore.start();
+//                               Thread.sleep(1000);
+//                               System.out.println("qqqqqqqq");
+//                               GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);
+
+                               //add(window);
+                              // window.setSize(1000,1000);
+                               remove(label_setting);
+                               remove(label_quit);
+                               remove(label_instruction);
+                               remove(label_start);
+
+
 
 
 
