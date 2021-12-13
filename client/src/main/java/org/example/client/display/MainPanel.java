@@ -1,11 +1,10 @@
 package org.example.client.display;
 
 import org.example.client.function.Data;
-import org.example.common.config.GameConfig;
+import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
@@ -14,7 +13,7 @@ import java.awt.event.KeyEvent;
  */
 public class MainPanel extends JFrame {
 
-    private JLabel back, label_start, label_setting, label_instruction, label_quit,label_title, label05, label06,label07,label08;
+    public JLabel back, label_start, label_setting, label_instruction, label_quit,label_title, label05, label06,label07,label08;
     private PlaySound p;
     private MainPanel mainPanel;// 本类对象
     private int fouseIndex;
@@ -88,129 +87,19 @@ public class MainPanel extends JFrame {
 
     public void adapter()
     {
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
+        GameInput gameInput = new GameInput();
+        gameInput.init();
+        this.addKeyListener(gameInput);
+        Thread thread = new Thread(new KeyEventListener(),"key");
+        thread.start();
 
-                int key = e.getKeyCode();
-
-                // 监听向上或向下按键
-
-                if(key==KeyEvent.VK_DOWN || key==KeyEvent.VK_UP)
-                {
-                    if(key == KeyEvent.VK_DOWN)
-                    {
-                        if(fouseIndex == 1)
-                        {
-                            fouseIndex = 2;
-                        }
-                        else if(fouseIndex == 2)
-                        {
-                            fouseIndex = 3;
-                        }
-                        else if(fouseIndex == 3)
-                        {
-                            fouseIndex = 4;
-                        }
-                        else if(fouseIndex == 4)
-                        {
-                            fouseIndex = 1;
-                        }
-                    }
-                    if(key == KeyEvent.VK_UP)
-                    {
-                        if(fouseIndex == 1)
-                        {
-                            fouseIndex = 4;
-                        }
-                        else if(fouseIndex == 2)
-                        {
-                            fouseIndex = 1;
-                        }
-                        else if(fouseIndex == 3)
-                        {
-                            fouseIndex = 2;
-                        }
-                        else if(fouseIndex == 4)
-                        {
-                            fouseIndex = 3;
-                        }
-                    }
-                    // 如果指到label_start
-                    if (fouseIndex == 1) {
-                        label_start.setForeground(Color.red);
-                        label_setting.setForeground(Color.white);
-                        label_instruction.setForeground(Color.white);
-                        label_quit.setForeground(Color.white );
-                    }
-                    if (fouseIndex == 2) {
-                        // label_setting
-                        label_start.setForeground(Color.white);
-                        label_setting.setForeground(Color.red);
-                        label_instruction.setForeground(Color.white);
-                        label_quit.setForeground(Color.white );
-                    }
-                    if(fouseIndex == 3)
-                    {
-                        //label_instruction
-                        label_start.setForeground(Color.white);
-                        label_setting.setForeground(Color.white);
-                        label_instruction.setForeground(Color.red);
-                        label_quit.setForeground(Color.white );
-                    }
-                    if(fouseIndex == 4)
-                    {
-                        //label_quit
-                        label_start.setForeground(Color.white);
-                        label_setting.setForeground(Color.white);
-                        label_instruction.setForeground(Color.white);
-                        label_quit.setForeground(Color.red );
-                    }
-
-
-                }//
-                //监听回车键
-                if(key == KeyEvent.VK_ENTER)
-                {
-                    //若焦点在开始游戏，则进行游戏面板的渲染
-                    if(fouseIndex == 1)
-                    {
-//                        new Dialog(mainPanel,3);
-//                           GamePanel gamePanel = new GamePanel(mainPanel);
-//                            mainPanel.add(gamePanel);
-//                            gamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
-//                         //移除组件
-//                            remove(label_start);
-//                            remove(label_instruction);
-//                            remove(label_quit);
-//                            remove(label_setting);
-
-                    }
-
-                    if(fouseIndex == 2)
-                    {
-                        new Dialog(mainPanel,1);
-                    }
-
-                    if(fouseIndex == 3)
-                    {
-                        new Dialog(mainPanel,2);
-                    }
-
-                    if(fouseIndex == 4)
-                    {
-                        int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认",JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);
-                        if (result == JOptionPane.OK_OPTION) {
-                            // 退出
-                            System.exit(0);
-                        }
-
-                    }
-                }
-
-            }
-        });
     }
 
+    public int getFouseIndex(){
+        return fouseIndex;
+    }
+    public void setFouseIndex(int fouseIndex){
+        this.fouseIndex = fouseIndex;
+    }
 
 }

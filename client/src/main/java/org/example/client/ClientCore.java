@@ -16,7 +16,7 @@ import org.example.common.entity.Player;
 
 public class ClientCore {
 
-    public static MainPanel mainPanel;//主界面对象
+    public static volatile MainPanel mainPanel;//主界面对象
     public static PlaySound playSound;//声音对象
 
     public static void Start(){
@@ -39,8 +39,7 @@ public class ClientCore {
             playSound.loop();
             playSound.start();
         }
-        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
-        gameStartCore.start();
+
 //                GameInput gameInput = new GameInput();
 //
 //                while (true){

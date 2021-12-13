@@ -7,6 +7,7 @@ import org.example.common.entity.Level;
 import org.example.common.entity.Player;
 import org.example.common.protocal.Result;
 
+import javax.swing.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -30,7 +31,6 @@ public class GameStartCore {
     private BlockingQueue<Result> frames;
     //表示游戏是否已经开始
     private volatile boolean start;
-
     //以下是用于和服务器通信的队列，不进行显示
     public static BlockingQueue<String> sendQueue;
     public static BlockingQueue<String> receiveQueue;

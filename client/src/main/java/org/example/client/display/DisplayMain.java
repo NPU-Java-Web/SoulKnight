@@ -21,6 +21,7 @@ public class DisplayMain implements Runnable {
 
     public DisplayMain(GameStartCore gameStartCore) {
         this.gameStartCore = gameStartCore;
+
     }
 
     /**
@@ -44,8 +45,8 @@ public class DisplayMain implements Runnable {
         if (!success) {
             log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
         }
+//        GamePanel gamePanel = new GamePanel(1000,1000,"ss",jFrame,gameStartCore);
 
-        GamePanel window = new GamePanel(1000, 1000, "Battle Game",gameStartCore);
         //渲染的原理是高频地读取gameStartCore中的信息，例如下面这样
 
         while (true) {
