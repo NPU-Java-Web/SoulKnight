@@ -20,7 +20,7 @@ public class MainPanel extends JFrame {
     private int fouseIndex;
     public MainPanel()
     {
-        super("TankBattle");
+        super("Battle");
 
         setSize(1000,1000);
 
@@ -52,7 +52,7 @@ public class MainPanel extends JFrame {
 
     public void setinterface()
     {
-        label_title = new JLabel("坦克大战");
+        label_title = new JLabel("元气骑士");
         label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
         label_title.setBounds(280,130,1000,200);
         label_title.setForeground(Color.black);
