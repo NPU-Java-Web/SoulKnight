@@ -1,9 +1,6 @@
 package org.example.client.display;
 
-import org.example.client.GameStartCore;
 import org.example.client.function.Data;
-import org.example.common.config.GameConfig;
-import org.example.common.entity.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -179,8 +176,11 @@ public class MainPanel extends JFrame {
                     {
 
 
-                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
-                               gameStartCore.start();
+//                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
+//                               gameStartCore.start();
+                        NewGamePanel newGamePanel = new NewGamePanel(mainPanel);
+                        add(newGamePanel);
+                        newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
 //                               Thread.sleep(1000);
 //                               System.out.println("qqqqqqqq");
 //                               GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);

@@ -18,10 +18,10 @@ import javax.swing.*;
 @Slf4j
 public class DisplayMain implements Runnable {
     private final GameStartCore gameStartCore;
-    private JFrame jFrame;
-    public DisplayMain(GameStartCore gameStartCore,JFrame jFrame) {
+
+    public DisplayMain(GameStartCore gameStartCore) {
         this.gameStartCore = gameStartCore;
-        this.jFrame = jFrame;
+
     }
 
     /**
@@ -45,7 +45,7 @@ public class DisplayMain implements Runnable {
         if (!success) {
             log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
         }
-        GamePanel gamePanel = new GamePanel(1000,1000,"ss",jFrame,gameStartCore);
+//        GamePanel gamePanel = new GamePanel(1000,1000,"ss",jFrame,gameStartCore);
 
         //渲染的原理是高频地读取gameStartCore中的信息，例如下面这样
 
