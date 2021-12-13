@@ -9,9 +9,9 @@ public class GameRenderThread implements Runnable{
     /**每次绘制间隔时间*/
     private int interval;
     public GameStartCore gameStartCore;
-    public NewGamePanel gamePanel;
+    public GamePanel gamePanel;
 
-    public GameRenderThread(GameStartCore gameStartCore, NewGamePanel gamePanel)
+    public GameRenderThread(GameStartCore gameStartCore, GamePanel gamePanel)
     {
         this.gameStartCore = gameStartCore;
         interval = 1000 / GamePanel.fps;
@@ -37,6 +37,7 @@ public class GameRenderThread implements Runnable{
             }
         }
     }
+
 
 
 }

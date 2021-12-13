@@ -1,18 +1,14 @@
 package org.example.client.display;
 
-
 import org.example.client.GameStartCore;
+import org.example.common.config.GameConfig;
 import org.example.common.entity.Player;
 import org.example.common.keyListener.GameInput;
-import org.example.common.config.GameConfig;
 import org.example.common.protocal.Result;
+import org.w3c.dom.Node;
 
 import javax.swing.*;
 import java.awt.*;
-
-/** TODO
- * 因为游戏菜单栏和游戏主界面有两人单独开发，所以该类也新建了窗口用与暂时开发调试，后续合并时再删除
- */
 
 public class GamePanel extends JPanel {
 
@@ -24,59 +20,36 @@ public class GamePanel extends JPanel {
     private Thread gameRenderThread;
     private Result result;
     private Graphics tempGraphics;
-    public JFrame jFrame;
+    public MainPanel mainPanel;
 
-    public GamePanel(int windowWidth, int windowHeight, String title, JFrame jFrame,GameStartCore gameStartCore)
-    {
 
+    public GamePanel(MainPanel mainPanel)
+    {			requestFocusInWindow();// 设置请求焦点
+       GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+       this.gameStartCore = gameStartCore;
+       gameStartCore.start();
+        this.mainPanel = mainPanel;
         setLayout(null);// 清除布局管理
         setBackground(new Color(83, 163, 238));
 
-        this.width = windowWidth;
-        this.height = windowHeight;
-        this.windowTitle = title;
-        this.gameStartCore = gameStartCore;
-        this.jFrame = jFrame;
-        jFrame.add(this);
-        this.setSize(1000,1000);
-//        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
-//        this.gameStartCore = gameStartCore;
-        //gameStartCore.start();
-        GameInput gameInput = new GameInput();
-        gameInput.init();
-        this.addKeyListener(gameInput);
-        //createWindow();
-//        gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
-//        gameRenderThread.start();
-    }
-
-    private void createWindow()
-    {
-        setSize(width, height);
-//        tsetTitle(windowTitle);
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
+        gameRenderThread.start();
     }
 
 
     @Override
-    public void paint(Graphics g)
-    {
-        /**
-         * 双缓冲防止屏幕闪烁,在内存里创建一个和窗口长宽一样的图片(画布),在画布统一显示最后绘制到屏幕
-         */
-        result = gameStartCore.getFrames().poll();
-        Image img = this.createImage(width, height);
-        tempGraphics = img.getGraphics();
-        clear(tempGraphics);
-        drawPlayers(tempGraphics);
-        //将内存画布绘制到窗口
-        g.drawImage(img, 0, 0, null);
+    public void paintComponent(Graphics g){
+//    super.paintComponent(g);//清屏
+//    this.setBackground(Color.WHITE); //设置面板的背景色
+    Image img = this.createImage(1000, 1000);
+    result = gameStartCore.getFrames().poll();
+    tempGraphics = img.getGraphics();
+    clear(tempGraphics);
+    drawPlayers(tempGraphics);
+    //将内存画布绘制到窗口
+    g.drawImage(img, 0, 0, null);
     }
-    @Override
-    public void repaint(){
-        paint(getGraphics());
-    }
+
 
     public void clear(Graphics graphics){
         graphics.setColor(Color.WHITE);
@@ -90,9 +63,13 @@ public class GamePanel extends JPanel {
         }*/
         drawPlayer(gameStartCore.getPlayer().getX(),gameStartCore.getPlayer().getY(), graphics);
     }
+
+
     public void drawPlayer(int x, int y, Graphics graphics){
         graphics.drawImage(GameConfig.player, x, y, null);
     }
+
+
 
 
 

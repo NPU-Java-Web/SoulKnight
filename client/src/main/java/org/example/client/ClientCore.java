@@ -16,7 +16,7 @@ import org.example.common.entity.Player;
 
 public class ClientCore {
 
-    public static MainPanel mainPanel;//主界面对象
+    public static volatile MainPanel mainPanel;//主界面对象
     public static PlaySound playSound;//声音对象
 
     public static void Start(){
