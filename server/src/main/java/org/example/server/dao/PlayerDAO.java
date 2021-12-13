@@ -19,13 +19,6 @@ public class PlayerDAO {
 
     private static final String PREFIX = "player:";
 
-//    public PlayerDAO() {
-//        JedisPoolConfig config = new JedisPoolConfig();
-//        config.setMaxTotal(20);
-//        config.setMaxIdle(10);
-//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-//    }
-
     public Player selectById(String playerId) {
         String key = PREFIX + playerId;
         return selectByKey(key);

@@ -27,15 +27,12 @@ public class UploadMessage implements Runnable {
                     log.warn("消息非法，客户端拒绝发送，消息为" + message);
                     continue;
                 }
-                channel.writeAndFlush(preTreat(message));
+                channel.writeAndFlush(message+"\n");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static ByteBuf preTreat(String message) {
-        return Unpooled.copiedBuffer(message + "\n", CharsetUtil.UTF_8);
-    }
 
 }

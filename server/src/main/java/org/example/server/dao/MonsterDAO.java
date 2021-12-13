@@ -17,14 +17,6 @@ public class MonsterDAO {
 
     private static final String PREFIX = "monster:";
 
-//    public MonsterDAO() {
-//        JedisPoolConfig config = new JedisPoolConfig();
-//        config.setMaxTotal(20);
-//        config.setMaxIdle(10);
-//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-//    }
-
-
     public Monster selectById(String monsterId) {
         String key = PREFIX + monsterId;
         return selectByKey(key);

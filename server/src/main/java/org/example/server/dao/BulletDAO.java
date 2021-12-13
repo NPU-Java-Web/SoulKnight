@@ -1,12 +1,10 @@
 package org.example.server.dao;
 
 import org.example.common.entity.Bullet;
-import org.example.server.config.RedisConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Map;
 import java.util.Set;
@@ -18,13 +16,6 @@ public class BulletDAO {
     private JedisPool jedisPool;
 
     private static final String PREFIX = "bullet:";
-
-//    public BulletDAO() {
-//        JedisPoolConfig config = new JedisPoolConfig();
-//        config.setMaxTotal(20);
-//        config.setMaxIdle(10);
-//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-//    }
 
     public Bullet selectById(String bulletId) {
         String key = PREFIX + bulletId;

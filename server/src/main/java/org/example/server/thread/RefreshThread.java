@@ -33,56 +33,19 @@ public class RefreshThread {
 
     @Async
     public void run() {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-
         while (true) {
-//            log.error("我真的在运行——refresh");
-
-//            对于player，没啥可计算的，直接返回即可。
             List<Player> players = playerService.list();
-            //对于monster，第一阶段先暂时不搞怪物的移动
             List<Monster> monsters = monsterService.list();
-
             List<Bullet> bullets = bulletService.list();
+            //TODO 算法还没写完
 
 
-//            List<Coordinate> livings = new ArrayList<>();
-//            livings.add(new Coordinate(monsterKey, monster.getX(), monster.getY()));
-//            livings.add(new Coordinate(playerKey, player.getX(), player.getY()));
-//            //对于bullet，需要算一下
-//            List<Bullet> bullets = new ArrayList<>();
-//            Set<String> bulletKeys = jedis.keys("bullet*");
-//            for (String bulletKey : bulletKeys) {
-//                Bullet bullet = PlayerDAO.getBulletByKey(bulletKey);
-//                long pastTime = System.currentTimeMillis() - bullet.getCreateTime();
-//                long distance = bullet.getSpeed() * (pastTime) / 1000;
-//                double angle = bullet.getAngle();
-//                double currentX = bullet.getX() + Math.round(distance * Math.cos(angle));
-//                double currentY = bullet.getY() + Math.round(distance * Math.sin(angle));
-//                if (!Verification.verifyLocation((int) currentX, (int) currentY)) {
-//                    jedis.del(bulletKey);
-//                    continue;
-//                }
-//                for (Coordinate coordinate : livings) {
-//                    if (coordinate.getDistance(currentX, currentY) < bullet.getRadius()) {
-//                        //TODO 这里要处理扣血和死亡判断等
-//
-//                        jedis.del(bulletKey);
-//                    }
-//                }
-//                bullets.add(bullet);
-//            }
             Result result = new Result(players, bullets, monsters);
             ServerCore.world.setGlobalInfo(JSON.toJSONString(result));
 
             //等待一小会儿，再进行下次计算
             try {
-                Thread.sleep(GameConfig.sleepTime);
+                Thread.sleep(GameConfig.SLEEP_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

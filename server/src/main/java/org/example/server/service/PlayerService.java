@@ -1,6 +1,7 @@
 package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.common.entity.Bullet;
 import org.example.common.entity.Player;
 import org.example.server.dao.PlayerDAO;
 import org.example.server.util.Verification;
@@ -34,8 +35,14 @@ public class PlayerService {
         List<Player> result = new ArrayList<>();
         Set<String> keys = playerDAO.getAllPlayerKeys();
         for (String key : keys) {
-            Player player = playerDAO.selectByKey(key);
-            result.add(player);
+            Player player;
+            try {
+                player = playerDAO.selectByKey(key);
+                result.add(player);
+            } catch (NumberFormatException e) {
+                log.error("在根据key获取player对象时出现异常" + e.getCause());
+                e.printStackTrace();
+            }
         }
         return result;
     }
