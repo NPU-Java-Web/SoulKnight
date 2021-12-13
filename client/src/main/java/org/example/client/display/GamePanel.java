@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
         // 清除布局管理
         setLayout(null);
         setBackground(new Color(83, 163, 238));
-        //打开游戏panel的读取键盘hashmap的线程
+        //打开游戏panel的读取键盘hashmap的线程并改变player变量，并且按帧率进行页面刷新repaint
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
         gameRenderThread.start();
 
