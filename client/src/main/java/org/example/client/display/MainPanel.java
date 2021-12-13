@@ -13,13 +13,13 @@ import java.awt.event.KeyEvent;
  */
 public class MainPanel extends JFrame {
 
-    private JLabel back, label_start, label_setting, label_instruction, label_quit, label05, label06,label07,label08;
+    private JLabel back, label_start, label_setting, label_instruction, label_quit,label_title, label05, label06,label07,label08;
     private PlaySound p;
     private MainPanel mainPanel;// 本类对象
     private int fouseIndex;
     public MainPanel()
     {
-        super("TankBattle");
+        super("Battle");
 
         setSize(1000,1000);
 
@@ -51,6 +51,10 @@ public class MainPanel extends JFrame {
 
     public void setinterface()
     {
+        label_title = new JLabel("元气骑士");
+        label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
+        label_title.setBounds(280,130,1000,200);
+        label_title.setForeground(Color.black);
         // 设置标签
         label_start = new JLabel("开始游戏");
         // 设置字体 风格 字号
@@ -78,6 +82,7 @@ public class MainPanel extends JFrame {
         add(label_setting);
         add(label_instruction);
         add(label_quit);
+        add(label_title);
     }
 
     public void adapter()

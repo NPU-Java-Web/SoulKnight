@@ -1,7 +1,11 @@
 package org.example.client.display;
 
+import org.example.client.ClientCore;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  *
@@ -9,7 +13,7 @@ import java.awt.*;
  *
  */
 public class Dialog extends JDialog{
-    private JLabel jl01, jl02, jl03, jl04, jima01, jima02, jima03, jima04, jima05;
+    private JLabel jlabel_one, jl02, jl03, jl04, jima01, jima02, jima03, jima04, jima05;
     private JButton jb02, jb03, jb04, jb05, jButton;
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;
@@ -40,6 +44,38 @@ public class Dialog extends JDialog{
     {
         setTitle("设置");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+
+        // 音效标签
+        jl02 = new JLabel("声音选项");
+        jl02.setFont(new Font("acefont-family", Font.BOLD, 15));
+        jl02.setBounds(10, 80, 100, 20);
+        add(jl02);
+
+        // 音效选项
+        jcb1 = new JCheckBox("背景声音");
+        jcb1.setBounds(20, 120, 80, 20);
+        if (PlaySound.b[0]) {
+            jcb1.setSelected(true);
+        }
+        add(jcb1);
+        jcb1.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+
+                PlaySound.b[0] = !PlaySound.b[0];
+
+                if (!PlaySound.b[0]) {
+
+                    ClientCore.playSound.stop();
+
+                }
+                else {
+                    ClientCore.playSound.start();
+                }
+            }
+        });
+
     }
 
     public void showInstruction(JFrame jFrame)
@@ -47,12 +83,12 @@ public class Dialog extends JDialog{
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
         String text = "<html>坦克大战游戏说明<br>test<html>";
-        jl01 = new JLabel(text);
-        jl01.setFont(new Font("KaiTi", Font.BOLD, 30));
+        jlabel_one = new JLabel(text);
+        jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
         // 设置前景颜色
-        jl01.setForeground(Color.black);
-        jl01.setBounds(40, 0, 400, 350);
-        add(jl01);
+        jlabel_one.setForeground(Color.black);
+        jlabel_one.setBounds(40, 0, 400, 350);
+        add(jlabel_one);
     }
 
 
