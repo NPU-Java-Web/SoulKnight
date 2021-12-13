@@ -5,8 +5,9 @@ import org.example.client.GameStartCore;
 
 public class GameRenderThread implements Runnable{
 
-    private boolean exited = false;//游戏是否退出
-    private int interval;//每次绘制隔多久
+    private boolean exited = false;
+    /**每次绘制间隔时间*/
+    private int interval;
     public GameStartCore gameStartCore;
     public GamePanel gamePanel;
 
@@ -27,7 +28,8 @@ public class GameRenderThread implements Runnable{
             gamePanel.repaint();
             try
             {
-                Thread.sleep(interval);//间隔一定时间渲染一次，来实现稳定fps
+                /**稳定fps*/
+                Thread.sleep(interval);
             }
             catch (Exception e)
             {

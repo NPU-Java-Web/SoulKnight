@@ -18,7 +18,7 @@ public class GamePanel extends JFrame {
     private int width;
     private int height;
     private String windowTitle;
-    public static final int fps = 10;
+    public static final int fps = 40;
     private final GameStartCore gameStartCore;
     private Thread gameRenderThread;
     private Result result;
@@ -50,11 +50,13 @@ public class GamePanel extends JFrame {
     @Override
     public void paint(Graphics g)
     {
-        /**双缓冲防止屏幕闪烁*/
-        Image img = this.createImage(width, height);//在内存里创建一个和窗口长宽一样的图片(画布)
-        tempGraphics = img.getGraphics();//获得画布的Graphics
+        /**
+         * 双缓冲防止屏幕闪烁,在内存里创建一个和窗口长宽一样的图片(画布),在画布统一显示最后绘制到屏幕
+         */
+        result = gameStartCore.getFrames().poll();
+        Image img = this.createImage(width, height);
+        tempGraphics = img.getGraphics();
         clear(tempGraphics);
-        //result = gameStartCore.getFrames().poll();
         drawPlayers(tempGraphics);
         //将内存画布绘制到窗口
         g.drawImage(img, 0, 0, null);

@@ -2,6 +2,7 @@ package org.example.server.thread;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.example.common.config.GameConfig;
 import org.example.common.entity.Bullet;
 import org.example.common.entity.Player;
 import org.example.server.ServerCore;
@@ -46,7 +47,7 @@ public class CalculateThread {
                 } else {
                     log.warn("无法解析消息内容，无法解析的消息内容为" + message);
                 }
-                Thread.sleep(100);
+                Thread.sleep(GameConfig.sleepTime);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -10,6 +10,8 @@ public class GameConfig {
     public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
     public static Image player = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/player.png");
 
-    public static int fps = 30;
+    public static final int fps = 40;
+    public static final int sleepTime = 25;
+
 
 }

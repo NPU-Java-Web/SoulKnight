@@ -2,6 +2,7 @@ package org.example.server.thread;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.example.common.config.GameConfig;
 import org.example.common.entity.Bullet;
 import org.example.common.entity.Monster;
 import org.example.common.entity.Player;
@@ -81,7 +82,7 @@ public class RefreshThread {
 
             //等待一小会儿，再进行下次计算
             try {
-                Thread.sleep(1000);
+                Thread.sleep(GameConfig.sleepTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
