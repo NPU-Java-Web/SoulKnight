@@ -28,18 +28,24 @@ public class GamePanel extends JPanel {
 
     public GamePanel(int windowWidth, int windowHeight, String title, JFrame jFrame,GameStartCore gameStartCore)
     {
+
+        setLayout(null);// 清除布局管理
+        setBackground(new Color(83, 163, 238));
+
         this.width = windowWidth;
         this.height = windowHeight;
         this.windowTitle = title;
         this.gameStartCore = gameStartCore;
         this.jFrame = jFrame;
+        jFrame.add(this);
+        this.setSize(1000,1000);
 //        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
 //        this.gameStartCore = gameStartCore;
-        gameStartCore.start();
+        //gameStartCore.start();
         GameInput gameInput = new GameInput();
         gameInput.init();
         this.addKeyListener(gameInput);
-        createWindow();
+        //createWindow();
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
         gameRenderThread.start();
     }
