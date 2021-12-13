@@ -39,8 +39,7 @@ public class ClientCore {
             playSound.loop();
             playSound.start();
         }
-        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
-        gameStartCore.start();
+
 //                GameInput gameInput = new GameInput();
 //
 //                while (true){

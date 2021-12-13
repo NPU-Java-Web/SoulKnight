@@ -2,6 +2,7 @@ package org.example.client.display;
 
 
 import org.example.client.GameStartCore;
+import org.example.common.entity.Player;
 import org.example.common.keyListener.GameInput;
 import org.example.common.config.GameConfig;
 import org.example.common.protocal.Result;
@@ -9,11 +10,11 @@ import org.example.common.protocal.Result;
 import javax.swing.*;
 import java.awt.*;
 
-/**TODO
+/** TODO
  * 因为游戏菜单栏和游戏主界面有两人单独开发，所以该类也新建了窗口用与暂时开发调试，后续合并时再删除
  */
 
-public class GamePanel extends JFrame {
+public class GamePanel extends JPanel {
 
     private int width;
     private int height;
@@ -23,13 +24,18 @@ public class GamePanel extends JFrame {
     private Thread gameRenderThread;
     private Result result;
     private Graphics tempGraphics;
+    public JFrame jFrame;
 
-    public GamePanel(int windowWidth, int windowHeight, String title, GameStartCore gameStartCore)
+    public GamePanel(int windowWidth, int windowHeight, String title, JFrame jFrame,GameStartCore gameStartCore)
     {
         this.width = windowWidth;
         this.height = windowHeight;
         this.windowTitle = title;
         this.gameStartCore = gameStartCore;
+        this.jFrame = jFrame;
+//        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+//        this.gameStartCore = gameStartCore;
+        gameStartCore.start();
         GameInput gameInput = new GameInput();
         gameInput.init();
         this.addKeyListener(gameInput);
@@ -41,8 +47,8 @@ public class GamePanel extends JFrame {
     private void createWindow()
     {
         setSize(width, height);
-        setTitle(windowTitle);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        tsetTitle(windowTitle);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 

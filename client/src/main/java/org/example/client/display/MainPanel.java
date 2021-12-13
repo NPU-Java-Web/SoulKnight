@@ -1,7 +1,9 @@
 package org.example.client.display;
 
+import org.example.client.GameStartCore;
 import org.example.client.function.Data;
 import org.example.common.config.GameConfig;
+import org.example.common.entity.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -175,6 +177,14 @@ public class MainPanel extends JFrame {
                     //若焦点在开始游戏，则进行游戏面板的渲染
                     if(fouseIndex == 1)
                     {
+                        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+                        GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);
+                        add(window);
+                        window.setSize(1000,1000);
+                        remove(label_setting);
+                        remove(label_quit);
+                        remove(label_instruction);
+                        remove(label_start);
 //                        new Dialog(mainPanel,3);
 //                           GamePanel gamePanel = new GamePanel(mainPanel);
 //                            mainPanel.add(gamePanel);
