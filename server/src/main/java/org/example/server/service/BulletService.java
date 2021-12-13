@@ -29,8 +29,14 @@ public class BulletService {
         List<Bullet> result = new ArrayList<>();
         Set<String> keys = bulletDAO.getAllBulletKeys();
         for (String key : keys) {
-            Bullet bullet = bulletDAO.selectByKey(key);
-            result.add(bullet);
+            Bullet bullet;
+            try {
+                bullet = bulletDAO.selectByKey(key);
+                result.add(bullet);
+            } catch (NumberFormatException e) {
+                log.error("在根据key获取bullet对象时出现异常" + e.getCause());
+                e.printStackTrace();
+            }
         }
         return result;
     }

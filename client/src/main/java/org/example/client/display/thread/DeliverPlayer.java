@@ -23,7 +23,7 @@ public class DeliverPlayer implements Runnable {
         while (true) {
             try {
                 //暂时设置为每一秒发1次，上线后要改成一秒发30次
-                Thread.sleep(GameConfig.sleepTime);
+                Thread.sleep(GameConfig.SLEEP_TIME);
                 Player player = new Player();
                 player.setPlayerType(gameStartCore.getPlayer().getPlayerType());
                 player.setPlayerId(gameStartCore.getPlayer().getPlayerId());

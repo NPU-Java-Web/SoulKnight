@@ -20,12 +20,9 @@ public class MyServerInboundHandler extends SimpleChannelInboundHandler<Object> 
         if (!succes) {
             log.warn("服务器的队列已满，无法放入。消息内容为" + msg);
         }
-        channel.writeAndFlush(preTreat(ServerCore.world.getGlobalInfo()));
+        channel.writeAndFlush(ServerCore.world.getGlobalInfo()+"\n");
     }
 
-    public static ByteBuf preTreat(String message) {
-        return Unpooled.copiedBuffer(message + "\n", CharsetUtil.UTF_8);
-    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
