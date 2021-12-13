@@ -6,6 +6,9 @@ import org.example.common.keyListener.GameInput;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 /**
  * 此类为界面主体jframe
@@ -20,6 +23,8 @@ public class MainPanel extends JFrame {
     public MainPanel()
     {
         super("Battle");
+
+        addMouseListener(new GameMouseListener());
 
         setSize(1000,1000);
 
@@ -92,7 +97,6 @@ public class MainPanel extends JFrame {
         this.addKeyListener(gameInput);
         Thread thread = new Thread(new KeyEventListener(),"key");
         thread.start();
-
     }
 
     public int getFouseIndex(){

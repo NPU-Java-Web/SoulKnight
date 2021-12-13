@@ -23,17 +23,17 @@ public class GamePanel extends JPanel {
     public MainPanel mainPanel;
 
 
-    public GamePanel(MainPanel mainPanel)
-    {			requestFocusInWindow();// 设置请求焦点
-       GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
-       this.gameStartCore = gameStartCore;
-       gameStartCore.start();
+    public GamePanel(MainPanel mainPanel) {
+        requestFocusInWindow();// 设置请求焦点
+        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+        this.gameStartCore = gameStartCore;
+        gameStartCore.start();
         this.mainPanel = mainPanel;
         setLayout(null);// 清除布局管理
         setBackground(new Color(83, 163, 238));
-
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
         gameRenderThread.start();
+
     }
 
 
