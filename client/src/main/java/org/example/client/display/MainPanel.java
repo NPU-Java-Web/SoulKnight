@@ -177,14 +177,19 @@ public class MainPanel extends JFrame {
                     //若焦点在开始游戏，则进行游戏面板的渲染
                     if(fouseIndex == 1)
                     {
-                        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
-                        GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);
-                        add(window);
-                        window.setSize(1000,1000);
-                        remove(label_setting);
-                        remove(label_quit);
-                        remove(label_instruction);
-                        remove(label_start);
+
+                            GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+                            //Thread.sleep(1000);
+                            //GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);
+                            //add(window);
+                            //window.setSize(1000,1000);
+                            remove(label_setting);
+                            remove(label_quit);
+                            remove(label_instruction);
+                            remove(label_start);
+
+
+
 //                        new Dialog(mainPanel,3);
 //                           GamePanel gamePanel = new GamePanel(mainPanel);
 //                            mainPanel.add(gamePanel);
