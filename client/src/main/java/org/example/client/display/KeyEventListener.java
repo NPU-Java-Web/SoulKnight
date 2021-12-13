@@ -19,7 +19,7 @@ public class KeyEventListener implements Runnable {
 
     public KeyEventListener()
     {
-        interval = 1000 / GameConfig.fps;
+        interval = 100;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class KeyEventListener implements Runnable {
 
 //                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
 //                               gameStartCore.start();
-                    GamePanel newGamePanel = new GamePanel(mainPanel);
+                    GamePanel newGamePanel = new GamePanel(ClientCore.mainPanel);
                     ClientCore.mainPanel.add(newGamePanel);
                     newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
 //                               Thread.sleep(1000);
@@ -121,10 +121,10 @@ public class KeyEventListener implements Runnable {
 
                     //add(window);
                     // window.setSize(1000,1000);
-                    ClientCore.mainPanel.remove(mainPanel.label_setting);
-                    ClientCore.mainPanel.remove(mainPanel.label_quit);
-                    ClientCore.mainPanel.remove(mainPanel.label_instruction);
-                    ClientCore.mainPanel.remove(mainPanel.label_start);
+                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_setting);
+                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_quit);
+                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_instruction);
+                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_start);
 
 
 
@@ -161,6 +161,7 @@ public class KeyEventListener implements Runnable {
                     }
 
                 }
+
             }
             try
             {
