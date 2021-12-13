@@ -3,6 +3,11 @@ package org.example.client.display;
 
 import org.example.client.GameStartCore;
 
+/**
+ * 此类为游戏页面的从键盘响应的hashmap中读取对应信息
+ * 此项目使用 1个线程获取所有键盘响应并存储进hashmap，用多个不同线程遍历读取对应键盘响应的hashmap的方法，实现
+ * 不同界面响应不同方法
+ */
 public class GameRenderThread implements Runnable{
 
     private boolean exited = false;
@@ -24,6 +29,7 @@ public class GameRenderThread implements Runnable{
 
         while (!exited)
         {
+            //调用player方法改动其中的变量
             gameStartCore.getPlayer().onClick();
             gamePanel.repaint();
             try

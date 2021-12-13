@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * 鼠标监听
+ */
 @Slf4j
 public class GameMouseListener implements MouseListener {
     /**鼠标释放*/

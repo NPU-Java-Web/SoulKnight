@@ -61,9 +61,12 @@ public class Player {
     }
 
     public void onClick(){
+        //从GameRenderThread改动palyer的变量，从而使得DisplayMain的线程能不间断实时将player发送到serve层
+        //
         /**左方向键*/
         if(GameInput.getKeyDown(37)){
             this.setX(this.x-this.speed);
+
         }
         /**右方向键*/
         if(GameInput.getKeyDown(39)){

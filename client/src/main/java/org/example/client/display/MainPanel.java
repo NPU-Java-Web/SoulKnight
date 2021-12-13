@@ -23,7 +23,7 @@ public class MainPanel extends JFrame {
     public MainPanel()
     {
         super("Battle");
-
+        //添加鼠标监听
         addMouseListener(new GameMouseListener());
 
         setSize(1000,1000);
@@ -33,7 +33,7 @@ public class MainPanel extends JFrame {
         setBackground();
 
         setinterface();//设置界面
-
+        //添加主菜单的监听
         adapter();
 
         mainPanel = this;
@@ -56,6 +56,7 @@ public class MainPanel extends JFrame {
 
     public void setinterface()
     {
+        //添加主菜单所有标签
         label_title = new JLabel("元气骑士");
         label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
         label_title.setBounds(280,130,1000,200);
@@ -92,17 +93,21 @@ public class MainPanel extends JFrame {
 
     public void adapter()
     {
+        //添加读取所有键盘响应的hashmap
         GameInput gameInput = new GameInput();
         gameInput.init();
         this.addKeyListener(gameInput);
+        //开启主菜单的监听线程以从mashmap中读取
         Thread thread = new Thread(new KeyEventListener(),"key");
         thread.start();
     }
 
     public int getFouseIndex(){
+        //获取当前焦点
         return fouseIndex;
     }
     public void setFouseIndex(int fouseIndex){
+        //设置当前焦点
         this.fouseIndex = fouseIndex;
     }
 

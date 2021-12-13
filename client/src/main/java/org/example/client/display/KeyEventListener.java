@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * 此类为主菜单的监听线程，以从总的键盘响应的hashmap中读取对应信息
+ */
 public class KeyEventListener implements Runnable {
     private boolean exited = false;
     /**每次绘制间隔时间*/
