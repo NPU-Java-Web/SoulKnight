@@ -10,6 +10,7 @@ import javax.swing.*;
  * 此类为前端界面的启动类
  * 以启动jframe
  */
+import org.example.client.funtion.Data;
 public class ClientCore {
 
     public static MainPanel mainPanel;//主界面对象
@@ -30,7 +31,7 @@ public class ClientCore {
         if(playSound == null)
         {
             playSound = new PlaySound();
-            playSound.open(System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav");
+            playSound.open(Data.sound);
             playSound.play();
             playSound.loop();
             playSound.start();
