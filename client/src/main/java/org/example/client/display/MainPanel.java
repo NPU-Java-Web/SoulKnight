@@ -1,6 +1,7 @@
 package org.example.client.display;
 
 import org.example.client.function.Data;
+import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -87,17 +88,16 @@ public class MainPanel extends JFrame {
 
     public void adapter()
     {
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-                int key = e.getKeyCode();
+        GameInput gameInput = new GameInput();
+        gameInput.init();
+        this.addKeyListener(gameInput);
 
                 // 监听向上或向下按键
 
-                if(key==KeyEvent.VK_DOWN || key==KeyEvent.VK_UP)
+                if(GameInput.getKeyDown(KeyEvent.VK_DOWN) || GameInput.getKeyDown(KeyEvent.VK_UP))
                 {
-                    if(key == KeyEvent.VK_DOWN)
+
+                    if(GameInput.getKeyDown(KeyEvent.VK_DOWN))
                     {
                         if(fouseIndex == 1)
                         {
@@ -116,7 +116,7 @@ public class MainPanel extends JFrame {
                             fouseIndex = 1;
                         }
                     }
-                    if(key == KeyEvent.VK_UP)
+                    if(GameInput.getKeyDown(KeyEvent.VK_UP))
                     {
                         if(fouseIndex == 1)
                         {
@@ -169,7 +169,7 @@ public class MainPanel extends JFrame {
 
                 }//
                 //监听回车键
-                if(key == KeyEvent.VK_ENTER)
+                if(GameInput.getKeyDown(KeyEvent.VK_ENTER))
                 {
                     //若焦点在开始游戏，则进行游戏面板的渲染
                     if(fouseIndex == 1)
@@ -229,8 +229,8 @@ public class MainPanel extends JFrame {
                     }
                 }
 
-            }
-        });
+
+
     }
 
 

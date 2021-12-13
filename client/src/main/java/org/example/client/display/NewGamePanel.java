@@ -22,23 +22,21 @@ public class NewGamePanel extends JPanel {
     private Graphics tempGraphics;
     public MainPanel mainPanel;
     public NewGamePanel(MainPanel mainPanel)
-    {
+    {			requestFocusInWindow();// 设置请求焦点
        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
        this.gameStartCore = gameStartCore;
        gameStartCore.start();
         this.mainPanel = mainPanel;
         setLayout(null);// 清除布局管理
         setBackground(new Color(83, 163, 238));
-        GameInput gameInput = new GameInput();
-        gameInput.init();
-        this.addKeyListener(gameInput);
+
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
         gameRenderThread.start();
     }
 @Override
     public void paintComponent(Graphics g){
-    super.paintComponent(g);//清屏
-    this.setBackground(Color.WHITE); //设置面板的背景色
+//    super.paintComponent(g);//清屏
+//    this.setBackground(Color.WHITE); //设置面板的背景色
     Image img = this.createImage(1000, 1000);
     result = gameStartCore.getFrames().poll();
     tempGraphics = img.getGraphics();
