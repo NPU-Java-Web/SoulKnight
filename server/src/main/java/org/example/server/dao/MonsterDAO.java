@@ -84,4 +84,18 @@ public class MonsterDAO {
         }
     }
 
+    public void delete(Monster monster) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + monster.getMonsterId();
+            jedis.del(key);
+        }
+    }
+
+    public void subtractBlood(Monster monster, int difference) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + monster.getMonsterId();
+            jedis.hincrBy(key, "blood", -difference);
+        }
+    }
+
 }

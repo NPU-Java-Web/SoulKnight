@@ -43,7 +43,7 @@ public class ServerCore {
             b.channel(NioServerSocketChannel.class);
             b.childHandler(new ChannelInitializer<NioSocketChannel>() {
                 @Override
-                protected void initChannel(NioSocketChannel ch){
+                protected void initChannel(NioSocketChannel ch) {
                     ChannelPipeline pipeline = ch.pipeline();
                     pipeline.addLast(new LineBasedFrameDecoder(1024));
                     pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
@@ -60,13 +60,13 @@ public class ServerCore {
 
             AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadConfig.class);
 
-            CalculateThread service2 = context.getBean(CalculateThread.class);
-            service2.run();
+            CalculateThread calculateThread = context.getBean(CalculateThread.class);
+            calculateThread.run();
 
             Thread.sleep(1000);
 
-            RefreshThread service1 = context.getBean(RefreshThread.class);
-            service1.run();
+            RefreshThread refreshThread = context.getBean(RefreshThread.class);
+            refreshThread.run();
 
         } catch (InterruptedException e) {
             e.printStackTrace();

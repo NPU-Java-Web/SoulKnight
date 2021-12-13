@@ -58,9 +58,10 @@ public class BulletDAO {
 
     public void insert(Bullet bullet) {
         try (Jedis jedis = jedisPool.getResource()) {
-            String key = PREFIX + getNextBulletNumber();
+            Long number = getNextBulletNumber();
+            String key = PREFIX + number;
             jedis.hset(key, "bulletType", bullet.getBulletType().toString());
-            jedis.hset(key, "bulletId", key);
+            jedis.hset(key, "bulletId", number.toString());
             jedis.hset(key, "playerId", bullet.getPlayerId());
             jedis.hset(key, "x", bullet.getX().toString());
             jedis.hset(key, "y", bullet.getY().toString());
@@ -76,6 +77,21 @@ public class BulletDAO {
     public Set<String> getAllBulletKeys() {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.keys("bullet*");
+        }
+    }
+
+    public void delete(Bullet bullet) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            System.err.println("执行删除子弹！！！！！！！！！！！！！！！！！！！！！！！");
+            String key = PREFIX + bullet.getBulletId();
+            jedis.del(key);
+        }
+    }
+
+    public void updateLocation(Bullet bullet) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + bullet.getBulletId();
+            jedis.hset(key, "x", bullet.getX().toString());
         }
     }
 

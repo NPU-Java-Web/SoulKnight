@@ -1,7 +1,6 @@
 package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.common.entity.Bullet;
 import org.example.common.entity.Monster;
 import org.example.server.ServerCore;
 import org.example.server.dao.MonsterDAO;
@@ -33,13 +32,23 @@ public class MonsterService {
             Monster monster;
             try {
                 monster = monsterDAO.selectByKey(key);
-                result.add(monster);
+                if (monster != null) {
+                    result.add(monster);
+                }
             } catch (NumberFormatException e) {
                 log.error("在根据key获取monster对象时出现异常" + e.getCause());
                 e.printStackTrace();
             }
         }
         return result;
+    }
+
+    public void beingHurt(Monster monster, int difference) {
+        if (difference >= monster.getBlood()) {
+            monsterDAO.delete(monster);
+        } else {
+            monsterDAO.subtractBlood(monster, difference);
+        }
     }
 
 }
