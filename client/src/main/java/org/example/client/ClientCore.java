@@ -1,6 +1,6 @@
 package org.example.client;
 
-import org.example.client.calculate.gamestart.GameInput;
+
 import org.example.client.display.MainPanel;
 import org.example.client.display.PlaySound;
 
@@ -10,7 +10,9 @@ import javax.swing.*;
  * 此类为前端界面的启动类
  * 以启动jframe
  */
-import org.example.client.funtion.Data;
+import org.example.common.config.GameConfig;
+import org.example.common.entity.Player;
+
 public class ClientCore {
 
     public static MainPanel mainPanel;//主界面对象
@@ -31,11 +33,13 @@ public class ClientCore {
         if(playSound == null)
         {
             playSound = new PlaySound();
-            playSound.open(Data.sound);
+            playSound.open(GameConfig.sound);
             playSound.play();
             playSound.loop();
             playSound.start();
         }
+        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+        gameStartCore.start();
 //                GameInput gameInput = new GameInput();
 //
 //                while (true){
