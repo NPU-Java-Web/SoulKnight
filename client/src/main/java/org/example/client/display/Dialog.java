@@ -82,7 +82,7 @@ public class Dialog extends JDialog{
     {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
-        String text = "<html>坦克大战游戏说明<br>test<html>";
+        String text = "<html>元气骑士游戏说明<br>test<html>";
         jlabel_one = new JLabel(text);
         jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
         // 设置前景颜色

@@ -175,10 +175,11 @@ public class MainPanel extends JFrame {
                     //若焦点在开始游戏，则进行游戏面板的渲染
                     if(fouseIndex == 1)
                     {
-                        //   GamePanel gamePanel = new GamePanel(this);
-                        //    add(gamePanel);
-                        //    gamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
-                        // 移除组件
+//                        new Dialog(mainPanel,3);
+//                           GamePanel gamePanel = new GamePanel(mainPanel);
+//                            mainPanel.add(gamePanel);
+//                            gamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
+//                         //移除组件
 //                            remove(label_start);
 //                            remove(label_instruction);
 //                            remove(label_quit);
