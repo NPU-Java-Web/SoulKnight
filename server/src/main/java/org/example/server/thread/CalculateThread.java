@@ -27,6 +27,7 @@ public class CalculateThread {
 
     @Async
     public void run() {
+
         monsterService.initializeMonsters();
         while (true) {
             try {
@@ -42,7 +43,7 @@ public class CalculateThread {
                 } else {
                     log.warn("无法解析消息内容，无法解析的消息内容为" + message);
                 }
-                Thread.sleep(20);
+                Thread.sleep(100);
             } catch (Exception e) {
                 log.error("CalculateThread中出现严重异常" + e.getCause());
                 e.printStackTrace();

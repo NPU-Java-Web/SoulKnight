@@ -87,6 +87,13 @@ public class PlayerDAO {
         }
     }
 
+    public void subtractBlood(Player player, int difference) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + player.getPlayerId();
+            jedis.hincrBy(key, "blood", -difference);
+        }
+    }
+
 
 }
 

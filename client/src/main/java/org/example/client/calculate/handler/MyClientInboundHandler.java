@@ -16,7 +16,7 @@ public class MyClientInboundHandler extends SimpleChannelInboundHandler<Object> 
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         boolean success = GameStartCore.receiveQueue.offer((String) msg);
         if (!success) {
-            log.warn("客户端无法往接收队列里放消息，消息是" + msg);
+            log.warn("客户端从服务器收到了信息，但是无法往receiveQueue里放消息，消息是" + msg);
         }
     }
 

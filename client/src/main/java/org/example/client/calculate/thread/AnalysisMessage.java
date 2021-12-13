@@ -27,6 +27,7 @@ public class AnalysisMessage implements Runnable {
                     if (!success) {
                         log.warn("frames队列已满，服务器传回来的一帧被丢弃，内容是" + result);
                     }
+//                    System.err.println(result);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
