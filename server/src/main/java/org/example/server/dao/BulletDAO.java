@@ -1,12 +1,10 @@
 package org.example.server.dao;
 
 import org.example.common.entity.Bullet;
-import org.example.server.config.RedisConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Map;
 import java.util.Set;
@@ -18,13 +16,6 @@ public class BulletDAO {
     private JedisPool jedisPool;
 
     private static final String PREFIX = "bullet:";
-
-//    public BulletDAO() {
-//        JedisPoolConfig config = new JedisPoolConfig();
-//        config.setMaxTotal(20);
-//        config.setMaxIdle(10);
-//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-//    }
 
     public Bullet selectById(String bulletId) {
         String key = PREFIX + bulletId;
@@ -67,9 +58,10 @@ public class BulletDAO {
 
     public void insert(Bullet bullet) {
         try (Jedis jedis = jedisPool.getResource()) {
-            String key = PREFIX + getNextBulletNumber();
+            Long number = getNextBulletNumber();
+            String key = PREFIX + number;
             jedis.hset(key, "bulletType", bullet.getBulletType().toString());
-            jedis.hset(key, "bulletId", key);
+            jedis.hset(key, "bulletId", number.toString());
             jedis.hset(key, "playerId", bullet.getPlayerId());
             jedis.hset(key, "x", bullet.getX().toString());
             jedis.hset(key, "y", bullet.getY().toString());
@@ -85,6 +77,21 @@ public class BulletDAO {
     public Set<String> getAllBulletKeys() {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.keys("bullet*");
+        }
+    }
+
+    public void delete(Bullet bullet) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            System.err.println("执行删除子弹！！！！！！！！！！！！！！！！！！！！！！！");
+            String key = PREFIX + bullet.getBulletId();
+            jedis.del(key);
+        }
+    }
+
+    public void updateLocation(Bullet bullet) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + bullet.getBulletId();
+            jedis.hset(key, "x", bullet.getX().toString());
         }
     }
 

@@ -18,7 +18,7 @@ public class PlayerService {
     private PlayerDAO playerDAO;
 
     public void saveOrUpdate(Player player) {
-        log.info("现在在尝试运行saveOrUpdate方法");
+//        log.info("现在在尝试运行saveOrUpdate方法");
         if (!Verification.verifyLocation(player.getX(), player.getY())) {
             log.warn("请求中的玩家位置无效：" + player);
             return;
@@ -34,10 +34,22 @@ public class PlayerService {
         List<Player> result = new ArrayList<>();
         Set<String> keys = playerDAO.getAllPlayerKeys();
         for (String key : keys) {
-            Player player = playerDAO.selectByKey(key);
-            result.add(player);
+            Player player;
+            try {
+                player = playerDAO.selectByKey(key);
+                if (player != null) {
+                    result.add(player);
+                }
+            } catch (NumberFormatException e) {
+                log.error("在根据key获取player对象时出现异常" + e.getCause());
+                e.printStackTrace();
+            }
         }
         return result;
+    }
+
+    public void beingHurt(Player player, int difference) {
+        playerDAO.subtractBlood(player, Math.min(player.getBlood(), difference));
     }
 
 }

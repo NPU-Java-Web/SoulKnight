@@ -10,8 +10,6 @@ public class GameConfig {
     public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
     public static Image player = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/player.png");
     public static String sound = System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav";
-    public static final int fps = 40;
-    public static final int sleepTime = 25;
-
-
+    public static final int FPS = 40;
+    public static final int SLEEP_TIME = 200;
 }

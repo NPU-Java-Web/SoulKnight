@@ -17,14 +17,6 @@ public class MonsterDAO {
 
     private static final String PREFIX = "monster:";
 
-//    public MonsterDAO() {
-//        JedisPoolConfig config = new JedisPoolConfig();
-//        config.setMaxTotal(20);
-//        config.setMaxIdle(10);
-//        this.jedisPool = new JedisPool(config, RedisConfig.ADDRESS, RedisConfig.PORT);
-//    }
-
-
     public Monster selectById(String monsterId) {
         String key = PREFIX + monsterId;
         return selectByKey(key);
@@ -89,6 +81,20 @@ public class MonsterDAO {
             for (String key : keys) {
                 jedis.del(key);
             }
+        }
+    }
+
+    public void delete(Monster monster) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + monster.getMonsterId();
+            jedis.del(key);
+        }
+    }
+
+    public void subtractBlood(Monster monster, int difference) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + monster.getMonsterId();
+            jedis.hincrBy(key, "blood", -difference);
         }
     }
 

@@ -10,10 +10,15 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.util.CharsetUtil;
 import org.example.common.protocal.Connect;
 import org.example.server.entity.World;
 import org.example.server.entity.World1;
 import org.example.server.handler.MyServerInboundHandler;
+import org.example.server.thread.CalculateThread;
+import org.example.server.thread.RefreshThread;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.BlockingQueue;
@@ -32,30 +37,36 @@ public class ServerCore {
     public void start() {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
-        ServerBootstrap b = new ServerBootstrap();
-        b.group(bossGroup, workerGroup);
-        b.channel(NioServerSocketChannel.class);
-        b.childHandler(new ChannelInitializer<NioSocketChannel>() {
-            @Override
-            protected void initChannel(NioSocketChannel ch) throws Exception {
-                ChannelPipeline pipeline = ch.pipeline();
-                pipeline.addLast(new LineBasedFrameDecoder(1024));
-                pipeline.addLast(new StringDecoder());
-                pipeline.addLast(new MyServerInboundHandler());
-            }
-        });
-
         try {
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup);
+            b.channel(NioServerSocketChannel.class);
+            b.childHandler(new ChannelInitializer<NioSocketChannel>() {
+                @Override
+                protected void initChannel(NioSocketChannel ch) {
+                    ChannelPipeline pipeline = ch.pipeline();
+                    pipeline.addLast(new LineBasedFrameDecoder(1024));
+                    pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+                    pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+                    pipeline.addLast(new MyServerInboundHandler());
+                }
+            });
+
+
             ChannelFuture f = b.bind(Connect.PORT).sync();
             if (f.isSuccess()) {
                 System.out.println("服务器启动成功!");
             }
 
-//            Thread calculation = new Thread(calculateController, "calculation");
-//            calculation.start();
+            AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadConfig.class);
 
-//            Thread refresh = new Thread(refreshController, "refresh");
-//            refresh.start();
+            CalculateThread calculateThread = context.getBean(CalculateThread.class);
+            calculateThread.run();
+
+            Thread.sleep(1000);
+
+            RefreshThread refreshThread = context.getBean(RefreshThread.class);
+            refreshThread.run();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
