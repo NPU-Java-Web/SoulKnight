@@ -1,4 +1,4 @@
-package org.example.client.calculate.gamestart;
+package org.example.common.keyListener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

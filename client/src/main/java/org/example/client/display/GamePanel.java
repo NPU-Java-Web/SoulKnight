@@ -2,7 +2,8 @@ package org.example.client.display;
 
 
 import org.example.client.GameStartCore;
-import org.example.client.funtion.Data;
+import org.example.common.keyListener.GameInput;
+import org.example.common.config.GameConfig;
 import org.example.common.protocal.Result;
 
 import javax.swing.*;
@@ -29,6 +30,9 @@ public class GamePanel extends JFrame {
         this.height = windowHeight;
         this.windowTitle = title;
         this.gameStartCore = gameStartCore;
+        GameInput gameInput = new GameInput();
+        gameInput.init();
+        this.addKeyListener(gameInput);
         createWindow();
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
         gameRenderThread.start();
@@ -67,13 +71,13 @@ public class GamePanel extends JFrame {
 
 
     public void drawPlayers(Graphics graphics){
-        for(var item : result.getPlayers()){
+        /*for(var item : result.getPlayers()){
             drawPlayer(item.getX(), item.getY(),graphics);
-        }
-        drawPlayer(500,500, graphics);
+        }*/
+        drawPlayer(gameStartCore.getPlayer().getX(),gameStartCore.getPlayer().getY(), graphics);
     }
     public void drawPlayer(int x, int y, Graphics graphics){
-        graphics.drawImage(Data.player, x, y, null);
+        graphics.drawImage(GameConfig.player, x, y, null);
     }
 
 

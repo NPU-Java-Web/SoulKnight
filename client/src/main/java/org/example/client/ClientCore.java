@@ -1,6 +1,5 @@
 package org.example.client;
 
-import org.example.client.calculate.gamestart.GameInput;
 import org.example.client.display.MainPanel;
 import org.example.client.display.PlaySound;
 import org.example.common.entity.Player;

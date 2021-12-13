@@ -38,7 +38,8 @@ public class DisplayMain implements Runnable {
 
 
         //如果想要告诉服务器，就用下面的方式发送（如果队列已满，尝试放入队列则会返回false）
-        Bullet bullet = new Bullet(1, gameStartCore.getPlayerId(), gameStartCore.getX(), gameStartCore.getY(), gameStartCore.getAngle());
+        Bullet bullet = new Bullet(1, gameStartCore.getPlayer().getPlayerId(), gameStartCore.getPlayer().getX(),
+                gameStartCore.getPlayer().getY(), gameStartCore.getPlayer().getAngle());
         boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
         if (!success) {
             log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);

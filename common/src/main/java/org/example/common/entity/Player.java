@@ -2,7 +2,9 @@ package org.example.common.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.common.config.GameConfig;
 import org.example.common.config.player.Player1;
+import org.example.common.keyListener.GameInput;
 
 @Data
 @NoArgsConstructor
@@ -56,6 +58,24 @@ public class Player {
         this.x = x;
         this.y = y;
         this.angle = angle;
+    }
 
+    public void onClick(){
+        /**左方向键*/
+        if(GameInput.getKeyDown(37)){
+            this.setX(this.x-this.speed);
+        }
+        /**右方向键*/
+        if(GameInput.getKeyDown(39)){
+            this.setX(this.x+this.speed);
+        }
+        /**上方向键*/
+        if(GameInput.getKeyDown(38)){
+            this.setY(this.y-this.speed);
+        }
+        /**下方向键*/
+        if(GameInput.getKeyDown(40)){
+            this.setY(this.y+this.speed);
+        }
     }
 }

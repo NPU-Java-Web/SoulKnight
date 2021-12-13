@@ -1,12 +1,11 @@
 package org.example.client.display;
 
-import org.example.client.funtion.Data;
+import org.example.common.config.GameConfig;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Objects;
 
 /**
  * 此类为界面主体jframe
@@ -38,7 +37,7 @@ public class MainPanel extends JFrame {
     public void setBackground()
     {
         // 设置背景标签
-        back = new JLabel(Data.background);
+        back = new JLabel(GameConfig.background);
         // 设置背景图片位置大小
         back.setBounds(0,0,getWidth(),getHeight());
         // 初始化一个内容面板

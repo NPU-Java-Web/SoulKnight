@@ -24,14 +24,14 @@ public class DeliverPlayer implements Runnable {
                 //暂时设置为每一秒发1次，上线后要改成一秒发30次
                 Thread.sleep(1000);
                 Player player = new Player();
-                player.setPlayerType(gameStartCore.getType());
-                player.setPlayerId(gameStartCore.getPlayerId());
-                player.setX(gameStartCore.getX());
-                player.setY(gameStartCore.getY());
-                player.setAngle(gameStartCore.getAngle());
-                player.setSpeed(gameStartCore.getSpeed());
-                player.setBlood(gameStartCore.getBlood());
-                player.setScore(gameStartCore.getScore());
+                player.setPlayerType(gameStartCore.getPlayer().getPlayerType());
+                player.setPlayerId(gameStartCore.getPlayer().getPlayerId());
+                player.setX(gameStartCore.getPlayer().getX());
+                player.setY(gameStartCore.getPlayer().getY());
+                player.setAngle(gameStartCore.getPlayer().getAngle());
+                player.setSpeed(gameStartCore.getPlayer().getSpeed());
+                player.setBlood(gameStartCore.getPlayer().getBlood());
+                player.setScore(gameStartCore.getPlayer().getScore());
                 String message = JSON.toJSONString(player);
                 boolean success = GameStartCore.sendQueue.offer(message);
                 if (!success) {

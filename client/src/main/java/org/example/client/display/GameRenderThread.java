@@ -23,6 +23,7 @@ public class GameRenderThread implements Runnable{
 
         while (!exited)
         {
+            gameStartCore.getPlayer().onClick();
             gamePanel.repaint();
             try
             {

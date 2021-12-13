@@ -15,14 +15,15 @@ public class GameStartCore {
     //地图信息
     private volatile Level level;
 
-    private volatile int type;
+    private volatile Player player;
+    /*private volatile int type;
     private volatile String playerId;
     private volatile int x;
     private volatile int y;
     private volatile double angle;
     private volatile int speed;
     private volatile int blood;
-    private volatile int score;
+    private volatile int score;*/
 
     //显示的所有内容都是从下面这个队列里面取（包括自己的信息），不要管上面的个人信息
     //如果发现Result里的players的playerId和上面一样，那这个人就是自己
@@ -38,14 +39,15 @@ public class GameStartCore {
         //level只能为1
         this.level = new Level(1);
         //playerType只能为1
-        this.type = player.getPlayerType();
+        this.player = player;
+        /*this.type = player.getPlayerType();
         this.playerId = player.getPlayerId();
         this.x = player.getX();
         this.y = player.getY();
         this.angle = player.getAngle();
         this.speed = player.getSpeed();
         this.blood = player.getBlood();
-        this.score = player.getScore();
+        this.score = player.getScore();*/
 
         this.frames = new LinkedBlockingQueue<>(5);
         this.start = false;
