@@ -46,8 +46,8 @@ public class GamePanel extends JPanel {
         gameInput.init();
         this.addKeyListener(gameInput);
         //createWindow();
-        gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
-        gameRenderThread.start();
+//        gameRenderThread = new Thread(new GameRenderThread(gameStartCore,this),"render");
+//        gameRenderThread.start();
     }
 
     private void createWindow()
