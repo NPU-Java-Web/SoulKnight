@@ -59,13 +59,13 @@ public class GamePanel extends JPanel {
         if (temp != null) {
             result = temp;
         }
-//        //读取当前的地图种类
-//        maptype = result.getMaptype();
-//        //如果地图改变
-//        if(maptype != maptypebefore)
-//        {
-//            maptypebefore = maptype;
-//        }
+        //读取当前的地图种类
+        maptype = result.getMapType();
+        //如果地图改变
+        if(maptype != maptypebefore)
+        {
+            maptypebefore = maptype;
+        }
 
         tempGraphics = img.getGraphics();
         //如果地图样式为1
