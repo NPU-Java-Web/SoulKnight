@@ -14,6 +14,6 @@ public class World1 extends World {
                 Level1.SIDE_LENGTH,
                 Level1.TERRAIN,
                 Level1.INITIAL_MONSTERS,
-                JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>())));
+                JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),Level1.NUMBER)));
     }
 }
