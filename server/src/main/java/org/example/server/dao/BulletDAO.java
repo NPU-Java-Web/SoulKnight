@@ -71,7 +71,7 @@ public class BulletDAO {
             jedis.hset(key, "radius", bullet.getRadius().toString());
             jedis.hset(key, "power", bullet.getPower().toString());
             jedis.hset(key, "createTime", bullet.getCreateTime().toString());
-            jedis.expire(key, 30L);
+//            jedis.expire(key, 30L);
         }
     }
 
@@ -93,6 +93,7 @@ public class BulletDAO {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + bullet.getBulletId();
             jedis.hset(key, "x", bullet.getX().toString());
+            jedis.hset(key, "y", bullet.getY().toString());
         }
     }
 

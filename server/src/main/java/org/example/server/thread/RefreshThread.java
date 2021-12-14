@@ -33,12 +33,12 @@ public class RefreshThread {
             creatures.initialize();
             creatures.bulletsCauseHarm();
             creatures.bulletsFlying();
-//            System.err.println(creatures.getResult());
+//            System.err.println("hahha"+creatures.getResult());
             ServerCore.world.setGlobalInfo(JSON.toJSONString(creatures.getResult()));
 
             //等待一小会儿，再进行下次计算
             try {
-                Thread.sleep(GameConfig.SLEEP_TIME);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

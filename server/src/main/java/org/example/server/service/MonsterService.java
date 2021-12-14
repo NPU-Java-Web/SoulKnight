@@ -19,10 +19,10 @@ public class MonsterService {
     private MonsterDAO monsterDAO;
 
     public void initializeMonsters() {
-        monsterDAO.deleteAllMonsters();
-        for (Monster monster : ServerCore.world.getInitialMonsters()) {
-            monsterDAO.insert(monster);
-        }
+//        monsterDAO.deleteAllMonsters();
+//        for (Monster monster : ServerCore.world.getInitialMonsters()) {
+//            monsterDAO.insert(monster);
+//        }
     }
 
     public List<Monster> list() {
