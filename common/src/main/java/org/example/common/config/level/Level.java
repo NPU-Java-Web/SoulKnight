@@ -9,8 +9,8 @@ import org.example.common.model.monster.Monster;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class Level {
-    public int number;
-    public int sideLength;
-    public boolean[][] terrain;
-    public Monster[] initialMonsters;
+    protected int number;
+    protected int sideLength;
+    protected boolean[][] terrain;
+    protected Monster[] initialMonsters;
 }
