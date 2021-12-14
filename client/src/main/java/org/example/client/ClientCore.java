@@ -11,8 +11,6 @@ import javax.swing.*;
  * 以启动jframe
  */
 import org.example.client.function.Data;
-import org.example.common.config.GameConfig;
-import org.example.common.entity.Player;
 
 public class ClientCore {
 

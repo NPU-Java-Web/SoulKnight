@@ -1,6 +1,9 @@
 package org.example.server.dao;
 
-import org.example.common.entity.Bullet;
+import org.example.common.config.GameConfig;
+import org.example.common.model.bullet.Bullet;
+import org.example.common.model.bullet.BulletFactory;
+import org.example.common.model.bullet.entity.Bullet1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
@@ -28,13 +31,11 @@ public class BulletDAO {
                 return null;
             }
             Map<String, String> map = jedis.hgetAll(key);
-            Bullet bullet = new Bullet();
-            bullet.setBulletType(Integer.parseInt(map.get("bulletType")));
+            Bullet bullet = BulletFactory.makeBullet(Integer.parseInt(map.get("bulletType")),
+                    map.get("playerId"),Integer.parseInt(map.get("x")),
+                    Integer.parseInt(map.get("y")),Double.parseDouble(map.get("angle")));
             bullet.setBulletId(map.get("bulletId"));
             bullet.setPlayerId(map.get("playerId"));
-            bullet.setX(Integer.parseInt(map.get("x")));
-            bullet.setY(Integer.parseInt(map.get("y")));
-            bullet.setAngle(Double.parseDouble(map.get("angle")));
             bullet.setSpeed(Integer.parseInt(map.get("speed")));
             bullet.setRadius(Integer.parseInt(map.get("radius")));
             bullet.setPower(Integer.parseInt(map.get("power")));

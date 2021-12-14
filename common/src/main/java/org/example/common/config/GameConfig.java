@@ -9,7 +9,7 @@ import java.net.URL;
  */
 public class GameConfig {
 
-    //主菜单背景图片
+    /**背景图片*/
     public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
     //玩家图片（1）
     public static Image player = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/未标题-1.png");
@@ -28,8 +28,21 @@ public class GameConfig {
     //client向serve发送数据的速度（越小表示发送越快）
     public static final int SLEEP_TIME = 30;
 
-    public enum PlayerType
+    public static class PlayerType
     {
-        Classic;
+        //经典人物
+        public static final int Classic= 1;
+
+    }
+
+    public class BulletType
+    {
+        public static final int Classic= 1;
+    }
+
+    public enum MonsterType
+    {
+        //怪物一号
+        ONE;
     }
 }

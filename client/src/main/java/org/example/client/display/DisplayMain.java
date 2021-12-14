@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.GameStartCore;
 import org.example.client.display.thread.DeliverPlayer;
-import org.example.common.entity.Bullet;
-
-import javax.swing.*;
+import org.example.common.config.GameConfig;
+import org.example.common.model.bullet.Bullet;
+import org.example.common.model.bullet.BulletFactory;
 
 /**
  *
@@ -39,8 +39,8 @@ public class DisplayMain implements Runnable {
 
 
         //如果想要告诉服务器，就用下面的方式发送（如果队列已满，尝试放入队列则会返回false）
-        Bullet bullet = new Bullet(1, gameStartCore.getPlayer().getPlayerId(), gameStartCore.getPlayer().getX(),
-                gameStartCore.getPlayer().getY(), gameStartCore.getPlayer().getAngle());
+        Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.Classic,gameStartCore.getPlayer().getPlayerId(),
+                gameStartCore.getPlayer().getX(),gameStartCore.getPlayer().getY(),gameStartCore.getPlayer().getAngle());
         boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
         if (!success) {
             log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
