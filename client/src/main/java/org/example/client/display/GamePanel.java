@@ -5,6 +5,7 @@ import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
 import org.example.common.model.bullet.Bullet;
+import org.example.common.model.monster.Monster;
 import org.example.common.model.player.PlayerFactory;
 import org.example.common.model.player.Player;
 import org.example.common.protocal.Result;
@@ -94,6 +95,7 @@ public class GamePanel extends JPanel {
         }
         drawPlayers(tempGraphics);
         drawBullets(tempGraphics);
+        drawMonsters(tempGraphics);
         //将内存画布绘制到窗口
         g.drawImage(img, 0, 0, null);
     }
@@ -149,6 +151,18 @@ public class GamePanel extends JPanel {
 
     public void drawBullet(int x, int y, Graphics graphics){
         graphics.drawImage(GameConfig.bullet1, x, y, null);
+    }
+
+    public void drawMonsters(Graphics graphics){
+        if(result!=null){
+            for (Monster item : result.getMonsters()) {
+                drawMonster(item.getX(),item.getY(),graphics);
+            }
+        }
+    }
+
+    public void drawMonster(int x, int y, Graphics graphics){
+        graphics.drawImage(GameConfig.Monster1,x,y,null);
     }
 
 
