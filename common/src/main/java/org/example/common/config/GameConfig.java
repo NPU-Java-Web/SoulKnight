@@ -18,7 +18,7 @@ public class GameConfig {
     /**游戏帧率（从gameStartCore读取result的速度）*/
     public static final int FPS = 100;
     /**client向serve发送数据的速度（越小表示发送越快）*/
-    public static final int SLEEP_TIME = 1;
+    public static final int SLEEP_TIME = 30;
 
     public static class PlayerType
     {
