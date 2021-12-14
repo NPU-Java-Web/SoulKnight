@@ -19,4 +19,9 @@ public class GameConfig {
     public static final int FPS = 100;
     //client向serve发送数据的速度（越小表示发送越快）
     public static final int SLEEP_TIME = 1;
+
+    public static enum PlayerType
+    {
+        Classic;
+    }
 }

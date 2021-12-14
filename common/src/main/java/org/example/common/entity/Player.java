@@ -1,5 +1,6 @@
 package org.example.common.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.common.config.GameConfig;
@@ -8,11 +9,9 @@ import org.example.common.keyListener.GameInput;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Player {
-    /**
-     * 玩家的种类
-     */
-    private Integer playerType;
+    protected GameConfig.PlayerType playerType;
     /**
      * 玩家的ID
      */
@@ -41,25 +40,6 @@ public class Player {
      * 玩家得到的分数
      */
     private Integer score;
-
-    public Player(Integer playerType, String playerId, Integer x, Integer y, Double angle) {
-        switch (playerType) {
-            case 2:
-                //保留备用
-                break;
-            case 1:
-            default:
-                this.playerType = Player1.PLAYER_TYPE;
-                this.speed = Player1.SPEED;
-                this.blood = Player1.BLOOD;
-                this.score = Player1.SCORE;
-        }
-        this.playerId = playerId;
-        this.x = x;
-        this.y = y;
-        this.angle = angle;
-    }
-
 
     public void moveUp(){
         this.setY(this.y-this.speed);

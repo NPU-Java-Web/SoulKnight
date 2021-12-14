@@ -2,6 +2,7 @@ package org.example.client.display;
 
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
+import org.example.common.config.player.PlayerFactory;
 import org.example.common.entity.Player;
 import org.example.common.keyListener.GameInput;
 import org.example.common.protocal.Result;
@@ -27,7 +28,8 @@ public class GamePanel extends JPanel {
         // 设置请求焦点
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
-        GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0));
+        GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
+                GameConfig.PlayerType.Classic,"1",500,500,0.0));
         this.gameStartCore = gameStartCore;
         gameStartCore.start();
         //传入mainPanel
