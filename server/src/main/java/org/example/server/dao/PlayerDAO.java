@@ -1,6 +1,7 @@
 package org.example.server.dao;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.common.config.GameConfig;
 import org.example.common.entity.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,7 +32,7 @@ public class PlayerDAO {
             }
             Map<String, String> map = jedis.hgetAll(key);
             Player player = new Player();
-            player.setPlayerType(Integer.parseInt(map.get("playerType")));
+            player.setPlayerType(GameConfig.PlayerType.Classic);
             player.setPlayerId(map.get("playerId"));
             player.setX(Integer.parseInt(map.get("x")));
             player.setY(Integer.parseInt(map.get("y")));
