@@ -1,45 +1,47 @@
-package org.example.common.entity;
+package org.example.common.model.player;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.common.config.GameConfig;
-import org.example.common.config.player.Player1;
 import org.example.common.keyListener.GameInput;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Player {
-    protected GameConfig.PlayerType playerType;
+    /***
+     * Desc
+     */
+    protected Integer playerType;
     /**
      * 玩家的ID
      */
-    private String playerId;
+    protected String playerId;
     /**
      * 玩家的X坐标
      */
-    private Integer x;
+    protected Integer x;
     /**
      * 玩家的Y坐标
      */
-    private Integer y;
+    protected Integer y;
     /**
      * 玩家面向的角度
      */
-    private Double angle;
+    protected Double angle;
     /**
      * 玩家的最大速度
      */
-    private Integer speed;
+    protected Integer speed;
     /**
      * 玩家当前的血量
      */
-    private Integer blood;
+    protected Integer blood;
     /**
      * 玩家得到的分数
      */
-    private Integer score;
+    protected Integer score;
 
     public void moveUp(){
         this.setY(this.y-this.speed);

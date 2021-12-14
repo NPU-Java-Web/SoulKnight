@@ -2,8 +2,8 @@ package org.example.server.thread;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.example.common.entity.Bullet;
-import org.example.common.entity.Player;
+import org.example.common.model.bullet.Bullet;
+import org.example.common.model.player.Player;
 import org.example.server.ServerCore;
 import org.example.server.service.BulletService;
 import org.example.server.service.MonsterService;

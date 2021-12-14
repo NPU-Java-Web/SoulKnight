@@ -3,9 +3,9 @@ package org.example.common.protocal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.common.entity.Bullet;
-import org.example.common.entity.Monster;
-import org.example.common.entity.Player;
+import org.example.common.model.bullet.Bullet;
+import org.example.common.model.monster.Monster;
+import org.example.common.model.player.Player;
 
 import java.util.List;
 

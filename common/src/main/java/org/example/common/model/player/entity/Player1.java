@@ -1,13 +1,15 @@
-package org.example.common.config.player;
+package org.example.common.model.player.entity;
 
+import lombok.Data;
 import org.example.common.config.GameConfig;
-import org.example.common.entity.Player;
+import org.example.common.model.player.Player;
 
 /**
  * 默认玩家初始信息
  */
+@Data
 public class Player1 extends Player {
-    public static final GameConfig.PlayerType PLAYER_TYPE = GameConfig.PlayerType.Classic;
+    public static final int PLAYER_TYPE = GameConfig.PlayerType.Classic;
     public static final int SPEED = 10;
     public static final int BLOOD = 100;
     public static final int SCORE = 0;

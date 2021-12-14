@@ -2,7 +2,7 @@ package org.example.server.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.example.common.entity.Monster;
+import org.example.common.model.monster.Monster;
 
 @Data
 @AllArgsConstructor

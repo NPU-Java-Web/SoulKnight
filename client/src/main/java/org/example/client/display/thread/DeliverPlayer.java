@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
-import org.example.common.entity.Player;
+import org.example.common.model.player.Player;
 
 /**
  * 这个类往【发送队列】里放东西，它高频地发送玩家自己的坐标，想要发送给服务器

@@ -2,8 +2,8 @@ package org.example.client.display;
 
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
-import org.example.common.config.player.PlayerFactory;
-import org.example.common.entity.Player;
+import org.example.common.model.player.PlayerFactory;
+import org.example.common.model.player.Player;
 import org.example.common.keyListener.GameInput;
 import org.example.common.protocal.Result;
 import org.w3c.dom.Node;
@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
     private int width;
     private int height;
     private String windowTitle;
-    public static final int fps = 40;
+    public static final int fps = 50;
     private final GameStartCore gameStartCore;
     private Thread gameRenderThread;
     private Result result;

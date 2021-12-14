@@ -1,7 +1,7 @@
 package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.common.entity.Monster;
+import org.example.common.model.monster.Monster;
 import org.example.server.ServerCore;
 import org.example.server.dao.MonsterDAO;
 import org.springframework.beans.factory.annotation.Autowired;
