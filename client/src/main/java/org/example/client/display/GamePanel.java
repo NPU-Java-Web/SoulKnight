@@ -47,9 +47,6 @@ public class GamePanel extends JPanel {
         //打开游戏panel的读取键盘hashmap的线程并改变player变量，并且按帧率进行页面刷新repaint
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this), "render");
         gameRenderThread.start();
-
-
-
     }
 
 
@@ -70,30 +67,31 @@ public class GamePanel extends JPanel {
             result = temp;
         }
         //读取当前的地图种类
-        maptype = result.getMapType();
-        //如果地图改变
-        if(maptype != maptypebefore)
-        {
-            maptypebefore = maptype;
-        }
+        if(result!=null){
+            maptype = result.getMapType();
+            //如果地图改变
+            if(maptype != maptypebefore)
+            {
+                maptypebefore = maptype;
+            }
 
-        tempGraphics = img.getGraphics();
-        //如果地图样式为1
-        if(maptypebefore == 1)
-        {
-            clear(tempGraphics,background1);
+            tempGraphics = img.getGraphics();
+            //如果地图样式为1
+            if(maptypebefore == 1)
+            {
+                clear(tempGraphics,background1);
+            }
+            //如果地图样式为2
+            else if(maptypebefore == 2)
+            {
+                clear(tempGraphics,background2);
+            }
+            //如果地图样式为3
+            else if(maptypebefore == 3)
+            {
+                clear(tempGraphics,background3);
+            }
         }
-        //如果地图样式为2
-        else if(maptypebefore == 2)
-        {
-            clear(tempGraphics,background2);
-        }
-        //如果地图样式为3
-        else if(maptypebefore == 3)
-        {
-            clear(tempGraphics,background3);
-        }
-
         drawPlayers(tempGraphics);
         drawBullets(tempGraphics);
         //将内存画布绘制到窗口
