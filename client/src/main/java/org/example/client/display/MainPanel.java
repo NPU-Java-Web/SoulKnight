@@ -1,14 +1,12 @@
 package org.example.client.display;
 
+import org.example.client.Input.GameMouseListener;
+import org.example.client.Input.KeyEventListener;
 import org.example.client.function.Data;
 import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
 /**
  * 此类为界面主体jframe

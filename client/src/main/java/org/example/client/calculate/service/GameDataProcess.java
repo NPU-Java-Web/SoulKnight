@@ -1,45 +1,42 @@
-package org.example.client.display;
+package org.example.client.calculate.service;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import com.alibaba.fastjson.JSON;
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
+import org.example.common.keyListener.GameInput;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
 
-
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-/**
- * 鼠标监听
- */
 @Slf4j
-public class GameMouseListener implements MouseListener {
-    /**鼠标释放*/
-    @Override
-    public void mouseReleased(MouseEvent e) {
+public class GameDataProcess {
+
+    public static void menuRouter(){
     }
 
-    /**鼠标按下*/
-    @Override
-    public void mousePressed(MouseEvent e) {
+
+    public static void moveMyPlayer(){
+        /**左方向键*/
+        if(GameInput.getKeyDown(37)){
+            StaticInfo.gameStartCore.getPlayer().moveLeft();
+        }
+        /**右方向键*/
+        if(GameInput.getKeyDown(39)){
+            StaticInfo.gameStartCore.getPlayer().moveRight();
+        }
+        /**上方向键*/
+        if(GameInput.getKeyDown(38)){
+            StaticInfo.gameStartCore.getPlayer().moveUp();
+        }
+        /**下方向键*/
+        if(GameInput.getKeyDown(40)){
+            StaticInfo.gameStartCore.getPlayer().moveDown();
+        }
     }
 
-    /**鼠标离开组件*/
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
-    /**鼠标进入组件*/
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    /**鼠标单击*/
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+    public static void shootBullet(MouseEvent e){
         if(StaticInfo.gameStartCore!=null){
             if(e.getButton() == MouseEvent.BUTTON1){
                 int x = e.getX()-StaticInfo.gameStartCore.getPlayer().getX();
@@ -67,4 +64,5 @@ public class GameMouseListener implements MouseListener {
             log.info("Mouse Clicked");
         }
     }
+
 }

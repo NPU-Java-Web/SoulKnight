@@ -1,9 +1,10 @@
-package org.example.client.display;
+package org.example.client.Input;
 
 
 import org.example.client.ClientCore;
-import org.example.client.GameStartCore;
-import org.example.common.config.GameConfig;
+import org.example.client.display.Dialog;
+import org.example.client.display.GamePanel;
+import org.example.client.display.MainPanel;
 import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
@@ -106,11 +107,9 @@ public class KeyEventListener implements Runnable {
 
             }//
             //监听回车键
-            if(GameInput.getKeyDown(KeyEvent.VK_ENTER))
-            {
+            if(GameInput.getKeyDown(KeyEvent.VK_ENTER)) {
                 //若焦点在开始游戏，则进行游戏面板的渲染
-                if(ClientCore.mainPanel.getFouseIndex() == 1)
-                {
+                if (ClientCore.mainPanel.getFouseIndex() == 1) {
 
 
 //                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
@@ -130,9 +129,6 @@ public class KeyEventListener implements Runnable {
                     ClientCore.mainPanel.remove(ClientCore.mainPanel.label_start);
 
 
-
-
-
 //                        new Dialog(mainPanel,3);
 //                           GamePanel gamePanel = new GamePanel(mainPanel);
 //                            mainPanel.add(gamePanel);
@@ -145,26 +141,22 @@ public class KeyEventListener implements Runnable {
 
                 }
 
-                if(ClientCore.mainPanel.getFouseIndex() == 2)
-                {
-                    new Dialog(ClientCore.mainPanel,1);
+                if (ClientCore.mainPanel.getFouseIndex() == 2) {
+                    new org.example.client.display.Dialog(ClientCore.mainPanel, 1);
                 }
 
-                if(ClientCore.mainPanel.getFouseIndex() == 3)
-                {
-                    new Dialog(ClientCore.mainPanel,2);
+                if (ClientCore.mainPanel.getFouseIndex() == 3) {
+                    new Dialog(ClientCore.mainPanel, 2);
                 }
 
-                if(ClientCore.mainPanel.getFouseIndex() == 4)
-                {
-                    int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认",JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (ClientCore.mainPanel.getFouseIndex() == 4) {
+                    int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (result == JOptionPane.OK_OPTION) {
                         // 退出
                         System.exit(0);
                     }
 
                 }
-
             }
             try
             {

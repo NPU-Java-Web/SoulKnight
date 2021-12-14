@@ -1,4 +1,4 @@
-package org.example.client.display;
+package org.example.client.calculate.service;
 
 import org.example.client.GameStartCore;
 
