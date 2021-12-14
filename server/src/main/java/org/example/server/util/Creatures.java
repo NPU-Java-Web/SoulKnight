@@ -4,6 +4,7 @@ import org.example.common.entity.Bullet;
 import org.example.common.entity.Monster;
 import org.example.common.entity.Player;
 import org.example.common.protocal.Result;
+import org.example.server.ServerCore;
 import org.example.server.service.BulletService;
 import org.example.server.service.MonsterService;
 import org.example.server.service.PlayerService;
@@ -68,7 +69,7 @@ public class Creatures {
     }
 
     public Result getResult() {
-        return new Result(players, bullets, monsters);
+        return new Result(players, bullets, monsters, ServerCore.world.getNumber());
     }
 
     public static double getDistance(Bullet bullet, Monster monster) {
