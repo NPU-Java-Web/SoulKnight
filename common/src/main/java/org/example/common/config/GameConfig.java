@@ -13,6 +13,12 @@ public class GameConfig {
     public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
     //玩家图片
     public static Image player = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/player.png");
+
+    public static Image gamebackground1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map1.jpg");
+
+    public static Image gamebackground2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map2.jpg");
+
+    public static Image gamebackground3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map3.jpg");
     //背景音乐路径
     public static String sound = System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav";
     //游戏帧率（从gameStartCore读取result的速度）

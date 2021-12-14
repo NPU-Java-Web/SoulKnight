@@ -19,4 +19,5 @@ public class Result {
     private List<Player> players;
     private List<Bullet> bullets;
     private List<Monster> monsters;
+   // private int maptype;
 }

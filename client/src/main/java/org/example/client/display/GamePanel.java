@@ -20,7 +20,8 @@ public class GamePanel extends JPanel {
     private Result result;
     private Graphics tempGraphics;
     public MainPanel mainPanel;
-
+    private int maptype;
+    private int maptypebefore = 1;
 
     public GamePanel(MainPanel mainPanel) {
         // 设置请求焦点
@@ -46,22 +47,53 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
 //    super.paintComponent(g);//清屏
 //    this.setBackground(Color.WHITE); //设置面板的背景色
+        //加载图片
+        Image background1 = GameConfig.gamebackground1;
+        Image background2 = GameConfig.gamebackground2;
+        Image background3 = GameConfig.gamebackground3;
+
         Image img = this.createImage(1000, 1000);
         //从gameStartCore中读取serve层传入的信息
         Result temp = gameStartCore.getFrames().poll();
+
         if (temp != null) {
             result = temp;
         }
+//        //读取当前的地图种类
+//        maptype = result.getMaptype();
+//        //如果地图改变
+//        if(maptype != maptypebefore)
+//        {
+//            maptypebefore = maptype;
+//        }
+
         tempGraphics = img.getGraphics();
-        clear(tempGraphics);
+        //如果地图样式为1
+        if(maptypebefore == 1)
+        {
+            clear(tempGraphics,background1);
+        }
+        //如果地图样式为2
+        else if(maptypebefore == 2)
+        {
+            clear(tempGraphics,background2);
+        }
+        //如果地图样式为3
+        else if(maptypebefore == 3)
+        {
+            clear(tempGraphics,background3);
+        }
+
         drawPlayers(tempGraphics);
         //将内存画布绘制到窗口
         g.drawImage(img, 0, 0, null);
     }
 
 
-    public void clear(Graphics graphics) {
-        graphics.setColor(Color.WHITE);
+    public void clear(Graphics graphics,Image image) {
+        //双缓存加载图片
+        graphics.drawImage(image,0,0,1000,1000,this);
+        //graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, width, height);
     }
 
