@@ -60,25 +60,41 @@ public class Player {
         this.angle = angle;
     }
 
+
+    public void moveUp(){
+        this.setY(this.y-this.speed);
+    }
+
+    public void moveDown(){
+        this.setY(this.y+this.speed);
+    }
+
+    public void moveLeft(){
+        this.setX(this.x-this.speed);
+    }
+
+    public void moveRight(){
+        this.setX(this.x+this.speed);
+    }
+
     public void onClick(){
         //从GameRenderThread改动palyer的变量，从而使得DisplayMain的线程能不间断实时将player发送到serve层
         //
         /**左方向键*/
         if(GameInput.getKeyDown(37)){
-            this.setX(this.x-this.speed);
-
+            moveLeft();
         }
         /**右方向键*/
         if(GameInput.getKeyDown(39)){
-            this.setX(this.x+this.speed);
+            moveRight();
         }
         /**上方向键*/
         if(GameInput.getKeyDown(38)){
-            this.setY(this.y-this.speed);
+            moveUp();
         }
         /**下方向键*/
         if(GameInput.getKeyDown(40)){
-            this.setY(this.y+this.speed);
+            moveDown();
         }
     }
 }
