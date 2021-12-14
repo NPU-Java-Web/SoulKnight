@@ -56,6 +56,8 @@ public class BulletService {
         for (String key : keys) {
             try {
                 Bullet bullet = bulletDAO.selectByKey(key);
+//                System.err.println("我想更新子弹位置，现在遍历所有子弹"+bullet);
+
                 if (bullet != null) {
                     long elapsedTime = (System.currentTimeMillis() - bullet.getCreateTime()) / 1000;
                     int deltaX = (int) (bullet.getSpeed() * elapsedTime * Math.cos(bullet.getAngle()));
@@ -66,8 +68,9 @@ public class BulletService {
                         bullet.setX(newX);
                         bullet.setY(newY);
                         bulletDAO.updateLocation(bullet);
+//                        System.err.println("upload这里bullet);
                     } else {
-                        log.error("upload这里调用了删除子弹");
+                        log.error("upload这里调用了删除子弹，此时子弹的信息为"+bullet);
                         bulletDAO.delete(bullet);
                     }
                 }

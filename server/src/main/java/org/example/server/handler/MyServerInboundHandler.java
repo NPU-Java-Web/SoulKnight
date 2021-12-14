@@ -15,11 +15,12 @@ public class MyServerInboundHandler extends SimpleChannelInboundHandler<Object> 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         Channel channel = ctx.channel();
-        log.info("服务器收到了客户端传来的消息：" + msg);
+//        log.info("服务器收到了客户端传来的消息：" + msg);
         boolean succes = ServerCore.messageQueue.offer((String) msg);
         if (!succes) {
             log.warn("服务器的队列已满，无法放入。消息内容为" + msg);
         }
+//        System.err.println("quanju"+ServerCore.world.getGlobalInfo());
         channel.writeAndFlush(ServerCore.world.getGlobalInfo()+"\n");
     }
 
