@@ -33,6 +33,7 @@ public class GameMouseListener implements MouseListener {
     /**鼠标单击*/
     @Override
     public void mouseClicked(MouseEvent e) {
+
         log.info("Mouse Clicked");
     }
 }
