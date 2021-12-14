@@ -3,7 +3,7 @@ package org.example.client.display;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.GameStartCore;
-import org.example.common.entity.Bullet;
+
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
