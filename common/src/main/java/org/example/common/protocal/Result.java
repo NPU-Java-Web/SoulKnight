@@ -20,4 +20,5 @@ public class Result {
     private List<Bullet> bullets;
     private List<Monster> monsters;
     private Integer mapType;
+
 }

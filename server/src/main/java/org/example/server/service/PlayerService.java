@@ -19,8 +19,7 @@ public class PlayerService {
     private PlayerDAO playerDAO;
 
     public synchronized void saveOrUpdate(List<Player> players) {
-//        log.info("现在在尝试运行saveOrUpdate方法");
-        for (Player player:players){
+        for (Player player : players) {
             if (!Verification.verifyLocation(player.getX(), player.getY())) {
                 log.warn("请求中的玩家位置无效：" + player);
                 return;

@@ -44,25 +44,28 @@ public class Creatures {
 
     public void bulletsCauseHarm() {
         //对于每一颗子弹
-//        for (Bullet bullet : bullets) {
+        for (Bullet bullet : bullets) {
             //先从怪物列表里遍历
-//            for (Monster monster : monsters) {
-//                if (getDistance(bullet, monster) <= bullet.getRadius()) {
-//                    monsterService.beingHurt(monster, bullet.getPower());
-//                    bulletService.remove(bullet);
-//                    return;
-//                }
-//            }
+            for (Monster monster : monsters) {
+                if (getDistance(bullet, monster) <= bullet.getRadius()) {
+                    monsterService.beingHurt(monster, bullet.getPower());
+                    bulletService.remove(bullet);
+                    return;
+                }
+            }
 
             //再从玩家列表里遍历
-//            for (Player player : players) {
-//                if (getDistance(bullet, player) <= bullet.getRadius()) {
-//                    playerService.beingHurt(player, bullet.getPower());
-//                    bulletService.remove(bullet);
-//                    return;
-//                }
-//            }
-//        }
+            for (Player player : players) {
+                if (bullet.getPlayerId().equals(player.getPlayerId())){
+                    continue;
+                }
+                if (getDistance(bullet, player) <= bullet.getRadius()) {
+                    playerService.beingHurt(player, bullet.getPower());
+                    bulletService.remove(bullet);
+                    return;
+                }
+            }
+        }
     }
 
     public void bulletsFlying() {

@@ -1,5 +1,6 @@
 package org.example.client.display;
 
+import org.example.client.ClientCore;
 import org.example.client.Input.GameMouseListener;
 import org.example.client.Input.KeyEventListener;
 import org.example.client.function.Data;
@@ -18,6 +19,7 @@ public class MainPanel extends JFrame {
     public JLabel back, label_start, label_setting, label_instruction, label_quit,label_title, label05, label06,label07,label08;
     private PlaySound p;
     private MainPanel mainPanel;// 本类对象
+    public static GamePanel gamePanel;
     private int fouseIndex;
     public MainPanel()
     {
@@ -99,6 +101,16 @@ public class MainPanel extends JFrame {
         //开启主菜单的监听线程以从mashmap中读取
         Thread thread = new Thread(new KeyEventListener(),"key");
         thread.start();
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    new Dialog(ClientCore.mainPanel,3);
+                }
+            }
+        });
     }
 
     public int getFouseIndex(){

@@ -1,6 +1,7 @@
 package org.example.client.display;
 
 import org.example.client.ClientCore;
+import org.example.client.calculate.service.StaticInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +48,7 @@ public class Dialog extends JDialog{
 
         setVisible(true);
     }
-
+//显示设置弹窗
     public void showSetting(JFrame jFrame)
     {
         setTitle("设置");
@@ -96,7 +97,7 @@ public class Dialog extends JDialog{
         });
 
     }
-
+//显示说明弹窗
     public void showInstruction(JFrame jFrame)
     {
         setTitle("游戏说明");
@@ -121,29 +122,49 @@ public class Dialog extends JDialog{
             }
         });
     }
-
+//显示暂停弹窗
     public void showpause(JFrame jFrame)
     {
         setTitle("暂停");
 
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
-        jb02 = new JButton("返回主菜单");
+        jb02 = new JButton("退出游戏");
         jb02.setBounds(100, 200, 100, 50);
         add(jb02);
         jb02.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                returnMainPanel();
+                int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (result == JOptionPane.OK_OPTION) {
+                    // 退出
+                    System.exit(0);
+                }
+            }
+        });
+
+        jb03 = new JButton("返回游戏");
+        jb03.setBounds(100, 100, 100, 50);
+        add(jb03);
+        jb03.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //GamePanel.gameRenderThread.start();
+                dispose();
             }
         });
     }
-
+//返回主菜单
     public void returnMainPanel()
     {
+                StaticInfo.isrunning = false;
+
                 Point p = ClientCore.mainPanel.getLocation();
                 ClientCore.mainPanel.dispose();
                 ClientCore.Start();
                 ClientCore.mainPanel.setLocation(p);
+
+                //ClientCore.mainPanel.remove(StaticInfo.gamePanel);
+                // StaticInfo.gamePanel = null;
     }
 
 

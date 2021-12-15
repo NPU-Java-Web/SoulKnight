@@ -2,6 +2,7 @@ package org.example.client.Input;
 
 
 import org.example.client.ClientCore;
+import org.example.client.calculate.service.StaticInfo;
 import org.example.client.display.Dialog;
 import org.example.client.display.GamePanel;
 import org.example.client.display.MainPanel;
@@ -118,7 +119,10 @@ public class KeyEventListener implements Runnable {
 
 //                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
 //                               gameStartCore.start();
+                    StaticInfo.isrunning = true;
                     GamePanel newGamePanel = new GamePanel(ClientCore.mainPanel);
+                    MainPanel.gamePanel = newGamePanel;
+                    StaticInfo.gamePanel = newGamePanel;
                     ClientCore.mainPanel.add(newGamePanel);
                     newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
 //                               Thread.sleep(1000);
