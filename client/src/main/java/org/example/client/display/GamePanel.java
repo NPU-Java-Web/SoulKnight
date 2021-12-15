@@ -1,5 +1,6 @@
 package org.example.client.display;
 
+import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
 import org.example.common.config.player.PlayerFactory;
@@ -8,6 +9,8 @@ import org.example.common.protocal.Result;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel {
 
@@ -22,6 +25,7 @@ public class GamePanel extends JPanel {
     public MainPanel mainPanel;
     private int maptype;
     private int maptypebefore = 1;
+    public static boolean isrunning = true;
 
     public GamePanel(MainPanel mainPanel) {
         // 设置请求焦点
@@ -36,9 +40,12 @@ public class GamePanel extends JPanel {
         // 清除布局管理
         setLayout(null);
         setBackground(new Color(83, 163, 238));
+        adapter();
         //打开游戏panel的读取键盘hashmap的线程并改变player变量，并且按帧率进行页面刷新repaint
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this), "render");
         gameRenderThread.start();
+
+
 
     }
 
@@ -115,6 +122,21 @@ public class GamePanel extends JPanel {
         //应为用result中的信息来画图
         graphics.drawImage(GameConfig.player, x, y, null);
     }
+    //esc键盘绑定
+    public void adapter()
+    {
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    System.out.println("111");
+                    new Dialog(ClientCore.mainPanel,3);
+                }
+            }
+        });
+    }
+
 
 
 }

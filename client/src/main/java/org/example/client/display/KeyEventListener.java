@@ -18,6 +18,7 @@ public class KeyEventListener implements Runnable {
     /**每次绘制间隔时间*/
     private int interval;
     private MainPanel mainPanel;
+    private boolean flag = true;
 
 
     public KeyEventListener()
@@ -105,10 +106,12 @@ public class KeyEventListener implements Runnable {
 
 
             }//
+            //System.out.println(GameInput.getKeyDown(KeyEvent.VK_ENTER));
             //监听回车键
             if(GameInput.getKeyDown(KeyEvent.VK_ENTER))
             {
                 //若焦点在开始游戏，则进行游戏面板的渲染
+
                 if(ClientCore.mainPanel.getFouseIndex() == 1)
                 {
 
@@ -147,11 +150,15 @@ public class KeyEventListener implements Runnable {
 
                 if(ClientCore.mainPanel.getFouseIndex() == 2)
                 {
-                    new Dialog(ClientCore.mainPanel,1);
+
+                        new Dialog(ClientCore.mainPanel,1);
+
+
                 }
 
                 if(ClientCore.mainPanel.getFouseIndex() == 3)
                 {
+
                     new Dialog(ClientCore.mainPanel,2);
                 }
 
@@ -169,7 +176,8 @@ public class KeyEventListener implements Runnable {
             try
             {
                 /**稳定fps*/
-                Thread.sleep(interval);
+
+                Thread.sleep(200);
             }
             catch (Exception e)
             {

@@ -1,7 +1,11 @@
 package org.example.client.display;
 
 
+import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
+import org.example.common.keyListener.GameInput;
+
+import java.awt.*;
 
 /**
  * 此类为游戏页面的从键盘响应的hashmap中读取对应信息
@@ -30,8 +34,18 @@ public class GameRenderThread implements Runnable{
         while (!exited)
         {
             //调用player方法改动其中的变量
-            gameStartCore.getPlayer().onClick();
-            gamePanel.repaint();
+            if(GamePanel.isrunning)
+            {
+                gameStartCore.getPlayer().onClick();
+                gamePanel.repaint();
+            }
+
+            if(GameInput.getKeyDown(27))
+            {
+                new Dialog(ClientCore.mainPanel,3);
+                GamePanel.isrunning = false;
+                //break;
+            }
             try
             {
                 /**稳定fps*/

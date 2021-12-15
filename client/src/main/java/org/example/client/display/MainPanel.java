@@ -1,14 +1,12 @@
 package org.example.client.display;
 
+import org.example.client.ClientCore;
 import org.example.client.function.Data;
 import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
 /**
  * 此类为界面主体jframe
@@ -94,6 +92,16 @@ public class MainPanel extends JFrame {
     public void adapter()
     {
         //添加读取所有键盘响应的hashmap
+//        addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//                if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+//                {
+//
+//                    new Dialog(ClientCore.mainPanel,3);
+//                }
+//            }
+//        });
         GameInput gameInput = new GameInput();
         gameInput.init();
         this.addKeyListener(gameInput);

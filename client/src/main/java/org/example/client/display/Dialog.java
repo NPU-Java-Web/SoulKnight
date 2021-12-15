@@ -4,6 +4,8 @@ import org.example.client.ClientCore;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -21,10 +23,12 @@ public class Dialog extends JDialog{
     public Dialog(JFrame jFrame,int type)
     {
         super(jFrame,true);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         // 设置布局管理器为无
         setLayout(null);
         // 设置对话框不可更改大小
         setResizable(false);
+
         if(type == 1)
         {
             //设置弹窗
@@ -35,6 +39,10 @@ public class Dialog extends JDialog{
             //说明弹窗
             showInstruction(jFrame);
 
+        }
+        else if(type == 3)
+        {
+            showpause(jFrame);
         }
 
         setVisible(true);
@@ -76,12 +84,24 @@ public class Dialog extends JDialog{
             }
         });
 
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+        jb02 = new JButton("返回主菜单");
+        jb02.setBounds(220, 300, 100, 50);
+        add(jb02);
+        jb02.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                returnMainPanel();
+            }
+        });
+
     }
 
     public void showInstruction(JFrame jFrame)
     {
         setTitle("游戏说明");
-        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 1000, 600);
+
         String text = "<html>元气骑士游戏说明<br>test<html>";
         jlabel_one = new JLabel(text);
         jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
@@ -89,8 +109,42 @@ public class Dialog extends JDialog{
         jlabel_one.setForeground(Color.black);
         jlabel_one.setBounds(40, 0, 400, 350);
         add(jlabel_one);
+
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 1000, 600);
+        jb02 = new JButton("返回主菜单");
+        jb02.setBounds(220, 300, 100, 50);
+        add(jb02);
+        jb02.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                returnMainPanel();
+            }
+        });
     }
 
+    public void showpause(JFrame jFrame)
+    {
+        setTitle("暂停");
+
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+        jb02 = new JButton("返回主菜单");
+        jb02.setBounds(100, 200, 100, 50);
+        add(jb02);
+        jb02.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                returnMainPanel();
+            }
+        });
+    }
+
+    public void returnMainPanel()
+    {
+                Point p = ClientCore.mainPanel.getLocation();
+                ClientCore.mainPanel.dispose();
+                ClientCore.Start();
+                ClientCore.mainPanel.setLocation(p);
+    }
 
 
 }
