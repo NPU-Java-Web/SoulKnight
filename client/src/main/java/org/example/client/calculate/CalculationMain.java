@@ -32,7 +32,7 @@ public class CalculationMain implements Runnable {
 
     @Override
     public void run() {
-        NioEventLoopGroup group = new NioEventLoopGroup();
+        NioEventLoopGroup group = new NioEventLoopGroup(2);
 
         try {
             Bootstrap b = new Bootstrap();

@@ -25,18 +25,13 @@ public class MyServerInboundHandler extends SimpleChannelInboundHandler<Object> 
             }
         } else if (message.contains("bulletType")) {
             Bullet bullet = JSON.parseObject(message, Bullet.class);
-            boolean success=ServerCore.bulletQueue.offer(bullet);
+            boolean success = ServerCore.bulletQueue.offer(bullet);
             if (!success) {
                 log.warn("bulletQueue已满，客户端发来的消息被丢弃" + bullet);
             }
         } else {
             log.warn("无法解析消息内容，无法解析的消息内容为" + message);
         }
-
-//        if (!succes) {
-//            log.warn("服务器的队列已满，无法放入。消息内容为" + msg);
-//        }
-//        System.err.println("quanju"+ServerCore.world.getGlobalInfo());
         channel.writeAndFlush(ServerCore.GlobalInfo + "\n");
     }
 
