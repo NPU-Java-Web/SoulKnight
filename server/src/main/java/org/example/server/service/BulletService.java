@@ -18,12 +18,14 @@ public class BulletService {
     @Autowired
     private BulletDAO bulletDAO;
 
-    public synchronized void save(Bullet bullet) {
-        if (!Verification.verifyLocation(bullet.getX(), bullet.getY())) {
-            log.warn("请求中的玩家位置无效：" + bullet);
-            return;
+    public synchronized void save(List<Bullet> bullets) {
+        for (Bullet bullet : bullets) {
+            if (!Verification.verifyLocation(bullet.getX(), bullet.getY())) {
+                log.warn("请求中的玩家位置无效：" + bullet);
+                return;
+            }
+            bulletDAO.insert(bullet);
         }
-        bulletDAO.insert(bullet);
     }
 
     public synchronized List<Bullet> list() {
@@ -59,7 +61,7 @@ public class BulletService {
 //                System.err.println("我想更新子弹位置，现在遍历所有子弹"+bullet);
 
                 if (bullet != null) {
-                    long elapsedTime = (System.currentTimeMillis() - bullet.getCreateTime()) / 1000;
+                    double elapsedTime = (System.currentTimeMillis() - bullet.getCreateTime())/1000.0 ;
                     int deltaX = (int) (bullet.getSpeed() * elapsedTime * Math.cos(bullet.getAngle()));
                     int deltaY = (int) (bullet.getSpeed() * elapsedTime * Math.sin(bullet.getAngle()));
                     int newX = bullet.getX() + deltaX;
@@ -70,7 +72,7 @@ public class BulletService {
                         bulletDAO.updateLocation(bullet);
 //                        System.err.println("upload这里bullet);
                     } else {
-                        log.error("upload这里调用了删除子弹，此时子弹的信息为"+bullet);
+                        log.error("upload这里调用了删除子弹，此时子弹的信息为" + bullet);
                         bulletDAO.delete(bullet);
                     }
                 }

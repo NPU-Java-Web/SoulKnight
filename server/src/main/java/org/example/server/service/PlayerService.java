@@ -18,16 +18,18 @@ public class PlayerService {
     @Autowired
     private PlayerDAO playerDAO;
 
-    public synchronized void saveOrUpdate(Player player) {
+    public synchronized void saveOrUpdate(List<Player> players) {
 //        log.info("现在在尝试运行saveOrUpdate方法");
-        if (!Verification.verifyLocation(player.getX(), player.getY())) {
-            log.warn("请求中的玩家位置无效：" + player);
-            return;
-        }
-        if (playerDAO.exists(player.getPlayerId())) {
-            playerDAO.updateLocationById(player);
-        } else {
-            playerDAO.insert(player);
+        for (Player player:players){
+            if (!Verification.verifyLocation(player.getX(), player.getY())) {
+                log.warn("请求中的玩家位置无效：" + player);
+                return;
+            }
+            if (playerDAO.exists(player.getPlayerId())) {
+                playerDAO.updateLocationById(player);
+            } else {
+                playerDAO.insert(player);
+            }
         }
     }
 

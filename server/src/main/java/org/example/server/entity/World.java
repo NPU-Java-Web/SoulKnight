@@ -11,6 +11,4 @@ public abstract class World {
     private final int sizeLength;
     private final boolean[][] terrain;
     private final Monster[] initialMonsters;
-    private volatile String GlobalInfo;
-
 }
