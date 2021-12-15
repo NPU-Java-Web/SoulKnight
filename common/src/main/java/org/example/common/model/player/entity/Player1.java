@@ -17,4 +17,20 @@ public class Player1 extends Player {
     public Player1(String playerId, Integer x, Integer y, Double angle){
         super(PLAYER_TYPE, playerId, x, y, angle, SPEED,BLOOD,SCORE);
     }
+
+    public static void moveUp(Integer x, Integer y){
+        y = y - SPEED;
+    }
+
+    public static void moveDown(Integer x, Integer y){
+        y = y + SPEED;
+    }
+
+    public static void moveLeft(Integer x, Integer y){
+        x = x - SPEED;
+    }
+
+    public static void moveRight(Integer x, Integer y){
+        x = x + SPEED;
+    }
 }

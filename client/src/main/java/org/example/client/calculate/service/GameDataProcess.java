@@ -4,9 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import com.alibaba.fastjson.JSON;
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
+import org.example.common.config.level.Level1;
 import org.example.common.keyListener.GameInput;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
+import org.example.common.model.player.entity.Player1;
+import sun.tools.jstack.JStack;
 
 import java.awt.event.MouseEvent;
 
@@ -18,21 +21,35 @@ public class GameDataProcess {
 
 
     public static void moveMyPlayer(){
+        Integer tempX = StaticInfo.gameStartCore.getPlayer().getX();
+        Integer tempY = StaticInfo.gameStartCore.getPlayer().getY();
         /**左方向键*/
         if(GameInput.getKeyDown(37)){
-            StaticInfo.gameStartCore.getPlayer().moveLeft();
+            Player1.moveLeft(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false){
+                StaticInfo.gameStartCore.getPlayer().moveLeft();
+            }
         }
         /**右方向键*/
         if(GameInput.getKeyDown(39)){
-            StaticInfo.gameStartCore.getPlayer().moveRight();
+            Player1.moveRight(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false) {
+                StaticInfo.gameStartCore.getPlayer().moveRight();
+            }
         }
         /**上方向键*/
         if(GameInput.getKeyDown(38)){
-            StaticInfo.gameStartCore.getPlayer().moveUp();
+            Player1.moveUp(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false) {
+                StaticInfo.gameStartCore.getPlayer().moveUp();
+            }
         }
         /**下方向键*/
         if(GameInput.getKeyDown(40)){
-            StaticInfo.gameStartCore.getPlayer().moveDown();
+            Player1.moveDown(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false) {
+                StaticInfo.gameStartCore.getPlayer().moveDown();
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
+import org.example.common.config.level.Level1;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.player.PlayerFactory;
@@ -81,6 +82,7 @@ public class GamePanel extends JPanel {
             if(maptypebefore == 1)
             {
                 clear(tempGraphics,background1);
+                StaticInfo.gameLevel = new Level1();
             }
             //如果地图样式为2
             else if(maptypebefore == 2)
