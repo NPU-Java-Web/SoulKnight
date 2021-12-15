@@ -31,7 +31,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 @Component
 public class ServerCore {
-//    public static World world;
     public static Level level;
     public static volatile String GlobalInfo;
     public static BlockingQueue<Player> playerQueue;
@@ -39,7 +38,6 @@ public class ServerCore {
 
 
     public ServerCore() {
-//        world = new World1();
         level=new Level1();
         GlobalInfo= JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), level.getNumber()));
         playerQueue = new LinkedBlockingQueue<>(30);
@@ -47,8 +45,8 @@ public class ServerCore {
     }
 
     public void start() {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup(2);
+        EventLoopGroup workerGroup = new NioEventLoopGroup(2);
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup);
@@ -72,9 +70,8 @@ public class ServerCore {
 
             AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadConfig.class);
             RefreshThread refreshThread = context.getBean(RefreshThread.class);
-
             refreshThread.run();
-            System.out.println();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
