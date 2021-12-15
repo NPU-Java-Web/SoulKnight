@@ -48,7 +48,7 @@ public class Dialog extends JDialog{
 
         setVisible(true);
     }
-
+//显示设置弹窗
     public void showSetting(JFrame jFrame)
     {
         setTitle("设置");
@@ -97,7 +97,7 @@ public class Dialog extends JDialog{
         });
 
     }
-
+//显示说明弹窗
     public void showInstruction(JFrame jFrame)
     {
         setTitle("游戏说明");
@@ -122,7 +122,7 @@ public class Dialog extends JDialog{
             }
         });
     }
-
+//显示暂停弹窗
     public void showpause(JFrame jFrame)
     {
         setTitle("暂停");
@@ -153,7 +153,7 @@ public class Dialog extends JDialog{
             }
         });
     }
-
+//返回主菜单
     public void returnMainPanel()
     {
                 StaticInfo.isrunning = false;
