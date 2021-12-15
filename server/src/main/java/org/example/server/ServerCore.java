@@ -1,5 +1,6 @@
 package org.example.server;
 
+import com.alibaba.fastjson.JSON;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -12,26 +13,36 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
+import org.example.common.config.level.Level1;
+import org.example.common.model.bullet.Bullet;
+import org.example.common.model.player.Player;
 import org.example.common.protocal.Connect;
+import org.example.common.protocal.Result;
 import org.example.server.entity.World;
 import org.example.server.entity.World1;
 import org.example.server.handler.MyServerInboundHandler;
-import org.example.server.thread.CalculateThread;
+
 import org.example.server.thread.RefreshThread;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @Component
 public class ServerCore {
     public static World world;
-    public static BlockingQueue<String> messageQueue;
+    public static volatile String GlobalInfo;
+    public static BlockingQueue<Player> playerQueue;
+    public static BlockingQueue<Bullet> bulletQueue;
+
 
     public ServerCore() {
         world = new World1();
-        messageQueue = new LinkedBlockingQueue<>(30);
+        GlobalInfo= JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), Level1.NUMBER));
+        playerQueue = new LinkedBlockingQueue<>(30);
+        bulletQueue = new LinkedBlockingQueue<>(30);
     }
 
     public void start() {
@@ -59,15 +70,8 @@ public class ServerCore {
             }
 
             AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadConfig.class);
-
-            CalculateThread calculateThread = context.getBean(CalculateThread.class);
-            calculateThread.run();
-
-            Thread.sleep(1000);
-
             RefreshThread refreshThread = context.getBean(RefreshThread.class);
 
-            String temp="{\"angle\":90,\"bulletType\":1,\"createTime\":1639535789697,\"playerId\":\"1\",\"power\":25,\"radius\":20,\"speed\":50,\"x\":500,\"y\":500}";
             refreshThread.run();
             System.out.println();
         } catch (InterruptedException e) {

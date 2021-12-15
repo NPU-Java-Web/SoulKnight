@@ -36,7 +36,7 @@ public class DeliverPlayer implements Runnable {
                 String message = JSON.toJSONString(player);
                 boolean success = GameStartCore.sendQueue.offer(message);
                 if (!success) {
-                    //log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
+                    log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
