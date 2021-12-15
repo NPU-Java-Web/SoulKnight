@@ -14,10 +14,11 @@ import java.util.Set;
 @Service
 @Slf4j
 public class PlayerService {
+
     @Autowired
     private PlayerDAO playerDAO;
 
-    public void saveOrUpdate(Player player) {
+    public synchronized void saveOrUpdate(Player player) {
 //        log.info("现在在尝试运行saveOrUpdate方法");
         if (!Verification.verifyLocation(player.getX(), player.getY())) {
             log.warn("请求中的玩家位置无效：" + player);
@@ -30,7 +31,7 @@ public class PlayerService {
         }
     }
 
-    public List<Player> list() {
+    public synchronized List<Player> list() {
         List<Player> result = new ArrayList<>();
         Set<String> keys = playerDAO.getAllPlayerKeys();
         for (String key : keys) {
@@ -48,7 +49,7 @@ public class PlayerService {
         return result;
     }
 
-    public void beingHurt(Player player, int difference) {
+    public synchronized void beingHurt(Player player, int difference) {
         playerDAO.subtractBlood(player, Math.min(player.getBlood(), difference));
     }
 
