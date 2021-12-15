@@ -20,7 +20,7 @@ public class MonsterService {
 
     public void initializeMonsters() {
         monsterDAO.deleteAllMonsters();
-        for (Monster monster : ServerCore.world.getInitialMonsters()) {
+        for (Monster monster : ServerCore.level.getInitialMonsters()) {
             monsterDAO.insert(monster);
         }
     }

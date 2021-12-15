@@ -3,6 +3,7 @@ package org.example.client;
 import lombok.Data;
 import org.example.client.calculate.CalculationMain;
 import org.example.client.display.DisplayMain;
+import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
 import org.example.common.model.player.Player;
 import org.example.common.protocal.Result;
@@ -13,7 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @Data
 public class GameStartCore {
     //地图信息
-    private volatile Level1 level;
+    private volatile Level level;
 
     private volatile Player player;
     /*private volatile int type;

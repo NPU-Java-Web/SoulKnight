@@ -23,7 +23,7 @@ public class ThreadConfig {
     }
 
     @Bean
-    public JedisPool jedisPool(){
+    public JedisPool jedisPool() {
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(20);
         config.setMaxIdle(10);

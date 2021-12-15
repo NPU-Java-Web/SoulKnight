@@ -32,7 +32,7 @@ public class CalculationMain implements Runnable {
 
     @Override
     public void run() {
-        NioEventLoopGroup group = new NioEventLoopGroup();
+        NioEventLoopGroup group = new NioEventLoopGroup(2);
 
         try {
 
@@ -43,7 +43,7 @@ public class CalculationMain implements Runnable {
                 @Override
                 protected void initChannel(NioSocketChannel ch) {
                     ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new LineBasedFrameDecoder(2048));
+                    pipeline.addLast(new LineBasedFrameDecoder(4096));
                     pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new MyClientInboundHandler());
