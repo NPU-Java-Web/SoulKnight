@@ -2,13 +2,12 @@ package org.example.client.display;
 
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
+import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.player.PlayerFactory;
 import org.example.common.model.player.Player;
-import org.example.common.keyListener.GameInput;
 import org.example.common.protocal.Result;
-import org.w3c.dom.Node;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,9 +47,6 @@ public class GamePanel extends JPanel {
         //打开游戏panel的读取键盘hashmap的线程并改变player变量，并且按帧率进行页面刷新repaint
         gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this), "render");
         gameRenderThread.start();
-
-
-
     }
 
 
@@ -71,30 +67,31 @@ public class GamePanel extends JPanel {
             result = temp;
         }
         //读取当前的地图种类
-        maptype = result.getMapType();
-        //如果地图改变
-        if(maptype != maptypebefore)
-        {
-            maptypebefore = maptype;
-        }
+        if(result!=null){
+            maptype = result.getMapType();
+            //如果地图改变
+            if(maptype != maptypebefore)
+            {
+                maptypebefore = maptype;
+            }
 
-        tempGraphics = img.getGraphics();
-        //如果地图样式为1
-        if(maptypebefore == 1)
-        {
-            clear(tempGraphics,background1);
+            tempGraphics = img.getGraphics();
+            //如果地图样式为1
+            if(maptypebefore == 1)
+            {
+                clear(tempGraphics,background1);
+            }
+            //如果地图样式为2
+            else if(maptypebefore == 2)
+            {
+                clear(tempGraphics,background2);
+            }
+            //如果地图样式为3
+            else if(maptypebefore == 3)
+            {
+                clear(tempGraphics,background3);
+            }
         }
-        //如果地图样式为2
-        else if(maptypebefore == 2)
-        {
-            clear(tempGraphics,background2);
-        }
-        //如果地图样式为3
-        else if(maptypebefore == 3)
-        {
-            clear(tempGraphics,background3);
-        }
-
         drawPlayers(tempGraphics);
         drawBullets(tempGraphics);
         //将内存画布绘制到窗口

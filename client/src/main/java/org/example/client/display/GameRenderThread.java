@@ -3,6 +3,7 @@ package org.example.client.display;
 
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
+import org.example.client.calculate.service.GameDataProcess;
 import org.example.common.keyListener.GameInput;
 
 import java.awt.*;
@@ -34,17 +35,17 @@ public class GameRenderThread implements Runnable{
         while (!exited)
         {
             //调用player方法改动其中的变量
-
-                gameStartCore.getPlayer().onClick();
+            if(GamePanel.isrunning)
+            {
+                GameDataProcess.moveMyPlayer();
                 gamePanel.repaint();
-
+            }
 
             if(GameInput.getKeyDown(27))
             {
                 new Dialog(ClientCore.mainPanel,3);
                 GamePanel.isrunning = false;
-
-                break;
+                //break;
             }
             try
             {
