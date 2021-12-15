@@ -136,6 +136,17 @@ public class Dialog extends JDialog{
                 returnMainPanel();
             }
         });
+
+        jb03 = new JButton("返回游戏");
+        jb03.setBounds(100, 100, 100, 50);
+        add(jb03);
+        jb03.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //GamePanel.gameRenderThread.start();
+
+            }
+        });
     }
 
     public void returnMainPanel()

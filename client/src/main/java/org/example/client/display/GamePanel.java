@@ -22,7 +22,7 @@ public class GamePanel extends JPanel {
     private String windowTitle;
     public static final int fps = 50;
     private final GameStartCore gameStartCore;
-    private Thread gameRenderThread;
+    public static Thread gameRenderThread;
     private Result result;
     private Graphics tempGraphics;
     public MainPanel mainPanel;
@@ -134,7 +134,6 @@ public class GamePanel extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 {
-                    System.out.println("111");
                     new Dialog(ClientCore.mainPanel,3);
                 }
             }

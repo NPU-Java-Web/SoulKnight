@@ -119,6 +119,7 @@ public class KeyEventListener implements Runnable {
 //                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
 //                               gameStartCore.start();
                     GamePanel newGamePanel = new GamePanel(ClientCore.mainPanel);
+                    MainPanel.gamePanel = newGamePanel;
                     ClientCore.mainPanel.add(newGamePanel);
                     newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
 //                               Thread.sleep(1000);

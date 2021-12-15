@@ -34,17 +34,17 @@ public class GameRenderThread implements Runnable{
         while (!exited)
         {
             //调用player方法改动其中的变量
-            if(GamePanel.isrunning)
-            {
+
                 gameStartCore.getPlayer().onClick();
                 gamePanel.repaint();
-            }
+
 
             if(GameInput.getKeyDown(27))
             {
                 new Dialog(ClientCore.mainPanel,3);
                 GamePanel.isrunning = false;
-                //break;
+
+                break;
             }
             try
             {
