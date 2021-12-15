@@ -70,7 +70,7 @@ public class Creatures {
     }
 
     public Result getResult() {
-        return new Result(players, bullets, monsters, ServerCore.world.getNumber());
+        return new Result(players, bullets, monsters, ServerCore.level.getNumber());
     }
 
     public static double getDistance(Bullet bullet, Monster monster) {
