@@ -31,7 +31,7 @@ public class ServerCore {
 
     public ServerCore() {
         world = new World1();
-        messageQueue = new LinkedBlockingQueue<>(20);
+        messageQueue = new LinkedBlockingQueue<>(30);
     }
 
     public void start() {
@@ -66,8 +66,10 @@ public class ServerCore {
             Thread.sleep(1000);
 
             RefreshThread refreshThread = context.getBean(RefreshThread.class);
-            refreshThread.run();
 
+            String temp="{\"angle\":90,\"bulletType\":1,\"createTime\":1639535789697,\"playerId\":\"1\",\"power\":25,\"radius\":20,\"speed\":50,\"x\":500,\"y\":500}";
+            refreshThread.run();
+            System.out.println();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
