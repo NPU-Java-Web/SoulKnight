@@ -33,8 +33,8 @@ public class GameStartCore {
     //以下是用于和服务器通信的队列，不进行显示
     public static BlockingQueue<String> sendQueue;
     public static BlockingQueue<String> receiveQueue;
-
-    public GameStartCore(Player player) {
+    public  boolean isrunning;
+    public GameStartCore(Player player,boolean isrunning) {
         //level只能为1
         this.level = new Level1();
         //playerType只能为1
@@ -52,7 +52,7 @@ public class GameStartCore {
         this.start = false;
         sendQueue = new LinkedBlockingQueue<>(10);
         receiveQueue = new LinkedBlockingQueue<>(10);
-
+        this.isrunning = isrunning;
     }
 
     public void start() {

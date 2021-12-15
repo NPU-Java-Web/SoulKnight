@@ -1,5 +1,6 @@
 package org.example.client.display;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;
@@ -15,6 +16,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@Slf4j
 public class GamePanel extends JPanel {
 
     private int width;
@@ -35,7 +37,7 @@ public class GamePanel extends JPanel {
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
-                GameConfig.PlayerType.Classic, "1", 500, 500, 0.0));
+                GameConfig.PlayerType.Classic, "1", 500, 500, 0.0),isrunning);
         StaticInfo.setGameStartCore(gameStartCore);
         this.gameStartCore = gameStartCore;
         gameStartCore.start();
@@ -46,7 +48,7 @@ public class GamePanel extends JPanel {
         setBackground(new Color(83, 163, 238));
         adapter();
         //打开游戏panel的读取键盘hashmap的线程并改变player变量，并且按帧率进行页面刷新repaint
-        gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this), "render");
+        gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this,isrunning), "render");
         gameRenderThread.start();
     }
 
@@ -114,6 +116,7 @@ public class GamePanel extends JPanel {
         //用result中的信息来渲染
         if(result!=null) {
             for (Player item : result.getPlayers()) {
+                log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
                 drawPlayer(item.getX(), item.getY(), graphics);
             }
         }

@@ -6,6 +6,7 @@ import io.netty.channel.Channel;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.GameStartCore;
+import org.example.client.calculate.service.StaticInfo;
 
 /**
  * 这个类从【发送队列】里取东西，然后直接发给了服务器
@@ -13,14 +14,19 @@ import org.example.client.GameStartCore;
 @Slf4j
 public class UploadMessage implements Runnable {
     private final Channel channel;
-
-    public UploadMessage(Channel channel) {
+    private final GameStartCore gameStartCore;
+    public UploadMessage(Channel channel,GameStartCore gameStartCore) {
         this.channel = channel;
+        this.gameStartCore = gameStartCore;
     }
 
     @Override
     public void run() {
         while (true) {
+            if(!StaticInfo.isrunning)
+            {
+                break;
+            }
             try {
                 String message = GameStartCore.sendQueue.take();
                 if (!message.contains("playerType") && !message.contains("bulletType")) {

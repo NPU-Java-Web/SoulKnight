@@ -1,6 +1,7 @@
 package org.example.client;
 
 
+import org.example.client.calculate.service.StaticInfo;
 import org.example.client.display.MainPanel;
 import org.example.client.display.PlaySound;
 
@@ -12,6 +13,8 @@ import javax.swing.*;
  */
 import org.example.client.function.Data;
 
+import java.util.Stack;
+
 public class ClientCore {
 
     public static volatile MainPanel mainPanel;//主界面对象
@@ -20,6 +23,7 @@ public class ClientCore {
     public static void Start(){
 
         mainPanel = new MainPanel();
+        StaticInfo.mainPanel = mainPanel;
         //监听关闭窗体按钮
         mainPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //设置可视

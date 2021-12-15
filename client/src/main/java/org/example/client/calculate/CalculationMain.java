@@ -35,6 +35,7 @@ public class CalculationMain implements Runnable {
         NioEventLoopGroup group = new NioEventLoopGroup();
 
         try {
+
             Bootstrap b = new Bootstrap();
             b.group(group);
             b.channel(NioSocketChannel.class);
@@ -53,7 +54,7 @@ public class CalculationMain implements Runnable {
             Channel channel = future.channel();
 
 
-            Thread uploadMessage = new Thread(new UploadMessage(channel), "uploadMessage");
+            Thread uploadMessage = new Thread(new UploadMessage(channel,gameStartCore), "uploadMessage");
             uploadMessage.start();
 
             Thread analysisMessage = new Thread(new AnalysisMessage(gameStartCore), "analysisMessage");
