@@ -3,9 +3,12 @@ package org.example.client.display;
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
-import org.example.common.config.player.PlayerFactory;
-import org.example.common.entity.Player;
+import org.example.common.model.bullet.Bullet;
+import org.example.common.model.player.PlayerFactory;
+import org.example.common.model.player.Player;
+import org.example.common.keyListener.GameInput;
 import org.example.common.protocal.Result;
+import org.w3c.dom.Node;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +36,7 @@ public class GamePanel extends JPanel {
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
                 GameConfig.PlayerType.Classic, "1", 500, 500, 0.0));
+        StaticInfo.setGameStartCore(gameStartCore);
         this.gameStartCore = gameStartCore;
         gameStartCore.start();
         //传入mainPanel
@@ -92,6 +96,7 @@ public class GamePanel extends JPanel {
         }
 
         drawPlayers(tempGraphics);
+        drawBullets(tempGraphics);
         //将内存画布绘制到窗口
         g.drawImage(img, 0, 0, null);
     }
@@ -119,7 +124,6 @@ public class GamePanel extends JPanel {
 
 
     public void drawPlayer(int x, int y, Graphics graphics) {
-        //应为用result中的信息来画图
         graphics.drawImage(GameConfig.player, x, y, null);
     }
     //esc键盘绑定
@@ -137,6 +141,18 @@ public class GamePanel extends JPanel {
         });
     }
 
+
+    public void drawBullets(Graphics graphics) {
+        if(result!=null) {
+            for (Bullet item : result.getBullets()) {
+                drawBullet(item.getX(), item.getY(), graphics);
+            }
+        }
+    }
+
+    public void drawBullet(int x, int y, Graphics graphics){
+        graphics.drawImage(GameConfig.bullet1, x, y, null);
+    }
 
 
 }

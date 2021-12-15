@@ -1,7 +1,7 @@
 package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.common.entity.Player;
+import org.example.common.model.player.Player;
 import org.example.server.dao.PlayerDAO;
 import org.example.server.util.Verification;
 import org.springframework.beans.factory.annotation.Autowired;

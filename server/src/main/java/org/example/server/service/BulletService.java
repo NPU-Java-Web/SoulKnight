@@ -1,7 +1,7 @@
 package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.common.entity.Bullet;
+import org.example.common.model.bullet.Bullet;
 import org.example.server.dao.BulletDAO;
 import org.example.server.util.Verification;
 import org.springframework.beans.factory.annotation.Autowired;

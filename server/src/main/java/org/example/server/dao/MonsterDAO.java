@@ -1,6 +1,6 @@
 package org.example.server.dao;
 
-import org.example.common.entity.Monster;
+import org.example.common.model.monster.Monster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
