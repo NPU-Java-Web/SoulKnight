@@ -86,6 +86,15 @@ public class BulletDAO {
         }
     }
 
+    public void deleteAll() {
+        try (Jedis jedis = jedisPool.getResource()) {
+            Set<String> keys = jedis.keys("bullet*");
+            for (String key : keys) {
+                jedis.del(key);
+            }
+        }
+    }
+
     public void updateLocation(Bullet bullet) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + bullet.getBulletId();

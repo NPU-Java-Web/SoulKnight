@@ -19,7 +19,7 @@ public class MonsterService {
     private MonsterDAO monsterDAO;
 
     public void initializeMonsters() {
-        monsterDAO.deleteAllMonsters();
+        monsterDAO.deleteAll();
         for (Monster monster : ServerCore.level.getInitialMonsters()) {
             monsterDAO.insert(monster);
         }
@@ -27,7 +27,7 @@ public class MonsterService {
 
     public List<Monster> list() {
         List<Monster> result = new ArrayList<>();
-        Set<String> keys = monsterDAO.getAllMonsterKeys();
+        Set<String> keys = monsterDAO.getAllKeys();
         for (String key : keys) {
             Monster monster;
             try {
