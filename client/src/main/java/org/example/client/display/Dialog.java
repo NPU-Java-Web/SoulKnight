@@ -2,6 +2,7 @@ package org.example.client.display;
 
 import org.example.client.ClientCore;
 import org.example.client.calculate.service.StaticInfo;
+import org.example.common.config.GameConfig;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,8 +61,34 @@ public class Dialog extends JDialog{
 //显示设置弹窗
     public void showSetting(JFrame jFrame)
     {
+
         setTitle("设置");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+        jl03 = new JLabel("请输入玩家Id");
+        jl03.setFont(new Font("acefont-family", Font.BOLD, 15));
+        jl03.setBounds(100, 160, 100, 20);
+        add(jl03);
+        // 创建一个单行输入框
+        JTextField textField = new JTextField();
+        // 设置输入框允许编辑
+        textField.setEditable(true);
+        textField.setText("");
+        textField.setBounds(100,200,220,40);
+        // 设置输入框的长度为11个字符
+        textField.setColumns(11);
+
+        add(textField);
+
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+        jb04 = new JButton("确认Id");
+        jb04.setBounds(350, 200, 80, 40);
+        add(jb04);
+        jb04.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameConfig.playerId = textField.getText();
+            }
+        });
 
         // 音效标签
         jl02 = new JLabel("声音选项");

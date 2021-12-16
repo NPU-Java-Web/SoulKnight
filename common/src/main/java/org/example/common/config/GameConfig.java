@@ -30,6 +30,8 @@ public class GameConfig {
     //client向serve发送数据的速度（越小表示发送越快）
     public static final int SLEEP_TIME = 40;
 
+    public static String playerId="";
+
     public static class PlayerType
     {
         //经典人物
