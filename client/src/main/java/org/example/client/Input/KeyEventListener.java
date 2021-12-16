@@ -150,10 +150,13 @@ public class KeyEventListener implements Runnable {
                 }
 
                 if (ClientCore.mainPanel.getFouseIndex() == 2) {
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
                     new org.example.client.display.Dialog(ClientCore.mainPanel, 1);
+
                 }
 
                 if (ClientCore.mainPanel.getFouseIndex() == 3) {
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
                     new Dialog(ClientCore.mainPanel, 2);
                 }
 

@@ -42,4 +42,9 @@ public class GameInput implements KeyListener {
     {
         return keys.get(keyCode);
     }
+
+    public static void setKeys(int keycode)
+    {
+        keys.put(keycode,false);
+    }
 }

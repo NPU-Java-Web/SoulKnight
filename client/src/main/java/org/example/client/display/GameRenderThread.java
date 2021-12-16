@@ -40,14 +40,15 @@ public class GameRenderThread implements Runnable{
 
         while (!exited)
         {
-            log.info(StaticInfo.isrunning.toString());
-            GameDataProcess.moveMyPlayer();
-            gamePanel.repaint();
-            //调用player方法改动其中的变量
-            if(!StaticInfo.isrunning)
+
+            if(StaticInfo.isrunning)
             {
-                break;
+                log.info(StaticInfo.isrunning.toString());
+                GameDataProcess.moveMyPlayer();
+                gamePanel.repaint();
+                //调用player方法改动其中的变量
             }
+
 
 //            if(GameInput.getKeyDown(27))
 //            {

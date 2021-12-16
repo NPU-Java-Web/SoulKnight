@@ -23,26 +23,28 @@ public class DeliverPlayer implements Runnable {
 
         while (true) {
             try {
-                if(!StaticInfo.isrunning)
-                {
-                    break;
-                }
                 //暂时设置为每一秒发1次，上线后要改成一秒发30次
                 Thread.sleep(GameConfig.SLEEP_TIME);
-                Player player = new Player();
-                player.setPlayerType(gameStartCore.getPlayer().getPlayerType());
-                player.setPlayerId(gameStartCore.getPlayer().getPlayerId());
-                player.setX(gameStartCore.getPlayer().getX());
-                player.setY(gameStartCore.getPlayer().getY());
-                player.setAngle(gameStartCore.getPlayer().getAngle());
-                player.setSpeed(gameStartCore.getPlayer().getSpeed());
-                player.setBlood(gameStartCore.getPlayer().getBlood());
-                player.setScore(gameStartCore.getPlayer().getScore());
-                String message = JSON.toJSONString(player);
-                boolean success = GameStartCore.sendQueue.offer(message);
-                if (!success) {
-                    log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
+                if(StaticInfo.isrunning)
+                {
+
+                    Player player = new Player();
+                    player.setPlayerType(gameStartCore.getPlayer().getPlayerType());
+                    player.setPlayerId(gameStartCore.getPlayer().getPlayerId());
+                    player.setX(gameStartCore.getPlayer().getX());
+                    player.setY(gameStartCore.getPlayer().getY());
+                    player.setAngle(gameStartCore.getPlayer().getAngle());
+                    player.setSpeed(gameStartCore.getPlayer().getSpeed());
+                    player.setBlood(gameStartCore.getPlayer().getBlood());
+                    player.setScore(gameStartCore.getPlayer().getScore());
+                    String message = JSON.toJSONString(player);
+                    boolean success = GameStartCore.sendQueue.offer(message);
+                    if (!success) {
+                        log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
+                    }
+
                 }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
