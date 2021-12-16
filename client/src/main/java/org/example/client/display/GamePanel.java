@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
     private int maptypebefore = 1;
     public static boolean isrunning = true;
     private int monsterBlood[];
-    private int playerBlood[];
+    private int playerBlood[] ;
     private String playerId = GameConfig.playerId;
 
     public GamePanel(MainPanel mainPanel) {
