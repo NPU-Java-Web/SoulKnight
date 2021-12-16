@@ -18,9 +18,9 @@ import org.example.common.config.level.Level1;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.player.Player;
 import org.example.common.protocal.Connect;
+import org.example.common.protocal.Order;
 import org.example.common.protocal.Result;
 import org.example.server.handler.MyServerInboundHandler;
-
 import org.example.server.thread.RefreshThread;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
@@ -35,13 +35,15 @@ public class ServerCore {
     public static volatile String GlobalInfo;
     public static BlockingQueue<Player> playerQueue;
     public static BlockingQueue<Bullet> bulletQueue;
+    public static BlockingQueue<Order> orderQueue;
 
 
     public ServerCore() {
-        level=new Level1();
-        GlobalInfo= JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), level.getNumber()));
+        level = new Level1();
+        GlobalInfo = JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), level.getNumber()));
         playerQueue = new LinkedBlockingQueue<>(30);
         bulletQueue = new LinkedBlockingQueue<>(30);
+        orderQueue = new LinkedBlockingQueue<>(30);
     }
 
     public void start() {
@@ -71,6 +73,7 @@ public class ServerCore {
             AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadConfig.class);
             RefreshThread refreshThread = context.getBean(RefreshThread.class);
             refreshThread.run();
+//            System.err.println();
 
         } catch (InterruptedException e) {
             e.printStackTrace();

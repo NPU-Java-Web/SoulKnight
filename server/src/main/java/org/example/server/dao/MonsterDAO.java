@@ -69,13 +69,13 @@ public class MonsterDAO {
         }
     }
 
-    public Set<String> getAllMonsterKeys() {
+    public Set<String> getAllKeys() {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.keys("monster*");
         }
     }
 
-    public void deleteAllMonsters() {
+    public void deleteAll() {
         try (Jedis jedis = jedisPool.getResource()) {
             Set<String> keys = jedis.keys("monster*");
             for (String key : keys) {

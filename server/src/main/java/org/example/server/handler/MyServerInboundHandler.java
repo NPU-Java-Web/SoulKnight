@@ -7,6 +7,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.player.Player;
+import org.example.common.protocal.Order;
 import org.example.server.ServerCore;
 
 @Slf4j
@@ -29,12 +30,17 @@ public class MyServerInboundHandler extends SimpleChannelInboundHandler<Object> 
             if (!success) {
                 log.warn("bulletQueue已满，客户端发来的消息被丢弃" + bullet);
             }
+        } else if (message.contains("command")) {
+            Order order = JSON.parseObject(message, Order.class);
+            boolean success = ServerCore.orderQueue.offer(order);
+            if (!success) {
+                log.warn("orderQueue已满，客户端发来的消息被丢弃" + order);
+            }
         } else {
             log.warn("无法解析消息内容，无法解析的消息内容为" + message);
         }
         channel.writeAndFlush(ServerCore.GlobalInfo + "\n");
     }
-
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
