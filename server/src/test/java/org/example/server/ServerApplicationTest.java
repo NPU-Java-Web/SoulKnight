@@ -1,6 +1,7 @@
 package org.example.server;
 
 import org.junit.jupiter.api.Test;
+import redis.clients.jedis.Jedis;
 
 
 public class ServerApplicationTest {

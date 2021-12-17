@@ -17,6 +17,8 @@ public class MonsterDAO {
 
     private static final String PREFIX = "monster:";
 
+    private static final String CD_PREFIX = "cooling:";
+
     public Monster selectById(String monsterId) {
         String key = PREFIX + monsterId;
         return selectByKey(key);
@@ -97,5 +99,21 @@ public class MonsterDAO {
             jedis.hincrBy(key, "blood", -difference);
         }
     }
+
+    public boolean isAggressive(Monster monster) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = CD_PREFIX + monster.getMonsterId();
+            return !jedis.exists(key);
+        }
+    }
+
+    public void setCoolingTime(Monster monster, long seconds) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = CD_PREFIX + monster.getMonsterId();
+            jedis.set(key, "冷却中");
+            jedis.expire(key,seconds);
+        }
+    }
+
 
 }

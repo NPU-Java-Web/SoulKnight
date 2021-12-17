@@ -83,6 +83,7 @@ public class RefreshThread {
             creatures.initialize();
             creatures.bulletsCauseHarm();
             creatures.bulletsFlying();
+            creatures.monstersAttack();
             ServerCore.GlobalInfo = (JSON.toJSONString(creatures.getResult()));
             try {
                 Thread.sleep(20);

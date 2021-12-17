@@ -47,6 +47,9 @@ public class Creatures {
         for (Bullet bullet : bullets) {
             //先从怪物列表里遍历
             for (Monster monster : monsters) {
+                if (bullet.getPlayerId().equals(monster.getMonsterId())){
+                    continue;
+                }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
                     monsterService.beingHurt(monster, bullet.getPower());
                     bulletService.remove(bullet);
@@ -65,6 +68,15 @@ public class Creatures {
                     return;
                 }
             }
+        }
+    }
+
+    public void monstersAttack(){
+        if (players.size()<1){
+            return;
+        }
+        for (Monster monster:monsters){
+            monsterService.tryStraightLaunch(monster,players.get(0));
         }
     }
 
