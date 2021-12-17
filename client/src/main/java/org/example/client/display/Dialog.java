@@ -15,6 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Stack;
 
 /**
@@ -29,6 +33,7 @@ public class Dialog extends JDialog{
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;
     private boolean isStop = false;
+    private String score;
     public Dialog(JFrame jFrame,int type)
     {
         super(jFrame,true);
@@ -50,16 +55,21 @@ public class Dialog extends JDialog{
 
         }
         else if(type == 3)
-        {
+        {   //暂停弹窗
             showpause(jFrame);
         }
         else if(type == 4)
-        {
+        {   //游戏内说明弹窗
             showInstructionInGame(jFrame);
         }
         else if(type == 5)
-        {
+        {   //游戏内设置弹窗
             showSettingInGame(jFrame);
+        }
+        else if(type == 6)
+        {
+            //失败弹窗
+            showfalse(jFrame);
         }
 
         setVisible(true);
@@ -129,7 +139,7 @@ public class Dialog extends JDialog{
 
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
         jb02 = new JButton("返回主菜单");
-        jb02.setBounds(220, 300, 200, 50);
+        jb02.setBounds(190, 450, 200, 50);
         add(jb02);
         jb02.addActionListener(new ActionListener() {
             @Override
@@ -137,6 +147,98 @@ public class Dialog extends JDialog{
                 returnMainPanel();
             }
         });
+
+        //人物选择
+        // 读入积分
+        try {
+            BufferedReader fr = new BufferedReader(new FileReader("client/src/main/resources/score.txt"));
+            this.score = fr.readLine();
+            int money = Integer.parseInt(score);
+            fr.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("读取失败");
+        }
+        // 显示积分
+        jlabel_one = new JLabel("积分：" + score);
+        jlabel_one.setFont(new Font("acefont-family", Font.BOLD, 15));
+        jlabel_one.setBounds(200, 300, 100, 20);
+        add(jlabel_one);
+
+        //角色1
+        jima01 = new JLabel(GameConfig.playerShow);
+        jima01.setBounds(50, 300, 100, 30);
+        add(jima01);
+
+        jr01 = new JRadioButton("游侠");
+        jr01.setBounds(50, 350, 100, 20);
+        add(jr01);
+        if(GameConfig.playerType == 1)
+        {
+            jr01.setSelected(true);
+        }
+        jr01.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                GameConfig.playerType = 1;
+                jr01.setSelected(true);
+                jr02.setSelected(false);
+                jr03.setSelected(false);
+            }
+        });
+        //角色2
+        jima02 = new JLabel(GameConfig.playerShow);
+        jima02.setBounds(150, 300, 100, 30);
+        add(jima02);
+
+        jr02 = new JRadioButton("战士");
+        jr02.setBounds(150, 350, 100, 20);
+        add(jr02);
+        if(GameConfig.playerType == 2)
+        {
+            jr02.setSelected(true);
+        }
+        jr02.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                GameConfig.playerType = 2;
+                jr02.setSelected(true);
+                jr01.setSelected(false);
+                jr03.setSelected(false);
+            }
+        });
+        //角色3
+        jima03 = new JLabel(GameConfig.playerShow);
+        jima03.setBounds(250, 300, 100, 30);
+        add(jima03);
+
+        jr03 = new JRadioButton("刺客");
+        jr03.setBounds(250, 350, 100, 20);
+        add(jr03);
+        if(GameConfig.playerType == 3)
+        {
+            jr03.setSelected(true);
+        }
+        jr03.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                GameConfig.playerType = 3;
+                jr03.setSelected(true);
+                jr01.setSelected(false);
+                jr02.setSelected(false);
+            }
+        });
+
+
+
+
 
     }
 
@@ -328,6 +430,65 @@ public class Dialog extends JDialog{
                 }
             }
         });
+    }
+    //显游戏失败弹窗
+    public void showfalse(JFrame jFrame)
+    {
+        setTitle("失败");
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+
+        jb03 = new JButton("返回游戏");
+        jb03.setBounds(140, 70, 100, 50);
+        add(jb03);
+        jb03.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isStop = false;
+                //GamePanel.gameRenderThread.start();
+                StaticInfo.isrunning = true;
+                GameConfig.flag = true;
+                dispose();
+            }
+        });
+
+        jb06 = new JButton("重新开始");
+        jb06.setBounds(140, 140, 100, 50);
+        add(jb06);
+        jb06.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(isStop){
+                    Object[] options = { "OK ", "CANCEL " };
+                    JOptionPane.showOptionDialog(null, "您已暂停，无法重新开始", "提示", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.WARNING_MESSAGE,null, options, options[0]);
+
+                }
+                else {
+                    Order order = new Order(GameConfig.playerId,"restart");
+                    String message = JSON.toJSONString(order);
+
+                    boolean success = GameStartCore.sendQueue.offer(message);
+                    if (!success) {
+                        log.warn("队列已满，客户端无法把重新开始加入队列，消息是" + message);
+                    }
+                }
+            }
+        });
+
+        jb02 = new JButton("退出游戏");
+        jb02.setBounds(140, 210, 100, 50);
+        add(jb02);
+        jb02.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (result == JOptionPane.OK_OPTION) {
+                    // 退出
+                    System.exit(0);
+                }
+            }
+        });
+
     }
 //返回主菜单
     public void returnMainPanel()

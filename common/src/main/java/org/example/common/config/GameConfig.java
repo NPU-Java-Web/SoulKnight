@@ -13,6 +13,13 @@ public class GameConfig {
     public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
     //玩家图片（1）
     public static Image player = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/未标题-1.png");
+    public static ImageIcon playerShow = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\未标题-1.png");
+    //玩家图片（2）
+    public static Image player2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/未标题-6.png");
+    public static ImageIcon playerShow2 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\未标题-6.png");
+    //玩家图片（3）
+    public static Image player3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/未标题-9.png");
+    public static ImageIcon playerShow3 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\未标题-9.png");
     //游戏背景图片
     public static Image gamebackground1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map1.jpg");
 
@@ -31,8 +38,12 @@ public class GameConfig {
     public static final int SLEEP_TIME = 20;
     //玩家id
     public static String playerId="";
+    //玩家种类
+    public static int playerType = 1;
     //玩家蓝量
     public static double playerStrength = 0;
+
+    public static boolean flag = true;
     public static class PlayerType
     {
         //经典人物
