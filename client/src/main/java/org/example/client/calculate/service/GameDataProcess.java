@@ -9,7 +9,6 @@ import org.example.common.keyListener.GameInput;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
 import org.example.common.model.player.entity.Player1;
-import sun.tools.jstack.JStack;
 
 import java.awt.event.MouseEvent;
 

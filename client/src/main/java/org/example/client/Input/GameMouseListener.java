@@ -36,6 +36,7 @@ public class GameMouseListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
+
         GameDataProcess.shootBullet(e);
 
     }

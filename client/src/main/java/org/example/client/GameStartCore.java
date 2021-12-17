@@ -17,14 +17,6 @@ public class GameStartCore {
     private volatile Level level;
 
     private volatile Player player;
-    /*private volatile int type;
-    private volatile String playerId;
-    private volatile int x;
-    private volatile int y;
-    private volatile double angle;
-    private volatile int speed;
-    private volatile int blood;
-    private volatile int score;*/
 
     //显示的所有内容都是从下面这个队列里面取（包括自己的信息），不要管上面的个人信息
     //如果发现Result里的players的playerId和上面一样，那这个人就是自己
