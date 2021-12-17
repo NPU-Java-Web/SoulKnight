@@ -35,6 +35,7 @@ public class GamePanel extends JPanel {
     private int[] playerBlood;
     private String playerId = GameConfig.playerId;
 
+
     public GamePanel(MainPanel mainPanel) {
         StaticInfo.isrunning = true;
         // 设置请求焦点
@@ -50,6 +51,8 @@ public class GamePanel extends JPanel {
         //存储玩家和怪物的最大血量
         monsterBlood = new int[100];
         playerBlood = new int[100];
+        //设置最大蓝量为100
+        GameConfig.playerStrength = 100;
         // 清除布局管理
         setLayout(null);
         setBackground(new Color(83, 163, 238));
@@ -131,9 +134,15 @@ public class GamePanel extends JPanel {
                 //如果当前人物为玩家，则进行特殊的血量渲染
                 if(item.getPlayerId().equals(playerId))
                 {
+                    //画血量
                     int widthplayer = item.getBlood()*300/playerBlood[flag];
                     graphics.setColor(new Color(161, 7, 7));
                     graphics.fillRect(10,10,widthplayer,8);
+
+                    //画蓝量
+                    int widthStrength = new Double(GameConfig.playerStrength*300/100).intValue() ;
+                    graphics.setColor(new Color(2, 62, 206));
+                    graphics.fillRect(10,20,widthStrength,8);
                 }
                 int width =   item.getBlood()*30/playerBlood[flag];
                 //log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
