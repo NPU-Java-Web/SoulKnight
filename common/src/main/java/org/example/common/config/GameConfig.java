@@ -26,9 +26,9 @@ public class GameConfig {
     //背景音乐路径
     public static String sound = System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav";
     //游戏帧率（从gameStartCore读取result的速度）
-    public static final int FPS = 200;
+    public static final int FPS = 300;
     //client向serve发送数据的速度（越小表示发送越快）
-    public static final int SLEEP_TIME = 40;
+    public static final int SLEEP_TIME = 20;
 
     public static String playerId="";
 
