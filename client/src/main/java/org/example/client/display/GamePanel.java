@@ -68,10 +68,14 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
 //    super.paintComponent(g);//清屏
 //    this.setBackground(Color.WHITE); //设置面板的背景色
-        //加载图片
+        //加载背景
         Image background1 = GameConfig.gamebackground1;
         Image background2 = GameConfig.gamebackground2;
         Image background3 = GameConfig.gamebackground3;
+        //加载人物
+        Image player1 = GameConfig.player;
+        Image player2 = GameConfig.player2;
+        Image player3 = GameConfig.player3;
 
         Image img = this.createImage(1000, 1000);
         //从gameStartCore中读取serve层传入的信息
@@ -147,8 +151,18 @@ public class GamePanel extends JPanel {
                     graphics.fillRect(10,20,widthStrength,8);
                 }
                 int width =   item.getBlood()*30/playerBlood[flag];
+                //判断是否死亡
+                if(item.getBlood()<=0)
+                {
+                    if(GameConfig.flag){
+                        GameConfig.flag = false;
+                        new Dialog(ClientCore.mainPanel,6);
+
+                    }
+                }
+
                 //log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
-                drawPlayer(item.getX(), item.getY(), graphics,width);
+                drawPlayer(item.getX(), item.getY(), graphics,width,item.getPlayerType());
             }
         }
         //直接用player里面的信息渲染
@@ -156,10 +170,26 @@ public class GamePanel extends JPanel {
     }
 
 
-    public void drawPlayer(int x, int y, Graphics graphics,int width) {
-        graphics.drawImage(GameConfig.player, x, y, null);
-        graphics.setColor(new Color(125, 16, 16));
-        graphics.fillRect(x+10,y-10,width,8);
+    public void drawPlayer(int x, int y, Graphics graphics,int width,int playertype) {
+        if(playertype == 1)
+        {
+            graphics.drawImage(GameConfig.player, x, y, null);
+            graphics.setColor(new Color(125, 16, 16));
+            graphics.fillRect(x+10,y-10,width,8);
+        }
+        if(playertype == 2)
+        {
+            graphics.drawImage(GameConfig.player2, x, y, null);
+            graphics.setColor(new Color(125, 16, 16));
+            graphics.fillRect(x+10,y-10,width,8);
+        }
+        if(playertype == 3)
+        {
+            graphics.drawImage(GameConfig.player3, x, y, null);
+            graphics.setColor(new Color(125, 16, 16));
+            graphics.fillRect(x+10,y-10,width,8);
+        }
+
 
     }
     //esc键盘绑定
