@@ -6,6 +6,7 @@ import org.example.client.calculate.service.StaticInfo;
 import org.example.client.display.Dialog;
 import org.example.client.display.GamePanel;
 import org.example.client.display.MainPanel;
+import org.example.common.config.GameConfig;
 import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
@@ -115,49 +116,45 @@ public class KeyEventListener implements Runnable {
 
                 if(ClientCore.mainPanel.getFouseIndex() == 1)
                 {
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
+                if(GameConfig.playerId.equals("")){
+                    Object[] options = { "OK ", "CANCEL " };
+                    JOptionPane.showOptionDialog(null, "您还没有输入玩家Id，请前往设置->输入Id", "提示", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.WARNING_MESSAGE,null, options, options[0]);
 
-
-//                               GameStartCore gameStartCore = new GameStartCore(new Player(1,"1",500,500,0.0),mainPanel);
-//                               gameStartCore.start();
+                }
+                else {
                     StaticInfo.isrunning = true;
                     GamePanel newGamePanel = new GamePanel(ClientCore.mainPanel);
                     MainPanel.gamePanel = newGamePanel;
                     StaticInfo.gamePanel = newGamePanel;
                     ClientCore.mainPanel.add(newGamePanel);
                     newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
-//                               Thread.sleep(1000);
-//                               System.out.println("qqqqqqqq");
-//                               GamePanel window = new GamePanel(1000, 1000, "Battle Game",mainPanel,gameStartCore);
 
-                    //add(window);
-                    // window.setSize(1000,1000);
                     ClientCore.mainPanel.remove(ClientCore.mainPanel.label_setting);
                     ClientCore.mainPanel.remove(ClientCore.mainPanel.label_quit);
                     ClientCore.mainPanel.remove(ClientCore.mainPanel.label_instruction);
                     ClientCore.mainPanel.remove(ClientCore.mainPanel.label_start);
+                }
 
 
-//                        new Dialog(mainPanel,3);
-//                           GamePanel gamePanel = new GamePanel(mainPanel);
-//                            mainPanel.add(gamePanel);
-//                            gamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
-//                         //移除组件
-//                            remove(label_start);
-//                            remove(label_instruction);
-//                            remove(label_quit);
-//                            remove(label_setting);
 
                 }
 
                 if (ClientCore.mainPanel.getFouseIndex() == 2) {
+                    //因为新建一个dialog线程就会卡在这里，无法读到松开件键盘的事件，所以在这里手动添加指令，使得enter恢复使用
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
                     new org.example.client.display.Dialog(ClientCore.mainPanel, 1);
+
                 }
 
                 if (ClientCore.mainPanel.getFouseIndex() == 3) {
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
                     new Dialog(ClientCore.mainPanel, 2);
                 }
 
                 if (ClientCore.mainPanel.getFouseIndex() == 4) {
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
                     int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (result == JOptionPane.OK_OPTION) {
                         // 退出

@@ -14,7 +14,7 @@ public class Level1 extends Level {
         super(1, 1000, new boolean[1000][1000], new Monster[]{
                 MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m1", 300, 300, 90.0),
                 MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m2", 500, 500, 180.0),
-                MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m3", 500, 500, 270.0)
+                MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m3", 700, 700, 270.0)
         });
         initWall();
     }

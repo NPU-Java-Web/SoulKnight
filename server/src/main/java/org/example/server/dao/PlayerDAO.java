@@ -95,6 +95,13 @@ public class PlayerDAO {
         }
     }
 
+    public void deleteById(String playerId){
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + playerId;
+            jedis.del(key);
+        }
+    }
+
 
 }
 

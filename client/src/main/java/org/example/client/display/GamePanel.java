@@ -32,18 +32,28 @@ public class GamePanel extends JPanel {
     private int maptype;
     private int maptypebefore = 1;
     public static boolean isrunning = true;
+    private int[] monsterBlood;
+    private int[] playerBlood;
+    private String playerId = GameConfig.playerId;
+
 
     public GamePanel(MainPanel mainPanel) {
+        StaticInfo.isrunning = true;
         // 设置请求焦点
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
-                GameConfig.PlayerType.Classic, "1", 500, 500, 0.0),isrunning);
+                GameConfig.PlayerType.Classic, playerId, 500, 500, 0.0),isrunning);
         StaticInfo.setGameStartCore(gameStartCore);
         this.gameStartCore = gameStartCore;
         gameStartCore.start();
         //传入mainPanel
         this.mainPanel = mainPanel;
+        //存储玩家和怪物的最大血量
+        monsterBlood = new int[100];
+        playerBlood = new int[100];
+        //设置最大蓝量为100
+        GameConfig.playerStrength = 100;
         // 清除布局管理
         setLayout(null);
         setBackground(new Color(83, 163, 238));
@@ -117,9 +127,28 @@ public class GamePanel extends JPanel {
 
         //用result中的信息来渲染
         if(result!=null) {
+            int flag = 0;
             for (Player item : result.getPlayers()) {
-                log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
-                drawPlayer(item.getX(), item.getY(), graphics);
+                if(item.getBlood()>playerBlood[flag])
+                {
+                    playerBlood[flag] = item.getBlood();
+                }
+                //如果当前人物为玩家，则进行特殊的血量渲染
+                if(item.getPlayerId().equals(playerId))
+                {
+                    //画血量
+                    int widthplayer = item.getBlood()*300/playerBlood[flag];
+                    graphics.setColor(new Color(161, 7, 7));
+                    graphics.fillRect(10,10,widthplayer,8);
+
+                    //画蓝量
+                    int widthStrength = new Double(GameConfig.playerStrength*300/100).intValue() ;
+                    graphics.setColor(new Color(2, 62, 206));
+                    graphics.fillRect(10,20,widthStrength,8);
+                }
+                int width =   item.getBlood()*30/playerBlood[flag];
+                //log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
+                drawPlayer(item.getX(), item.getY(), graphics,width);
             }
         }
         //直接用player里面的信息渲染
@@ -127,8 +156,11 @@ public class GamePanel extends JPanel {
     }
 
 
-    public void drawPlayer(int x, int y, Graphics graphics) {
+    public void drawPlayer(int x, int y, Graphics graphics,int width) {
         graphics.drawImage(GameConfig.player, x, y, null);
+        graphics.setColor(new Color(125, 16, 16));
+        graphics.fillRect(x+10,y-10,width,8);
+
     }
     //esc键盘绑定
     public void adapter()
@@ -158,15 +190,26 @@ public class GamePanel extends JPanel {
     }
 
     public void drawMonsters(Graphics graphics){
+        int flag = 0;
         if(result!=null){
             for (Monster item : result.getMonsters()) {
-                drawMonster(item.getX(),item.getY(),graphics);
+                if(item.getBlood()>monsterBlood[flag])
+                {
+                    monsterBlood[flag] = item.getBlood();
+                }
+
+                int width =   item.getBlood()*30/monsterBlood[flag];
+                drawMonster(item.getX(),item.getY(),graphics,width);
+                flag++;
             }
         }
     }
 
-    public void drawMonster(int x, int y, Graphics graphics){
+    public void drawMonster(int x, int y, Graphics graphics,int width){
         graphics.drawImage(GameConfig.Monster1,x,y,null);
+        graphics.setColor(new Color(156, 40, 40));
+        graphics.fillRect(x+10,y-10,width,8);
+
     }
 
 

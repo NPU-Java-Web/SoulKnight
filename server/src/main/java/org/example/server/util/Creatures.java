@@ -11,6 +11,7 @@ import org.example.server.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -47,6 +48,9 @@ public class Creatures {
         for (Bullet bullet : bullets) {
             //先从怪物列表里遍历
             for (Monster monster : monsters) {
+                if (bullet.getPlayerId().equals(monster.getMonsterId())){
+                    continue;
+                }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
                     monsterService.beingHurt(monster, bullet.getPower());
                     bulletService.remove(bullet);
@@ -68,12 +72,21 @@ public class Creatures {
         }
     }
 
+    public void monstersAttack(){
+        if (players.size()<1){
+            return;
+        }
+        for (Monster monster:monsters){
+            monsterService.tryStraightLaunch(monster,players.get(0));
+        }
+    }
+
     public void bulletsFlying() {
         bulletService.updateLocation();
     }
 
     public Result getResult() {
-        return new Result(players, bullets, monsters, ServerCore.level.getNumber());
+        return new Result(players, bullets, monsters, new ArrayList<>(),ServerCore.level.getNumber());
     }
 
     public static double getDistance(Bullet bullet, Monster monster) {

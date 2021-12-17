@@ -54,31 +54,38 @@ public class GameDataProcess {
     }
 
     public static void shootBullet(MouseEvent e){
-        if(StaticInfo.gameStartCore!=null){
-            if(e.getButton() == MouseEvent.BUTTON1){
-                int x = e.getX()-StaticInfo.gameStartCore.getPlayer().getX();
-                int y = e.getY()-StaticInfo.gameStartCore.getPlayer().getY();
-                double l = Math.sqrt(Math.pow(Math.abs(x),2)+Math.pow(Math.abs(y),2));
-                double angle;
-                if(y>0){
-                    angle = Math.acos(x/l);
+        if(GameConfig.playerStrength>=1)
+        {
+            if(StaticInfo.gameStartCore!=null){
+                if(e.getButton() == MouseEvent.BUTTON1){
+                    int x = e.getX()-StaticInfo.gameStartCore.getPlayer().getX();
+                    int y = e.getY()-StaticInfo.gameStartCore.getPlayer().getY();
+                    double l = Math.sqrt(Math.pow(Math.abs(x),2)+Math.pow(Math.abs(y),2));
+                    double angle;
+                    if(y>0){
+                        angle = Math.acos(x/l);
+                    } else {
+                        angle = 2*Math.PI - Math.acos(x/l);
+                    }
+                    Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.Classic,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
+                            StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
+                            angle);
+                    boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
+                    if (!success) {
+                        log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
+                    } else {
+                        GameConfig.playerStrength = GameConfig.playerStrength-20;
+                        log.info("已发送子弹信息，角度为:"+Math.toDegrees(bullet.getAngle()));
+                    }
                 } else {
-                    angle = 2*Math.PI - Math.acos(x/l);
-                }
-                Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.Classic,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
-                        StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
-                        angle);
-                boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
-                if (!success) {
-                    log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
-                } else {
-                    log.info("已发送子弹信息，角度为:"+Math.toDegrees(bullet.getAngle()));
+                    log.warn("鼠标单击键位错误，应单击左键");
                 }
             } else {
-                log.warn("鼠标单击键位错误，应单击左键");
+                log.info("Mouse Clicked");
             }
-        } else {
-            log.info("Mouse Clicked");
+        }
+        else {
+            log.info("体力不足");
         }
     }
 

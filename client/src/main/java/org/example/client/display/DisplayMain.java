@@ -39,12 +39,12 @@ public class DisplayMain implements Runnable {
 
 
         //如果想要告诉服务器，就用下面的方式发送（如果队列已满，尝试放入队列则会返回false）
-        Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.Classic,gameStartCore.getPlayer().getPlayerId(),
-                gameStartCore.getPlayer().getX(),gameStartCore.getPlayer().getY(),gameStartCore.getPlayer().getAngle());
-        boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
-        if (!success) {
-            log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
-        }
+//        Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.Classic,gameStartCore.getPlayer().getPlayerId(),
+//                gameStartCore.getPlayer().getX(),gameStartCore.getPlayer().getY(),gameStartCore.getPlayer().getAngle());
+//        boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
+//        if (!success) {
+//            log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
+//        }
 //        GamePanel gamePanel = new GamePanel(1000,1000,"ss",jFrame,gameStartCore);
 
         //渲染的原理是高频地读取gameStartCore中的信息，例如下面这样

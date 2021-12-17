@@ -21,6 +21,8 @@ public class MainPanel extends JFrame {
     private MainPanel mainPanel;// 本类对象
     public static GamePanel gamePanel;
     private int fouseIndex;
+
+    public static String playerId;
     public MainPanel()
     {
         super("Battle");
@@ -57,6 +59,7 @@ public class MainPanel extends JFrame {
 
     public void setinterface()
     {
+
         //添加主菜单所有标签
         label_title = new JLabel("元气骑士");
         label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
