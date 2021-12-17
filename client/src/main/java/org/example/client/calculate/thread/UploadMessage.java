@@ -29,7 +29,7 @@ public class UploadMessage implements Runnable {
             }
             try {
                 String message = GameStartCore.sendQueue.take();
-                if (!message.contains("playerType") && !message.contains("bulletType")) {
+                if (!message.contains("playerType") && !message.contains("bulletType")&&!message.contains("command")) {
                     log.warn("消息非法，客户端拒绝发送，消息为" + message);
                     continue;
                 }
