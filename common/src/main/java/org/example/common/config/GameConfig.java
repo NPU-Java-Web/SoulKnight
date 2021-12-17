@@ -37,12 +37,20 @@ public class GameConfig {
     {
         //经典人物
         public static final int Classic= 1;
+        //重装人物
+        public static final int Armor = 2;
+        //轻型人物
+        public static final int Assassin = 3;
 
     }
 
     public class BulletType
     {
         public static final int Classic= 1;
+        //重装子弹
+        public static final int Armor = 2;
+        //轻型子弹
+        public static final int Assassin = 3;
     }
 
     public enum MonsterType
