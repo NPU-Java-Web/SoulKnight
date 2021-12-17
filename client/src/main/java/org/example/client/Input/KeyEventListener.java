@@ -154,6 +154,7 @@ public class KeyEventListener implements Runnable {
                 }
 
                 if (ClientCore.mainPanel.getFouseIndex() == 4) {
+                    GameInput.setKeys(KeyEvent.VK_ENTER);
                     int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (result == JOptionPane.OK_OPTION) {
                         // 退出

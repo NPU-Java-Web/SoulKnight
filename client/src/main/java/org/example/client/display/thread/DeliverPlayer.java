@@ -42,6 +42,11 @@ public class DeliverPlayer implements Runnable {
                     if (!success) {
                         log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
                     }
+                    //按时间增加蓝量
+                    if(GameConfig.playerStrength<100)
+                    {
+                        GameConfig.playerStrength+=0.5;
+                    }
 
                 }
 

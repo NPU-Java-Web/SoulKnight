@@ -29,9 +29,10 @@ public class GameConfig {
     public static final int FPS = 300;
     //client向serve发送数据的速度（越小表示发送越快）
     public static final int SLEEP_TIME = 20;
-
+    //玩家id
     public static String playerId="";
-
+    //玩家蓝量
+    public static double playerStrength = 0;
     public static class PlayerType
     {
         //经典人物
