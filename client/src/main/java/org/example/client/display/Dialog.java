@@ -1,8 +1,13 @@
 package org.example.client.display;
 
+import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.example.client.ClientCore;
+import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
+import org.example.common.model.player.Player;
+import org.example.common.protocal.Order;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,12 +22,13 @@ import java.util.Stack;
  * 本类描述游戏结束弹出的对话框
  *
  */
+@Slf4j
 public class Dialog extends JDialog{
     private JLabel jlabel_one, jl02, jl03, jl04, jima01, jima02, jima03, jima04, jima05;
-    private JButton jb02, jb03, jb04, jb05, jButton;
+    private JButton jb02, jb03, jb04, jb05,jb06, jButton;
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;
-
+    private boolean isStop = false;
     public Dialog(JFrame jFrame,int type)
     {
         super(jFrame,true);
@@ -242,7 +248,7 @@ public class Dialog extends JDialog{
 
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
         jb02 = new JButton("退出游戏");
-        jb02.setBounds(140, 500, 100, 50);
+        jb02.setBounds(140, 420, 100, 50);
         add(jb02);
         jb02.addActionListener(new ActionListener() {
             @Override
@@ -256,11 +262,12 @@ public class Dialog extends JDialog{
         });
 
         jb03 = new JButton("返回游戏");
-        jb03.setBounds(140, 100, 100, 50);
+        jb03.setBounds(140, 70, 100, 50);
         add(jb03);
         jb03.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                isStop = false;
                 //GamePanel.gameRenderThread.start();
                 StaticInfo.isrunning = true;
                 dispose();
@@ -268,17 +275,18 @@ public class Dialog extends JDialog{
         });
 
         jb04 = new JButton("暂停游戏");
-        jb04.setBounds(140, 200, 100, 50);
+        jb04.setBounds(140, 140, 100, 50);
         add(jb04);
         jb04.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                isStop = true;
                 pause();
             }
         });
 
         jb04 = new JButton("游戏帮助");
-        jb04.setBounds(140, 300, 100, 50);
+        jb04.setBounds(140, 210, 100, 50);
         add(jb04);
         jb04.addActionListener(new ActionListener() {
             @Override
@@ -288,12 +296,36 @@ public class Dialog extends JDialog{
         });
 
         jb05 = new JButton("游戏设置");
-        jb05.setBounds(140, 400, 100, 50);
+        jb05.setBounds(140, 280, 100, 50);
         add(jb05);
         jb05.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showSet(jFrame);
+            }
+        });
+
+        jb06 = new JButton("重新开始");
+        jb06.setBounds(140, 350, 100, 50);
+        add(jb06);
+        jb06.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(isStop){
+                    Object[] options = { "OK ", "CANCEL " };
+                    JOptionPane.showOptionDialog(null, "您已暂停，无法重新开始", "提示", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.WARNING_MESSAGE,null, options, options[0]);
+
+                }
+                else {
+                    Order order = new Order(GameConfig.playerId,"restart");
+                    String message = JSON.toJSONString(order);
+
+                    boolean success = GameStartCore.sendQueue.offer(message);
+                    if (!success) {
+                        log.warn("队列已满，客户端无法把重新开始加入队列，消息是" + message);
+                    }
+                }
             }
         });
     }
