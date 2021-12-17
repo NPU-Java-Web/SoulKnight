@@ -11,6 +11,7 @@ import org.example.server.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -85,7 +86,7 @@ public class Creatures {
     }
 
     public Result getResult() {
-        return new Result(players, bullets, monsters, ServerCore.level.getNumber());
+        return new Result(players, bullets, monsters, new ArrayList<>(),ServerCore.level.getNumber());
     }
 
     public static double getDistance(Bullet bullet, Monster monster) {
