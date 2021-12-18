@@ -26,7 +26,7 @@ public class GamePanel extends JPanel {
     public static final int fps = 50;
     private final GameStartCore gameStartCore;
     public static Thread gameRenderThread;
-    private Result result;
+    public static Result result;
     private Graphics tempGraphics;
     public MainPanel mainPanel;
     private int maptype;

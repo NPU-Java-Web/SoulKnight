@@ -20,33 +20,34 @@ public class GameDataProcess {
 
 
     public static void moveMyPlayer(){
-        Integer tempX = StaticInfo.gameStartCore.getPlayer().getX();
-        Integer tempY = StaticInfo.gameStartCore.getPlayer().getY();
+        int tempX = StaticInfo.gameStartCore.getPlayer().getX();
+        int tempY = StaticInfo.gameStartCore.getPlayer().getY();
+        int[] newPoint;
         /**左方向键*/
         if(GameInput.getKeyDown(37)){
-            Player1.moveLeft(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false){
+            newPoint = Player1.moveLeft(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false){
                 StaticInfo.gameStartCore.getPlayer().moveLeft();
             }
         }
         /**右方向键*/
         if(GameInput.getKeyDown(39)){
-            Player1.moveRight(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false) {
+            newPoint = Player1.moveRight(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false) {
                 StaticInfo.gameStartCore.getPlayer().moveRight();
             }
         }
         /**上方向键*/
         if(GameInput.getKeyDown(38)){
-            Player1.moveUp(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false) {
+            newPoint = Player1.moveUp(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false) {
                 StaticInfo.gameStartCore.getPlayer().moveUp();
             }
         }
         /**下方向键*/
         if(GameInput.getKeyDown(40)){
-            Player1.moveDown(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[tempX][tempY] == false) {
+            newPoint = Player1.moveDown(tempX,tempY);
+            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false) {
                 StaticInfo.gameStartCore.getPlayer().moveDown();
             }
         }
@@ -57,8 +58,9 @@ public class GameDataProcess {
         {
             if(StaticInfo.gameStartCore!=null){
                 if(e.getButton() == MouseEvent.BUTTON1){
-                    int x = e.getX()-StaticInfo.gameStartCore.getPlayer().getX();
-                    int y = e.getY()-StaticInfo.gameStartCore.getPlayer().getY();
+                    /**因为鼠标点击有一个偏移量，所以坐标需要变化（8，30）*/
+                    int x = e.getX()-8-StaticInfo.gameStartCore.getPlayer().getX();
+                    int y = e.getY()-30-StaticInfo.gameStartCore.getPlayer().getY();
                     double l = Math.sqrt(Math.pow(Math.abs(x),2)+Math.pow(Math.abs(y),2));
                     double angle;
                     if(y>0){

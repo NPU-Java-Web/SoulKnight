@@ -18,19 +18,31 @@ public class Player1 extends Player {
         super(PLAYER_TYPE, playerId, x, y, angle, SPEED,BLOOD,SCORE);
     }
 
-    public static void moveUp(Integer x, Integer y){
-        y = y - SPEED;
+    public static int[] moveUp(int x, int y){
+        int[] point = new int[2];
+        point[0] = x;
+        point[1] = y - SPEED;
+        return point;
     }
 
-    public static void moveDown(Integer x, Integer y){
-        y = y + SPEED;
+    public static int[] moveDown(int x, int y){
+        int[] point = new int[2];
+        point[0] = x;
+        point[1] = y + SPEED;
+        return point;
     }
 
-    public static void moveLeft(Integer x, Integer y){
-        x = x - SPEED;
+    public static int[] moveLeft(int x, int y){
+        int[] point = new int[2];
+        point[0] = x - SPEED;
+        point[1] = y;
+        return point;
     }
 
-    public static void moveRight(Integer x, Integer y){
-        x = x + SPEED;
+    public static int[] moveRight(int x, int y){
+        int[] point = new int[2];
+        point[0] = x + SPEED;
+        point[1] = y;
+        return point;
     }
 }

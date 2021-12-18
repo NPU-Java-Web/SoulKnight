@@ -36,7 +36,7 @@ public class GameMouseListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-
+        log.info("clicked: ("+ (e.getX()-8) +","+(e.getY()-30)+")");
         GameDataProcess.shootBullet(e);
 
     }

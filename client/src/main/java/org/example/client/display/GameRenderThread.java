@@ -7,6 +7,7 @@ import org.example.client.GameStartCore;
 import org.example.client.calculate.service.GameDataProcess;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
+import org.example.common.config.level.Level1;
 import org.example.common.keyListener.GameInput;
 
 import java.awt.*;
@@ -44,6 +45,14 @@ public class GameRenderThread implements Runnable{
             if(StaticInfo.isrunning)
             {
 //                log.info(StaticInfo.isrunning.toString());
+                if(GamePanel.result == null) {
+                    StaticInfo.gameLevel = new Level1();
+                } else{
+                    if (GamePanel.result.getMapType() == 1 && !(StaticInfo.gameLevel instanceof Level1)) {
+                        StaticInfo.gameLevel = new Level1();
+                    }
+                }
+
                 GameDataProcess.moveMyPlayer();
                 gamePanel.repaint();
                 //调用player方法改动其中的变量
