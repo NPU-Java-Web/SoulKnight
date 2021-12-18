@@ -131,36 +131,7 @@ public class GamePanel extends JPanel {
 
         //用result中的信息来渲染
         if(result!=null) {
-            int flag = 0;
             for (Player item : result.getPlayers()) {
-                if(item.getBlood()>playerBlood[flag])
-                {
-                    playerBlood[flag] = item.getBlood();
-                }
-                //如果当前人物为玩家，则进行特殊的血量渲染
-                if(item.getPlayerId().equals(playerId))
-                {
-                    //画血量
-                    int widthplayer = item.getBlood()*300/playerBlood[flag];
-                    graphics.setColor(new Color(161, 7, 7));
-                    graphics.fillRect(10,10,widthplayer,8);
-
-                    //画蓝量
-                    int widthStrength = new Double(GameConfig.playerStrength*300/100).intValue() ;
-                    graphics.setColor(new Color(2, 62, 206));
-                    graphics.fillRect(10,20,widthStrength,8);
-                }
-                int width =   item.getBlood()*30/playerBlood[flag];
-                //判断是否死亡
-                if(item.getBlood()<=0)
-                {
-                    if(GameConfig.flag){
-                        GameConfig.flag = false;
-                        new Dialog(ClientCore.mainPanel,6);
-
-                    }
-                }
-
                 //log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
                 drawPlayer(item, graphics,width,item.getPlayerType());
             }
@@ -171,6 +142,34 @@ public class GamePanel extends JPanel {
 
 
     public void drawPlayer(Player player, Graphics graphics,int width,int playertype) {
+        int flag = 0;
+        if(player.getBlood()>playerBlood[flag])
+        {
+            playerBlood[flag] = player.getBlood();
+        }
+        //如果当前人物为玩家，则进行特殊的血量渲染
+        if(player.getPlayerId().equals(playerId))
+        {
+            //画血量
+            int widthplayer = player.getBlood()*300/playerBlood[flag];
+            graphics.setColor(new Color(161, 7, 7));
+            graphics.fillRect(10,10,widthplayer,8);
+
+            //画蓝量
+            int widthStrength = new Double(GameConfig.playerStrength*300/100).intValue() ;
+            graphics.setColor(new Color(2, 62, 206));
+            graphics.fillRect(10,20,widthStrength,8);
+        }
+        int newWidth =   player.getBlood()*30/playerBlood[flag];
+        //判断是否死亡
+        if(player.getBlood()<=0)
+        {
+            if(GameConfig.flag){
+                GameConfig.flag = false;
+                new Dialog(ClientCore.mainPanel,6);
+
+            }
+        }
         if(playertype == 1)
         {
             graphics.drawImage(GameConfig.player,
