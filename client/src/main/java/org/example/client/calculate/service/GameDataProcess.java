@@ -26,32 +26,43 @@ public class GameDataProcess {
         /**左方向键*/
         if(GameInput.getKeyDown(37)){
             newPoint = Player1.moveLeft(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false){
+            if(!locationLegal(newPoint[0],newPoint[1])){
                 StaticInfo.gameStartCore.getPlayer().moveLeft();
             }
         }
         /**右方向键*/
         if(GameInput.getKeyDown(39)){
             newPoint = Player1.moveRight(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false) {
+            if(!locationLegal(newPoint[0],newPoint[1])) {
                 StaticInfo.gameStartCore.getPlayer().moveRight();
             }
         }
         /**上方向键*/
         if(GameInput.getKeyDown(38)){
             newPoint = Player1.moveUp(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false) {
+            if(!locationLegal(newPoint[0],newPoint[1])) {
                 StaticInfo.gameStartCore.getPlayer().moveUp();
             }
         }
         /**下方向键*/
         if(GameInput.getKeyDown(40)){
             newPoint = Player1.moveDown(tempX,tempY);
-            if(StaticInfo.gameLevel.getTerrain()[newPoint[0]][newPoint[1]] == false) {
+            if( !locationLegal(newPoint[0],newPoint[1]) ) {
                 StaticInfo.gameStartCore.getPlayer().moveDown();
             }
         }
     }
+
+    private static boolean locationLegal(int x , int y){
+        if(StaticInfo.gameLevel.getTerrain()[x][y]){
+            return true;
+        }
+        if( x <= 10 || x >= 990 || y <= 0 || y>= 990 ){
+            return true;
+        }
+        return false;
+    }
+
 
     public static void shootBullet(MouseEvent e){
         if(GameConfig.playerStrength>=1)

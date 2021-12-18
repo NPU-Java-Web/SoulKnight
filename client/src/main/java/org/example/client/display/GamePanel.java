@@ -162,7 +162,7 @@ public class GamePanel extends JPanel {
                 }
 
                 //log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
-                drawPlayer(item.getX(), item.getY(), graphics,width,item.getPlayerType());
+                drawPlayer(item, graphics,width,item.getPlayerType());
             }
         }
         //直接用player里面的信息渲染
@@ -170,24 +170,33 @@ public class GamePanel extends JPanel {
     }
 
 
-    public void drawPlayer(int x, int y, Graphics graphics,int width,int playertype) {
+    public void drawPlayer(Player player, Graphics graphics,int width,int playertype) {
         if(playertype == 1)
         {
-            graphics.drawImage(GameConfig.player, x, y, null);
+            graphics.drawImage(GameConfig.player,
+                    player.getX()-GameConfig.player.getWidth(GameConfig.playerShow.getImageObserver())/2,
+                    player.getY()-GameConfig.player.getHeight(GameConfig.playerShow.getImageObserver())/2,
+                    null);
             graphics.setColor(new Color(125, 16, 16));
-            graphics.fillRect(x+10,y-10,width,8);
+            graphics.fillRect(player.getX()+10,player.getY()-10,width,8);
         }
         if(playertype == 2)
         {
-            graphics.drawImage(GameConfig.player2, x, y, null);
+            graphics.drawImage(GameConfig.player2,
+                    player.getX()-GameConfig.player2.getWidth(GameConfig.playerShow2.getImageObserver())/2,
+                    player.getY()-GameConfig.player2.getHeight(GameConfig.playerShow2.getImageObserver())/2,
+                    null);
             graphics.setColor(new Color(125, 16, 16));
-            graphics.fillRect(x+10,y-10,width,8);
+            graphics.fillRect(player.getX()+10,player.getY()-10,width,8);
         }
         if(playertype == 3)
         {
-            graphics.drawImage(GameConfig.player3, x, y, null);
+            graphics.drawImage(GameConfig.player3,
+                    player.getX()-GameConfig.player3.getWidth(GameConfig.playerShow3.getImageObserver())/2,
+                    player.getY()-GameConfig.player3.getHeight(GameConfig.playerShow3.getImageObserver())/2,
+                    null);
             graphics.setColor(new Color(125, 16, 16));
-            graphics.fillRect(x+10,y-10,width,8);
+            graphics.fillRect(player.getX()+10,player.getY()-10,width,8);
         }
 
 
@@ -216,7 +225,10 @@ public class GamePanel extends JPanel {
     }
 
     public void drawBullet(int x, int y, Graphics graphics){
-        graphics.drawImage(GameConfig.bullet1, x, y, null);
+        graphics.drawImage(GameConfig.bullet1,
+                x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                null);
     }
 
     public void drawMonsters(Graphics graphics){
@@ -236,7 +248,10 @@ public class GamePanel extends JPanel {
     }
 
     public void drawMonster(int x, int y, Graphics graphics,int width){
-        graphics.drawImage(GameConfig.Monster1,x,y,null);
+        graphics.drawImage(GameConfig.Monster1,
+                x-GameConfig.Monster1.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
+                y-GameConfig.Monster1.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                null);
         graphics.setColor(new Color(156, 40, 40));
         graphics.fillRect(x+10,y-10,width,8);
 

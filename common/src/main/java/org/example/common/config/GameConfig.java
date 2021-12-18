@@ -28,8 +28,10 @@ public class GameConfig {
     public static Image gamebackground3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map3.jpg");
     //子弹图片(1)
     public static Image Monster1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-1.png");
+    public static ImageIcon MonsterShow1 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\Monster-1.png");
 
     public static Image bullet1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet1.png");
+    public static ImageIcon bulletShow1 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet1.png");
     //背景音乐路径
     public static String sound = System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav";
     //游戏帧率（从gameStartCore读取result的速度）
