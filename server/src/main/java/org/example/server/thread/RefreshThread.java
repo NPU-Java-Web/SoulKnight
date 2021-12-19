@@ -94,12 +94,13 @@ public class RefreshThread {
                 creatures.monstersAttack();
                 creatures.bulletsCauseHarm();
                 creatures.bulletsFlying();
+                creatures.AnimationsPlay();
 
                 //判断是否可以进去下一关
                 if (!monsterService.remainMonsters()) {
-                    creatures.addPortal(new Portal(500,50));
                     boolean authority = true;
                     if (ServerCore.level.getNumber()==1){
+                        creatures.addPortal(new Portal(500,50));
                         for (Player player : players) {
                             if (!Verification.atTransferArea1(player.getX(), player.getY())) {
                                 authority = false;
@@ -107,8 +108,17 @@ public class RefreshThread {
                             }
                         }
                     }else if (ServerCore.level.getNumber()==2){
+                        creatures.addPortal(new Portal(50,525));
                         for (Player player : players) {
                             if (!Verification.atTransferArea2(player.getX(), player.getY())) {
+                                authority = false;
+                                break;
+                            }
+                        }
+                    }else if (ServerCore.level.getNumber()==3){
+                        creatures.addPortal(new Portal(50,525));
+                        for (Player player : players) {
+                            if (!Verification.atTransferArea3(player.getX(), player.getY())) {
                                 authority = false;
                                 break;
                             }
@@ -121,11 +131,14 @@ public class RefreshThread {
                             break;
                         } else if (ServerCore.level.getNumber() == 2) {
                             ServerCore.level = new Level3();
-
                             break;
+                        }else if (ServerCore.level.getNumber() == 3){
+                            ServerCore.level.setNumber(4);
                         }
                     }
                 }
+
+                //最终设置全局信息
                 ServerCore.GlobalInfo = (JSON.toJSONString(creatures.getResult()));
                 try {
                     Thread.sleep(20);

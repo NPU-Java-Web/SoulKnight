@@ -104,7 +104,7 @@ public class MainPanel extends JFrame {
         //开启主菜单的监听线程以从mashmap中读取
         Thread thread = new Thread(new KeyEventListener(),"key");
         thread.start();
-
+        //添加游戏面板的esc键位绑定
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

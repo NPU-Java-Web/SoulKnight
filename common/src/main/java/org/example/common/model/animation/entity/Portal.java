@@ -9,6 +9,6 @@ public class Portal extends Animation {
     public static final int TYPE = 1;
 
     public Portal(int x, int y) {
-        super("",TYPE, null, x, y);
+        super(TYPE,"", 0, x, y);
     }
 }

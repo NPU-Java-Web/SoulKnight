@@ -37,4 +37,14 @@ public class Verification {
         return true;
     }
 
+    public static boolean atTransferArea3(Integer x, Integer y) {
+        if (x < 0 || x > 100) {
+            return false;
+        }
+        if (y < 470 || y > 580) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -39,12 +39,12 @@ public class GameConfig {
 
     public static Image Monster5 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-5.png");
 
-    public static Image Monster6 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-6.png");
+    public static Image Monster6 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/boss1.png");
 
-    public static Image Monster7 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-7.png");
+    public static Image Monster7 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/boss2.png");
 
-    public static Image Monster8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-8.png");
-    public static ImageIcon MonsterShow8 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\Monster-8.png");
+    public static Image Monster8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/boss3.png");
+    public static ImageIcon MonsterShow8 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\boss8.png");
     //传送门
     public static Image portal = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/portal/Portal.png");
     //爆炸（1-9）

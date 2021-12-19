@@ -51,7 +51,7 @@ public class BulletDAO {
 
     private Long getNextBulletNumber() {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.incr("assignedNumber");
+            return jedis.incr("assignedBulletNumber");
         }
     }
 
@@ -69,7 +69,7 @@ public class BulletDAO {
             jedis.hset(key, "radius", bullet.getRadius().toString());
             jedis.hset(key, "power", bullet.getPower().toString());
             jedis.hset(key, "createTime", bullet.getCreateTime().toString());
-//            jedis.expire(key, 30L);
+            jedis.expire(key, 20L);
         }
     }
 
