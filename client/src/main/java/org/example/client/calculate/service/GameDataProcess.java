@@ -122,6 +122,8 @@ public class GameDataProcess {
                 StaticInfo.gameStartCore.getPlayer().setY(800);
             } else if(GamePanel.result.getMapType() == 3 && !(StaticInfo.gameStartCore.getLevel() instanceof Level3)){
                 StaticInfo.gameStartCore.setLevel(new Level3());
+                StaticInfo.gameStartCore.getPlayer().setX(900);
+                StaticInfo.gameStartCore.getPlayer().setY(480);
             }
         }
     }
