@@ -140,7 +140,7 @@ public class GamePanel extends JPanel {
      * @param graphics 画笔
      */
     public void drawPlayers(Graphics graphics) {
-
+        //System.out.println(result);
         //用result中的信息来渲染
         if(result!=null) {
             for (Player item : result.getPlayers()) {
@@ -181,7 +181,7 @@ public class GamePanel extends JPanel {
         }
         int newWidth =   player.getBlood()*30/playerBlood[flag];
         //判断是否死亡
-        if(player.getBlood()<=0)
+        if(player.getBlood()<=0&&player.getPlayerId().equals(StaticInfo.gameStartCore.getPlayer().getPlayerId()))
         {
             if(GameConfig.flag){
                 GameConfig.flag = false;

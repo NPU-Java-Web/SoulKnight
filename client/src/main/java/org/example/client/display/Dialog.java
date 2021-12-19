@@ -433,6 +433,11 @@ public class Dialog extends JDialog {
         setTitle("失败");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
+        jl02 = new JLabel("失败");
+        jl02.setFont(new Font("acefont-family", Font.BOLD, 30));
+        jl02.setBounds(150, 30, 100, 30);
+        add(jl02);
+
         jb03 = new JButton("返回游戏");
         jb03.setBounds(140, 70, 100, 50);
         add(jb03);
@@ -514,6 +519,11 @@ public class Dialog extends JDialog {
     public void showsuccess(JFrame jFrame) {
         setTitle("成功闯关！");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
+
+        jl02 = new JLabel("成功闯关！");
+        jl02.setFont(new Font("acefont-family", Font.BOLD, 30));
+        jl02.setBounds(150, 30, 300, 30);
+        add(jl02);
 
         jb03 = new JButton("返回游戏");
         jb03.setBounds(140, 70, 100, 50);

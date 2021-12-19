@@ -57,7 +57,7 @@ public class ServerCore {
                 @Override
                 protected void initChannel(NioSocketChannel ch) {
                     ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new LineBasedFrameDecoder(4096));
+                    pipeline.addLast(new LineBasedFrameDecoder(16384));
                     pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new MyServerInboundHandler());

@@ -6,16 +6,36 @@ import org.example.common.config.GameConfig;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.monster.MonsterFactory;
 
+import java.util.ArrayList;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class Level2 extends Level {
 
     public Level2() {
-        super(2, 1000, new boolean[1001][1001], new Monster[]{
-                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m4", 600, 300, 90.0),
-                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m5", 750, 200, 270.0),
-                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO,"m6",500,500,0.0)
-        });
+        super(1, 1000, new boolean[1001][1001], new ArrayList<>());
+
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m21", 600, 300, 90.0));
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m22", 750, 200, 270.0));
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m23", 710, 300, 270.0));
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO, "m24", 200, 300, 270.0));
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO, "m25", 250, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m26", 300, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m27", 350, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m28", 400, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m29", 450, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m30", 500, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m31", 550, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m32", 600, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m33", 650, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m34", 700, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m35", 710, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m36", 720, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m37", 730, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m38", 740, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_SEVEN, "m39", 760, 300, 270.0));
+//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_SEVEN, "m40", 800, 300, 270.0));
+
         initWall();
     }
 
