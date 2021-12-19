@@ -44,9 +44,6 @@ public class GameRenderThread implements Runnable{
 
             if(StaticInfo.isrunning)
             {
-                if(GamePanel.result != null){
-                    log.info(GamePanel.result.getMapType()+"");
-                }
                 GameDataProcess.ifSwitchMap();
                 GameDataProcess.moveMyPlayer();
                 gamePanel.repaint();
