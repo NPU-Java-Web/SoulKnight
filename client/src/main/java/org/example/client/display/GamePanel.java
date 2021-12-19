@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
-                GameConfig.PlayerType.Classic, playerId, 500, 700, 0.0),isrunning);
+                GameConfig.PlayerType.CLASSIC, playerId, 500, 700, 0.0),isrunning);
         StaticInfo.setGameStartCore(gameStartCore);
         this.gameStartCore = gameStartCore;
         gameStartCore.start();

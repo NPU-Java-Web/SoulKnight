@@ -1,10 +1,14 @@
 package org.example.common.model.bullet.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.common.config.GameConfig;
 import org.example.common.model.bullet.Bullet;
 
+@Data
+@NoArgsConstructor
 public class Bullet1 extends Bullet {
-    public static final int BULLET_TYPE= GameConfig.BulletType.Classic;
+    public static final int BULLET_TYPE= GameConfig.BulletType.CLASSIC;
     public static final int SPEED = 50;
     public static final int RADIUS = 20;
     public static final int POWER = 25;

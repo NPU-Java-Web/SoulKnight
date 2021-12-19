@@ -72,7 +72,7 @@ public class MonsterService {
             }
             Bullet bullet = BulletFactory.makeBullet(1, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
             bulletDAO.insert(bullet);
-            monsterDAO.setCoolingTime(monster, 5);
+            monsterDAO.setCoolingTime(monster, 2);
         }
     }
 
@@ -86,7 +86,7 @@ public class MonsterService {
         } else {
             angle = 2 * Math.PI - Math.acos(x / l);
         }
-        final double FACTOR = 0.1;
+        final double FACTOR = 0.05;
         int deltaX = (int) (monster.getSpeed() * FACTOR * Math.cos(angle));
         int deltaY = (int) (monster.getSpeed() * FACTOR * Math.sin(angle));
         int newX = monster.getX() + deltaX;
@@ -96,6 +96,9 @@ public class MonsterService {
             monster.setY(newY);
             monsterDAO.updateLocationById(monster);
         }
+    }
 
+    public boolean remainMonsters() {
+        return monsterDAO.getAllKeys().size() > 0;
     }
 }

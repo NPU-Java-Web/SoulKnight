@@ -11,7 +11,7 @@ import org.example.common.model.player.Player;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class Player1 extends Player {
-    public static final int PLAYER_TYPE = GameConfig.PlayerType.Classic;
+    public static final int PLAYER_TYPE = GameConfig.PlayerType.CLASSIC;
     public static final int SPEED = 7;
     public static final int BLOOD = 100;
     public static final int SCORE = 0;
