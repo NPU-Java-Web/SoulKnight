@@ -128,9 +128,23 @@ public class GameConfig {
 
     }
 
-    public enum MonsterType
+    public class MonsterType
     {
         //怪物一号
-        ONE;
+        public static final int MONSTER_ONE = 1;
+
+        public static final int MONSTER_TWO = 2;
+
+        public static final int MONSTER_THREE = 3;
+
+        public static final int MONSTER_FOUR = 4;
+
+        public static final int MONSTER_FIVE = 5;
+
+        public static final int MONSTER_SIX = 6;
+
+        public static final int MONSTER_SEVEN = 7;
+
+        public static final int MONSTER_EIGHT = 8;
     }
 }
