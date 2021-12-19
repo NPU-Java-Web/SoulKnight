@@ -95,7 +95,7 @@ public class BulletDAO {
         }
     }
 
-    public void updateLocation(Bullet bullet) {
+    public void updateLocationById(Bullet bullet) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + bullet.getBulletId();
             jedis.hset(key, "x", bullet.getX().toString());

@@ -48,7 +48,7 @@ public class Creatures {
         for (Bullet bullet : bullets) {
             //先从怪物列表里遍历
             for (Monster monster : monsters) {
-                if (bullet.getPlayerId().equals(monster.getMonsterId())){
+                if (bullet.getPlayerId().equals(monster.getMonsterId())) {
                     continue;
                 }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
@@ -60,7 +60,7 @@ public class Creatures {
 
             //再从玩家列表里遍历
             for (Player player : players) {
-                if (bullet.getPlayerId().equals(player.getPlayerId())){
+                if (bullet.getPlayerId().equals(player.getPlayerId())) {
                     continue;
                 }
                 if (getDistance(bullet, player) <= bullet.getRadius()) {
@@ -72,12 +72,16 @@ public class Creatures {
         }
     }
 
-    public void monstersAttack(){
-        if (players.size()<1){
+    public void monstersAttack() {
+        if (players.size() < 1) {
             return;
         }
-        for (Monster monster:monsters){
-            monsterService.tryStraightLaunch(monster,players.get(0));
+        for (Monster monster : monsters) {
+            Player player = players.get(0);
+            if (getDistance(monster, player) < monster.getVisibility()) {
+                monsterService.walkToPlayer(monster, player);
+                monsterService.tryStraightLaunch(monster, player);
+            }
         }
     }
 
@@ -86,7 +90,7 @@ public class Creatures {
     }
 
     public Result getResult() {
-        return new Result(players, bullets, monsters, new ArrayList<>(),ServerCore.level.getNumber());
+        return new Result(players, bullets, monsters, new ArrayList<>(), ServerCore.level.getNumber());
     }
 
     public static double getDistance(Bullet bullet, Monster monster) {
@@ -97,6 +101,11 @@ public class Creatures {
     public static double getDistance(Bullet bullet, Player player) {
         return Math.sqrt((bullet.getX() - player.getX()) * (bullet.getX() - player.getX())
                 + (bullet.getY() - player.getY()) * (bullet.getY() - player.getY()));
+    }
+
+    public static double getDistance(Monster monster, Player player) {
+        return Math.sqrt((monster.getX() - player.getX()) * (monster.getX() - player.getX())
+                + (monster.getY() - player.getY()) * (monster.getY() - player.getY()));
     }
 
 }

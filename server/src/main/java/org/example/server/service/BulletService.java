@@ -49,7 +49,6 @@ public class BulletService {
     }
 
     public synchronized void remove(Bullet bullet) {
-        log.error("remove这里调用了删除子弹");
         bulletDAO.delete(bullet);
     }
 
@@ -68,9 +67,8 @@ public class BulletService {
                     if (Verification.verifyLocation(newX, newY)) {
                         bullet.setX(newX);
                         bullet.setY(newY);
-                        bulletDAO.updateLocation(bullet);
+                        bulletDAO.updateLocationById(bullet);
                     } else {
-                        log.error("upload这里调用了删除子弹，此时子弹的信息为" + bullet);
                         bulletDAO.delete(bullet);
                     }
                 }

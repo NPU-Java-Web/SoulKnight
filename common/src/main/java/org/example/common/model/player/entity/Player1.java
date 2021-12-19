@@ -1,12 +1,14 @@
 package org.example.common.model.player.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.example.common.config.GameConfig;
 import org.example.common.model.player.Player;
 
 /**
  * 默认玩家初始信息
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class Player1 extends Player {
     public static final int PLAYER_TYPE = GameConfig.PlayerType.Classic;
