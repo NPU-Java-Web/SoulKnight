@@ -1,4 +1,4 @@
-package org.example.client.display.thread;
+package org.example.client.calculate.communication;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;

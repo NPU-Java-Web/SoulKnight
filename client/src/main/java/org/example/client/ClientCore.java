@@ -11,7 +11,7 @@ import javax.swing.*;
  * 此类为前端界面的启动类
  * 以启动jframe
  */
-import org.example.client.function.Data;
+import org.example.common.config.GameConfig;
 
 import java.util.Stack;
 
@@ -36,7 +36,7 @@ public class ClientCore {
         if(playSound == null)
         {
             playSound = new PlaySound();
-            playSound.open(Data.sound);
+            playSound.open(GameConfig.sound);
             playSound.play();
             playSound.loop();
             playSound.start();

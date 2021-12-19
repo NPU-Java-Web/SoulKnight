@@ -1,12 +1,8 @@
 package org.example.client.display;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.GameStartCore;
-import org.example.client.display.thread.DeliverPlayer;
-import org.example.common.config.GameConfig;
-import org.example.common.model.bullet.Bullet;
-import org.example.common.model.bullet.BulletFactory;
+import org.example.client.calculate.communication.DeliverPlayer;
 
 /**
  *

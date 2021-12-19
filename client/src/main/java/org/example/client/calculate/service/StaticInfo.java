@@ -6,7 +6,7 @@ import org.example.client.display.MainPanel;
 import org.example.common.config.level.Level;
 
 /**
- * 将所需地址静态存储
+ * 将所需对象地址静态存储
  */
 public class StaticInfo {
 

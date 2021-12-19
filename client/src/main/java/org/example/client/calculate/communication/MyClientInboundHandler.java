@@ -1,4 +1,4 @@
-package org.example.client.calculate.handler;
+package org.example.client.calculate.communication;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
