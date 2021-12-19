@@ -111,8 +111,12 @@ public class GameDataProcess {
         } else{
             if (GamePanel.result.getMapType() == 1 && !(StaticInfo.gameStartCore.getLevel() instanceof Level1)) {
                 StaticInfo.gameStartCore.setLevel(new Level1());
+                StaticInfo.gameStartCore.getPlayer().setX(500);
+                StaticInfo.gameStartCore.getPlayer().setY(700);
             } else if(GamePanel.result.getMapType() == 2 && !(StaticInfo.gameStartCore.getLevel() instanceof Level2)) {
                 StaticInfo.gameStartCore.setLevel(new Level2());
+                StaticInfo.gameStartCore.getPlayer().setX(500);
+                StaticInfo.gameStartCore.getPlayer().setY(800);
             } else if(GamePanel.result.getMapType() == 3 && !(StaticInfo.gameStartCore.getLevel() instanceof Level3)){
                 StaticInfo.gameStartCore.setLevel(new Level3());
             }
