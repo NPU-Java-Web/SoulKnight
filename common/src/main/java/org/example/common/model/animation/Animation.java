@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Animation {
+    private String aniationId;
     /**
      * 种类
      */

@@ -58,7 +58,7 @@ public class Creatures {
         for (Bullet bullet : bullets) {
             //先从怪物列表里遍历
             for (Monster monster : monsters) {
-                if (bullet.getPlayerId().equals(monster.getMonsterId())) {
+                if (bullet.getPlayerId().startsWith("m")) {
                     continue;
                 }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
@@ -91,7 +91,7 @@ public class Creatures {
             if (getDistance(monster, player) < monster.getVisibility()) {
                 monsterService.walkToPlayer(monster, player);
                 monsterService.tryStraightLaunch(monster, player);
-//                monsterService.tryAllAroundLaunch(monster);
+                monsterService.tryAllAroundLaunch(monster);
             }
         }
     }

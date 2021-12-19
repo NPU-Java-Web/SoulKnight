@@ -108,12 +108,12 @@ public class MonsterService {
         if (monsterDAO.readyForUltimate(monster)) {
             for (int i = 0; i < 10; i++) {
                 double angle = Math.toRadians(36 * i);
-                Bullet bullet = BulletFactory.makeBullet(1, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
+                Bullet bullet = BulletFactory.makeBullet(5, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
                 if (bullet != null) {
                     bulletDAO.insert(bullet);
                 }
             }
-            monsterDAO.setUltimateCoolingTime(monster,6);
+            monsterDAO.setUltimateCoolingTime(monster,3);
         }
     }
 

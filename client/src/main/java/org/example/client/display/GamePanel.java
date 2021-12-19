@@ -290,19 +290,86 @@ public class GamePanel extends JPanel {
                 }
 
                 int width =   item.getBlood()*30/monsterBlood[flag];
-                drawMonster(item.getX(),item.getY(),graphics,width);
+                drawMonster(item.getX(),item.getY(),graphics,width,item.getMonsterType());
                 flag++;
             }
         }
     }
 
-    public void drawMonster(int x, int y, Graphics graphics,int width){
-        graphics.drawImage(GameConfig.Monster1,
-                x-GameConfig.Monster1.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
-                y-GameConfig.Monster1.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
-                null);
-        graphics.setColor(new Color(156, 40, 40));
-        graphics.fillRect(x-15,y+20,width,8);
+    public void drawMonster(int x, int y, Graphics graphics,int width,int type){
+        if(type == 1)
+        {
+            graphics.drawImage(GameConfig.Monster1,
+                    x-GameConfig.Monster1.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
+                    y-GameConfig.Monster1.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(156, 40, 40));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 2)
+        {
+            graphics.drawImage(GameConfig.Monster2,
+                    x-GameConfig.Monster2.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
+                    y-GameConfig.Monster2.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(177, 68, 68));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 3)
+        {
+            graphics.drawImage(GameConfig.Monster3,
+                    x-GameConfig.Monster3.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
+                    y-GameConfig.Monster3.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(29, 201, 196));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 4)
+        {
+            graphics.drawImage(GameConfig.Monster4,
+                    x-GameConfig.Monster4.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
+                    y-GameConfig.Monster4.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(115, 40, 156));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 5)
+        {
+            graphics.drawImage(GameConfig.Monster5,
+                    x-GameConfig.Monster5.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
+                    y-GameConfig.Monster5.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(36, 206, 127));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 6)
+        {
+            graphics.drawImage(GameConfig.Monster6,
+                    x-GameConfig.Monster6.getWidth(GameConfig.MonsterShow8.getImageObserver())/2,
+                    y-GameConfig.Monster6.getHeight(GameConfig.MonsterShow8.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(234, 205, 205));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 7)
+        {
+            graphics.drawImage(GameConfig.Monster7,
+                    x-GameConfig.Monster7.getWidth(GameConfig.MonsterShow8.getImageObserver())/2,
+                    y-GameConfig.Monster7.getHeight(GameConfig.MonsterShow8.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(116, 121, 168));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+        if(type == 8)
+        {
+            graphics.drawImage(GameConfig.Monster8,
+                    x-GameConfig.Monster8.getWidth(GameConfig.MonsterShow8.getImageObserver())/2,
+                    y-GameConfig.Monster8.getHeight(GameConfig.MonsterShow8.getImageObserver())/2,
+                    null);
+            graphics.setColor(new Color(3, 55, 255, 164));
+            graphics.fillRect(x-15,y+20,width,8);
+        }
+
 
     }
 
