@@ -1,9 +1,6 @@
-package org.example.client.calculate.thread;
+package org.example.client.calculate.communication;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;

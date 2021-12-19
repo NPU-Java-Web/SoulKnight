@@ -3,7 +3,7 @@ package org.example.client.display;
 import org.example.client.ClientCore;
 import org.example.client.Input.GameMouseListener;
 import org.example.client.Input.KeyEventListener;
-import org.example.client.function.Data;
+import org.example.common.config.GameConfig;
 import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
@@ -45,7 +45,7 @@ public class MainPanel extends JFrame {
     public void setBackground()
     {
         // 设置背景标签
-        back = new JLabel(Data.background);
+        back = new JLabel(GameConfig.backgroundMenu);
         // 设置背景图片位置大小
         back.setBounds(0,0,getWidth(),getHeight());
         // 初始化一个内容面板

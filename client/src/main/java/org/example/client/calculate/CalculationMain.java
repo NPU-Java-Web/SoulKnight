@@ -12,9 +12,9 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 import org.example.client.GameStartCore;
-import org.example.client.calculate.handler.MyClientInboundHandler;
-import org.example.client.calculate.thread.AnalysisMessage;
-import org.example.client.calculate.thread.UploadMessage;
+import org.example.client.calculate.communication.MyClientInboundHandler;
+import org.example.client.calculate.communication.AnalysisMessage;
+import org.example.client.calculate.communication.UploadMessage;
 import org.example.common.protocal.Connect;
 
 import java.net.InetSocketAddress;
