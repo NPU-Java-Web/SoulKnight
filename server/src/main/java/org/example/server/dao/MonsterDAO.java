@@ -115,5 +115,13 @@ public class MonsterDAO {
         }
     }
 
+    public void updateLocationById(Monster monster){
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = PREFIX + monster.getMonsterId();
+            jedis.hset(key, "x", monster.getX().toString());
+            jedis.hset(key, "y", monster.getY().toString());
+        }
+    }
+
 
 }
