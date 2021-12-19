@@ -5,8 +5,8 @@ import org.example.common.model.player.Player;
 
 public class PLayer3 extends Player {
     public static final int PLAYER_TYPE = GameConfig.PlayerType.ASSASSIN;
-    public static final int SPEED = 10;
-    public static final int BLOOD = 50;
+    public static final int SPEED = 7;
+    public static final int BLOOD = 80;
     public static final int SCORE = 0;
 
     public PLayer3(String playerId, Integer x, Integer y, Double angle){
