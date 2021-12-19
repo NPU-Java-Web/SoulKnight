@@ -3,6 +3,7 @@ package org.example.client.calculate.service;
 import lombok.extern.slf4j.Slf4j;
 import com.alibaba.fastjson.JSON;
 import org.example.client.GameStartCore;
+import org.example.client.display.GamePanel;
 import org.example.common.config.GameConfig;
 import org.example.common.config.level.Level1;
 import org.example.common.keyListener.GameInput;
@@ -54,7 +55,7 @@ public class GameDataProcess {
     }
 
     private static boolean locationLegal(int x , int y){
-        if(StaticInfo.gameLevel.getTerrain()[x][y]){
+        if(StaticInfo.gameStartCore.getLevel().getTerrain()[x][y]){
             return true;
         }
         if( x <= 10 || x >= 990 || y <= 0 || y>= 990 ){
@@ -98,6 +99,17 @@ public class GameDataProcess {
         }
         else {
             log.info("体力不足");
+        }
+    }
+
+
+    public static void ifSwitchMap(){
+        if(GamePanel.result == null) {
+            StaticInfo.gameStartCore.setLevel(new Level1());
+        } else{
+            if (GamePanel.result.getMapType() == 1 && !(StaticInfo.gameStartCore.getLevel() instanceof Level1)) {
+                StaticInfo.gameStartCore.setLevel(new Level1());
+            }
         }
     }
 

@@ -3,8 +3,10 @@ package org.example.client.display;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
+import org.example.client.calculate.service.GameDataProcess;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
+import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
@@ -68,49 +70,18 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
 //    super.paintComponent(g);//清屏
 //    this.setBackground(Color.WHITE); //设置面板的背景色
-        //加载背景
-        Image background1 = GameConfig.gamebackground1;
-        Image background2 = GameConfig.gamebackground2;
-        Image background3 = GameConfig.gamebackground3;
-        //加载人物
-        Image player1 = GameConfig.player;
-        Image player2 = GameConfig.player2;
-        Image player3 = GameConfig.player3;
+
 
         Image img = this.createImage(1000, 1000);
+        tempGraphics = img.getGraphics();
         //从gameStartCore中读取serve层传入的信息
         Result temp = gameStartCore.getFrames().poll();
-
         if (temp != null) {
             result = temp;
         }
-        //读取当前的地图种类
-        if(result!=null){
-            maptype = result.getMapType();
-            //如果地图改变
-            if(maptype != maptypebefore)
-            {
-                maptypebefore = maptype;
-            }
 
-            tempGraphics = img.getGraphics();
-            //如果地图样式为1
-            if(maptypebefore == 1)
-            {
-                clear(tempGraphics,background1);
-                StaticInfo.gameLevel = new Level1();
-            }
-            //如果地图样式为2
-            else if(maptypebefore == 2)
-            {
-                clear(tempGraphics,background2);
-            }
-            //如果地图样式为3
-            else if(maptypebefore == 3)
-            {
-                clear(tempGraphics,background3);
-            }
-        }
+
+        drawMap(tempGraphics);
         drawPlayers(tempGraphics);
         drawBullets(tempGraphics);
         drawMonsters(tempGraphics);
@@ -124,6 +95,27 @@ public class GamePanel extends JPanel {
         graphics.drawImage(image,0,0,1000,1000,this);
         //graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, width, height);
+    }
+
+    public void drawMap(Graphics graphics){
+        //读取当前的地图种类
+        if(result!=null){
+            //如果地图样式为1
+            if(StaticInfo.gameStartCore.getLevel() instanceof Level1)
+            {
+                clear(tempGraphics, GameConfig.gamebackground1);
+            }
+            //如果地图样式为2
+            else if(maptypebefore == 2)
+            {
+                clear(tempGraphics, GameConfig.gamebackground2);
+            }
+            //如果地图样式为3
+            else if(maptypebefore == 3)
+            {
+                clear(tempGraphics, GameConfig.gamebackground3);
+            }
+        }
     }
 
 
