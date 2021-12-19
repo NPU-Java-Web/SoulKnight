@@ -70,7 +70,7 @@ public class MonsterService {
             } else {
                 angle = 2 * Math.PI - Math.acos(x / l);
             }
-            Bullet bullet = BulletFactory.makeBullet(1, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
+            Bullet bullet = BulletFactory.makeBullet(4, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
             bulletDAO.insert(bullet);
             monsterDAO.setCoolingTime(monster, 2);
         }
@@ -102,4 +102,10 @@ public class MonsterService {
     public synchronized boolean remainMonsters() {
         return monsterDAO.getAllKeys().size() > 0;
     }
+
+    public synchronized void tryAllAroundLaunch(){
+
+    }
+
+
 }

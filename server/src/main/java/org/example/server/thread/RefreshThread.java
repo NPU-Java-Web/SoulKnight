@@ -43,8 +43,10 @@ public class RefreshThread {
 
     @Async
     public void run() {
-        monsterService.initializeMonsters();
 
+        while (true) {
+            log.info(ServerCore.level.toString());
+            monsterService.initializeMonsters();
 
             while (true) {
                 //处理Order
@@ -102,11 +104,13 @@ public class RefreshThread {
                         }
                     }
                     if (authority) {
-                        log.info("现在进来了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
+                        log.info(ServerCore.GlobalInfo);
                         if (ServerCore.level.getNumber() == 1) {
                             ServerCore.level = new Level2();
+                            break;
                         } else if (ServerCore.level.getNumber() == 2) {
                             ServerCore.level = new Level3();
+                            break;
                         } else {
 //                            break;
                         }
@@ -122,4 +126,5 @@ public class RefreshThread {
             }
         }
     }
+}
 
