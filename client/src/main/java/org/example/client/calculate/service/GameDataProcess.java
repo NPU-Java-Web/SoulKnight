@@ -82,9 +82,12 @@ public class GameDataProcess {
                     } else {
                         angle = 2*Math.PI - Math.acos(x/l);
                     }
-                    Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.CLASSIC,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
-                            StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
-                            angle);
+
+                        Bullet bullet = BulletFactory.makeBullet(GameConfig.playerType,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
+                                StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
+                                angle);
+
+
                     boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
                     if (!success) {
                         log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);
@@ -111,8 +114,12 @@ public class GameDataProcess {
         } else{
             if (GamePanel.result.getMapType() == 1 && !(StaticInfo.gameStartCore.getLevel() instanceof Level1)) {
                 StaticInfo.gameStartCore.setLevel(new Level1());
+                StaticInfo.gameStartCore.getPlayer().setX(500);
+                StaticInfo.gameStartCore.getPlayer().setY(700);
             } else if(GamePanel.result.getMapType() == 2 && !(StaticInfo.gameStartCore.getLevel() instanceof Level2)) {
                 StaticInfo.gameStartCore.setLevel(new Level2());
+                StaticInfo.gameStartCore.getPlayer().setX(500);
+                StaticInfo.gameStartCore.getPlayer().setY(800);
             } else if(GamePanel.result.getMapType() == 3 && !(StaticInfo.gameStartCore.getLevel() instanceof Level3)){
                 StaticInfo.gameStartCore.setLevel(new Level3());
             }
