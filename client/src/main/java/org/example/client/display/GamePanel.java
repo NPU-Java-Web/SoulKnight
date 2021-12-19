@@ -8,6 +8,8 @@ import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
 import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
+import org.example.common.config.level.Level2;
+import org.example.common.config.level.Level3;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.player.PlayerFactory;
@@ -106,12 +108,12 @@ public class GamePanel extends JPanel {
                 clear(tempGraphics, GameConfig.gamebackground1);
             }
             //如果地图样式为2
-            else if(maptypebefore == 2)
+            else if(StaticInfo.gameStartCore.getLevel() instanceof Level2)
             {
                 clear(tempGraphics, GameConfig.gamebackground2);
             }
             //如果地图样式为3
-            else if(maptypebefore == 3)
+            else if(StaticInfo.gameStartCore.getLevel() instanceof Level3)
             {
                 clear(tempGraphics, GameConfig.gamebackground3);
             }

@@ -26,14 +26,14 @@ public class MonsterService {
     @Autowired
     private MonsterDAO monsterDAO;
 
-    public void initializeMonsters() {
+    public synchronized void initializeMonsters() {
         monsterDAO.deleteAll();
         for (Monster monster : ServerCore.level.getInitialMonsters()) {
             monsterDAO.insert(monster);
         }
     }
 
-    public List<Monster> list() {
+    public synchronized List<Monster> list() {
         List<Monster> result = new ArrayList<>();
         Set<String> keys = monsterDAO.getAllKeys();
         for (String key : keys) {
@@ -51,7 +51,7 @@ public class MonsterService {
         return result;
     }
 
-    public void beingHurt(Monster monster, int difference) {
+    public synchronized void beingHurt(Monster monster, int difference) {
         if (difference >= monster.getBlood()) {
             monsterDAO.delete(monster);
         } else {
@@ -59,7 +59,7 @@ public class MonsterService {
         }
     }
 
-    public void tryStraightLaunch(Monster monster, Player player) {
+    public synchronized void tryStraightLaunch(Monster monster, Player player) {
         if (monsterDAO.isAggressive(monster)) {
             int x = player.getX() - monster.getX();
             int y = player.getY() - monster.getY();
@@ -76,7 +76,7 @@ public class MonsterService {
         }
     }
 
-    public void walkToPlayer(Monster monster, Player player) {
+    public synchronized void walkToPlayer(Monster monster, Player player) {
         int x = player.getX() - monster.getX();
         int y = player.getY() - monster.getY();
         double l = Math.sqrt(Math.pow(Math.abs(x), 2) + Math.pow(Math.abs(y), 2));
@@ -86,11 +86,12 @@ public class MonsterService {
         } else {
             angle = 2 * Math.PI - Math.acos(x / l);
         }
-        final double FACTOR = 0.05;
+        final double FACTOR = 0.5;
         int deltaX = (int) (monster.getSpeed() * FACTOR * Math.cos(angle));
         int deltaY = (int) (monster.getSpeed() * FACTOR * Math.sin(angle));
         int newX = monster.getX() + deltaX;
         int newY = monster.getY() + deltaY;
+        System.err.println(monster);
         if (Verification.verifyLocation(newX, newY)) {
             monster.setX(newX);
             monster.setY(newY);
@@ -98,7 +99,7 @@ public class MonsterService {
         }
     }
 
-    public boolean remainMonsters() {
+    public synchronized boolean remainMonsters() {
         return monsterDAO.getAllKeys().size() > 0;
     }
 }

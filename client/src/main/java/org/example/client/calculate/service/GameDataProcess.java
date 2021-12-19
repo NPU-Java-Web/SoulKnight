@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSON;
 import org.example.client.GameStartCore;
 import org.example.client.display.GamePanel;
 import org.example.common.config.GameConfig;
+import org.example.common.config.level.Level1;
+import org.example.common.config.level.Level2;
+import org.example.common.config.level.Level3;
 import org.example.common.keyListener.GameInput;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
@@ -108,6 +111,10 @@ public class GameDataProcess {
         } else{
             if (GamePanel.result.getMapType() == 1 && !(StaticInfo.gameStartCore.getLevel() instanceof Level1)) {
                 StaticInfo.gameStartCore.setLevel(new Level1());
+            } else if(GamePanel.result.getMapType() == 2 && !(StaticInfo.gameStartCore.getLevel() instanceof Level2)) {
+                StaticInfo.gameStartCore.setLevel(new Level2());
+            } else if(GamePanel.result.getMapType() == 3 && !(StaticInfo.gameStartCore.getLevel() instanceof Level3)){
+                StaticInfo.gameStartCore.setLevel(new Level3());
             }
         }
     }

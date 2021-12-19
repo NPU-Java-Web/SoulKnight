@@ -93,23 +93,25 @@ public class RefreshThread {
                 creatures.monstersAttack();
                 ServerCore.GlobalInfo = (JSON.toJSONString(creatures.getResult()));
                 //判断是否可以进去下一关
-                if (!monsterService.remainMonsters()){
-                    boolean authority=true;
-                    for (Player player:players){
+                if (!monsterService.remainMonsters()) {
+                    boolean authority = true;
+                    for (Player player : players) {
                         if (!Verification.atTransferArea(player.getX(), player.getY())) {
                             authority = false;
                             break;
                         }
                     }
-                    if (authority){
-                        if(ServerCore.level.getNumber()==1){
-                            ServerCore.level=new Level2();
-                        } else if (ServerCore.level.getNumber()==2){
-                            ServerCore.level=new Level3();
-                        }else {
+                    if (authority) {
+                        log.info("现在进来了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
+                        if (ServerCore.level.getNumber() == 1) {
+                            ServerCore.level = new Level2();
+                        } else if (ServerCore.level.getNumber() == 2) {
+                            ServerCore.level = new Level3();
+                        } else {
 //                            break;
                         }
                     }
+                }
 
                 try {
                     Thread.sleep(20);
@@ -121,4 +123,3 @@ public class RefreshThread {
         }
     }
 
-}
