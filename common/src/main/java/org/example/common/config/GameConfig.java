@@ -27,9 +27,24 @@ public class GameConfig {
     public static Image gamebackground2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map2.jpg");
 
     public static Image gamebackground3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map3.jpg");
-    //怪物
+    //怪物（1-8）
     public static Image Monster1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-1.png");
     public static ImageIcon MonsterShow1 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\Monster-1.png");
+
+    public static Image Monster2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-2.png");
+
+    public static Image Monster3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-3.png");
+
+    public static Image Monster4 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-4.png");
+
+    public static Image Monster5 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-5.png");
+
+    public static Image Monster6 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-6.png");
+
+    public static Image Monster7 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-7.png");
+
+    public static Image Monster8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-8.png");
+    public static ImageIcon MonsterShow8 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\Monster-8.png");
     //传送门
     public static Image portal = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/portal/Portal.png");
     //爆炸（1-9）

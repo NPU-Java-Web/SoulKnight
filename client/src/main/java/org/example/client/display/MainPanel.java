@@ -64,28 +64,28 @@ public class MainPanel extends JFrame {
         label_title = new JLabel("元气骑士");
         label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
         label_title.setBounds(280,130,1000,200);
-        label_title.setForeground(Color.black);
+        label_title.setForeground(Color.white);
         // 设置标签
         label_start = new JLabel("开始游戏");
         // 设置字体 风格 字号
         label_start.setFont(new Font("KaiTi", Font.BOLD, 40));
         // 设置前景颜色，即字体颜色
-        label_start.setForeground(Color.red);
+        label_start.setForeground(Color.white);
         // 设置位置
         label_start.setBounds(360, 340, 400, 120);
 
         label_setting = new JLabel("设置");
         label_setting.setFont(new Font("KaiTi", Font.BOLD, 40));
         label_setting.setBounds(390, 430, 200, 120);
-
+        label_setting.setForeground(Color.white);
         label_instruction = new JLabel("说明");
         label_instruction.setFont(new Font("KaiTi", Font.BOLD, 40));
         label_instruction.setBounds(390, 520, 200, 120);
-
+        label_instruction.setForeground(Color.white);
         label_quit = new JLabel("退出");
         label_quit.setFont(new Font("KaiTi", Font.BOLD, 40));
         label_quit.setBounds(390, 610, 400, 120);
-
+        label_quit.setForeground(Color.white);
 
         this.fouseIndex = 1;
         add(label_start);

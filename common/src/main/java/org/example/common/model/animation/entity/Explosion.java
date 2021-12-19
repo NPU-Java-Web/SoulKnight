@@ -9,6 +9,6 @@ public class Explosion extends Animation {
     public static final int TYPE = 2;
     public Explosion(int state, int x, int y)
     {
-        super(TYPE,state,x,y);
+        super("",TYPE,state,x,y);
     }
 }
