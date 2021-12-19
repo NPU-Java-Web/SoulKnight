@@ -2,6 +2,7 @@ package org.example.server.thread;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.example.common.config.level.Level1;
 import org.example.common.config.level.Level2;
 import org.example.common.config.level.Level3;
 import org.example.common.model.bullet.Bullet;
@@ -62,6 +63,7 @@ public class RefreshThread {
                 for (Order order : orders) {
                     if (order.getCommand().equals("restart")) {
                         orderService.restart(order.getPlayerId());
+                        ServerCore.level = new Level1();
                         monsterService.initializeMonsters();
                     } else {
                         log.warn("未知的命令：" + order);
@@ -88,11 +90,13 @@ public class RefreshThread {
                         break;
                     }
                 }
+
                 bulletService.save(bullets);
                 creatures.initialize();
+                creatures.monstersAttack();
                 creatures.bulletsCauseHarm();
                 creatures.bulletsFlying();
-                creatures.monstersAttack();
+
                 ServerCore.GlobalInfo = (JSON.toJSONString(creatures.getResult()));
                 //判断是否可以进去下一关
                 if (!monsterService.remainMonsters()) {
@@ -111,8 +115,6 @@ public class RefreshThread {
                         } else if (ServerCore.level.getNumber() == 2) {
                             ServerCore.level = new Level3();
                             break;
-                        } else {
-//                            break;
                         }
                     }
                 }

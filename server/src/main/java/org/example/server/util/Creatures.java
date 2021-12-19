@@ -81,6 +81,7 @@ public class Creatures {
             if (getDistance(monster, player) < monster.getVisibility()) {
                 monsterService.walkToPlayer(monster, player);
                 monsterService.tryStraightLaunch(monster, player);
+//                monsterService.tryAllAroundLaunch(monster);
             }
         }
     }

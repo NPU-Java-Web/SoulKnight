@@ -19,6 +19,8 @@ public class MonsterDAO {
 
     private static final String CD_PREFIX = "cooling:";
 
+    private static final String ULTIMATE_PREFIX = "ultimate:";
+
     public Monster selectById(String monsterId) {
         String key = PREFIX + monsterId;
         return selectByKey(key);
@@ -107,7 +109,7 @@ public class MonsterDAO {
         }
     }
 
-    public void setCoolingTime(Monster monster, long seconds) {
+    public void setLaunchCoolingTime(Monster monster, long seconds) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = CD_PREFIX + monster.getMonsterId();
             jedis.set(key, "冷却中");
@@ -120,6 +122,21 @@ public class MonsterDAO {
             String key = PREFIX + monster.getMonsterId();
             jedis.hset(key, "x", monster.getX().toString());
             jedis.hset(key, "y", monster.getY().toString());
+        }
+    }
+
+    public boolean readyForUltimate(Monster monster){
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = ULTIMATE_PREFIX + monster.getMonsterId();
+            return !jedis.exists(key);
+        }
+    }
+
+    public void setUltimateCoolingTime(Monster monster, long seconds) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String key = ULTIMATE_PREFIX + monster.getMonsterId();
+            jedis.set(key, "冷却中");
+            jedis.expire(key,seconds);
         }
     }
 
