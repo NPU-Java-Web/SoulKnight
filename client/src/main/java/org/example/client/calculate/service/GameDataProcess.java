@@ -82,9 +82,12 @@ public class GameDataProcess {
                     } else {
                         angle = 2*Math.PI - Math.acos(x/l);
                     }
-                    Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.CLASSIC,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
-                            StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
-                            angle);
+
+                        Bullet bullet = BulletFactory.makeBullet(GameConfig.playerType,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
+                                StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
+                                angle);
+
+
                     boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
                     if (!success) {
                         log.warn("发送队列已满，子弹发送信息被丢弃，子弹为" + bullet);

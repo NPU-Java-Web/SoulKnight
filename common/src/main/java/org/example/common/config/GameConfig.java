@@ -27,11 +27,47 @@ public class GameConfig {
     public static Image gamebackground2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map2.jpg");
 
     public static Image gamebackground3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/map/map3.jpg");
-    //子弹图片(1)
+    //怪物
     public static Image Monster1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/Monster-1.png");
     public static ImageIcon MonsterShow1 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\Monster-1.png");
+    //传送门
+    public static Image portal = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/portal/Portal.png");
+    //爆炸（1-9）
+    public static Image boom1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p1.png");
 
+    public static Image boom2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p2.png");
+
+    public static Image boom3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p3.png");
+
+    public static Image boom4 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p4.png");
+
+    public static Image boom5 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p5.png");
+
+    public static Image boom6 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p6.png");
+
+    public static Image boom7 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p7.png");
+
+    public static Image boom8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p8.png");
+
+    public static Image boom9 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/boom/p9.png");
+    //子弹图片(1-8)
     public static Image bullet1 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet1.png");
+
+    public static Image bullet2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet2.png");
+
+    public static Image bullet3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet3.png");
+
+    public static Image bullet4 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet4.png");
+
+    public static Image bullet5 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet5.png");
+
+    public static Image bullet6 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet6.png");
+
+    public static Image bullet7 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet7.png");
+
+    public static Image bullet8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet8.png");
+
+
     public static ImageIcon bulletShow1 = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet1.png");
     //背景音乐路径
     public static String sound = System.getProperty("user.dir")+"\\client\\src\\main\\resources\\帝国进行曲.wav";

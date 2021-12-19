@@ -10,6 +10,7 @@ import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
 import org.example.common.config.level.Level2;
 import org.example.common.config.level.Level3;
+import org.example.common.model.animation.Animation;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.player.PlayerFactory;
@@ -87,6 +88,7 @@ public class GamePanel extends JPanel {
         drawPlayers(tempGraphics);
         drawBullets(tempGraphics);
         drawMonsters(tempGraphics);
+        drawAnimations(tempGraphics);
         //将内存画布绘制到窗口
         g.drawImage(img, 0, 0, null);
     }
@@ -213,16 +215,69 @@ public class GamePanel extends JPanel {
     public void drawBullets(Graphics graphics) {
         if(result!=null) {
             for (Bullet item : result.getBullets()) {
-                drawBullet(item.getX(), item.getY(), graphics);
+                drawBullet(item.getX(), item.getY(), graphics,item.getBulletType());
             }
         }
     }
 
-    public void drawBullet(int x, int y, Graphics graphics){
-        graphics.drawImage(GameConfig.bullet1,
-                x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
-                null);
+    public void drawBullet(int x, int y, Graphics graphics,int bullettype){
+        if(bullettype == 1)
+        {
+            graphics.drawImage(GameConfig.bullet1,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 2)
+        {
+            graphics.drawImage(GameConfig.bullet2,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 3)
+        {
+            graphics.drawImage(GameConfig.bullet3,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 4)
+        {
+            graphics.drawImage(GameConfig.bullet4,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 5)
+        {
+            graphics.drawImage(GameConfig.bullet5,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 6)
+        {
+            graphics.drawImage(GameConfig.bullet6,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 7)
+        {
+            graphics.drawImage(GameConfig.bullet7,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+        if(bullettype == 8)
+        {
+            graphics.drawImage(GameConfig.bullet8,
+                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
+                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    null);
+        }
+
     }
 
     public void drawMonsters(Graphics graphics){
@@ -251,5 +306,79 @@ public class GamePanel extends JPanel {
 
     }
 
+    public void drawAnimations(Graphics graphics){
+
+            for (Animation item : result.getAnimations()) {
+                drawAnimation(item.getX(),item.getY(),graphics,item.getType(),item);
+            }
+
+    }
+    public void drawAnimation(int x, int y, Graphics graphics,int type,Animation animation){
+        if(type == 1){
+            graphics.drawImage(GameConfig.portal,
+                    x,
+                    y,
+                    null);
+        }
+        if(type == 2){
+
+            if(animation.getState() == 1){
+                graphics.drawImage(GameConfig.boom1,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 2){
+                graphics.drawImage(GameConfig.boom2,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 3){
+                graphics.drawImage(GameConfig.boom3,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 4){
+                graphics.drawImage(GameConfig.boom4,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 5){
+                graphics.drawImage(GameConfig.boom5,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 6){
+                graphics.drawImage(GameConfig.boom6,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 7){
+                graphics.drawImage(GameConfig.boom7,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 8){
+                graphics.drawImage(GameConfig.boom8,
+                        x,
+                        y,
+                        null);
+            }
+            if(animation.getState() == 9){
+                graphics.drawImage(GameConfig.boom9,
+                        x,
+                        y,
+                        null);
+            }
+        }
+
+
+    }
 
 }

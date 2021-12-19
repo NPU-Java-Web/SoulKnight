@@ -31,7 +31,7 @@ public class GameStartCore {
     public GameStartCore(Player player,boolean isrunning) {
         //level只能为1
         this.level = new Level1();
-        //playerType只能为1
+
         this.player = player;
         /*this.type = player.getPlayerType();
         this.playerId = player.getPlayerId();
