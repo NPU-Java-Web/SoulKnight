@@ -12,8 +12,10 @@ public class Level3 extends Level {
 
     public Level3() {
         super(3, 1000, new boolean[1001][1001], new Monster[]{
-                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m1", 300, 300, 90.0),
-                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m2", 700, 700, 270.0)
+                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m7", 300, 300, 90.0),
+                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m8", 700, 700, 270.0),
+                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m9",500,300,0.0),
+                MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m10",300,700,0.0),
         });
         initWall();
     }
