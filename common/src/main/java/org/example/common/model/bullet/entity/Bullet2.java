@@ -4,7 +4,7 @@ import org.example.common.config.GameConfig;
 import org.example.common.model.bullet.Bullet;
 
 public class Bullet2 extends Bullet {
-    public static final int BULLET_TYPE= GameConfig.BulletType.Armor;
+    public static final int BULLET_TYPE= GameConfig.BulletType.ARMOR;
     public static final int SPEED = 30;
     public static final int RADIUS = 40;
     public static final int POWER = 10;

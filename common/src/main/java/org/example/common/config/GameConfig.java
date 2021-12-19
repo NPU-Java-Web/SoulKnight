@@ -49,21 +49,31 @@ public class GameConfig {
     public static class PlayerType
     {
         //经典人物
-        public static final int Classic= 1;
+        public static final int CLASSIC = 1;
         //重装人物
-        public static final int Armor = 2;
+        public static final int ARMOR = 2;
         //轻型人物
-        public static final int Assassin = 3;
+        public static final int ASSASSIN = 3;
 
     }
 
     public class BulletType
     {
-        public static final int Classic= 1;
+        public static final int CLASSIC = 1;
         //重装子弹
-        public static final int Armor = 2;
+        public static final int ARMOR = 2;
         //轻型子弹
-        public static final int Assassin = 3;
+        public static final int ASSASSIN = 3;
+        //彩色子弹
+        public static final int COLORFUL = 4;
+        //浅蓝色子弹
+        public static final int LIGHT_BLUE = 5;
+        //紫色子弹
+        public static final int PURPLE = 6;
+        //深蓝色子弹
+        public static final int DARK_BLUE = 7;
+
+
     }
 
     public enum MonsterType

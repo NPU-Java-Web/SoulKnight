@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import com.alibaba.fastjson.JSON;
 import org.example.client.GameStartCore;
 import org.example.common.config.GameConfig;
-import org.example.common.config.level.Level1;
 import org.example.common.keyListener.GameInput;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
@@ -79,7 +78,7 @@ public class GameDataProcess {
                     } else {
                         angle = 2*Math.PI - Math.acos(x/l);
                     }
-                    Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.Classic,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
+                    Bullet bullet = BulletFactory.makeBullet(GameConfig.BulletType.CLASSIC,StaticInfo.gameStartCore.getPlayer().getPlayerId(),
                             StaticInfo.gameStartCore.getPlayer().getX(),StaticInfo.gameStartCore.getPlayer().getY(),
                             angle);
                     boolean success = GameStartCore.sendQueue.offer(JSON.toJSONString(bullet));
