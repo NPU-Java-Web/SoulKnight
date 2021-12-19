@@ -47,7 +47,7 @@ public class GamePanel extends JPanel {
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
-                GameConfig.PlayerType.CLASSIC, playerId, 500, 700, 0.0),isrunning);
+                GameConfig.playerType, playerId, 500, 700, 0.0),isrunning);
         StaticInfo.setGameStartCore(gameStartCore);
         this.gameStartCore = gameStartCore;
         gameStartCore.start();
@@ -137,6 +137,7 @@ public class GamePanel extends JPanel {
 
     public void drawPlayer(Player player, Graphics graphics,int width,int playertype) {
         int flag = 0;
+
         if(player.getBlood()>playerBlood[flag])
         {
             playerBlood[flag] = player.getBlood();
@@ -246,7 +247,7 @@ public class GamePanel extends JPanel {
                 y-GameConfig.Monster1.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
                 null);
         graphics.setColor(new Color(156, 40, 40));
-        graphics.fillRect(x+10,y-10,width,8);
+        graphics.fillRect(x-15,y+20,width,8);
 
     }
 

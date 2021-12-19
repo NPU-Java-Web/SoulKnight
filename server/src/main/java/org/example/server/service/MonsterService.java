@@ -70,9 +70,11 @@ public class MonsterService {
             } else {
                 angle = 2 * Math.PI - Math.acos(x / l);
             }
-            Bullet bullet = BulletFactory.makeBullet(1, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
-            bulletDAO.insert(bullet);
-            monsterDAO.setCoolingTime(monster, 2);
+            Bullet bullet = BulletFactory.makeBullet(4, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
+            if (bullet != null) {
+                bulletDAO.insert(bullet);
+            }
+            monsterDAO.setLaunchCoolingTime(monster, 2);
         }
     }
 
@@ -91,7 +93,6 @@ public class MonsterService {
         int deltaY = (int) (monster.getSpeed() * FACTOR * Math.sin(angle));
         int newX = monster.getX() + deltaX;
         int newY = monster.getY() + deltaY;
-        System.err.println(monster);
         if (Verification.verifyLocation(newX, newY)) {
             monster.setX(newX);
             monster.setY(newY);
@@ -102,4 +103,19 @@ public class MonsterService {
     public synchronized boolean remainMonsters() {
         return monsterDAO.getAllKeys().size() > 0;
     }
+
+    public synchronized void tryAllAroundLaunch(Monster monster) {
+        if (monsterDAO.readyForUltimate(monster)) {
+            for (int i = 0; i < 10; i++) {
+                double angle = Math.toRadians(36 * i);
+                Bullet bullet = BulletFactory.makeBullet(1, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
+                if (bullet != null) {
+                    bulletDAO.insert(bullet);
+                }
+            }
+            monsterDAO.setUltimateCoolingTime(monster,6);
+        }
+    }
+
+
 }

@@ -11,9 +11,9 @@ import org.example.common.model.monster.MonsterFactory;
 public class Level2 extends Level {
 
     public Level2() {
-        super(1, 1000, new boolean[1001][1001], new Monster[]{
-                MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m1", 300, 300, 90.0),
-                MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m2", 700, 700, 270.0)
+        super(2, 1000, new boolean[1001][1001], new Monster[]{
+                MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m3", 600, 300, 90.0),
+                MonsterFactory.makeMonster(GameConfig.MonsterType.ONE, "m4", 700, 200, 270.0)
         });
         initWall();
     }
