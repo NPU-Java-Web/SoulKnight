@@ -490,10 +490,6 @@ public class Dialog extends JDialog {
     public void returnMainPanel() {
 
         dispose();
-//                Point p = ClientCore.mainPanel.getLocation();
-//                ClientCore.mainPanel.dispose();
-//                ClientCore.Start();
-//                ClientCore.mainPanel.setLocation(p);
 
     }
 
@@ -527,6 +523,7 @@ public class Dialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 isStop = false;
                 //GamePanel.gameRenderThread.start();
+                GameConfig.end = false;
                 StaticInfo.isrunning = true;
                 GameConfig.flag = true;
                 dispose();

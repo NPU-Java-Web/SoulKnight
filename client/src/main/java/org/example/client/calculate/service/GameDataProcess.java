@@ -127,9 +127,9 @@ public class GameDataProcess {
                 StaticInfo.gameStartCore.getPlayer().setX(900);
                 StaticInfo.gameStartCore.getPlayer().setY(480);
             }
-            else if(GamePanel.result.getMapType() == 4)
+            else if(GamePanel.result.getMapType() == 4 &&GameConfig.flag)
             {
-                new Dialog(ClientCore.mainPanel,7);
+                GameConfig.end = true;
             }
         }
     }

@@ -98,6 +98,8 @@ public class GameConfig {
     public static double playerStrength = 0;
 
     public static boolean flag = true;
+
+    public static boolean end = false;
     public static class PlayerType
     {
         //经典人物
