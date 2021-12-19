@@ -5,14 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.common.config.level.Level1;
 import org.example.common.config.level.Level2;
 import org.example.common.config.level.Level3;
+import org.example.common.model.animation.entity.Portal;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.player.Player;
 import org.example.common.protocal.Order;
 import org.example.server.ServerCore;
-import org.example.server.service.BulletService;
-import org.example.server.service.MonsterService;
-import org.example.server.service.OrderService;
-import org.example.server.service.PlayerService;
+import org.example.server.service.*;
 import org.example.server.util.Creatures;
 import org.example.server.util.Verification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,14 +95,23 @@ public class RefreshThread {
                 creatures.bulletsCauseHarm();
                 creatures.bulletsFlying();
 
-                ServerCore.GlobalInfo = (JSON.toJSONString(creatures.getResult()));
                 //判断是否可以进去下一关
                 if (!monsterService.remainMonsters()) {
+                    creatures.addPortal(new Portal(500,50));
                     boolean authority = true;
-                    for (Player player : players) {
-                        if (!Verification.atTransferArea(player.getX(), player.getY())) {
-                            authority = false;
-                            break;
+                    if (ServerCore.level.getNumber()==1){
+                        for (Player player : players) {
+                            if (!Verification.atTransferArea1(player.getX(), player.getY())) {
+                                authority = false;
+                                break;
+                            }
+                        }
+                    }else if (ServerCore.level.getNumber()==2){
+                        for (Player player : players) {
+                            if (!Verification.atTransferArea2(player.getX(), player.getY())) {
+                                authority = false;
+                                break;
+                            }
                         }
                     }
                     if (authority) {
@@ -114,11 +121,12 @@ public class RefreshThread {
                             break;
                         } else if (ServerCore.level.getNumber() == 2) {
                             ServerCore.level = new Level3();
+
                             break;
                         }
                     }
                 }
-
+                ServerCore.GlobalInfo = (JSON.toJSONString(creatures.getResult()));
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException e) {

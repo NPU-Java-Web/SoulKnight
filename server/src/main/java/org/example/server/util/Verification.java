@@ -17,11 +17,21 @@ public class Verification {
         return true;
     }
 
-    public static boolean atTransferArea(Integer x, Integer y) {
+    public static boolean atTransferArea1(Integer x, Integer y) {
         if (x < 412 || x > 582) {
             return false;
         }
         if (y < 0 || y > 100) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean atTransferArea2(Integer x, Integer y) {
+        if (x < 0 || x > 100) {
+            return false;
+        }
+        if (y < 470 || y > 580) {
             return false;
         }
         return true;

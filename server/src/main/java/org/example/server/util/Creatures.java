@@ -1,10 +1,13 @@
 package org.example.server.util;
 
+import org.example.common.model.animation.Animation;
+import org.example.common.model.animation.entity.Portal;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.player.Player;
 import org.example.common.protocal.Result;
 import org.example.server.ServerCore;
+import org.example.server.service.AnimationService;
 import org.example.server.service.BulletService;
 import org.example.server.service.MonsterService;
 import org.example.server.service.PlayerService;
@@ -26,20 +29,27 @@ public class Creatures {
     @Autowired
     private MonsterService monsterService;
 
+    @Autowired
+    private AnimationService animationService;
+
     private List<Player> players;
 
     private List<Monster> monsters;
 
     private List<Bullet> bullets;
 
+    private List<Animation> animations;
+
     public void initialize() {
         players = null;
         bullets = null;
         monsters = null;
+        animations=null;
 
         players = playerService.list();
         bullets = bulletService.list();
         monsters = monsterService.list();
+        animations=animationService.list();
 
     }
 
@@ -92,6 +102,10 @@ public class Creatures {
 
     public Result getResult() {
         return new Result(players, bullets, monsters, new ArrayList<>(), ServerCore.level.getNumber());
+    }
+
+    public void addPortal(Portal portal){
+        animations.add(portal);
     }
 
     public static double getDistance(Bullet bullet, Monster monster) {

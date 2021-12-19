@@ -33,7 +33,7 @@ public class GameStartCore {
         this.level = new Level1();
         //playerType只能为1
         this.player = player;
-        /*this.type = player.getPlayerType();
+        /*this.TYPE = player.getPlayerType();
         this.playerId = player.getPlayerId();
         this.x = player.getX();
         this.y = player.getY();
