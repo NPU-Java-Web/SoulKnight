@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Level3 extends Level {
 
     public Level3() {
-        super(1, 1000, new boolean[1001][1001], new ArrayList<>());
+        super(3, 1000, new boolean[1001][1001], new ArrayList<>());
 
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m1", 300, 300, 90.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m2", 700, 700, 270.0));
