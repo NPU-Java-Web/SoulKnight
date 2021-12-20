@@ -181,7 +181,7 @@ public class GamePanel extends JPanel {
         }
         int newWidth =   player.getBlood()*30/playerBlood[flag];
         //判断是否死亡
-        if(player.getBlood()<=0)
+        if(player.getBlood()<=0&&player.getPlayerId().equals(StaticInfo.gameStartCore.getPlayer().getPlayerId()))
         {
             if(GameConfig.flag){
                 GameConfig.flag = false;
