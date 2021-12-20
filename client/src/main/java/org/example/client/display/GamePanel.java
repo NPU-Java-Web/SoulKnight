@@ -140,7 +140,7 @@ public class GamePanel extends JPanel {
      * @param graphics 画笔
      */
     public void drawPlayers(Graphics graphics) {
-
+        //System.out.println(result);
         //用result中的信息来渲染
         if(result!=null) {
             for (Player item : result.getPlayers()) {
