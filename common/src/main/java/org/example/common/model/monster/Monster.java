@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.entity.Monster1;
 
+import java.util.List;
 import java.util.Vector;
 
 @Data
@@ -54,7 +55,7 @@ public class Monster {
     protected Integer reward;
 
 
-    public Vector<Bullet> shoot(){
+    public List<Bullet> shoot(){
         return null;
     };
 }
