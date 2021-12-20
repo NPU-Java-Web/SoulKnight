@@ -13,7 +13,7 @@ import org.example.common.keyListener.GameInput;
 import java.awt.*;
 
 /**
- * 此类为游戏页面的从键盘响应的hashmap中读取对应信息
+ * 此类为游戏页面的从键盘响应的hashmap中读取对应信息的线程
  * 此项目使用 1个线程获取所有键盘响应并存储进hashmap，用多个不同线程遍历读取对应键盘响应的hashmap的方法，实现
  * 不同界面响应不同方法
  */
@@ -27,6 +27,12 @@ public class GameRenderThread implements Runnable{
     public GamePanel gamePanel;
     public boolean isunning;
 
+    /**
+     *
+     * @param gameStartCore gamestartcore
+     * @param gamePanel gamepanel
+     * @param isrunning isrunnning
+     */
     public GameRenderThread(GameStartCore gameStartCore, GamePanel gamePanel,boolean isrunning)
     {
         this.gameStartCore = gameStartCore;
@@ -35,6 +41,9 @@ public class GameRenderThread implements Runnable{
         this.isunning = isrunning;
     }
 
+    /**
+     *
+     */
     @Override
     public void run()
     {
@@ -50,13 +59,6 @@ public class GameRenderThread implements Runnable{
             }
 
 
-//            if(GameInput.getKeyDown(27))
-//            {
-//                new Dialog(ClientCore.mainPanel,3);
-//                GameInput.keys.put(27, false);
-//                GamePanel.isrunning = false;
-//                //break;
-//            }
             try
             {
                 /**稳定fps*/

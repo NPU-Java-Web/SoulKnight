@@ -17,13 +17,18 @@ import org.example.common.model.player.entity.Player1;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * 此类为游戏相关的静态方法
+ */
 @Slf4j
 public class GameDataProcess {
 
     public static void menuRouter(){
     }
 
-
+    /**
+     * 移动飞机，进行飞机下一步判断，用来筛选是否发送到serve
+     */
     public static void moveMyPlayer(){
         int tempX = StaticInfo.gameStartCore.getPlayer().getX();
         int tempY = StaticInfo.gameStartCore.getPlayer().getY();
@@ -58,6 +63,12 @@ public class GameDataProcess {
         }
     }
 
+    /**
+     *
+     * @param x x坐标
+     * @param y y坐标
+     * @return 位置是否合法
+     */
     private static boolean locationLegal(int x , int y){
         if(StaticInfo.gameStartCore.getLevel().getTerrain()[x][y]){
             return true;
@@ -68,7 +79,10 @@ public class GameDataProcess {
         return false;
     }
 
-
+    /**
+     *
+     * @param e 鼠标相应事件
+     */
     public static void shootBullet(MouseEvent e){
         if(GameConfig.playerStrength>=1)
         {
@@ -109,7 +123,9 @@ public class GameDataProcess {
         }
     }
 
-
+    /**
+     * 选择关卡以及背景
+     */
     public static void ifSwitchMap(){
         if(GamePanel.result == null) {
             StaticInfo.gameStartCore.setLevel(new Level1());
