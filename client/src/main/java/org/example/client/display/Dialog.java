@@ -27,56 +27,52 @@ import java.util.Stack;
  *
  */
 @Slf4j
-public class Dialog extends JDialog{
+
+public class Dialog extends JDialog {
     private JLabel jlabel_one, jl02, jl03, jl04, jima01, jima02, jima03, jima04, jima05;
-    private JButton jb02, jb03, jb04, jb05,jb06, jButton;
+    private JButton jb02, jb03, jb04, jb05, jb06, jButton;
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;
     private boolean isStop = false;
     private String score;
-    public Dialog(JFrame jFrame,int type)
-    {
-        super(jFrame,true);
+
+    public Dialog(JFrame jFrame, int type) {
+        super(jFrame, true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         // 设置布局管理器为无
         setLayout(null);
         // 设置对话框不可更改大小
         setResizable(false);
 
-        if(type == 1)
-        {
+        if (type == 1) {
             //设置弹窗
             showSetting(jFrame);
-        }
-        else if(type == 2)
-        {
+        } else if (type == 2) {
             //说明弹窗
             showInstruction(jFrame);
 
-        }
-        else if(type == 3)
-        {   //暂停弹窗
+        } else if (type == 3) {   //暂停弹窗
             showpause(jFrame);
-        }
-        else if(type == 4)
-        {   //游戏内说明弹窗
+        } else if (type == 4) {   //游戏内说明弹窗
             showInstructionInGame(jFrame);
-        }
-        else if(type == 5)
-        {   //游戏内设置弹窗
+        } else if (type == 5) {   //游戏内设置弹窗
             showSettingInGame(jFrame);
-        }
-        else if(type == 6)
-        {
+        } else if (type == 6) {
             //失败弹窗
             showfalse(jFrame);
+        } else if (type == 7) {
+            //成功弹窗
+            showsuccess(jFrame);
         }
 
         setVisible(true);
     }
+
+    /**
+     * @param jFrame jframe
+     */
 //显示设置弹窗
-    public void showSetting(JFrame jFrame)
-    {
+    public void showSetting(JFrame jFrame) {
 
         setTitle("设置");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
@@ -89,7 +85,7 @@ public class Dialog extends JDialog{
         // 设置输入框允许编辑
         textField.setEditable(true);
         textField.setText("");
-        textField.setBounds(100,200,220,40);
+        textField.setBounds(100, 200, 220, 40);
         // 设置输入框的长度为11个字符
         textField.setColumns(11);
 
@@ -130,8 +126,7 @@ public class Dialog extends JDialog{
 
                     ClientCore.playSound.stop();
 
-                }
-                else {
+                } else {
                     ClientCore.playSound.start();
                 }
             }
@@ -155,9 +150,7 @@ public class Dialog extends JDialog{
             this.score = fr.readLine();
             int money = Integer.parseInt(score);
             fr.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("读取失败");
         }
         // 显示积分
@@ -174,8 +167,7 @@ public class Dialog extends JDialog{
         jr01 = new JRadioButton("游侠");
         jr01.setBounds(50, 350, 100, 20);
         add(jr01);
-        if(GameConfig.playerType == 1)
-        {
+        if (GameConfig.playerType == 1) {
             jr01.setSelected(true);
         }
         jr01.addActionListener(new ActionListener() {
@@ -197,8 +189,7 @@ public class Dialog extends JDialog{
         jr02 = new JRadioButton("战士");
         jr02.setBounds(150, 350, 100, 20);
         add(jr02);
-        if(GameConfig.playerType == 2)
-        {
+        if (GameConfig.playerType == 2) {
             jr02.setSelected(true);
         }
         jr02.addActionListener(new ActionListener() {
@@ -220,8 +211,7 @@ public class Dialog extends JDialog{
         jr03 = new JRadioButton("刺客");
         jr03.setBounds(250, 350, 100, 20);
         add(jr03);
-        if(GameConfig.playerType == 3)
-        {
+        if (GameConfig.playerType == 3) {
             jr03.setSelected(true);
         }
         jr03.addActionListener(new ActionListener() {
@@ -237,14 +227,13 @@ public class Dialog extends JDialog{
         });
 
 
-
-
-
     }
 
+    /**
+     * @param jFrame jframe
+     */
     //显示设置弹窗
-    public void showSettingInGame(JFrame jFrame)
-    {
+    public void showSettingInGame(JFrame jFrame) {
         setTitle("设置");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
@@ -272,8 +261,7 @@ public class Dialog extends JDialog{
 
                     ClientCore.playSound.stop();
 
-                }
-                else {
+                } else {
                     ClientCore.playSound.start();
                 }
             }
@@ -292,9 +280,11 @@ public class Dialog extends JDialog{
 
     }
 
+    /**
+     * @param jFrame jframe
+     */
 //显示说明弹窗
-    public void showInstruction(JFrame jFrame)
-    {
+    public void showInstruction(JFrame jFrame) {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
@@ -318,8 +308,10 @@ public class Dialog extends JDialog{
         });
     }
 
-    public void showInstructionInGame(JFrame jFrame)
-    {
+    /**
+     * @param jFrame jframe
+     */
+    public void showInstructionInGame(JFrame jFrame) {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
@@ -343,9 +335,11 @@ public class Dialog extends JDialog{
         });
     }
 
+    /**
+     * @param jFrame jframe
+     */
 //显游戏内菜单弹窗
-    public void showpause(JFrame jFrame)
-    {
+    public void showpause(JFrame jFrame) {
         setTitle("菜单");
 
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
@@ -413,14 +407,13 @@ public class Dialog extends JDialog{
         jb06.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(isStop){
-                    Object[] options = { "OK ", "CANCEL " };
+                if (isStop) {
+                    Object[] options = {"OK ", "CANCEL "};
                     JOptionPane.showOptionDialog(null, "您已暂停，无法重新开始", "提示", JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.WARNING_MESSAGE,null, options, options[0]);
+                            JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
-                }
-                else {
-                    Order order = new Order(GameConfig.playerId,"restart");
+                } else {
+                    Order order = new Order(GameConfig.playerId, "restart");
                     String message = JSON.toJSONString(order);
 
                     boolean success = GameStartCore.sendQueue.offer(message);
@@ -432,8 +425,11 @@ public class Dialog extends JDialog{
         });
     }
     //显游戏失败弹窗
-    public void showfalse(JFrame jFrame)
-    {
+
+    /**
+     * @param jFrame jframe
+     */
+    public void showfalse(JFrame jFrame) {
         setTitle("失败");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
@@ -457,14 +453,13 @@ public class Dialog extends JDialog{
         jb06.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(isStop){
-                    Object[] options = { "OK ", "CANCEL " };
+                if (isStop) {
+                    Object[] options = {"OK ", "CANCEL "};
                     JOptionPane.showOptionDialog(null, "您已暂停，无法重新开始", "提示", JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.WARNING_MESSAGE,null, options, options[0]);
+                            JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
-                }
-                else {
-                    Order order = new Order(GameConfig.playerId,"restart");
+                } else {
+                    Order order = new Order(GameConfig.playerId, "restart");
                     String message = JSON.toJSONString(order);
 
                     boolean success = GameStartCore.sendQueue.offer(message);
@@ -491,8 +486,8 @@ public class Dialog extends JDialog{
 
     }
 //返回主菜单
-    public void returnMainPanel()
-    {
+
+    public void returnMainPanel() {
 
         dispose();
 //                Point p = ClientCore.mainPanel.getLocation();
@@ -501,25 +496,79 @@ public class Dialog extends JDialog{
 //                ClientCore.mainPanel.setLocation(p);
 
     }
+
     //暂停游戏
-    public void pause()
-    {
+    public void pause() {
         StaticInfo.isrunning = false;
     }
+
     //游戏内帮助弹窗
-    public void showHelp(JFrame jFrame)
-    {
-        new Dialog(jFrame,4);
+    public void showHelp(JFrame jFrame) {
+        new Dialog(jFrame, 4);
     }
 
     //游戏内设置弹窗
-    public void showSet(JFrame jFrame)
-    {
-        new Dialog(jFrame,5);
+    public void showSet(JFrame jFrame) {
+        new Dialog(jFrame, 5);
     }
 
+    /**
+     * @param jFrame jframe
+     */
+    public void showsuccess(JFrame jFrame) {
+        setTitle("成功闯关！");
+        setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
+        jb03 = new JButton("返回游戏");
+        jb03.setBounds(140, 70, 100, 50);
+        add(jb03);
+        jb03.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isStop = false;
+                //GamePanel.gameRenderThread.start();
+                StaticInfo.isrunning = true;
+                GameConfig.flag = true;
+                dispose();
+            }
+        });
 
+        jb06 = new JButton("重新开始");
+        jb06.setBounds(140, 140, 100, 50);
+        add(jb06);
+        jb06.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isStop) {
+                    Object[] options = {"OK ", "CANCEL "};
+                    JOptionPane.showOptionDialog(null, "您已暂停，无法重新开始", "提示", JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
+                } else {
+                    Order order = new Order(GameConfig.playerId, "restart");
+                    String message = JSON.toJSONString(order);
 
+                    boolean success = GameStartCore.sendQueue.offer(message);
+                    if (!success) {
+                        log.warn("队列已满，客户端无法把重新开始加入队列，消息是" + message);
+                    }
+                }
+            }
+        });
+
+        jb02 = new JButton("退出游戏");
+        jb02.setBounds(140, 210, 100, 50);
+        add(jb02);
+        jb02.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(null, "确认退出?", "确认", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (result == JOptionPane.OK_OPTION) {
+                    // 退出
+                    System.exit(0);
+                }
+            }
+        });
+
+    }
 }

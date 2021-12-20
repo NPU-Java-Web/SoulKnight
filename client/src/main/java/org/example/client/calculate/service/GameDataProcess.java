@@ -2,7 +2,9 @@ package org.example.client.calculate.service;
 
 import lombok.extern.slf4j.Slf4j;
 import com.alibaba.fastjson.JSON;
+import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
+import org.example.client.display.Dialog;
 import org.example.client.display.GamePanel;
 import org.example.common.config.GameConfig;
 import org.example.common.config.level.Level1;
@@ -124,6 +126,10 @@ public class GameDataProcess {
                 StaticInfo.gameStartCore.setLevel(new Level3());
                 StaticInfo.gameStartCore.getPlayer().setX(900);
                 StaticInfo.gameStartCore.getPlayer().setY(480);
+            }
+            else if(GamePanel.result.getMapType() == 4)
+            {
+                new Dialog(ClientCore.mainPanel,7);
             }
         }
     }
