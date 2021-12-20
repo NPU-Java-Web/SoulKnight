@@ -3,10 +3,8 @@ package org.example.client.display;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
-import org.example.client.calculate.service.GameDataProcess;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
-import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
 import org.example.common.config.level.Level2;
 import org.example.common.config.level.Level3;
@@ -376,7 +374,7 @@ public class GamePanel extends JPanel {
     public void drawAnimations(Graphics graphics){
 
             for (Animation item : result.getAnimations()) {
-                drawAnimation(item.getX(),item.getY(),graphics,item.getType(),item);
+                drawAnimation(item.getX(),item.getY(),graphics,item.getAnimationType(),item);
             }
 
     }

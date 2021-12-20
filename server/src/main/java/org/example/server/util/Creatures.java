@@ -1,6 +1,7 @@
 package org.example.server.util;
 
 import org.example.common.model.animation.Animation;
+import org.example.common.model.animation.entity.Explosion;
 import org.example.common.model.animation.entity.Portal;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
@@ -14,7 +15,6 @@ import org.example.server.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -62,6 +62,7 @@ public class Creatures {
                     continue;
                 }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
+                    animationService.save(new Explosion(monster.getX(),monster.getY()));
                     monsterService.beingHurt(monster, bullet.getPower());
                     bulletService.remove(bullet);
                     return;
@@ -74,6 +75,7 @@ public class Creatures {
                     continue;
                 }
                 if (getDistance(bullet, player) <= bullet.getRadius()) {
+                    animationService.save(new Explosion(player.getX(),player.getY()));
                     playerService.beingHurt(player, bullet.getPower());
                     bulletService.remove(bullet);
                     return;
@@ -100,8 +102,12 @@ public class Creatures {
         bulletService.updateLocation();
     }
 
+    public void AnimationsPlay(){
+        animationService.play(animations);
+    }
+
     public Result getResult() {
-        return new Result(players, bullets, monsters, new ArrayList<>(), ServerCore.level.getNumber());
+        return new Result(players, bullets, monsters, animations, ServerCore.level.getNumber());
     }
 
     public void addPortal(Portal portal){
