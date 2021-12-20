@@ -189,6 +189,13 @@ public class GamePanel extends JPanel {
 
             }
         }
+        if(GameConfig.end){
+            //StaticInfo.isrunning = false;
+            GameConfig.flag = false;
+            GameConfig.end = false;
+            new Dialog(ClientCore.mainPanel,7);
+
+        }
         if(playertype == 1)
         {
             graphics.drawImage(GameConfig.player,
@@ -435,8 +442,8 @@ public class GamePanel extends JPanel {
     public void drawAnimation(int x, int y, Graphics graphics,int type,Animation animation){
         if(type == 1){
             graphics.drawImage(GameConfig.portal,
-                    x,
-                    y,
+                    x-20,
+                    y-50,
                     null);
         }
         if(type == 2){
