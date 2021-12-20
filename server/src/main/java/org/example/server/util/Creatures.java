@@ -1,5 +1,6 @@
 package org.example.server.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.common.model.animation.Animation;
 import org.example.common.model.animation.entity.Explosion;
 import org.example.common.model.animation.entity.Portal;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
 @Component
 public class Creatures {
 
@@ -62,7 +64,8 @@ public class Creatures {
                     continue;
                 }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
-                    animationService.save(new Explosion(monster.getX(),monster.getY()));
+                    Explosion explosion = new Explosion(monster.getX(), monster.getY());
+                    animationService.save(explosion);
                     monsterService.beingHurt(monster, bullet.getPower());
                     bulletService.remove(bullet);
                     return;
@@ -75,7 +78,8 @@ public class Creatures {
                     continue;
                 }
                 if (getDistance(bullet, player) <= bullet.getRadius()) {
-                    animationService.save(new Explosion(player.getX(),player.getY()));
+                    Explosion explosion = new Explosion(player.getX(), player.getY());
+                    animationService.save(explosion);
                     playerService.beingHurt(player, bullet.getPower());
                     bulletService.remove(bullet);
                     return;

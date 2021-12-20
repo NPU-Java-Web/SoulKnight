@@ -28,7 +28,7 @@ public class AnimationDAO {
             explosion.setAnimationId(map.get("animationId"));
             explosion.setState(Integer.parseInt(map.get("state")));
             explosion.setX(Integer.parseInt(map.get("x")));
-            explosion.setX(Integer.parseInt(map.get("y")));
+            explosion.setY(Integer.parseInt(map.get("y")));
             return explosion;
         }
     }
