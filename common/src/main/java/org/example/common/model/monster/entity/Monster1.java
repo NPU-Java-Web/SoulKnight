@@ -5,6 +5,8 @@ import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
 import org.example.common.model.monster.Monster;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class Monster1 extends Monster {
@@ -20,12 +22,12 @@ public class Monster1 extends Monster {
     }
 
     @Override
-    public Vector<Bullet> shoot(){
+    public List<Bullet> shoot(){
         return null;
     }
 
-    public Vector<Bullet> shoot(int x, int y){
-        Vector<Bullet> bullets = new Vector<Bullet>();
+    public List<Bullet> shoot(int x, int y){
+        List<Bullet> bullets = new ArrayList<>();
         int tempX = x-this.getX();
         int tempY = y-this.getY();
         double l = Math.sqrt(Math.pow(Math.abs(tempX),2)+Math.pow(Math.abs(tempY),2));
