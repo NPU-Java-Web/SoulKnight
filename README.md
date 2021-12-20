@@ -2,6 +2,8 @@
 
 **仓库说明：**
 
+本小组在Github和Gitee双远程仓库更新，在Gitee中可以看到从0开始的所有提交记录。
+
 Gitee仓库地址：https://gitee.com/liaojingpu/TankBattle
 
 
