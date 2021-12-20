@@ -39,7 +39,10 @@ public class GamePanel extends JPanel {
     private int[] playerBlood;
     private String playerId = GameConfig.playerId;
 
-
+    /**
+     *
+     * @param mainPanel 游戏界面创建
+     */
     public GamePanel(MainPanel mainPanel) {
         StaticInfo.isrunning = true;
         // 设置请求焦点
@@ -66,7 +69,10 @@ public class GamePanel extends JPanel {
         gameRenderThread.start();
     }
 
-
+    /**
+     *
+     * @param g 画图
+     */
     @Override
     public void paintComponent(Graphics g) {
 //    super.paintComponent(g);//清屏
@@ -91,7 +97,11 @@ public class GamePanel extends JPanel {
         g.drawImage(img, 0, 0, null);
     }
 
-
+    /**
+     *
+     * @param graphics 画笔
+     * @param image 图像
+     */
     public void clear(Graphics graphics,Image image) {
         //双缓存加载图片
         graphics.drawImage(image,0,0,1000,1000,this);
@@ -99,6 +109,10 @@ public class GamePanel extends JPanel {
         graphics.fillRect(0, 0, width, height);
     }
 
+    /**
+     *
+     * @param graphics 画笔
+     */
     public void drawMap(Graphics graphics){
         //读取当前的地图种类
         if(result!=null){
@@ -117,10 +131,14 @@ public class GamePanel extends JPanel {
             {
                 clear(tempGraphics, GameConfig.gamebackground3);
             }
+
         }
     }
 
-
+    /**
+     * 画人物
+     * @param graphics 画笔
+     */
     public void drawPlayers(Graphics graphics) {
 
         //用result中的信息来渲染
@@ -134,7 +152,13 @@ public class GamePanel extends JPanel {
         //drawPlayer(gameStartCore.getPlayer().getX(),gameStartCore.getPlayer().getY(), graphics);
     }
 
-
+    /**
+     *
+     * @param player 玩家
+     * @param graphics 画笔
+     * @param width 血量宽度
+     * @param playertype 玩家种类
+     */
     public void drawPlayer(Player player, Graphics graphics,int width,int playertype) {
         int flag = 0;
 
@@ -195,6 +219,10 @@ public class GamePanel extends JPanel {
 
 
     }
+
+    /**
+     *
+     */
     //esc键盘绑定
     public void adapter()
     {
@@ -209,7 +237,10 @@ public class GamePanel extends JPanel {
         });
     }
 
-
+    /**
+     *
+     * @param graphics 画笔
+     */
     public void drawBullets(Graphics graphics) {
         if(result!=null) {
             for (Bullet item : result.getBullets()) {
@@ -218,6 +249,13 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     *
+     * @param x 子弹x坐标
+     * @param y 子弹y坐标
+     * @param graphics 画笔
+     * @param bullettype 子弹种类
+     */
     public void drawBullet(int x, int y, Graphics graphics,int bullettype){
         if(bullettype == 1)
         {
@@ -278,6 +316,10 @@ public class GamePanel extends JPanel {
 
     }
 
+    /**
+     *
+     * @param graphics 画笔
+     */
     public void drawMonsters(Graphics graphics){
         int flag = 0;
         if(result!=null){
@@ -294,6 +336,14 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     *
+     * @param x 怪物x坐标
+     * @param y 怪物y坐标
+     * @param graphics 画笔
+     * @param width 怪物宽带
+     * @param type 怪物血量宽度
+     */
     public void drawMonster(int x, int y, Graphics graphics,int width,int type){
         if(type == 1)
         {
@@ -371,6 +421,10 @@ public class GamePanel extends JPanel {
 
     }
 
+    /**
+     *
+     * @param graphics 画笔
+     */
     public void drawAnimations(Graphics graphics){
 
             for (Animation item : result.getAnimations()) {
