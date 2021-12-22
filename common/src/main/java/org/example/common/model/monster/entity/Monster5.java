@@ -18,6 +18,7 @@ public class Monster5 extends Monster {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, STATE, VISIBILITY, REWARD);
     }
     @Override
+    //连续向一个方向发射4种子弹
     public List<Bullet> shoot(){
         return null;
     }
