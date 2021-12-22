@@ -8,15 +8,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Animation {
-    private String aniationId;
+
     /**
      * 种类
      */
-    protected Integer type;
+    protected Integer animationType;
+
+    protected String animationId;
+
 
     protected Integer state;
-    /**
 
+    /**
      * X坐标
      */
     protected Integer x;

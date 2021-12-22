@@ -3,6 +3,7 @@ package org.example.common.model.monster.entity;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 
+import java.util.List;
 import java.util.Vector;
 
 public class Monster4 extends Monster {
@@ -17,7 +18,8 @@ public class Monster4 extends Monster {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, STATE, VISIBILITY, REWARD);
     }
     @Override
-    public Vector<Bullet> shoot(){
+    //向4个方向发射子弹，每种子弹不同
+    public List<Bullet> shoot(){
         return null;
     }
 }

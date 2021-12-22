@@ -288,7 +288,7 @@ public class Dialog extends JDialog {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
-        String text = "<html>元气骑士游戏说明<br>test<html>";
+        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br>首先请输入您的游戏Id，游戏中可以控制人物<br><html>";
         jlabel_one = new JLabel(text);
         jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
         // 设置前景颜色
@@ -315,7 +315,7 @@ public class Dialog extends JDialog {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
-        String text = "<html>元气骑士游戏说明<br>test<html>";
+        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br><br><html>";
         jlabel_one = new JLabel(text);
         jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
         // 设置前景颜色
@@ -433,6 +433,11 @@ public class Dialog extends JDialog {
         setTitle("失败");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
+        jl02 = new JLabel("失败");
+        jl02.setFont(new Font("acefont-family", Font.BOLD, 30));
+        jl02.setBounds(150, 30, 100, 30);
+        add(jl02);
+
         jb03 = new JButton("返回游戏");
         jb03.setBounds(140, 70, 100, 50);
         add(jb03);
@@ -490,10 +495,6 @@ public class Dialog extends JDialog {
     public void returnMainPanel() {
 
         dispose();
-//                Point p = ClientCore.mainPanel.getLocation();
-//                ClientCore.mainPanel.dispose();
-//                ClientCore.Start();
-//                ClientCore.mainPanel.setLocation(p);
 
     }
 
@@ -519,6 +520,11 @@ public class Dialog extends JDialog {
         setTitle("成功闯关！");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
+        jl02 = new JLabel("成功闯关！");
+        jl02.setFont(new Font("acefont-family", Font.BOLD, 30));
+        jl02.setBounds(150, 30, 300, 30);
+        add(jl02);
+
         jb03 = new JButton("返回游戏");
         jb03.setBounds(140, 70, 100, 50);
         add(jb03);
@@ -527,6 +533,7 @@ public class Dialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 isStop = false;
                 //GamePanel.gameRenderThread.start();
+                GameConfig.end = false;
                 StaticInfo.isrunning = true;
                 GameConfig.flag = true;
                 dispose();

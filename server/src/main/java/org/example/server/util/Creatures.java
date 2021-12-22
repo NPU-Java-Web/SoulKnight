@@ -1,6 +1,8 @@
 package org.example.server.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.common.model.animation.Animation;
+import org.example.common.model.animation.entity.Explosion;
 import org.example.common.model.animation.entity.Portal;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
@@ -14,9 +16,9 @@ import org.example.server.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Component
 public class Creatures {
 
@@ -62,6 +64,8 @@ public class Creatures {
                     continue;
                 }
                 if (getDistance(bullet, monster) <= bullet.getRadius()) {
+                    Explosion explosion = new Explosion(monster.getX(), monster.getY());
+                    animationService.save(explosion);
                     monsterService.beingHurt(monster, bullet.getPower());
                     bulletService.remove(bullet);
                     return;
@@ -74,6 +78,8 @@ public class Creatures {
                     continue;
                 }
                 if (getDistance(bullet, player) <= bullet.getRadius()) {
+                    Explosion explosion = new Explosion(player.getX(), player.getY());
+                    animationService.save(explosion);
                     playerService.beingHurt(player, bullet.getPower());
                     bulletService.remove(bullet);
                     return;
@@ -92,6 +98,8 @@ public class Creatures {
                 monsterService.walkToPlayer(monster, player);
                 monsterService.tryStraightLaunch(monster, player);
                 monsterService.tryAllAroundLaunch(monster);
+            }else {
+                monsterService.walkRandomly(monster);
             }
         }
     }
@@ -100,8 +108,12 @@ public class Creatures {
         bulletService.updateLocation();
     }
 
+    public void AnimationsPlay(){
+        animationService.play(animations);
+    }
+
     public Result getResult() {
-        return new Result(players, bullets, monsters, new ArrayList<>(), ServerCore.level.getNumber());
+        return new Result(players, bullets, monsters, animations, ServerCore.level.getNumber());
     }
 
     public void addPortal(Portal portal){

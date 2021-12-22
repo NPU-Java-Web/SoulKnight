@@ -3,10 +3,8 @@ package org.example.client.display;
 import lombok.extern.slf4j.Slf4j;
 import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
-import org.example.client.calculate.service.GameDataProcess;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
-import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
 import org.example.common.config.level.Level2;
 import org.example.common.config.level.Level3;
@@ -145,7 +143,7 @@ public class GamePanel extends JPanel {
      * @param graphics 画笔
      */
     public void drawPlayers(Graphics graphics) {
-
+        //System.out.println(result);
         //用result中的信息来渲染
         if(result!=null) {
             for (Player item : result.getPlayers()) {
@@ -184,15 +182,27 @@ public class GamePanel extends JPanel {
             graphics.setColor(new Color(2, 62, 206));
             graphics.fillRect(10,20,widthStrength,8);
         }
+            //画人物id
+        graphics.setColor(new Color(255, 255, 255));
+        graphics.setFont(new Font("宋体",Font.PLAIN,20));  //字体高度
+        graphics.drawString(player.getPlayerId(), player.getX()-14, player.getY()-20);
+
         int newWidth =   player.getBlood()*30/playerBlood[flag];
         //判断是否死亡
-        if(player.getBlood()<=0)
+        if(player.getBlood()<=0&&player.getPlayerId().equals(StaticInfo.gameStartCore.getPlayer().getPlayerId()))
         {
             if(GameConfig.flag){
                 GameConfig.flag = false;
                 new Dialog(ClientCore.mainPanel,6);
 
             }
+        }
+        if(GameConfig.end){
+            //StaticInfo.isrunning = false;
+            GameConfig.flag = false;
+            GameConfig.end = false;
+            new Dialog(ClientCore.mainPanel,7);
+
         }
         if(playertype == 1)
         {
@@ -431,17 +441,22 @@ public class GamePanel extends JPanel {
      * @param graphics 画笔
      */
     public void drawAnimations(Graphics graphics){
-
-            for (Animation item : result.getAnimations()) {
-                drawAnimation(item.getX(),item.getY(),graphics,item.getType(),item);
+        //
+            try{
+                for (Animation item : result.getAnimations()) {
+                    drawAnimation(item.getX(),item.getY(),graphics,item.getAnimationType(),item);
+                }
+            }catch (NullPointerException e)
+            {
+                System.out.println("服务器因延迟未发送信息，请耐心等待响应");
             }
 
     }
     public void drawAnimation(int x, int y, Graphics graphics,int type,Animation animation){
         if(type == 1){
             graphics.drawImage(GameConfig.portal,
-                    x,
-                    y,
+                    x-20,
+                    y-50,
                     null);
         }
         if(type == 2){

@@ -120,6 +120,7 @@ public class PlaySound {
      * 打开声音文件方法
      */
     public void open(String s) {
+
         file = new File(s);//音频文件对象
         try {
             stream = AudioSystem.getAudioInputStream(file);//音频输入流

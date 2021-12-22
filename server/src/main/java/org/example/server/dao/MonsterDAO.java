@@ -79,12 +79,9 @@ public class MonsterDAO {
         }
     }
 
-    public void deleteAll() {
+    public void flushDB() {
         try (Jedis jedis = jedisPool.getResource()) {
-            Set<String> keys = jedis.keys("monster*");
-            for (String key : keys) {
-                jedis.del(key);
-            }
+            jedis.flushDB();
         }
     }
 
@@ -137,6 +134,12 @@ public class MonsterDAO {
             String key = ULTIMATE_PREFIX + monster.getMonsterId();
             jedis.set(key, "冷却中");
             jedis.expire(key,seconds);
+        }
+    }
+
+    public boolean isRemain(){
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.keys("monster*").size()>0;
         }
     }
 

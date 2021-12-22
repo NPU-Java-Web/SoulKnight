@@ -2,6 +2,7 @@ package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.model.animation.Animation;
+import org.example.common.model.animation.entity.Explosion;
 import org.example.common.model.player.Player;
 import org.example.server.dao.AnimationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AnimationService {
     @Autowired
     AnimationDAO animationDAO;
 
-    public synchronized List<Animation> list() {
+    public List<Animation> list() {
         List<Animation> result = new ArrayList<>();
         Set<String> keys = animationDAO.getAllExplosionKeys();
         for (String key : keys) {
@@ -35,4 +36,15 @@ public class AnimationService {
         }
         return result;
     }
+
+    public void play(List<Animation> animations){
+        for (Animation animation:animations){
+            animationDAO.increaseStateById(animation);
+        }
+    }
+
+    public void save(Explosion explosion) {
+        animationDAO.insert(explosion);
+    }
+
 }

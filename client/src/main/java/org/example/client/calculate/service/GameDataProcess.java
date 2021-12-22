@@ -18,7 +18,7 @@ import org.example.common.model.player.entity.Player1;
 import java.awt.event.MouseEvent;
 
 /**
- * 此类为游戏相关的静态方法
+ * 此类为client端静态方法的集合
  */
 @Slf4j
 public class GameDataProcess {
@@ -27,7 +27,7 @@ public class GameDataProcess {
     }
 
     /**
-     * 移动飞机，进行飞机下一步判断，用来筛选是否发送到serve
+     * 判断是否移动飞机
      */
     public static void moveMyPlayer(){
         int tempX = StaticInfo.gameStartCore.getPlayer().getX();
@@ -81,7 +81,7 @@ public class GameDataProcess {
 
     /**
      *
-     * @param e 鼠标相应事件
+     * @param e e
      */
     public static void shootBullet(MouseEvent e){
         if(GameConfig.playerStrength>=1)
@@ -124,7 +124,7 @@ public class GameDataProcess {
     }
 
     /**
-     * 选择关卡以及背景
+     * 是否地图跳转
      */
     public static void ifSwitchMap(){
         if(GamePanel.result == null) {
@@ -143,9 +143,10 @@ public class GameDataProcess {
                 StaticInfo.gameStartCore.getPlayer().setX(900);
                 StaticInfo.gameStartCore.getPlayer().setY(480);
             }
-            else if(GamePanel.result.getMapType() == 4)
+            else if(GamePanel.result.getMapType() == 4 &&GameConfig.flag)
             {
-                new Dialog(ClientCore.mainPanel,7);
+                //游戏结束并胜利
+                GameConfig.end = true;
             }
         }
     }

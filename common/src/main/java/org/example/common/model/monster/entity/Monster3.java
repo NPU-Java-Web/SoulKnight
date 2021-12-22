@@ -5,6 +5,8 @@ import org.example.common.model.bullet.Bullet;
 import org.example.common.model.bullet.BulletFactory;
 import org.example.common.model.monster.Monster;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class Monster3 extends Monster {
@@ -20,9 +22,9 @@ public class Monster3 extends Monster {
         count = 0;
     }
     @Override
-    public Vector<Bullet> shoot(){
+    public List<Bullet> shoot(){
         this.count = this.count % 180;
-        Vector<Bullet> bullets = new Vector<>();
+        List<Bullet> bullets = new ArrayList<>();
         for(int temp = 0; temp < 6 ; temp++){
             bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.LIGHT_BLUE,this.monsterId,this.getX(),this.getY(), Math.toRadians(count)));
             bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.LIGHT_BLUE,this.monsterId,this.getX(),this.getY(),Math.toRadians(count+180)));
