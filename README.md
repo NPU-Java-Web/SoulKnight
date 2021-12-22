@@ -40,38 +40,16 @@ SoulKnight
 │     │  │              │  
 │     │  │              ├─calculate  # 客户端数据处理及通讯 Conroller层
 │     │  │              │  │  CalculationMain.java
-│     │  │              │  │  
 │     │  │              │  ├─communication  # 与服务端通讯类
-│     │  │              │  │      AnalysisMessage.java
-│     │  │              │  │      DeliverPlayer.java
-│     │  │              │  │      MyClientInboundHandler.java
-│     │  │              │  │      UploadMessage.java
-│     │  │              │  │      
 │     │  │              │  └─service  # 本地数据处理
-│     │  │              │          GameDataProcess.java
-│     │  │              │          StaticInfo.java
-│     │  │              │          
 │     │  │              ├─display  # View层
-│     │  │              │      Dialog.java
-│     │  │              │      DisplayMain.java
-│     │  │              │      GamePanel.java
-│     │  │              │      GameRenderThread.java
-│     │  │              │      MainPanel.java
-│     │  │              │      PlaySound.java
-│     │  │              │      
 │     │  │              └─Input  # 输入监听层
 │     │  │                      GameMouseListener.java
 │     │  │                      KeyEventListener.java
 │     │  │                      
 │     │  └─resources  # 客户端图片音乐等静态资源
 │     │              
-│     └─test  # 单元测试类
-│         └─java
-│             └─org
-│                 └─example
-│                     └─client
-│                             ClientApplicationTest.java
-│                            
+│     └─test  # 客户端单元测试
 │                          
 ├─common
 │  │  common.iml
@@ -86,64 +64,14 @@ SoulKnight
 │                         ├─config  # 客户端静态配置
 │                         │  │  GameConfig.java
 │                         │  │  
-│                         │  └─level
-│                         │          Level.java
-│                         │          Level1.java
-│                         │          Level2.java
-│                         │          Level3.java
-│                         │          
+│                         │  └─level  # 地图配置
 │                         ├─keyListener  # 按键监听类
-│                         │      GameInput.java
-│                         │      
 │                         ├─model  # 实体类
-│                         │  ├─animation
-│                         │  │  │  Animation.java
-│                         │  │  │  
-│                         │  │  └─entity
-│                         │  │          Explosion.java
-│                         │  │          Portal.java
-│                         │  │          
-│                         │  ├─bullet
-│                         │  │  │  Bullet.java
-│                         │  │  │  BulletFactory.java
-│                         │  │  │  
-│                         │  │  └─entity
-│                         │  │          Bullet1.java
-│                         │  │          Bullet2.java
-│                         │  │          Bullet3.java
-│                         │  │          Bullet4.java
-│                         │  │          Bullet5.java
-│                         │  │          Bullet6.java
-│                         │  │          Bullet7.java
-│                         │  │          Bullet8.java
-│                         │  │          
-│                         │  ├─monster
-│                         │  │  │  Monster.java
-│                         │  │  │  MonsterFactory.java
-│                         │  │  │  
-│                         │  │  └─entity
-│                         │  │          Monster1.java
-│                         │  │          Monster2.java
-│                         │  │          Monster3.java
-│                         │  │          Monster4.java
-│                         │  │          Monster5.java
-│                         │  │          Monster6.java
-│                         │  │          Monster7.java
-│                         │  │          Monster8.java
-│                         │  │          
-│                         │  └─player
-│                         │      │  Player.java
-│                         │      │  PlayerFactory.java
-│                         │      │  
-│                         │      └─entity
-│                         │              Player1.java
-│                         │              Player2.java
-│                         │              PLayer3.java
-│                         │              
-│                         └─protocal
-│                                 Connect.java
-│                                 Order.java
-│                                 Result.java
+│                         │  ├─animation  # 特效实体类  
+│                         │  ├─bullet  # 子弹实体类
+│                         │  ├─monster # 怪物实体类
+│                         │  └─player  # 英雄实体类 
+│                         └─protocal  # 通信格式实体类
 │                                 
 └─server
     │  pom.xml
@@ -160,35 +88,12 @@ SoulKnight
        │                  │  ThreadConfig.java
        │                  │  
        │                  ├─dao  # 服务端DAO层
-       │                  │      AnimationDAO.java
-       │                  │      BulletDAO.java
-       │                  │      MonsterDAO.java
-       │                  │      PlayerDAO.java
-       │                  │      
        │                  ├─handler
-       │                  │      MyServerInboundHandler.java
-       │                  │      
        │                  ├─service  # 服务端业务逻辑Service层
-       │                  │      AnimationService.java
-       │                  │      BulletService.java
-       │                  │      MonsterService.java
-       │                  │      OrderService.java
-       │                  │      PlayerService.java
-       │                  │      
        │                  ├─thread
-       │                  │      RefreshThread.java
-       │                  │      
        │                  └─util
-       │                          Coordinate.java
-       │                          Creatures.java
-       │                          Verification.java
        │                          
        └─test  # 服务端单元测试
-           └─java
-               └─org
-                   └─example
-                       └─server
-                               ServerApplicationTest.java
 ```
 
 ## 构建说明
