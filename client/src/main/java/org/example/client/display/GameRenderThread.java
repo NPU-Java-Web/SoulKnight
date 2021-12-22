@@ -47,7 +47,7 @@ public class GameRenderThread implements Runnable{
     @Override
     public void run()
     {
-
+//
         while (!exited)
         {
 
