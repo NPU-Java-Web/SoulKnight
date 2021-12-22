@@ -7,13 +7,14 @@ import org.example.common.model.monster.Monster;
 import org.example.common.model.monster.MonsterFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class Level3 extends Level {
 
     public Level3() {
-        super(1, 1000, new boolean[1001][1001], new ArrayList<>());
+        super(3, 1000, new boolean[1001][1001], new LinkedList<>());
 
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m1", 300, 300, 90.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m2", 700, 700, 270.0));

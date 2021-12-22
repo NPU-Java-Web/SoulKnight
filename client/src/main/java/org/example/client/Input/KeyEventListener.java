@@ -108,8 +108,7 @@ public class KeyEventListener implements Runnable {
                 }
 
 
-            }//
-            //System.out.println(GameInput.getKeyDown(KeyEvent.VK_ENTER));
+            }
             //监听回车键
             if(GameInput.getKeyDown(KeyEvent.VK_ENTER)) {
                 //若焦点在开始游戏，则进行游戏面板的渲染

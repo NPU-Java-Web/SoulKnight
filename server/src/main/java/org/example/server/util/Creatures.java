@@ -98,6 +98,8 @@ public class Creatures {
                 monsterService.walkToPlayer(monster, player);
                 monsterService.tryStraightLaunch(monster, player);
                 monsterService.tryAllAroundLaunch(monster);
+            }else {
+                monsterService.walkRandomly(monster);
             }
         }
     }

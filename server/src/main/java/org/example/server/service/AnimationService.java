@@ -19,7 +19,7 @@ public class AnimationService {
     @Autowired
     AnimationDAO animationDAO;
 
-    public synchronized List<Animation> list() {
+    public List<Animation> list() {
         List<Animation> result = new ArrayList<>();
         Set<String> keys = animationDAO.getAllExplosionKeys();
         for (String key : keys) {
@@ -37,13 +37,13 @@ public class AnimationService {
         return result;
     }
 
-    public synchronized void play(List<Animation> animations){
+    public void play(List<Animation> animations){
         for (Animation animation:animations){
             animationDAO.increaseStateById(animation);
         }
     }
 
-    public synchronized void save(Explosion explosion) {
+    public void save(Explosion explosion) {
         animationDAO.insert(explosion);
     }
 

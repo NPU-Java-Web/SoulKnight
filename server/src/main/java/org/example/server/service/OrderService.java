@@ -1,7 +1,6 @@
 package org.example.server.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.common.model.player.Player;
 import org.example.server.dao.BulletDAO;
 import org.example.server.dao.MonsterDAO;
 import org.example.server.dao.PlayerDAO;
@@ -24,7 +23,7 @@ public class OrderService {
     public void restart(String playerId){
         playerDAO.deleteById(playerId);
         bulletDAO.deleteAll();
-        monsterDAO.deleteAll();
+        monsterDAO.flushDB();
     }
 
 

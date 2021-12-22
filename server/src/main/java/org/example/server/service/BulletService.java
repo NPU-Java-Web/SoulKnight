@@ -18,17 +18,17 @@ public class BulletService {
     @Autowired
     private BulletDAO bulletDAO;
 
-    public synchronized void save(List<Bullet> bullets) {
+    public void save(List<Bullet> bullets) {
         for (Bullet bullet : bullets) {
             if (!Verification.verifyLocation(bullet.getX(), bullet.getY())) {
-                log.warn("请求中的玩家位置无效：" + bullet);
+                log.warn("请求中的子弹位置无效：" + bullet);
                 return;
             }
             bulletDAO.insert(bullet);
         }
     }
 
-    public synchronized List<Bullet> list() {
+    public List<Bullet> list() {
         List<Bullet> result = new ArrayList<>();
 
         Set<String> keys = bulletDAO.getAllBulletKeys();
@@ -48,11 +48,11 @@ public class BulletService {
         return result;
     }
 
-    public synchronized void remove(Bullet bullet) {
+    public void remove(Bullet bullet) {
         bulletDAO.delete(bullet);
     }
 
-    public synchronized void updateLocation() {
+    public void updateLocation() {
         Set<String> keys = bulletDAO.getAllBulletKeys();
         for (String key : keys) {
             try {

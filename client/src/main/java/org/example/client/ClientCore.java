@@ -17,8 +17,10 @@ import java.util.Stack;
 
 public class ClientCore {
 
-    public static volatile MainPanel mainPanel;//主界面对象
-    public static PlaySound playSound;//声音对象
+    //主界面对象
+    public static volatile MainPanel mainPanel;
+    //声音对象
+    public static PlaySound playSound;
 
     public static void Start(){
 
@@ -41,37 +43,6 @@ public class ClientCore {
             playSound.loop();
             playSound.start();
         }
-
-//                GameInput gameInput = new GameInput();
-//
-//                while (true){
-//
-//                    /**
-//                     * Part1
-//                     * 在此处调用菜单界面,下面这个playerId实际实在菜单界面用户写的
-//                     */
-//                    String playerId= "1";
-//                    boolean gameStart= true;
-//
-//
-//
-//                    /**
-//                     * Part2
-//                     * 上式象征用户点击开始游戏了,然后这个while循环不会继续，因为已经进入if里的gameStartCore.start()了
-//                     */
-//                    if(gameStart == true){
-//                        GameStartCore gameStartCore = new GameStartCore(playerId);
-//                        gameStartCore.start();
-//                    }
-//
-//
-//                    /**
-//                     * Part3
-//                     * 用户点击返回菜单界面就又会进入菜单界面渲染
-//                     * 用户直接退出，就关闭界面退出循环
-//                     */
-//                }
-
 
     }
 

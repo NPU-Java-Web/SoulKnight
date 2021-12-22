@@ -44,19 +44,15 @@ public class GameRenderThread implements Runnable{
 
             if(StaticInfo.isrunning)
             {
+                //进行地图的选择
                 GameDataProcess.ifSwitchMap();
+                //判断是否移动人物
                 GameDataProcess.moveMyPlayer();
+                //进行页面渲染
                 gamePanel.repaint();
             }
 
 
-//            if(GameInput.getKeyDown(27))
-//            {
-//                new Dialog(ClientCore.mainPanel,3);
-//                GameInput.keys.put(27, false);
-//                GamePanel.isrunning = false;
-//                //break;
-//            }
             try
             {
                 /**稳定fps*/

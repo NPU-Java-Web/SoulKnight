@@ -81,6 +81,8 @@ public class BulletDAO {
 
     public void delete(Bullet bullet) {
         try (Jedis jedis = jedisPool.getResource()) {
+            Exception e=new Exception("delete bullet");
+            e.printStackTrace();
             String key = PREFIX + bullet.getBulletId();
             jedis.del(key);
         }

@@ -288,7 +288,7 @@ public class Dialog extends JDialog {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
-        String text = "<html>元气骑士游戏说明<br>test<html>";
+        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br>首先请输入您的游戏Id，游戏中可以控制人物<br><html>";
         jlabel_one = new JLabel(text);
         jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
         // 设置前景颜色
@@ -315,7 +315,7 @@ public class Dialog extends JDialog {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
-        String text = "<html>元气骑士游戏说明<br>test<html>";
+        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br><br><html>";
         jlabel_one = new JLabel(text);
         jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
         // 设置前景颜色
