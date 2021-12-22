@@ -41,14 +41,14 @@ public class ServerCore {
     public ServerCore() {
         level = new Level1();
         GlobalInfo = JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), level.getNumber()));
-        playerQueue = new LinkedBlockingQueue<>(30);
+        playerQueue = new LinkedBlockingQueue<>(50);
         bulletQueue = new LinkedBlockingQueue<>(30);
         orderQueue = new LinkedBlockingQueue<>(30);
     }
 
     public void start() {
-        EventLoopGroup bossGroup = new NioEventLoopGroup(2);
-        EventLoopGroup workerGroup = new NioEventLoopGroup(2);
+        EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+        EventLoopGroup workerGroup = new NioEventLoopGroup(4);
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup);
@@ -57,7 +57,7 @@ public class ServerCore {
                 @Override
                 protected void initChannel(NioSocketChannel ch) {
                     ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new LineBasedFrameDecoder(16384));
+                    pipeline.addLast(new LineBasedFrameDecoder(32768));
                     pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new MyServerInboundHandler());

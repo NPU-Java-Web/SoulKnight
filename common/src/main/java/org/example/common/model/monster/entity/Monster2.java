@@ -15,7 +15,7 @@ public class Monster2 extends Monster {
     public static final int SPEED = 3;
     public static final int BLOOD = 100;
     public static final int CD = 3000;
-    public static final int VISIBILITY = 600;
+    public static final int VISIBILITY = 400;
     public static final int REWARD = 50;
     private static int count;
 
