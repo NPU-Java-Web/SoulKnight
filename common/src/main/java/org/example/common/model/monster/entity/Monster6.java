@@ -18,6 +18,8 @@ public class Monster6 extends Monster {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, STATE, VISIBILITY, REWARD);
     }
     @Override
+    //boss1号
+    //发射子弹为前3种小怪发射子弹的集合
     public List<Bullet> shoot(){
         return null;
     }

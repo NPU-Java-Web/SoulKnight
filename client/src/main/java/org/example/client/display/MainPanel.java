@@ -65,6 +65,12 @@ public class MainPanel extends JFrame {
         label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
         label_title.setBounds(280,130,1000,200);
         label_title.setForeground(Color.white);
+
+        label05 = new JLabel("联机版");
+        label05.setFont(new Font("KaiTi", Font.BOLD, 60));
+        label05.setBounds(350,200,1000,200);
+        label05.setForeground(Color.white);
+
         // 设置标签
         label_start = new JLabel("开始游戏");
         // 设置字体 风格 字号
@@ -93,6 +99,7 @@ public class MainPanel extends JFrame {
         add(label_instruction);
         add(label_quit);
         add(label_title);
+        add(label05);
     }
 
     public void adapter()

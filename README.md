@@ -1,5 +1,18 @@
 # `SoulKnight`
 
+**仓库说明：**
+
+本小组在Github和Gitee双远程仓库更新，在Gitee中可以看到从0开始的所有提交记录。
+
+Gitee仓库地址：https://gitee.com/liaojingpu/TankBattle
+
+
+Github仓库地址：https://github.com/NPU-Java-Web/SoulKnight
+
+
+dev为功能最多最全的开发分支，master为经过测试排除bug后的稳定上线版本，成员个人开发分支命名格式为dev-name。
+开发成员单元测试完成后合并到dev分支，每个迭代阶段结束经过测试的dev分支合并到master分支。
+
 ## 文件树
 
 ```shell

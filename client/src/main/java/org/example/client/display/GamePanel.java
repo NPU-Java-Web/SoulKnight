@@ -433,9 +433,14 @@ public class GamePanel extends JPanel {
      * @param graphics 画笔
      */
     public void drawAnimations(Graphics graphics){
-
-            for (Animation item : result.getAnimations()) {
-                drawAnimation(item.getX(),item.getY(),graphics,item.getAnimationType(),item);
+        //
+            try{
+                for (Animation item : result.getAnimations()) {
+                    drawAnimation(item.getX(),item.getY(),graphics,item.getAnimationType(),item);
+                }
+            }catch (NullPointerException e)
+            {
+                System.out.println("服务器因延迟未发送信息，请耐心等待响应");
             }
 
     }

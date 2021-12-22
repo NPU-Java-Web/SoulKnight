@@ -17,13 +17,18 @@ import org.example.common.model.player.entity.Player1;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * 此类为client端静态方法的集合
+ */
 @Slf4j
 public class GameDataProcess {
 
     public static void menuRouter(){
     }
 
-
+    /**
+     * 判断是否移动飞机
+     */
     public static void moveMyPlayer(){
         int tempX = StaticInfo.gameStartCore.getPlayer().getX();
         int tempY = StaticInfo.gameStartCore.getPlayer().getY();
@@ -58,6 +63,12 @@ public class GameDataProcess {
         }
     }
 
+    /**
+     *
+     * @param x x坐标
+     * @param y y坐标
+     * @return 位置是否合法
+     */
     private static boolean locationLegal(int x , int y){
         if(StaticInfo.gameStartCore.getLevel().getTerrain()[x][y]){
             return true;
@@ -68,7 +79,10 @@ public class GameDataProcess {
         return false;
     }
 
-
+    /**
+     *
+     * @param e e
+     */
     public static void shootBullet(MouseEvent e){
         if(GameConfig.playerStrength>=1)
         {
@@ -109,7 +123,9 @@ public class GameDataProcess {
         }
     }
 
-
+    /**
+     * 是否地图跳转
+     */
     public static void ifSwitchMap(){
         if(GamePanel.result == null) {
             StaticInfo.gameStartCore.setLevel(new Level1());
@@ -129,6 +145,7 @@ public class GameDataProcess {
             }
             else if(GamePanel.result.getMapType() == 4 &&GameConfig.flag)
             {
+                //游戏结束并胜利
                 GameConfig.end = true;
             }
         }
