@@ -12,6 +12,9 @@ import org.example.common.protocal.Result;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * 此类为serve端和client端信息交互类
+ */
 @Data
 public class GameStartCore {
     //地图信息
