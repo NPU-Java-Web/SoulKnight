@@ -10,10 +10,8 @@ import org.example.server.ServerCore;
 import org.example.server.dao.BulletDAO;
 import org.example.server.dao.MonsterDAO;
 import org.example.server.thread.RefreshThread;
-import org.example.server.util.Creatures;
 import org.example.server.util.Verification;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -29,23 +27,23 @@ public class MonsterService {
     private MonsterDAO monsterDAO;
 
     public void initialize() {
-        if (monsterDAO.isRemain()){
+        if (monsterDAO.isRemain()) {
             return;
         }
-        final int SINGLE_GENERATION=5;
+        final int SINGLE_GENERATION = 5;
         Queue<Monster> initialMonsters = ServerCore.level.getInitialMonsters();
-       for (int i=0;i<SINGLE_GENERATION;i++) {
-           Monster monster = initialMonsters.poll();
-           if (monster!=null){
-               monsterDAO.insert(monster);
-           }else {
-               RefreshThread.enterNextLevel=true;
-           }
+        for (int i = 0; i < SINGLE_GENERATION; i++) {
+            Monster monster = initialMonsters.poll();
+            if (monster != null) {
+                monsterDAO.insert(monster);
+            } else {
+                RefreshThread.enterNextLevel = true;
+            }
 
-       }
+        }
     }
 
-    public void flushDB(){
+    public void flushDB() {
         monsterDAO.flushDB();
     }
 
@@ -122,28 +120,21 @@ public class MonsterService {
 
     public void tryAllAroundLaunch(Monster monster) {
         if (monsterDAO.readyForUltimate(monster)) {
-//            for (int i = 0; i < 10; i++) {
-//                double angle = Math.toRadians(36 * i);
-//                Bullet bullet = BulletFactory.makeBullet(5, monster.getMonsterId(), monster.getX(), monster.getY(), angle);
-//                if (bullet != null) {
-//                    bulletDAO.insert(bullet);
-//                }
-//            }
-            List<Bullet> bullets= MonsterShoot.shoot(monster);
-            if (bullets!=null){
-                for (Bullet bullet:bullets){
+            List<Bullet> bullets = MonsterShoot.shoot(monster);
+            if (bullets != null) {
+                for (Bullet bullet : bullets) {
                     if (bullet != null) {
                         bulletDAO.insert(bullet);
                     }
                 }
             }
-            monsterDAO.setUltimateCoolingTime(monster, 3);
+            monsterDAO.setUltimateCoolingTime(monster, monster.getCD());
         }
     }
 
     public void walkRandomly(Monster monster) {
-        Random random = new Random();
-        double angle = random.nextDouble() * 3.14159 * 2;
+
+        double angle=monsterDAO.getAngle(monster);
         final double FACTOR = 0.8;
         int deltaX = (int) (monster.getSpeed() * FACTOR * Math.cos(angle));
         int deltaY = (int) (monster.getSpeed() * FACTOR * Math.sin(angle));
@@ -153,6 +144,8 @@ public class MonsterService {
             monster.setX(newX);
             monster.setY(newY);
             monsterDAO.updateLocationById(monster);
+        }else {
+            monsterDAO.changeAngle(monster);
         }
     }
 

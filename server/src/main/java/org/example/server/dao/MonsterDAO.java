@@ -7,6 +7,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 @Repository
@@ -20,6 +21,8 @@ public class MonsterDAO {
     private static final String CD_PREFIX = "cooling:";
 
     private static final String ULTIMATE_PREFIX = "ultimate:";
+
+    private static final String ORIENTATION_PREFIX = "face:";
 
     public Monster selectById(String monsterId) {
         String key = PREFIX + monsterId;
@@ -40,7 +43,7 @@ public class MonsterDAO {
             monster.setAngle(Double.parseDouble(map.get("angle")));
             monster.setSpeed(Integer.parseInt(map.get("speed")));
             monster.setBlood(Integer.parseInt(map.get("blood")));
-            monster.setState(Integer.parseInt(map.get("state")));
+            monster.setCD(Integer.parseInt(map.get("CD")));
             monster.setVisibility(Integer.parseInt(map.get("visibility")));
             monster.setReward(Integer.parseInt(map.get("reward")));
             return monster;
@@ -67,7 +70,7 @@ public class MonsterDAO {
             jedis.hset(key, "angle", monster.getAngle().toString());
             jedis.hset(key, "speed", monster.getSpeed().toString());
             jedis.hset(key, "blood", monster.getBlood().toString());
-            jedis.hset(key, "state", monster.getState().toString());
+            jedis.hset(key, "CD", monster.getCD().toString());
             jedis.hset(key, "visibility", monster.getVisibility().toString());
             jedis.hset(key, "reward", monster.getReward().toString());
         }
@@ -110,11 +113,11 @@ public class MonsterDAO {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = CD_PREFIX + monster.getMonsterId();
             jedis.set(key, "冷却中");
-            jedis.expire(key,seconds);
+            jedis.expire(key, seconds);
         }
     }
 
-    public void updateLocationById(Monster monster){
+    public void updateLocationById(Monster monster) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + monster.getMonsterId();
             jedis.hset(key, "x", monster.getX().toString());
@@ -122,24 +125,41 @@ public class MonsterDAO {
         }
     }
 
-    public boolean readyForUltimate(Monster monster){
+    public boolean readyForUltimate(Monster monster) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = ULTIMATE_PREFIX + monster.getMonsterId();
             return !jedis.exists(key);
         }
     }
 
-    public void setUltimateCoolingTime(Monster monster, long seconds) {
+    public void setUltimateCoolingTime(Monster monster, long milliseconds) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = ULTIMATE_PREFIX + monster.getMonsterId();
             jedis.set(key, "冷却中");
-            jedis.expire(key,seconds);
+            jedis.pexpire(key,milliseconds);
         }
     }
 
-    public boolean isRemain(){
+    public boolean isRemain() {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.keys("monster*").size()>0;
+            return jedis.keys("monster*").size() > 0;
+        }
+    }
+
+    public double getAngle(Monster monster) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String angle=jedis.get(ORIENTATION_PREFIX+monster.getMonsterId());
+            if (angle!=null){
+                return Double.parseDouble(angle);
+            }
+            return 0;
+        }
+    }
+
+    public void changeAngle(Monster monster){
+        try (Jedis jedis = jedisPool.getResource()) {
+            Random random=new Random();
+            jedis.set(ORIENTATION_PREFIX+monster.getMonsterId(), String.valueOf(random.nextDouble()*3.1416*2));
         }
     }
 
