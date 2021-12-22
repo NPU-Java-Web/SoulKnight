@@ -55,7 +55,4 @@ public class Monster {
     protected Integer reward;
 
 
-    public List<Bullet> shoot(){
-        return null;
-    };
 }

@@ -17,9 +17,8 @@ public class Monster5 extends Monster {
     public Monster5(String monsterId, Integer x, Integer y, Double angle){
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, STATE, VISIBILITY, REWARD);
     }
-    @Override
-    //连续向一个方向发射4种子弹
-    public List<Bullet> shoot(){
+
+    public static List<Bullet> shoot(Monster monster){
         return null;
     }
 }

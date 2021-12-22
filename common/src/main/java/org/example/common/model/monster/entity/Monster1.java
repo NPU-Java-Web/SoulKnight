@@ -21,8 +21,7 @@ public class Monster1 extends Monster {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, STATE, VISIBILITY, REWARD);
     }
 
-    @Override
-    public List<Bullet> shoot(){
+    public static List<Bullet> shoot(Monster monster){
         return null;
     }
 
