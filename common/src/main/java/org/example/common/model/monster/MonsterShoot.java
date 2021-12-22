@@ -11,21 +11,21 @@ public class MonsterShoot {
 
     public static List<Bullet> shoot(Monster monster){
         if(monster instanceof Monster1){
-            return ((Monster1)monster).shoot();
+            return (Monster1.shoot(monster));
         } else if (monster instanceof Monster2){
-            return ((Monster2)monster).shoot();
+            return (Monster2.shoot(monster));
         } else if (monster instanceof Monster3){
-            return ((Monster3)monster).shoot();
+            return (Monster3.shoot(monster));
         } else if (monster instanceof Monster4){
-            return ((Monster4)monster).shoot();
+            return (Monster4.shoot(monster));
         } else if (monster instanceof Monster5){
-            return ((Monster5)monster).shoot();
+            return (Monster5.shoot(monster));
         } else if (monster instanceof Monster6){
-            return ((Monster6)monster).shoot();
+            return (Monster6.shoot(monster));
         } else if (monster instanceof Monster7){
-            return ((Monster7)monster).shoot();
+            return (Monster7.shoot(monster));
         } else if (monster instanceof Monster8){
-            return ((Monster8)monster).shoot();
+            return (Monster8.shoot(monster));
         }
         return null;
         /*try {

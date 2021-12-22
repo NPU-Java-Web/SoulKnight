@@ -124,8 +124,10 @@ public class GameConfig {
         public static final int LIGHT_BLUE = 5;
         //紫色子弹
         public static final int PURPLE = 6;
+        //红色子弹
+        public static final int RED = 7;
         //深蓝色子弹
-        public static final int DARK_BLUE = 7;
+        public static final int DARK_BLUE = 8;
 
 
     }
