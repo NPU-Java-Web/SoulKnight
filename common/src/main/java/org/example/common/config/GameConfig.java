@@ -10,8 +10,8 @@ import java.net.URL;
 public class GameConfig {
 
     /**背景图片*/
-    public static ImageIcon backgroundMenu = new ImageIcon(System.getProperty("user.dir")+"\\client\\src\\main\\resources\\image.jpg");
-    public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.jpg");
+    public static ImageIcon backgroundMenu = new ImageIcon(System.getProperty("user.dir")+"\\client\\src\\main\\resources\\image.png");
+    public static ImageIcon background = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\background.png");
     //玩家图片（1）
     public static Image player = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/heros/未标题-1.png");
     public static ImageIcon playerShow = new ImageIcon(System.getProperty("user.dir")+"\\TankBattle\\client\\src\\main\\resources\\heros\\未标题-1.png");
