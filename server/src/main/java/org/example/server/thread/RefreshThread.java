@@ -10,7 +10,10 @@ import org.example.common.model.bullet.Bullet;
 import org.example.common.model.player.Player;
 import org.example.common.protocal.Order;
 import org.example.server.ServerCore;
-import org.example.server.service.*;
+import org.example.server.service.BulletService;
+import org.example.server.service.MonsterService;
+import org.example.server.service.OrderService;
+import org.example.server.service.PlayerService;
 import org.example.server.util.Creatures;
 import org.example.server.util.Verification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +43,16 @@ public class RefreshThread {
     @Autowired
     private Creatures creatures;
 
+    public static boolean enterNextLevel;
+
     @Async
     public void run() {
-
+        monsterService.flushDB();
         while (true) {
             log.info(ServerCore.level.toString());
-            monsterService.initializeMonsters();
-
             while (true) {
+                //初始化怪物
+                monsterService.initialize();
                 //处理Order
                 List<Order> orders = new ArrayList<>();
                 while (true) {
@@ -62,7 +67,7 @@ public class RefreshThread {
                     if (order.getCommand().equals("restart")) {
                         orderService.restart(order.getPlayerId());
                         ServerCore.level = new Level1();
-                        monsterService.initializeMonsters();
+                        monsterService.initialize();
                     } else {
                         log.warn("未知的命令：" + order);
                     }
@@ -97,26 +102,26 @@ public class RefreshThread {
                 creatures.AnimationsPlay();
 
                 //判断是否可以进去下一关
-                if (!monsterService.remainMonsters()) {
+                if (enterNextLevel && !monsterService.remainMonsters()) {
                     boolean authority = true;
-                    if (ServerCore.level.getNumber()==1){
-                        creatures.addPortal(new Portal(500,50));
+                    if (ServerCore.level.getNumber() == 1) {
+                        creatures.addPortal(new Portal(500, 50));
                         for (Player player : players) {
                             if (!Verification.atTransferArea1(player.getX(), player.getY())) {
                                 authority = false;
                                 break;
                             }
                         }
-                    }else if (ServerCore.level.getNumber()==2){
-                        creatures.addPortal(new Portal(50,525));
+                    } else if (ServerCore.level.getNumber() == 2) {
+                        creatures.addPortal(new Portal(50, 525));
                         for (Player player : players) {
                             if (!Verification.atTransferArea2(player.getX(), player.getY())) {
                                 authority = false;
                                 break;
                             }
                         }
-                    }else if (ServerCore.level.getNumber()==3){
-                        creatures.addPortal(new Portal(50,525));
+                    } else if (ServerCore.level.getNumber() == 3) {
+                        creatures.addPortal(new Portal(50, 525));
                         for (Player player : players) {
                             if (!Verification.atTransferArea3(player.getX(), player.getY())) {
                                 authority = false;
@@ -132,7 +137,7 @@ public class RefreshThread {
                         } else if (ServerCore.level.getNumber() == 2) {
                             ServerCore.level = new Level3();
                             break;
-                        }else if (ServerCore.level.getNumber() == 3){
+                        } else if (ServerCore.level.getNumber() == 3) {
                             ServerCore.level.setNumber(4);
                         }
                     }

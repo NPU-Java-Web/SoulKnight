@@ -21,7 +21,7 @@ public class BulletService {
     public synchronized void save(List<Bullet> bullets) {
         for (Bullet bullet : bullets) {
             if (!Verification.verifyLocation(bullet.getX(), bullet.getY())) {
-                log.warn("请求中的玩家位置无效：" + bullet);
+                log.warn("请求中的子弹位置无效：" + bullet);
                 return;
             }
             bulletDAO.insert(bullet);
