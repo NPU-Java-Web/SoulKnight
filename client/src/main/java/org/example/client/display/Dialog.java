@@ -29,7 +29,7 @@ import java.util.Stack;
 @Slf4j
 
 public class Dialog extends JDialog {
-    private JLabel jlabel_one, jl02, jl03, jl04, jima01, jima02, jima03, jima04, jima05;
+    private JLabel jlabel_one, jl02, jl03, jl04,jl05,jl06 ,jima01, jima02, jima03, jima04, jima05;
     private JButton jb02, jb03, jb04, jb05, jb06, jButton;
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;
@@ -134,7 +134,7 @@ public class Dialog extends JDialog {
 
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
         jb02 = new JButton("返回主菜单");
-        jb02.setBounds(190, 450, 200, 50);
+        jb02.setBounds(400, 350, 150, 50);
         add(jb02);
         jb02.addActionListener(new ActionListener() {
             @Override
@@ -167,6 +167,10 @@ public class Dialog extends JDialog {
         jr01 = new JRadioButton("游侠");
         jr01.setBounds(50, 350, 100, 20);
         add(jr01);
+        jl04 = new JLabel("游荡于丛林中，豪爽强大的精灵游侠伊利丹...");
+        jl04.setFont(new Font("acefont-family", Font.BOLD, 15));
+        jl04.setBounds(50, 400, 400, 15);
+        add(jl04);
         if (GameConfig.playerType == 1) {
             jr01.setSelected(true);
         }
@@ -185,7 +189,10 @@ public class Dialog extends JDialog {
         jima02 = new JLabel(GameConfig.playerShow);
         jima02.setBounds(150, 300, 100, 30);
         add(jima02);
-
+        jl05 = new JLabel("伫立于暴风城，坚毅忠诚的骑士洛萨...");
+        jl05.setFont(new Font("acefont-family", Font.BOLD, 15));
+        jl05.setBounds(50, 450, 400, 15);
+        add(jl05);
         jr02 = new JRadioButton("战士");
         jr02.setBounds(150, 350, 100, 20);
         add(jr02);
@@ -207,7 +214,10 @@ public class Dialog extends JDialog {
         jima03 = new JLabel(GameConfig.playerShow);
         jima03.setBounds(250, 300, 100, 30);
         add(jima03);
-
+        jl06 = new JLabel("电闪雷鸣下，无冕者联盟的最强刺客正蓄势待发...");
+        jl06.setFont(new Font("acefont-family", Font.BOLD, 15));
+        jl06.setBounds(50, 500, 400, 15);
+        add(jl06);
         jr03 = new JRadioButton("刺客");
         jr03.setBounds(250, 350, 100, 20);
         add(jr03);
@@ -288,9 +298,9 @@ public class Dialog extends JDialog {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
-        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br>首先请输入您的游戏Id，游戏中可以控制人物<br><html>";
+        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br>首先请输入您的游戏Id，游戏中可以控制人物八个方向任意移动，点击鼠标进行子弹发射！但要注意血量和体力呦~<br>快控制您的战士来一场酣畅淋漓的战斗吧！<html>";
         jlabel_one = new JLabel(text);
-        jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
+        jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 20));
         // 设置前景颜色
         jlabel_one.setForeground(Color.black);
         jlabel_one.setBounds(40, 0, 400, 350);
@@ -315,9 +325,9 @@ public class Dialog extends JDialog {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
 
-        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br><br><html>";
+        String text = "<html>元气骑士游戏说明<br>欢迎游玩我们开发的游戏！<br>此游戏为复刻版元气骑士，有联机与单机功能，欢迎和小伙伴一同闯关！<br>首先请输入您的游戏Id，游戏中可以控制人物八个方向任意移动，点击鼠标进行子弹发射！但要注意血量和体力呦~<br>快控制您的战士来一场酣畅淋漓的战斗吧！<html>";
         jlabel_one = new JLabel(text);
-        jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 30));
+        jlabel_one.setFont(new Font("KaiTi", Font.BOLD, 20));
         // 设置前景颜色
         jlabel_one.setForeground(Color.black);
         jlabel_one.setBounds(40, 0, 400, 350);

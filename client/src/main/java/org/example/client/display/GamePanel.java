@@ -21,6 +21,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 @Slf4j
+/**
+ * 此类为游戏面板
+ */
 public class GamePanel extends JPanel {
 
     private int width;

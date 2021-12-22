@@ -61,14 +61,14 @@ public class MainPanel extends JFrame {
     {
 
         //添加主菜单所有标签
-        label_title = new JLabel("元气骑士");
-        label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
-        label_title.setBounds(280,130,1000,200);
-        label_title.setForeground(Color.white);
+//        label_title = new JLabel("元气骑士");
+//        label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
+//        label_title.setBounds(280,130,1000,200);
+//        label_title.setForeground(Color.white);
 
         label05 = new JLabel("联机版");
         label05.setFont(new Font("KaiTi", Font.BOLD, 60));
-        label05.setBounds(350,200,1000,200);
+        label05.setBounds(350,160,1000,200);
         label05.setForeground(Color.white);
 
         // 设置标签
@@ -98,7 +98,7 @@ public class MainPanel extends JFrame {
         add(label_setting);
         add(label_instruction);
         add(label_quit);
-        add(label_title);
+//        add(label_title);
         add(label05);
     }
 
