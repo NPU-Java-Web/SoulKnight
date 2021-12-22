@@ -14,7 +14,7 @@ public class Monster1 extends Monster {
     public static final int SPEED = 5;
     public static final int BLOOD = 40;
     public static final int CD = 3000;
-    public static final int VISIBILITY = 300;
+    public static final int VISIBILITY = 600;
     public static final int REWARD = 30;
 
     public Monster1(String monsterId, Integer x, Integer y, Double angle){
