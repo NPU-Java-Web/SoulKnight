@@ -7,6 +7,10 @@ import org.example.client.calculate.service.StaticInfo;
 
 /**
  * 这个类从【发送队列】里取东西，然后直接发给了服务器
+ *
+ * @see Runnable
+ * @see GameStartCore
+ * @see Channel
  */
 @Slf4j
 public class UploadMessage implements Runnable {

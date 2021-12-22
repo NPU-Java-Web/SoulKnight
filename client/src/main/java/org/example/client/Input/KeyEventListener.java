@@ -15,6 +15,9 @@ import java.awt.event.KeyEvent;
 
 /**
  * 此类为主菜单的监听线程，以从总的键盘响应的hashmap中读取对应信息
+ *
+ * @see Runnable
+ * @see MainPanel
  */
 public class KeyEventListener implements Runnable {
     private boolean exited = false;

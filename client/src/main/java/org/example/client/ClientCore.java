@@ -15,6 +15,13 @@ import org.example.common.config.GameConfig;
 
 import java.util.Stack;
 
+/**
+ * <p>客户端核心类主要用于启动客户端对应线程</p>
+ *
+ * @see MainPanel
+ * @see PlaySound
+ */
+
 public class ClientCore {
 
     //主界面对象

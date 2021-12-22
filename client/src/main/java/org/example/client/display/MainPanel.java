@@ -11,8 +11,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * 此类为界面主体jframe
- * 即主菜单
+ * <P>此类打开窗口并渲染主菜单界面主体</P>
+ *
+ * @see JFrame
+ * @see JLabel
+ * @see MainPanel
  */
 public class MainPanel extends JFrame {
 
@@ -59,12 +62,6 @@ public class MainPanel extends JFrame {
 
     public void setinterface()
     {
-
-        //添加主菜单所有标签
-//        label_title = new JLabel("元气骑士");
-//        label_title.setFont(new Font("KaiTi", Font.BOLD, 80));
-//        label_title.setBounds(280,130,1000,200);
-//        label_title.setForeground(Color.white);
 
         label05 = new JLabel("联机版");
         label05.setFont(new Font("KaiTi", Font.BOLD, 60));

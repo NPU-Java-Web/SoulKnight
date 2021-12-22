@@ -8,7 +8,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * 鼠标监听
+ * <p>进行鼠标事件监听</p>
+ *
+ * @see MouseListener
+ * @see MouseEvent
  */
 @Slf4j
 public class GameMouseListener implements MouseListener {

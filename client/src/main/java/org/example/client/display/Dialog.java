@@ -22,9 +22,13 @@ import java.net.URL;
 import java.util.Stack;
 
 /**
- *
  * 本类描述游戏结束弹出的对话框
  *
+ * @see JDialog
+ * @see JLabel
+ * @see JButton
+ * @see JRadioButton
+ * @see JCheckBox
  */
 @Slf4j
 

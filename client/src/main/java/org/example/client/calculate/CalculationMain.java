@@ -20,7 +20,18 @@ import org.example.common.protocal.Connect;
 import java.net.InetSocketAddress;
 
 /**
- * 客户端计算模块
+ * 客户端计算主模块
+ * <p>启动后开始运行客户端通信模块{@code AnalysisMessage}和{@code UploadMessage}。
+ * 从服务端获取关键信息并将本地客户端信息传输到服务端
+ * </p>
+ *
+ * @see java.lang.Runnable
+ * @see GameStartCore
+ * @see Bootstrap
+ * @see UploadMessage
+ * @see AnalysisMessage
+ * @see Channel
+ * @see NioEventLoopGroup
  */
 public class CalculationMain implements Runnable {
     private final GameStartCore gameStartCore;

@@ -6,7 +6,11 @@ import org.example.client.display.MainPanel;
 import org.example.common.config.level.Level;
 
 /**
- * 将所需对象地址静态存储
+ * 在启动后将关键类的对象存储该类的静态变量以便于调用
+ *
+ * @see GameStartCore
+ * @see GamePanel
+ * @see MainPanel
  */
 public class StaticInfo {
 

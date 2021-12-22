@@ -8,9 +8,13 @@ import java.io.File;
 
 
 /**
+ * 此类为声音启动类,在游戏过程中播放对应音乐
  *
- * 此类为声音启动类
- *
+ * @see File
+ * @see AudioInputStream
+ * @see AudioFormat
+ * @see DataLine.Info
+ * @see Clip
  **/
 public class PlaySound {
 

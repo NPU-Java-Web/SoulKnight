@@ -22,7 +22,14 @@ import java.awt.event.KeyEvent;
 
 @Slf4j
 /**
- * 此类为游戏面板
+ *  进行游戏的面板类，进行游戏内容的渲染
+ *
+ * @see JPanel
+ * @see GameStartCore
+ * @see Thread
+ * @see Result
+ * @see Graphics
+ * @see MainPanel
  */
 public class GamePanel extends JPanel {
 

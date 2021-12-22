@@ -5,11 +5,11 @@ import org.example.client.GameStartCore;
 import org.example.client.calculate.communication.DeliverPlayer;
 
 /**
+ * 此类开始真正游戏界面的渲染和客户端服务端的通信
  *
- * 此类只负责开启发送玩家坐标的线程
- * 以及在控制台中打印信息
- *
- * 负责人：孟辰林、翁宇哲
+ * @see Runnable
+ * @see GameStartCore
+ * @see Thread
  */
 @Slf4j
 public class DisplayMain implements Runnable {

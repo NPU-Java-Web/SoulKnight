@@ -18,7 +18,8 @@ import org.example.common.model.player.entity.Player1;
 import java.awt.event.MouseEvent;
 
 /**
- * 此类为client端静态方法的集合
+ * 此类为client端数据处理静态方法的集合
+ * <p>主要进行人物移动数据的计算和判定，本地人物射击的数据处理，地图跳转变量改变</p>
  */
 @Slf4j
 public class GameDataProcess {

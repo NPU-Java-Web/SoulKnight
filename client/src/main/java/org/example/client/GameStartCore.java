@@ -13,7 +13,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * 此类为serve端和client端信息交互类
+ * 此类为serve端和client端信息交互,并进行真正游戏内容的启动
+ *
+ * @see Level
+ * @see Player
+ * @see BlockingQueue
  */
 @Data
 public class GameStartCore {
@@ -36,14 +40,6 @@ public class GameStartCore {
         this.level = new Level1();
 
         this.player = player;
-        /*this.TYPE = player.getPlayerType();
-        this.playerId = player.getPlayerId();
-        this.x = player.getX();
-        this.y = player.getY();
-        this.angle = player.getAngle();
-        this.speed = player.getSpeed();
-        this.blood = player.getBlood();
-        this.score = player.getScore();*/
 
         this.frames = new LinkedBlockingQueue<>(5);
         this.start = false;
