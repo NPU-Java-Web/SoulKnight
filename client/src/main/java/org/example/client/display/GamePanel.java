@@ -179,6 +179,11 @@ public class GamePanel extends JPanel {
             graphics.setColor(new Color(2, 62, 206));
             graphics.fillRect(10,20,widthStrength,8);
         }
+            //画人物id
+        graphics.setColor(new Color(255, 255, 255));
+        graphics.setFont(new Font("宋体",Font.PLAIN,20));  //字体高度
+        graphics.drawString(player.getPlayerId(), player.getX()-14, player.getY()-20);
+
         int newWidth =   player.getBlood()*30/playerBlood[flag];
         //判断是否死亡
         if(player.getBlood()<=0&&player.getPlayerId().equals(StaticInfo.gameStartCore.getPlayer().getPlayerId()))

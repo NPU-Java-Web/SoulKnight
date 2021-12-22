@@ -18,7 +18,7 @@ public class PlayerService {
     @Autowired
     private PlayerDAO playerDAO;
 
-    public synchronized void saveOrUpdate(List<Player> players) {
+    public void saveOrUpdate(List<Player> players) {
         for (Player player : players) {
             if (!Verification.verifyLocation(player.getX(), player.getY())) {
                 log.warn("请求中的玩家位置无效：" + player);
@@ -32,7 +32,7 @@ public class PlayerService {
         }
     }
 
-    public synchronized List<Player> list() {
+    public List<Player> list() {
         List<Player> result = new ArrayList<>();
         Set<String> keys = playerDAO.getAllPlayerKeys();
         for (String key : keys) {
@@ -50,7 +50,7 @@ public class PlayerService {
         return result;
     }
 
-    public synchronized void beingHurt(Player player, int difference) {
+    public void beingHurt(Player player, int difference) {
         playerDAO.subtractBlood(player, Math.min(player.getBlood(), difference));
     }
 

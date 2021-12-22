@@ -130,6 +130,7 @@ public class RefreshThread {
                         }
                     }
                     if (authority) {
+                        enterNextLevel=false;
                         log.info(ServerCore.GlobalInfo);
                         if (ServerCore.level.getNumber() == 1) {
                             ServerCore.level = new Level2();

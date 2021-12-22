@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class Level2 extends Level {
 
     public Level2() {
-        super(1, 1000, new boolean[1001][1001], new LinkedList<>());
+        super(2, 1000, new boolean[1001][1001], new LinkedList<>());
 
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m21", 600, 300, 90.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m22", 750, 200, 270.0));

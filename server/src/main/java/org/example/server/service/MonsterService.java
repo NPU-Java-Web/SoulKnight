@@ -28,7 +28,7 @@ public class MonsterService {
     @Autowired
     private MonsterDAO monsterDAO;
 
-    public synchronized void initialize() {
+    public void initialize() {
         if (monsterDAO.isRemain()){
             return;
         }
@@ -45,11 +45,11 @@ public class MonsterService {
        }
     }
 
-    public synchronized void flushDB(){
+    public void flushDB(){
         monsterDAO.flushDB();
     }
 
-    public synchronized List<Monster> list() {
+    public List<Monster> list() {
         List<Monster> result = new ArrayList<>();
         Set<String> keys = monsterDAO.getAllKeys();
         for (String key : keys) {
@@ -67,7 +67,7 @@ public class MonsterService {
         return result;
     }
 
-    public synchronized void beingHurt(Monster monster, int difference) {
+    public void beingHurt(Monster monster, int difference) {
         if (difference >= monster.getBlood()) {
             monsterDAO.delete(monster);
         } else {
@@ -75,7 +75,7 @@ public class MonsterService {
         }
     }
 
-    public synchronized void tryStraightLaunch(Monster monster, Player player) {
+    public void tryStraightLaunch(Monster monster, Player player) {
         if (monsterDAO.isAggressive(monster)) {
             int x = player.getX() - monster.getX();
             int y = player.getY() - monster.getY();
@@ -94,7 +94,7 @@ public class MonsterService {
         }
     }
 
-    public synchronized void walkToPlayer(Monster monster, Player player) {
+    public void walkToPlayer(Monster monster, Player player) {
         int x = player.getX() - monster.getX();
         int y = player.getY() - monster.getY();
         double l = Math.sqrt(Math.pow(Math.abs(x), 2) + Math.pow(Math.abs(y), 2));
@@ -116,11 +116,11 @@ public class MonsterService {
         }
     }
 
-    public synchronized boolean remainMonsters() {
+    public boolean remainMonsters() {
         return monsterDAO.getAllKeys().size() > 0;
     }
 
-    public synchronized void tryAllAroundLaunch(Monster monster) {
+    public void tryAllAroundLaunch(Monster monster) {
         if (monsterDAO.readyForUltimate(monster)) {
 //            for (int i = 0; i < 10; i++) {
 //                double angle = Math.toRadians(36 * i);
@@ -141,7 +141,7 @@ public class MonsterService {
         }
     }
 
-    public synchronized void walkRandomly(Monster monster) {
+    public void walkRandomly(Monster monster) {
         Random random = new Random();
         double angle = random.nextDouble() * 3.14159 * 2;
         final double FACTOR = 0.8;
