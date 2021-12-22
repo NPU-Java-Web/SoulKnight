@@ -5,6 +5,6 @@ package org.example.common.protocal;
  * 端口配置
  */
 public class Connect {
-    public static final String ADDRESS = "localhost";
+    public static final String ADDRESS = "localhost";//192.168.43.48
     public static final int PORT = 8081;
 }

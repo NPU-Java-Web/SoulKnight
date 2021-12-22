@@ -134,7 +134,7 @@ public class MonsterService {
 
     public void walkRandomly(Monster monster) {
         double angle=monsterDAO.getAngle(monster);
-        final double FACTOR = 0.8;
+        final double FACTOR = 0.5;
         int deltaX = (int) (monster.getSpeed() * FACTOR * Math.cos(angle));
         int deltaY = (int) (monster.getSpeed() * FACTOR * Math.sin(angle));
         int newX = monster.getX() + deltaX;
