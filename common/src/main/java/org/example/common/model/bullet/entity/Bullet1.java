@@ -10,7 +10,7 @@ import org.example.common.model.bullet.Bullet;
 public class Bullet1 extends Bullet {
     public static final int BULLET_TYPE= GameConfig.BulletType.CLASSIC;
     public static final int SPEED = 50;
-    public static final int RADIUS = 20;
+    public static final int RADIUS = 50;
     public static final int POWER = 20;
 
     public Bullet1(String playerId, Integer x, Integer y, Double angle){

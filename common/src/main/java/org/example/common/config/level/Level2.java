@@ -21,6 +21,7 @@ public class Level2 extends Level {
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_ONE, "m23", 710, 300, 270.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO, "m24", 200, 300, 270.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO, "m25", 250, 300, 270.0));
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_SEVEN, "m20", 800, 300, 270.0));
 //            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m26", 300, 300, 270.0));
 //            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m27", 350, 300, 270.0));
 //            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m28", 400, 300, 270.0));
