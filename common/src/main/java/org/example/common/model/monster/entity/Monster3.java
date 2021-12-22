@@ -13,12 +13,12 @@ public class Monster3 extends Monster {
     public static final int MONSTER_TYPE = 3;
     public static final int SPEED = 3;
     public static final int BLOOD = 100;
-    public static final int STATE = 0;
-    public static final int VISIBILITY = 300;
+    public static final int CD = 300;
+    public static final int VISIBILITY = 400;
     public static final int REWARD = 50;
     private static int count;
     public Monster3(String monsterId, Integer x, Integer y, Double angle){
-        super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, STATE, VISIBILITY, REWARD);
+        super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, CD, VISIBILITY, REWARD);
         count = 0;
     }
 

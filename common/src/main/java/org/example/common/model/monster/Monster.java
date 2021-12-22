@@ -42,9 +42,9 @@ public class Monster {
      */
     protected Integer blood;
     /**
-     * 怪物当前的状态
+     * 怪物大招冷却
      */
-    protected Integer state;
+    protected Integer CD;
     /**
      * 怪物的视力范围
      */

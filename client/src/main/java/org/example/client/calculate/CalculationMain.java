@@ -54,7 +54,7 @@ public class CalculationMain implements Runnable {
                 @Override
                 protected void initChannel(NioSocketChannel ch) {
                     ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new LineBasedFrameDecoder(8192));
+                    pipeline.addLast(new LineBasedFrameDecoder(32768));
                     pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
                     pipeline.addLast(new MyClientInboundHandler());

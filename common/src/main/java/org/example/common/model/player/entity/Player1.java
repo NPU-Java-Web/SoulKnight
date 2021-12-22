@@ -13,7 +13,7 @@ import org.example.common.model.player.Player;
 public class Player1 extends Player {
     public static final int PLAYER_TYPE = GameConfig.PlayerType.CLASSIC;
     public static final int SPEED = 6;
-    public static final int BLOOD = 150;
+    public static final int BLOOD = 300;
     public static final int SCORE = 0;
 
     public Player1(String playerId, Integer x, Integer y, Double angle){

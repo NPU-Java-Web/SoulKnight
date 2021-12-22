@@ -93,12 +93,17 @@ public class Creatures {
             return;
         }
         for (Monster monster : monsters) {
-            Player player = players.get(0);
-            if (getDistance(monster, player) < monster.getVisibility()) {
-                monsterService.walkToPlayer(monster, player);
-                monsterService.tryStraightLaunch(monster, player);
-                monsterService.tryAllAroundLaunch(monster);
-            }else {
+            boolean foundPlayer=false;
+            for (Player player:players) {
+                if (getDistance(monster, player) < monster.getVisibility()) {
+                    foundPlayer=true;
+                    monsterService.walkToPlayer(monster, player);
+                    monsterService.tryStraightLaunch(monster, player);
+                    monsterService.tryAllAroundLaunch(monster);
+                    break;
+                }
+            }
+            if (!foundPlayer){
                 monsterService.walkRandomly(monster);
             }
         }
