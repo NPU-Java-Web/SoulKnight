@@ -21,17 +21,25 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 @Data
 public class GameStartCore {
-    //地图信息
+    /**
+     * 地图信息
+     */
     private volatile Level level;
 
     private volatile Player player;
 
-    //显示的所有内容都是从下面这个队列里面取（包括自己的信息），不要管上面的个人信息
-    //如果发现Result里的players的playerId和上面一样，那这个人就是自己
+    /**
+     * 显示的所有内容都是从下面这个队列里面取（包括自己的信息），不要管上面的个人信息
+     * 如果发现Result里的players的playerId和上面一样，那这个人就是自己
+     */
     private BlockingQueue<Result> frames;
-    //表示游戏是否已经开始
+    /**
+     * 表示游戏是否已经开始
+     */
     private volatile boolean start;
-    //以下是用于和服务器通信的队列，不进行显示
+    /**
+     * 以下是用于和服务器通信的队列，不进行显示
+     */
     public static BlockingQueue<String> sendQueue;
     public static BlockingQueue<String> receiveQueue;
     public boolean isrunning;

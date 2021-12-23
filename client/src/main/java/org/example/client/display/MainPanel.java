@@ -21,7 +21,8 @@ public class MainPanel extends JFrame {
 
     public JLabel back, label_start, label_setting, label_instruction, label_quit, label_title, label05, label06, label07, label08;
     private PlaySound p;
-    private MainPanel mainPanel;// 本类对象
+    // 本类对象
+    private MainPanel mainPanel;
     public static GamePanel gamePanel;
     private int fouseIndex;
 
