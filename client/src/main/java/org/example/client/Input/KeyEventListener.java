@@ -109,7 +109,8 @@ public class KeyEventListener implements Runnable {
                         MainPanel.gamePanel = newGamePanel;
                         StaticInfo.gamePanel = newGamePanel;
                         ClientCore.mainPanel.add(newGamePanel);
-                        newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
+                        // 设置游戏面板界面大小
+                        newGamePanel.setSize(1000, 1000);
 
                         ClientCore.mainPanel.remove(ClientCore.mainPanel.label_setting);
                         ClientCore.mainPanel.remove(ClientCore.mainPanel.label_quit);
@@ -143,7 +144,7 @@ public class KeyEventListener implements Runnable {
                 }
             }
             try {
-                /**稳定fps*/
+                //稳定fps
                 Thread.sleep(interval);
             } catch (Exception e) {
                 break;

@@ -43,9 +43,9 @@ public class Dialog extends JDialog {
     public Dialog(JFrame jFrame, int type) {
         super(jFrame, true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        // 设置布局管理器为无
+        /**设置布局管理器为无*/
         setLayout(null);
-        // 设置对话框不可更改大小
+        /**设置对话框不可更改大小*/
         setResizable(false);
 
         if (type == 1) {
@@ -54,12 +54,14 @@ public class Dialog extends JDialog {
         } else if (type == 2) {
             //说明弹窗
             showInstruction(jFrame);
-
-        } else if (type == 3) {   //暂停弹窗
+        } else if (type == 3) {
+            //暂停弹窗
             showpause(jFrame);
-        } else if (type == 4) {   //游戏内说明弹窗
+        } else if (type == 4) {
+            //游戏内说明弹窗
             showInstructionInGame(jFrame);
-        } else if (type == 5) {   //游戏内设置弹窗
+        } else if (type == 5) {
+            //游戏内设置弹窗
             showSettingInGame(jFrame);
         } else if (type == 6) {
             //失败弹窗
@@ -73,9 +75,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显示设置弹窗
      * @param jFrame jframe
      */
-//显示设置弹窗
     public void showSetting(JFrame jFrame) {
 
         setTitle("设置");
@@ -105,7 +107,6 @@ public class Dialog extends JDialog {
                 GameConfig.playerId = textField.getText();
             }
         });
-
         // 音效标签
         jl02 = new JLabel("声音选项");
         jl02.setFont(new Font("acefont-family", Font.BOLD, 15));
@@ -244,9 +245,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显示设置弹窗
      * @param jFrame jframe
      */
-    //显示设置弹窗
     public void showSettingInGame(JFrame jFrame) {
         setTitle("设置");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
@@ -295,9 +296,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显示说明弹窗
      * @param jFrame jframe
      */
-//显示说明弹窗
     public void showInstruction(JFrame jFrame) {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
@@ -350,9 +351,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显游戏内菜单弹窗
      * @param jFrame jframe
      */
-//显游戏内菜单弹窗
     public void showpause(JFrame jFrame) {
         setTitle("菜单");
 
@@ -438,9 +439,9 @@ public class Dialog extends JDialog {
             }
         });
     }
-    //显游戏失败弹窗
 
     /**
+     * 显游戏失败弹窗
      * @param jFrame jframe
      */
     public void showfalse(JFrame jFrame) {
@@ -504,25 +505,33 @@ public class Dialog extends JDialog {
         });
 
     }
-//返回主菜单
 
+    /**
+     * 返回主菜单
+     */
     public void returnMainPanel() {
 
         dispose();
 
     }
 
-    //暂停游戏
+    /**
+     * 暂停游戏
+     */
     public void pause() {
         StaticInfo.isrunning = false;
     }
 
-    //游戏内帮助弹窗
+    /**
+     * 游戏内帮助弹窗
+     */
     public void showHelp(JFrame jFrame) {
         new Dialog(jFrame, 4);
     }
 
-    //游戏内设置弹窗
+    /**
+     * 游戏内设置弹窗
+     */
     public void showSet(JFrame jFrame) {
         new Dialog(jFrame, 5);
     }

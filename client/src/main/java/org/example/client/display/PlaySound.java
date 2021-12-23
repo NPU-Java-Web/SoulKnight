@@ -18,17 +18,29 @@ import java.io.File;
  **/
 public class PlaySound {
 
-    //音频文件
+    /**
+     * 音频文件
+     */
     private File file;
-    //音频输入
+    /**
+     * 音频输入
+     */
     private AudioInputStream stream;
-    //音频格式
+    /**
+     * 音频格式
+     */
     private AudioFormat format;
-    //音频行信号
+    /**
+     * 音频行信号
+     */
     private DataLine.Info info;
-    //音频
+    /**
+     * 音频
+     */
     private Clip clip;
-    //控制声音播放
+    /**
+     * 控制声音播放
+     */
     public static boolean[] b = new boolean[]{true, true, true, true};
 
 
@@ -36,10 +48,13 @@ public class PlaySound {
      * 建立播放音频的音频行
      */
     public void play() {
-        info = new DataLine.Info(Clip.class, format);//音频行信息
+        //音频行信息
+        info = new DataLine.Info(Clip.class, format);
         try {
-            clip = (Clip) AudioSystem.getLine(info);//音频行
-            clip.open(stream);//将音频数据读入音频行
+            //音频行
+            clip = (Clip) AudioSystem.getLine(info);
+            //将音频数据读入音频行
+            clip.open(stream);
         } catch (LineUnavailableException e) {
 
             e.printStackTrace();
@@ -100,7 +115,6 @@ public class PlaySound {
     /**
      * 停止播放
      */
-    //暂停音频播放
     public void stop() {
         clip.stop();
     }
@@ -108,7 +122,6 @@ public class PlaySound {
     /**
      * 开始播放
      */
-    //播放音频
     public void start() {
         clip.start();
     }
@@ -116,7 +129,6 @@ public class PlaySound {
     /**
      * 回放背景音乐设置
      */
-    //回放
     public void loop() {
         clip.loop(20);
     }
@@ -125,11 +137,13 @@ public class PlaySound {
      * 打开声音文件方法
      */
     public void open(String s) {
-
-        file = new File(s);//音频文件对象
+        //音频文件对象
+        file = new File(s);
         try {
-            stream = AudioSystem.getAudioInputStream(file);//音频输入流
-            format = stream.getFormat();//音频格式对象
+            //音频输入流
+            stream = AudioSystem.getAudioInputStream(file);
+            //音频格式对象
+            format = stream.getFormat();
 
         } catch (UnsupportedAudioFileException e) {
 

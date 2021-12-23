@@ -54,7 +54,7 @@ public class GamePanel extends JPanel {
      */
     public GamePanel(MainPanel mainPanel) {
         StaticInfo.isrunning = true;
-        // 设置请求焦点
+        //设置请求焦点
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(

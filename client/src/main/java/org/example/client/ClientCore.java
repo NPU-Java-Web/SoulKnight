@@ -24,9 +24,13 @@ import java.util.Stack;
 
 public class ClientCore {
 
-    //主界面对象
+    /**
+     * 主界面对象
+     */
     public static volatile MainPanel mainPanel;
-    //声音对象
+    /**
+     * 声音对象
+     */
     public static PlaySound playSound;
 
     public static void Start() {
@@ -39,8 +43,8 @@ public class ClientCore {
         mainPanel.setVisible(true);
         //设置不可拉伸
         mainPanel.setResizable(false);
-        //居中显示
-        mainPanel.setLocationRelativeTo(null);//在屏幕中居中显示
+        //在屏幕中居中显示
+        mainPanel.setLocationRelativeTo(null);
 
         if (playSound == null) {
             playSound = new PlaySound();

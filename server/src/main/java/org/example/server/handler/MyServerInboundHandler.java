@@ -16,7 +16,7 @@ public class MyServerInboundHandler extends SimpleChannelInboundHandler<Object> 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         Channel channel = ctx.channel();
-//        log.info("服务器收到了客户端传来的消息：" + msg);
+        //log.info("服务器收到了客户端传来的消息：" + msg);
         String message = (String) msg;
         if (message.contains("playerType")) {
             Player player = JSON.parseObject(message, Player.class);
