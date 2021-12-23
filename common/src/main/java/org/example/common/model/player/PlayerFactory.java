@@ -9,16 +9,16 @@ import org.example.common.model.player.entity.Player2;
 @NoArgsConstructor
 public class PlayerFactory {
 
-    public static Player makePlayer(int playerType, String playerId, Integer x, Integer y, Double angle){
-        switch (playerType){
+    public static Player makePlayer(int playerType, String playerId, Integer x, Integer y, Double angle) {
+        switch (playerType) {
             case GameConfig.PlayerType.CLASSIC:
-                return new Player1(playerId,x,y,angle);
+                return new Player1(playerId, x, y, angle);
             case GameConfig.PlayerType.ARMOR:
-                return new Player2(playerId,x,y,angle);
+                return new Player2(playerId, x, y, angle);
             case GameConfig.PlayerType.ASSASSIN:
-                return new PLayer3(playerId,x,y,angle);
+                return new PLayer3(playerId, x, y, angle);
             default:
-                return new Player1(playerId,x,y,angle);
+                return new Player1(playerId, x, y, angle);
         }
     }
 }

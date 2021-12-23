@@ -82,8 +82,8 @@ public class AnimationDAO {
             String key = PREFIX + animation.getAnimationId();
             Integer currentState = animation.getState();
             if (currentState < 9) {
-                jedis.hset(key, "state", String.valueOf(currentState+1));
-            }else {
+                jedis.hset(key, "state", String.valueOf(currentState + 1));
+            } else {
                 jedis.del(key);
             }
         }

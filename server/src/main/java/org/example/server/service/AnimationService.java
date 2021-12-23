@@ -37,8 +37,8 @@ public class AnimationService {
         return result;
     }
 
-    public void play(List<Animation> animations){
-        for (Animation animation:animations){
+    public void play(List<Animation> animations) {
+        for (Animation animation : animations) {
             animationDAO.increaseStateById(animation);
         }
     }

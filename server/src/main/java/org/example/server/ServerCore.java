@@ -40,7 +40,7 @@ public class ServerCore {
 
     public ServerCore() {
         level = new Level1();
-        GlobalInfo = JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>(), level.getNumber()));
+        GlobalInfo = JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), level.getNumber()));
         playerQueue = new LinkedBlockingQueue<>(50);
         bulletQueue = new LinkedBlockingQueue<>(30);
         orderQueue = new LinkedBlockingQueue<>(30);

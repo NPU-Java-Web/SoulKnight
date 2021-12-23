@@ -136,7 +136,7 @@ public class MonsterDAO {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = ULTIMATE_PREFIX + monster.getMonsterId();
             jedis.set(key, "冷却中");
-            jedis.pexpire(key,milliseconds);
+            jedis.pexpire(key, milliseconds);
         }
     }
 
@@ -148,18 +148,18 @@ public class MonsterDAO {
 
     public double getAngle(Monster monster) {
         try (Jedis jedis = jedisPool.getResource()) {
-            String angle=jedis.get(ORIENTATION_PREFIX+monster.getMonsterId());
-            if (angle!=null){
+            String angle = jedis.get(ORIENTATION_PREFIX + monster.getMonsterId());
+            if (angle != null) {
                 return Double.parseDouble(angle);
             }
             return 0;
         }
     }
 
-    public void changeAngle(Monster monster){
+    public void changeAngle(Monster monster) {
         try (Jedis jedis = jedisPool.getResource()) {
-            Random random=new Random();
-            jedis.set(ORIENTATION_PREFIX+monster.getMonsterId(), String.valueOf(random.nextDouble()*3.1416*2));
+            Random random = new Random();
+            jedis.set(ORIENTATION_PREFIX + monster.getMonsterId(), String.valueOf(random.nextDouble() * 3.1416 * 2));
         }
     }
 

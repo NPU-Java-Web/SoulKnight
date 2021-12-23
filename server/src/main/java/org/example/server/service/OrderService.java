@@ -20,7 +20,7 @@ public class OrderService {
     @Autowired
     private MonsterDAO monsterDAO;
 
-    public void restart(String playerId){
+    public void restart(String playerId) {
         playerDAO.deleteById(playerId);
         bulletDAO.deleteAll();
         monsterDAO.flushDB();

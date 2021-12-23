@@ -29,6 +29,4 @@ public class Animation {
     protected Integer y;
 
 
-
-
 }

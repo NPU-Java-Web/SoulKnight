@@ -65,7 +65,7 @@ public class CalculationMain implements Runnable {
             Channel channel = future.channel();
 
 
-            Thread uploadMessage = new Thread(new UploadMessage(channel,gameStartCore), "uploadMessage");
+            Thread uploadMessage = new Thread(new UploadMessage(channel, gameStartCore), "uploadMessage");
             uploadMessage.start();
 
             Thread analysisMessage = new Thread(new AnalysisMessage(gameStartCore), "analysisMessage");

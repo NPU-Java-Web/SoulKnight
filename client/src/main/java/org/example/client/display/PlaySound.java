@@ -48,7 +48,8 @@ public class PlaySound {
             e.printStackTrace();
         }
     }
-    public void playByBite(){
+
+    public void playByBite() {
         //AudioInputStream:音频输入流,是具有指定音频格式和长度的输入流。
         AudioInputStream audioInputStream = null;
 
@@ -71,23 +72,23 @@ public class PlaySound {
 
             auline.start();
 
-            int nBytesRead = 0 ;
+            int nBytesRead = 0;
 
             //缓冲大小
             byte[] abData = new byte[512];
 
-            while(nBytesRead != -1) {
+            while (nBytesRead != -1) {
 
-                nBytesRead = audioInputStream.read(abData , 0 , abData.length);
+                nBytesRead = audioInputStream.read(abData, 0, abData.length);
 
-                if(nBytesRead >= 0){
+                if (nBytesRead >= 0) {
                     auline.write(abData, 0, nBytesRead);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             return;
-        }finally{
+        } finally {
 
             auline.drain();
 

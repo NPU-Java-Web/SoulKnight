@@ -16,23 +16,23 @@ import org.example.client.calculate.service.StaticInfo;
  * @see GamePanel
  */
 @Slf4j
-public class GameRenderThread implements Runnable{
+public class GameRenderThread implements Runnable {
 
     private boolean exited = false;
-    /**每次绘制间隔时间*/
+    /**
+     * 每次绘制间隔时间
+     */
     private int interval;
     public GameStartCore gameStartCore;
     public GamePanel gamePanel;
     public boolean isrunning;
 
     /**
-     *
      * @param gameStartCore gamestartcore
-     * @param gamePanel gamepanel
-     * @param isrunning isrunnning
+     * @param gamePanel     gamepanel
+     * @param isrunning     isrunnning
      */
-    public GameRenderThread(GameStartCore gameStartCore, GamePanel gamePanel,boolean isrunning)
-    {
+    public GameRenderThread(GameStartCore gameStartCore, GamePanel gamePanel, boolean isrunning) {
         this.gameStartCore = gameStartCore;
         interval = 1000 / GamePanel.fps;
         this.gamePanel = gamePanel;
@@ -43,14 +43,11 @@ public class GameRenderThread implements Runnable{
      *
      */
     @Override
-    public void run()
-    {
+    public void run() {
 //
-        while (!exited)
-        {
+        while (!exited) {
 
-            if(StaticInfo.isrunning)
-            {
+            if (StaticInfo.isrunning) {
                 //进行地图的选择
                 GameDataProcess.ifSwitchMap();
                 //判断是否移动人物
@@ -60,18 +57,14 @@ public class GameRenderThread implements Runnable{
             }
 
 
-            try
-            {
+            try {
                 /**稳定fps*/
                 Thread.sleep(interval);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 break;
             }
         }
     }
-
 
 
 }

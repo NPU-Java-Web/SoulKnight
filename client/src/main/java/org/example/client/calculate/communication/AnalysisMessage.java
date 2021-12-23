@@ -25,8 +25,7 @@ public class AnalysisMessage implements Runnable {
     public void run() {
         while (true) {
             try {
-                if(!StaticInfo.isrunning)
-                {
+                if (!StaticInfo.isrunning) {
                     break;
                 }
                 String message = GameStartCore.receiveQueue.take();

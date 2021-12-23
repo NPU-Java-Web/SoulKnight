@@ -12,6 +12,6 @@ public class ServerApplicationTest {
 //        Jedis jedis = new Jedis("localhost", 6379);
 //        System.out.println(jedis.hmget());
 //        jedis.close();
-        System.err.println(BulletFactory.makeBullet(3,"hadytjda89",84,5,8.9));
+        System.err.println(BulletFactory.makeBullet(3, "hadytjda89", 84, 5, 8.9));
     }
 }

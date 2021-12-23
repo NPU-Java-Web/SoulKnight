@@ -29,7 +29,7 @@ public class ClientCore {
     //声音对象
     public static PlaySound playSound;
 
-    public static void Start(){
+    public static void Start() {
 
         mainPanel = new MainPanel();
         StaticInfo.mainPanel = mainPanel;
@@ -42,8 +42,7 @@ public class ClientCore {
         //居中显示
         mainPanel.setLocationRelativeTo(null);//在屏幕中居中显示
 
-        if(playSound == null)
-        {
+        if (playSound == null) {
             playSound = new PlaySound();
             playSound.open(GameConfig.sound);
             playSound.play();

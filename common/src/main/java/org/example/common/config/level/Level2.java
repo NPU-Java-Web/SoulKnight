@@ -41,71 +41,71 @@ public class Level2 extends Level {
         initWall();
     }
 
-    private void initWall(){
+    private void initWall() {
         /**上方*/
-        for(int tempX = 0; tempX <= 1000; tempX++){
-            for(int tempY = 0; tempY <= 110; tempY++){
+        for (int tempX = 0; tempX <= 1000; tempX++) {
+            for (int tempY = 0; tempY <= 110; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
         /**左上方*/
-        for(int tempX = 0; tempX <= 130; tempX++){
-            for(int tempY = 0; tempY <= 470; tempY++){
+        for (int tempX = 0; tempX <= 130; tempX++) {
+            for (int tempY = 0; tempY <= 470; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
         /**右上方*/
-        for(int tempX = 900; tempX <= 1000; tempX++){
-            for(int tempY = 0; tempY <= 1000; tempY++){
+        for (int tempX = 900; tempX <= 1000; tempX++) {
+            for (int tempY = 0; tempY <= 1000; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
 
         /**下方*/
-        for(int tempX = 0; tempX <= 1000; tempX++){
-            for(int tempY = 850; tempY <= 1000; tempY++){
+        for (int tempX = 0; tempX <= 1000; tempX++) {
+            for (int tempY = 850; tempY <= 1000; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
         /**左下方*/
-        for(int tempX = 0; tempX <= 130; tempX++){
-            for(int tempY = 580; tempY <= 1000; tempY++){
+        for (int tempX = 0; tempX <= 130; tempX++) {
+            for (int tempY = 580; tempY <= 1000; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
 
         /**中间墙体*/
-        for(int tempX = 394; tempX <= 607; tempX++){
-            for(int tempY = 235; tempY <= 320; tempY++){
+        for (int tempX = 394; tempX <= 607; tempX++) {
+            for (int tempY = 235; tempY <= 320; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
-        for(int tempX = 480; tempX <= 522; tempX++){
-            for(int tempY = 320; tempY <= 492; tempY++){
+        for (int tempX = 480; tempX <= 522; tempX++) {
+            for (int tempY = 320; tempY <= 492; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
 
         /**左下角墙体*/
-        for(int tempX = 309; tempX <= 352; tempX++){
-            for(int tempY = 404; tempY <= 534; tempY++){
+        for (int tempX = 309; tempX <= 352; tempX++) {
+            for (int tempY = 404; tempY <= 534; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
-        for(int tempX = 309; tempX <= 476; tempX++){
-            for(int tempY = 535; tempY <= 620; tempY++){
+        for (int tempX = 309; tempX <= 476; tempX++) {
+            for (int tempY = 535; tempY <= 620; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
 
         /**右下角墙体*/
-        for(int tempX = 647; tempX <= 690; tempX++){
-            for(int tempY = 404; tempY <= 534; tempY++){
+        for (int tempX = 647; tempX <= 690; tempX++) {
+            for (int tempY = 404; tempY <= 534; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }
-        for(int tempX = 520; tempX <= 690; tempX++){
-            for(int tempY = 535; tempY <= 620; tempY++){
+        for (int tempX = 520; tempX <= 690; tempX++) {
+            for (int tempY = 535; tempY <= 620; tempY++) {
                 terrain[tempX][tempY] = true;
             }
         }

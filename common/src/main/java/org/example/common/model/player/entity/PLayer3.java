@@ -9,7 +9,7 @@ public class PLayer3 extends Player {
     public static final int BLOOD = 240;
     public static final int SCORE = 0;
 
-    public PLayer3(String playerId, Integer x, Integer y, Double angle){
-        super(PLAYER_TYPE, playerId, x, y, angle, SPEED,BLOOD,SCORE);
+    public PLayer3(String playerId, Integer x, Integer y, Double angle) {
+        super(PLAYER_TYPE, playerId, x, y, angle, SPEED, BLOOD, SCORE);
     }
 }

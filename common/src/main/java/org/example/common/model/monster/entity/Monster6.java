@@ -18,44 +18,44 @@ public class Monster6 extends Monster {
     public static final int REWARD = 50;
     private static int count;
 
-    public Monster6(String monsterId, Integer x, Integer y, Double angle){
+    public Monster6(String monsterId, Integer x, Integer y, Double angle) {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, CD, VISIBILITY, REWARD);
         this.count = 0;
     }
 
-    public static List<Bullet> shoot(Monster monster){
+    public static List<Bullet> shoot(Monster monster) {
         count = count % 45;
         List<Bullet> bullets = new ArrayList<>();
 
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(), Math.toRadians(count)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+45)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+90)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+135)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+180)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+225)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+270)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+315)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+360)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 45)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 90)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 135)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 180)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 225)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 270)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 315)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 360)));
 
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(), Math.toRadians(count)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+45)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+90)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+135)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+180)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+225)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+270)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+315)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+360)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 45)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 90)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 135)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 180)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 225)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 270)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 315)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.PURPLE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 360)));
 
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(), Math.toRadians(count)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+45)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+90)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+135)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+180)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+225)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+270)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+315)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE,monster.getMonsterId(),monster.getX(),monster.getY(),Math.toRadians(count+360)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 45)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 90)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 135)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 180)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 225)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 270)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 315)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.DARK_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 360)));
 
 
         count += 5;

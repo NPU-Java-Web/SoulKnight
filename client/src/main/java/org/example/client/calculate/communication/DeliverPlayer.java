@@ -30,8 +30,7 @@ public class DeliverPlayer implements Runnable {
             try {
                 //暂时设置为每一秒发1次，上线后要改成一秒发30次
                 Thread.sleep(GameConfig.SLEEP_TIME);
-                if(StaticInfo.isrunning)
-                {
+                if (StaticInfo.isrunning) {
 
                     Player player = new Player();
                     player.setPlayerType(gameStartCore.getPlayer().getPlayerType());
@@ -48,9 +47,8 @@ public class DeliverPlayer implements Runnable {
                         log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
                     }
                     //按时间增加蓝量
-                    if(GameConfig.playerStrength<100)
-                    {
-                        GameConfig.playerStrength+=0.5;
+                    if (GameConfig.playerStrength < 100) {
+                        GameConfig.playerStrength += 0.5;
                     }
 
                 }

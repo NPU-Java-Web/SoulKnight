@@ -43,20 +43,20 @@ public class Player {
      */
     protected Integer score;
 
-    public void moveUp(){
-        this.setY(this.y-this.speed);
+    public void moveUp() {
+        this.setY(this.y - this.speed);
     }
 
-    public void moveDown(){
-        this.setY(this.y+this.speed);
+    public void moveDown() {
+        this.setY(this.y + this.speed);
     }
 
-    public void moveLeft(){
-        this.setX(this.x-this.speed);
+    public void moveLeft() {
+        this.setX(this.x - this.speed);
     }
 
-    public void moveRight(){
-        this.setX(this.x+this.speed);
+    public void moveRight() {
+        this.setX(this.x + this.speed);
     }
 
 

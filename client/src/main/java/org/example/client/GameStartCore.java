@@ -34,8 +34,9 @@ public class GameStartCore {
     //以下是用于和服务器通信的队列，不进行显示
     public static BlockingQueue<String> sendQueue;
     public static BlockingQueue<String> receiveQueue;
-    public  boolean isrunning;
-    public GameStartCore(Player player,boolean isrunning) {
+    public boolean isrunning;
+
+    public GameStartCore(Player player, boolean isrunning) {
         //level只能为1
         this.level = new Level1();
 

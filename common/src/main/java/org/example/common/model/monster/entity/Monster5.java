@@ -14,11 +14,11 @@ public class Monster5 extends Monster {
     public static final int VISIBILITY = 400;
     public static final int REWARD = 50;
 
-    public Monster5(String monsterId, Integer x, Integer y, Double angle){
+    public Monster5(String monsterId, Integer x, Integer y, Double angle) {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, CD, VISIBILITY, REWARD);
     }
 
-    public static List<Bullet> shoot(Monster monster){
+    public static List<Bullet> shoot(Monster monster) {
         return null;
     }
 }

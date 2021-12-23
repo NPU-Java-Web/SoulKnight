@@ -33,7 +33,7 @@ import java.util.Stack;
 @Slf4j
 
 public class Dialog extends JDialog {
-    private JLabel jlabel_one, jl02, jl03, jl04,jl05,jl06 ,jima01, jima02, jima03, jima04, jima05;
+    private JLabel jlabel_one, jl02, jl03, jl04, jl05, jl06, jima01, jima02, jima03, jima04, jima05;
     private JButton jb02, jb03, jb04, jb05, jb06, jButton;
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;

@@ -34,6 +34,5 @@ public class DisplayMain implements Runnable {
         deliverPlayer.start();
 
 
-
     }
 }

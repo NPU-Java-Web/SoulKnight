@@ -13,8 +13,8 @@ import org.example.common.model.animation.Animation;
 @NoArgsConstructor
 public class Explosion extends Animation {
     public static final int TYPE = 2;
-    public Explosion(int x, int y)
-    {
-        super(TYPE,"",1,x,y);
+
+    public Explosion(int x, int y) {
+        super(TYPE, "", 1, x, y);
     }
 }

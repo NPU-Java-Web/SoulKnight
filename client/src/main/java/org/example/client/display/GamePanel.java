@@ -50,7 +50,6 @@ public class GamePanel extends JPanel {
     private String playerId = GameConfig.playerId;
 
     /**
-     *
      * @param mainPanel 游戏界面创建
      */
     public GamePanel(MainPanel mainPanel) {
@@ -59,7 +58,7 @@ public class GamePanel extends JPanel {
         requestFocusInWindow();
         //打开GameStartCore，开启calculate和display线程，将人物信息不间断发送出去
         GameStartCore gameStartCore = new GameStartCore(PlayerFactory.makePlayer(
-                GameConfig.playerType, playerId, 500, 700, 0.0),isrunning);
+                GameConfig.playerType, playerId, 500, 700, 0.0), isrunning);
         StaticInfo.setGameStartCore(gameStartCore);
         this.gameStartCore = gameStartCore;
         gameStartCore.start();
@@ -75,12 +74,11 @@ public class GamePanel extends JPanel {
         setBackground(new Color(83, 163, 238));
         adapter();
         //打开游戏panel的读取键盘hashmap的线程并改变player变量，并且按帧率进行页面刷新repaint
-        gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this,isrunning), "render");
+        gameRenderThread = new Thread(new GameRenderThread(gameStartCore, this, isrunning), "render");
         gameRenderThread.start();
     }
 
     /**
-     *
      * @param g 画图
      */
     @Override
@@ -108,37 +106,32 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     *
      * @param graphics 画笔
-     * @param image 图像
+     * @param image    图像
      */
-    public void clear(Graphics graphics,Image image) {
+    public void clear(Graphics graphics, Image image) {
         //双缓存加载图片
-        graphics.drawImage(image,0,0,1000,1000,this);
+        graphics.drawImage(image, 0, 0, 1000, 1000, this);
         //graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, width, height);
     }
 
     /**
-     *
      * @param graphics 画笔
      */
-    public void drawMap(Graphics graphics){
+    public void drawMap(Graphics graphics) {
         //读取当前的地图种类
-        if(result!=null){
+        if (result != null) {
             //如果地图样式为1
-            if(StaticInfo.gameStartCore.getLevel() instanceof Level1)
-            {
+            if (StaticInfo.gameStartCore.getLevel() instanceof Level1) {
                 clear(tempGraphics, GameConfig.gamebackground1);
             }
             //如果地图样式为2
-            else if(StaticInfo.gameStartCore.getLevel() instanceof Level2)
-            {
+            else if (StaticInfo.gameStartCore.getLevel() instanceof Level2) {
                 clear(tempGraphics, GameConfig.gamebackground2);
             }
             //如果地图样式为3
-            else if(StaticInfo.gameStartCore.getLevel() instanceof Level3)
-            {
+            else if (StaticInfo.gameStartCore.getLevel() instanceof Level3) {
                 clear(tempGraphics, GameConfig.gamebackground3);
             }
 
@@ -147,15 +140,16 @@ public class GamePanel extends JPanel {
 
     /**
      * 画人物
+     *
      * @param graphics 画笔
      */
     public void drawPlayers(Graphics graphics) {
         //System.out.println(result);
         //用result中的信息来渲染
-        if(result!=null) {
+        if (result != null) {
             for (Player item : result.getPlayers()) {
                 //log.info("("+item.getX()+","+item.getY()+")"+this.hashCode());
-                drawPlayer(item, graphics,width,item.getPlayerType());
+                drawPlayer(item, graphics, width, item.getPlayerType());
             }
         }
         //直接用player里面的信息渲染
@@ -163,80 +157,73 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     *
-     * @param player 玩家
-     * @param graphics 画笔
-     * @param width 血量宽度
+     * @param player     玩家
+     * @param graphics   画笔
+     * @param width      血量宽度
      * @param playertype 玩家种类
      */
-    public void drawPlayer(Player player, Graphics graphics,int width,int playertype) {
+    public void drawPlayer(Player player, Graphics graphics, int width, int playertype) {
         int flag = 0;
 
-        if(player.getBlood()>playerBlood[flag])
-        {
+        if (player.getBlood() > playerBlood[flag]) {
             playerBlood[flag] = player.getBlood();
         }
         //如果当前人物为玩家，则进行特殊的血量渲染
-        if(player.getPlayerId().equals(playerId))
-        {
+        if (player.getPlayerId().equals(playerId)) {
             //画血量
-            int widthplayer = player.getBlood()*300/playerBlood[flag];
+            int widthplayer = player.getBlood() * 300 / playerBlood[flag];
             graphics.setColor(new Color(161, 7, 7));
-            graphics.fillRect(10,10,widthplayer,8);
+            graphics.fillRect(10, 10, widthplayer, 8);
 
             //画蓝量
-            int widthStrength = new Double(GameConfig.playerStrength*300/100).intValue() ;
+            int widthStrength = new Double(GameConfig.playerStrength * 300 / 100).intValue();
             graphics.setColor(new Color(2, 62, 206));
-            graphics.fillRect(10,20,widthStrength,8);
+            graphics.fillRect(10, 20, widthStrength, 8);
         }
-            //画人物id
+        //画人物id
         graphics.setColor(new Color(255, 255, 255));
-        graphics.setFont(new Font("宋体",Font.PLAIN,20));  //字体高度
-        graphics.drawString(player.getPlayerId(), player.getX()-14, player.getY()-20);
+        graphics.setFont(new Font("宋体", Font.PLAIN, 20));  //字体高度
+        graphics.drawString(player.getPlayerId(), player.getX() - 14, player.getY() - 20);
 
-        int newWidth =   player.getBlood()*30/playerBlood[flag];
+        int newWidth = player.getBlood() * 30 / playerBlood[flag];
         //判断是否死亡
-        if(player.getBlood()<=0&&player.getPlayerId().equals(StaticInfo.gameStartCore.getPlayer().getPlayerId()))
-        {
-            if(GameConfig.flag){
+        if (player.getBlood() <= 0 && player.getPlayerId().equals(StaticInfo.gameStartCore.getPlayer().getPlayerId())) {
+            if (GameConfig.flag) {
                 GameConfig.flag = false;
-                new Dialog(ClientCore.mainPanel,6);
+                new Dialog(ClientCore.mainPanel, 6);
 
             }
         }
-        if(GameConfig.end){
+        if (GameConfig.end) {
             //StaticInfo.isrunning = false;
             GameConfig.flag = false;
             GameConfig.end = false;
-            new Dialog(ClientCore.mainPanel,7);
+            new Dialog(ClientCore.mainPanel, 7);
 
         }
-        if(playertype == 1)
-        {
+        if (playertype == 1) {
             graphics.drawImage(GameConfig.player,
-                    player.getX()-GameConfig.player.getWidth(GameConfig.playerShow.getImageObserver())/2,
-                    player.getY()-GameConfig.player.getHeight(GameConfig.playerShow.getImageObserver())/2,
+                    player.getX() - GameConfig.player.getWidth(GameConfig.playerShow.getImageObserver()) / 2,
+                    player.getY() - GameConfig.player.getHeight(GameConfig.playerShow.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(125, 16, 16));
-            graphics.fillRect(player.getX()+10,player.getY()-10,width,8);
+            graphics.fillRect(player.getX() + 10, player.getY() - 10, width, 8);
         }
-        if(playertype == 2)
-        {
+        if (playertype == 2) {
             graphics.drawImage(GameConfig.player2,
-                    player.getX()-GameConfig.player2.getWidth(GameConfig.playerShow2.getImageObserver())/2,
-                    player.getY()-GameConfig.player2.getHeight(GameConfig.playerShow2.getImageObserver())/2,
+                    player.getX() - GameConfig.player2.getWidth(GameConfig.playerShow2.getImageObserver()) / 2,
+                    player.getY() - GameConfig.player2.getHeight(GameConfig.playerShow2.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(125, 16, 16));
-            graphics.fillRect(player.getX()+10,player.getY()-10,width,8);
+            graphics.fillRect(player.getX() + 10, player.getY() - 10, width, 8);
         }
-        if(playertype == 3)
-        {
+        if (playertype == 3) {
             graphics.drawImage(GameConfig.player3,
-                    player.getX()-GameConfig.player3.getWidth(GameConfig.playerShow3.getImageObserver())/2,
-                    player.getY()-GameConfig.player3.getHeight(GameConfig.playerShow3.getImageObserver())/2,
+                    player.getX() - GameConfig.player3.getWidth(GameConfig.playerShow3.getImageObserver()) / 2,
+                    player.getY() - GameConfig.player3.getHeight(GameConfig.playerShow3.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(125, 16, 16));
-            graphics.fillRect(player.getX()+10,player.getY()-10,width,8);
+            graphics.fillRect(player.getX() + 10, player.getY() - 10, width, 8);
         }
 
 
@@ -246,277 +233,253 @@ public class GamePanel extends JPanel {
      *
      */
     //esc键盘绑定
-    public void adapter()
-    {
+    public void adapter() {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-                {
-                    new Dialog(ClientCore.mainPanel,3);
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    new Dialog(ClientCore.mainPanel, 3);
                 }
             }
         });
     }
 
     /**
-     *
      * @param graphics 画笔
      */
     public void drawBullets(Graphics graphics) {
-        if(result!=null) {
+        if (result != null) {
             for (Bullet item : result.getBullets()) {
-                drawBullet(item.getX(), item.getY(), graphics,item.getBulletType());
+                drawBullet(item.getX(), item.getY(), graphics, item.getBulletType());
             }
         }
     }
 
     /**
-     *
-     * @param x 子弹x坐标
-     * @param y 子弹y坐标
-     * @param graphics 画笔
+     * @param x          子弹x坐标
+     * @param y          子弹y坐标
+     * @param graphics   画笔
      * @param bullettype 子弹种类
      */
-    public void drawBullet(int x, int y, Graphics graphics,int bullettype){
-        if(bullettype == 1)
-        {
+    public void drawBullet(int x, int y, Graphics graphics, int bullettype) {
+        if (bullettype == 1) {
             graphics.drawImage(GameConfig.bullet1,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 2)
-        {
+        if (bullettype == 2) {
             graphics.drawImage(GameConfig.bullet2,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 3)
-        {
+        if (bullettype == 3) {
             graphics.drawImage(GameConfig.bullet3,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 4)
-        {
+        if (bullettype == 4) {
             graphics.drawImage(GameConfig.bullet4,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 5)
-        {
+        if (bullettype == 5) {
             graphics.drawImage(GameConfig.bullet5,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 6)
-        {
+        if (bullettype == 6) {
             graphics.drawImage(GameConfig.bullet6,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 7)
-        {
+        if (bullettype == 7) {
             graphics.drawImage(GameConfig.bullet7,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if(bullettype == 8)
-        {
+        if (bullettype == 8) {
             graphics.drawImage(GameConfig.bullet8,
-                    x-GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver())/2,
-                    y-GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver())/2,
+                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
 
     }
 
     /**
-     *
      * @param graphics 画笔
      */
-    public void drawMonsters(Graphics graphics){
+    public void drawMonsters(Graphics graphics) {
         int flag = 0;
-        if(result!=null){
+        if (result != null) {
             for (Monster item : result.getMonsters()) {
-                if(item.getBlood()>monsterBlood[flag])
-                {
+                if (item.getBlood() > monsterBlood[flag]) {
                     monsterBlood[flag] = item.getBlood();
                 }
 
-                int width =   item.getBlood()*30/monsterBlood[flag];
-                drawMonster(item.getX(),item.getY(),graphics,width,item.getMonsterType());
+                int width = item.getBlood() * 30 / monsterBlood[flag];
+                drawMonster(item.getX(), item.getY(), graphics, width, item.getMonsterType());
                 flag++;
             }
         }
     }
 
     /**
-     *
-     * @param x 怪物x坐标
-     * @param y 怪物y坐标
+     * @param x        怪物x坐标
+     * @param y        怪物y坐标
      * @param graphics 画笔
-     * @param width 怪物宽带
-     * @param type 怪物血量宽度
+     * @param width    怪物宽带
+     * @param type     怪物血量宽度
      */
-    public void drawMonster(int x, int y, Graphics graphics,int width,int type){
-        if(type == 1)
-        {
+    public void drawMonster(int x, int y, Graphics graphics, int width, int type) {
+        if (type == 1) {
             graphics.drawImage(GameConfig.Monster1,
-                    x-GameConfig.Monster1.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
-                    y-GameConfig.Monster1.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    x - GameConfig.Monster1.getWidth(GameConfig.MonsterShow1.getImageObserver()) / 2,
+                    y - GameConfig.Monster1.getHeight(GameConfig.MonsterShow1.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(156, 40, 40));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 2)
-        {
+        if (type == 2) {
             graphics.drawImage(GameConfig.Monster2,
-                    x-GameConfig.Monster2.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
-                    y-GameConfig.Monster2.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    x - GameConfig.Monster2.getWidth(GameConfig.MonsterShow1.getImageObserver()) / 2,
+                    y - GameConfig.Monster2.getHeight(GameConfig.MonsterShow1.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(177, 68, 68));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 3)
-        {
+        if (type == 3) {
             graphics.drawImage(GameConfig.Monster3,
-                    x-GameConfig.Monster3.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
-                    y-GameConfig.Monster3.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    x - GameConfig.Monster3.getWidth(GameConfig.MonsterShow1.getImageObserver()) / 2,
+                    y - GameConfig.Monster3.getHeight(GameConfig.MonsterShow1.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(29, 201, 196));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 4)
-        {
+        if (type == 4) {
             graphics.drawImage(GameConfig.Monster4,
-                    x-GameConfig.Monster4.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
-                    y-GameConfig.Monster4.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    x - GameConfig.Monster4.getWidth(GameConfig.MonsterShow1.getImageObserver()) / 2,
+                    y - GameConfig.Monster4.getHeight(GameConfig.MonsterShow1.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(115, 40, 156));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 5)
-        {
+        if (type == 5) {
             graphics.drawImage(GameConfig.Monster5,
-                    x-GameConfig.Monster5.getWidth(GameConfig.MonsterShow1.getImageObserver())/2,
-                    y-GameConfig.Monster5.getHeight(GameConfig.MonsterShow1.getImageObserver())/2,
+                    x - GameConfig.Monster5.getWidth(GameConfig.MonsterShow1.getImageObserver()) / 2,
+                    y - GameConfig.Monster5.getHeight(GameConfig.MonsterShow1.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(36, 206, 127));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 6)
-        {
+        if (type == 6) {
             graphics.drawImage(GameConfig.Monster6,
-                    x-GameConfig.Monster6.getWidth(GameConfig.MonsterShow8.getImageObserver())/2,
-                    y-GameConfig.Monster6.getHeight(GameConfig.MonsterShow8.getImageObserver())/2,
+                    x - GameConfig.Monster6.getWidth(GameConfig.MonsterShow8.getImageObserver()) / 2,
+                    y - GameConfig.Monster6.getHeight(GameConfig.MonsterShow8.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(234, 205, 205));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 7)
-        {
+        if (type == 7) {
             graphics.drawImage(GameConfig.Monster7,
-                    x-GameConfig.Monster7.getWidth(GameConfig.MonsterShow8.getImageObserver())/2,
-                    y-GameConfig.Monster7.getHeight(GameConfig.MonsterShow8.getImageObserver())/2,
+                    x - GameConfig.Monster7.getWidth(GameConfig.MonsterShow8.getImageObserver()) / 2,
+                    y - GameConfig.Monster7.getHeight(GameConfig.MonsterShow8.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(116, 121, 168));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
-        if(type == 8)
-        {
+        if (type == 8) {
             graphics.drawImage(GameConfig.Monster8,
-                    x-GameConfig.Monster8.getWidth(GameConfig.MonsterShow8.getImageObserver())/2,
-                    y-GameConfig.Monster8.getHeight(GameConfig.MonsterShow8.getImageObserver())/2,
+                    x - GameConfig.Monster8.getWidth(GameConfig.MonsterShow8.getImageObserver()) / 2,
+                    y - GameConfig.Monster8.getHeight(GameConfig.MonsterShow8.getImageObserver()) / 2,
                     null);
             graphics.setColor(new Color(3, 55, 255, 164));
-            graphics.fillRect(x-15,y+20,width,8);
+            graphics.fillRect(x - 15, y + 20, width, 8);
         }
 
 
     }
 
     /**
-     *
      * @param graphics 画笔
      */
-    public void drawAnimations(Graphics graphics){
+    public void drawAnimations(Graphics graphics) {
         //
-            try{
-                for (Animation item : result.getAnimations()) {
-                    drawAnimation(item.getX(),item.getY(),graphics,item.getAnimationType(),item);
-                }
-            }catch (NullPointerException e)
-            {
-                System.out.println("服务器因延迟未发送信息，请耐心等待响应");
+        try {
+            for (Animation item : result.getAnimations()) {
+                drawAnimation(item.getX(), item.getY(), graphics, item.getAnimationType(), item);
             }
+        } catch (NullPointerException e) {
+            System.out.println("服务器因延迟未发送信息，请耐心等待响应");
+        }
 
     }
-    public void drawAnimation(int x, int y, Graphics graphics,int type,Animation animation){
-        if(type == 1){
+
+    public void drawAnimation(int x, int y, Graphics graphics, int type, Animation animation) {
+        if (type == 1) {
             graphics.drawImage(GameConfig.portal,
-                    x-20,
-                    y-50,
+                    x - 20,
+                    y - 50,
                     null);
         }
-        if(type == 2){
+        if (type == 2) {
 
-            if(animation.getState() == 1){
+            if (animation.getState() == 1) {
                 graphics.drawImage(GameConfig.boom1,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 2){
+            if (animation.getState() == 2) {
                 graphics.drawImage(GameConfig.boom2,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 3){
+            if (animation.getState() == 3) {
                 graphics.drawImage(GameConfig.boom3,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 4){
+            if (animation.getState() == 4) {
                 graphics.drawImage(GameConfig.boom4,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 5){
+            if (animation.getState() == 5) {
                 graphics.drawImage(GameConfig.boom5,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 6){
+            if (animation.getState() == 6) {
                 graphics.drawImage(GameConfig.boom6,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 7){
+            if (animation.getState() == 7) {
                 graphics.drawImage(GameConfig.boom7,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 8){
+            if (animation.getState() == 8) {
                 graphics.drawImage(GameConfig.boom8,
                         x,
                         y,
                         null);
             }
-            if(animation.getState() == 9){
+            if (animation.getState() == 9) {
                 graphics.drawImage(GameConfig.boom9,
                         x,
                         y,
