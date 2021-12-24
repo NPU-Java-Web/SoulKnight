@@ -125,30 +125,43 @@ public class GameConfig {
      * 子弹图片-2
      */
     public static Image bullet2 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet2.png");
+    public static ImageIcon bulletShow2 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet2.png");
     /**
      * 子弹图片-3
      */
     public static Image bullet3 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet3.png");
+    public static ImageIcon bulletShow3 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet3.png");
+
     /**
      * 子弹图片-4
      */
     public static Image bullet4 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet4.png");
+    public static ImageIcon bulletShow4 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet4.png");
+
     /**
      * 子弹图片-5
      */
     public static Image bullet5 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet5.png");
+    public static ImageIcon bulletShow5 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet5.png");
+
     /**
      * 子弹图片-6
      */
     public static Image bullet6 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet6.png");
+    public static ImageIcon bulletShow6 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet6.png");
+
     /**
      * 子弹图片-7
      */
     public static Image bullet7 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet7.png");
+    public static ImageIcon bulletShow7 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet7.png");
+
     /**
      * 子弹图片-8
      */
     public static Image bullet8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet8.png");
+    public static ImageIcon bulletShow8 = new ImageIcon(System.getProperty("user.dir") + "\\TankBattle\\client\\src\\main\\resources\\bullet\\bullet8.png");
+
 
 
 

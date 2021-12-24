@@ -259,55 +259,55 @@ public class GamePanel extends JPanel {
      * @param x          子弹x坐标
      * @param y          子弹y坐标
      * @param graphics   画笔
-     * @param bullettype 子弹种类
+     * @param bulletType 子弹种类
      */
-    public void drawBullet(int x, int y, Graphics graphics, int bullettype) {
-        if (bullettype == 1) {
+    public void drawBullet(int x, int y, Graphics graphics, int bulletType) {
+        if (bulletType == 1) {
             graphics.drawImage(GameConfig.bullet1,
                     x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
                     y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 2) {
+        if (bulletType == 2) {
             graphics.drawImage(GameConfig.bullet2,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet2.getWidth(GameConfig.bulletShow2.getImageObserver()) / 2,
+                    y - GameConfig.bullet2.getHeight(GameConfig.bulletShow2.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 3) {
+        if (bulletType == 3) {
             graphics.drawImage(GameConfig.bullet3,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet3.getWidth(GameConfig.bulletShow3.getImageObserver()) / 2,
+                    y - GameConfig.bullet3.getHeight(GameConfig.bulletShow3.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 4) {
+        if (bulletType == 4) {
             graphics.drawImage(GameConfig.bullet4,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet4.getWidth(GameConfig.bulletShow4.getImageObserver()) / 2,
+                    y - GameConfig.bullet4.getHeight(GameConfig.bulletShow4.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 5) {
+        if (bulletType == 5) {
             graphics.drawImage(GameConfig.bullet5,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet5.getWidth(GameConfig.bulletShow5.getImageObserver()) / 2,
+                    y - GameConfig.bullet5.getHeight(GameConfig.bulletShow5.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 6) {
+        if (bulletType == 6) {
             graphics.drawImage(GameConfig.bullet6,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet6.getWidth(GameConfig.bulletShow6.getImageObserver()) / 2,
+                    y - GameConfig.bullet6.getHeight(GameConfig.bulletShow6.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 7) {
+        if (bulletType == 7) {
             graphics.drawImage(GameConfig.bullet7,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet7.getWidth(GameConfig.bulletShow7.getImageObserver()) / 2,
+                    y - GameConfig.bullet7.getHeight(GameConfig.bulletShow7.getImageObserver()) / 2,
                     null);
         }
-        if (bullettype == 8) {
+        if (bulletType == 8) {
             graphics.drawImage(GameConfig.bullet8,
-                    x - GameConfig.bullet1.getWidth(GameConfig.bulletShow1.getImageObserver()) / 2,
-                    y - GameConfig.bullet1.getHeight(GameConfig.bulletShow1.getImageObserver()) / 2,
+                    x - GameConfig.bullet8.getWidth(GameConfig.bulletShow8.getImageObserver()) / 2,
+                    y - GameConfig.bullet8.getHeight(GameConfig.bulletShow8.getImageObserver()) / 2,
                     null);
         }
 
