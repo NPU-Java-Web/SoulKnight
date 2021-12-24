@@ -21,7 +21,7 @@ import org.example.common.protocol.Connect;
 import org.example.common.protocol.Order;
 import org.example.common.protocol.Result;
 import org.example.server.handler.MyServerInboundHandler;
-import org.example.server.thread.RefreshThread;
+import org.example.server.controller.RefreshThread;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 

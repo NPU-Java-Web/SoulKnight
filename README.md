@@ -38,14 +38,11 @@ SoulKnight
 │     │  │              │  ClientCore.java  # 客户端菜单核心类
 │     │  │              │  GameStartCore.java  # 客户端游戏核心类
 │     │  │              │  
-│     │  │              ├─calculate  # 客户端数据处理及通讯 Conroller层
-│     │  │              │  │  CalculationMain.java
+│     │  │              ├─calculate  # 客户端数据处理与通讯
 │     │  │              │  ├─communication  # 与服务端通讯类
 │     │  │              │  └─service  # 本地数据处理
 │     │  │              ├─display  # View层
 │     │  │              └─Input  # 输入监听层
-│     │  │                      GameMouseListener.java
-│     │  │                      KeyEventListener.java
 │     │  │                      
 │     │  └─resources  # 客户端图片音乐等静态资源
 │     │              
@@ -70,7 +67,7 @@ SoulKnight
 │                         │  ├─bullet  # 子弹实体类
 │                         │  ├─monster # 怪物实体类
 │                         │  └─player  # 英雄实体类 
-│                         └─protocol  # 通信格式
+│                         └─protocol  # 通信格式类
 │                                 
 └─server
     │  pom.xml
@@ -86,9 +83,9 @@ SoulKnight
        │                  │  ThreadConfig.java
        │                  │  
        │                  ├─dao  # 服务端DAO层
-       │                  ├─handler
+       │                  ├─handler  # 通信channel
        │                  ├─service  # 服务端业务逻辑Service层
-       │                  ├─thread
+       │                  ├─controller  # 服务端相应映射层
        │                  └─util
        │                          
        └─test  # 服务端单元测试
