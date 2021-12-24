@@ -3,7 +3,7 @@ package org.example.common.model.monster;
 import lombok.NoArgsConstructor;
 
 /**
- * 怪物工厂
+ * 怪物 工厂模式
  */
 @NoArgsConstructor
 public class MonsterFactory {

@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.example.common.config.GameConfig;
 import org.example.common.keyListener.GameInput;
 
+/**
+ * 玩家实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -12,7 +12,7 @@ import java.util.Vector;
 public class Monster8 extends Monster {
     public static final int MONSTER_TYPE = 8;
     public static final int SPEED = 3;
-    public static final int BLOOD = 100;
+    public static final int BLOOD = 500;
     public static final int CD = 500;
     public static final int VISIBILITY = 600;
     public static final int REWARD = 50;

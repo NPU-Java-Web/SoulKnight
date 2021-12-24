@@ -6,6 +6,9 @@ import org.example.common.model.player.entity.PLayer3;
 import org.example.common.model.player.entity.Player1;
 import org.example.common.model.player.entity.Player2;
 
+/**
+ * 创建人物 工厂模式
+ */
 @NoArgsConstructor
 public class PlayerFactory {
 

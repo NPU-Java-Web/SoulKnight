@@ -34,7 +34,7 @@ public class Level3 extends Level {
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m17", 730, 300, 270.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m18", 740, 300, 270.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m19", 760, 300, 270.0));
-        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m20", 800, 300, 270.0));
+        initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m20", 500, 300, 270.0));
 
         initWall();
     }
