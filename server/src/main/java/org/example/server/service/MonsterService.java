@@ -9,7 +9,7 @@ import org.example.common.model.player.Player;
 import org.example.server.ServerCore;
 import org.example.server.dao.BulletDAO;
 import org.example.server.dao.MonsterDAO;
-import org.example.server.thread.RefreshThread;
+import org.example.server.controller.RefreshThread;
 import org.example.server.util.Verification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
