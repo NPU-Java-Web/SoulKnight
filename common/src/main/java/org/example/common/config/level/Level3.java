@@ -22,21 +22,21 @@ public class Level3 extends Level {
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO, "m34", 200, 300, 270.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_TWO, "m35", 250, 300, 270.0));
         initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m30", 700, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m6", 330, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m7", 350, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m8", 400, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m9", 450, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m10", 500, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m11", 550, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m12", 600, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m13", 650, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m14", 700, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m15", 710, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m16", 720, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m17", 730, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m18", 740, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m19", 760, 300, 270.0));
-//            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m20", 800, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m6", 330, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m7", 350, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m8", 400, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_THREE, "m9", 450, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m10", 500, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m11", 550, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m12", 600, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FOUR, "m13", 650, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m14", 700, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m15", 710, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m16", 720, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m17", 730, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_FIVE, "m18", 740, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m19", 760, 300, 270.0));
+            initialMonsters.add(MonsterFactory.makeMonster(GameConfig.MonsterType.MONSTER_EIGHT, "m20", 800, 300, 270.0));
 
         initWall();
     }

@@ -12,6 +12,9 @@ Github仓库地址：https://github.com/NPU-Java-Web/SoulKnight
 
 dev为功能最多最全的开发分支，master为经过测试排除bug后的稳定上线版本，成员个人开发分支命名格式为dev-name。
 开发成员单元测试完成后合并到dev分支，每个迭代阶段结束经过测试的dev分支合并到master分支。
+分支：廖菁璞 dev-ljp
+    翁宇哲 dev-wyz
+    孟辰林 dev-test and dev-test2
 
 ## 文件树
 
