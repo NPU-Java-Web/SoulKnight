@@ -11,20 +11,42 @@ import redis.clients.jedis.JedisPool;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 玩家DAO
+ *
+ * @author 廖菁璞
+ */
 @Slf4j
 @Repository
 public class PlayerDAO {
-
+    /**
+     * Redis连接池
+     */
     @Autowired
     private JedisPool jedisPool;
 
+    /**
+     * 玩家的前缀
+     */
     private static final String PREFIX = "player:";
 
+    /**
+     * 根据playerId还原出玩家
+     *
+     * @param playerId playerId
+     * @return Player
+     */
     public Player selectById(String playerId) {
         String key = PREFIX + playerId;
         return selectByKey(key);
     }
 
+    /**
+     * 根据缓存中的key还原出玩家
+     *
+     * @param key 缓存中的key
+     * @return Player
+     */
     public Player selectByKey(String key) {
         try (Jedis jedis = jedisPool.getResource()) {
             if (!jedis.exists(key)) {
@@ -44,6 +66,12 @@ public class PlayerDAO {
         }
     }
 
+    /**
+     * 根据playerId判断指定的玩家是否存在
+     *
+     * @param playerId playerId
+     * @return 是否存在
+     */
     public boolean exists(String playerId) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + playerId;
@@ -51,6 +79,11 @@ public class PlayerDAO {
         }
     }
 
+    /**
+     * 先初始化指定玩家，再将其插入
+     *
+     * @param player 指定玩家
+     */
     public void insert(Player player) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + player.getPlayerId();
@@ -65,10 +98,15 @@ public class PlayerDAO {
             jedis.hset(key, "speed", player.getSpeed().toString());
             jedis.hset(key, "blood", player.getBlood().toString());
             jedis.hset(key, "score", player.getScore().toString());
-            jedis.expire(key, 10L);
+            jedis.expire(key, 3L);
         }
     }
 
+    /**
+     * 更新指定玩家的坐标
+     *
+     * @param player 指定玩家
+     */
     public void updateLocationById(Player player) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + player.getPlayerId();
@@ -82,12 +120,23 @@ public class PlayerDAO {
         }
     }
 
+    /**
+     * 获取所有玩家的key
+     *
+     * @return Set
+     */
     public Set<String> getAllPlayerKeys() {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.keys("player*");
         }
     }
 
+    /**
+     * 给指定玩家扣血
+     *
+     * @param player     指定玩家
+     * @param difference 扣除的血量
+     */
     public void subtractBlood(Player player, int difference) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + player.getPlayerId();
@@ -95,13 +144,17 @@ public class PlayerDAO {
         }
     }
 
+    /**
+     * 根据playerId删除指定的玩家
+     *
+     * @param playerId playerId
+     */
     public void deleteById(String playerId) {
         try (Jedis jedis = jedisPool.getResource()) {
             String key = PREFIX + playerId;
             jedis.del(key);
         }
     }
-
 
 }
 

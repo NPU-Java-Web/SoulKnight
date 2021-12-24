@@ -29,15 +29,37 @@ import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * 存储游戏实时信息
+ *
+ * @author 廖菁璞
+ */
 @Component
 public class ServerCore {
+    /**
+     * 地图信息
+     */
     public static Level level;
+    /**
+     * 当前时刻全局信息
+     */
     public static volatile String GlobalInfo;
+    /**
+     * 玩家信息消息队列
+     */
     public static BlockingQueue<Player> playerQueue;
+    /**
+     * 子弹信息消息队列
+     */
     public static BlockingQueue<Bullet> bulletQueue;
+    /**
+     * 命令信息消息队列
+     */
     public static BlockingQueue<Order> orderQueue;
 
-
+    /**
+     * 构造方法
+     */
     public ServerCore() {
         level = new Level1();
         GlobalInfo = JSON.toJSONString(new Result(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), level.getNumber()));
@@ -46,6 +68,9 @@ public class ServerCore {
         orderQueue = new LinkedBlockingQueue<>(30);
     }
 
+    /**
+     * 服务器启动方法
+     */
     public void start() {
         EventLoopGroup bossGroup = new NioEventLoopGroup(4);
         EventLoopGroup workerGroup = new NioEventLoopGroup(4);
@@ -63,17 +88,15 @@ public class ServerCore {
                     pipeline.addLast(new MyServerInboundHandler());
                 }
             });
-
-
             ChannelFuture f = b.bind(Connect.PORT).sync();
             if (f.isSuccess()) {
                 System.out.println("服务器启动成功!");
             }
 
+            //服务器已经启动成功，开启新的线程对收到的各种信息进行计算
             AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadConfig.class);
             RefreshThread refreshThread = context.getBean(RefreshThread.class);
             refreshThread.run();
-//            System.err.println();
 
         } catch (InterruptedException e) {
             e.printStackTrace();

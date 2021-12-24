@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.example.common.model.animation.Animation;
 
 /**
- * 此特效类为爆炸
+ * 爆炸动画
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

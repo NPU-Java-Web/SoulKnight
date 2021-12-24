@@ -3,12 +3,12 @@ package org.example.common.model.monster;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.common.model.bullet.Bullet;
-import org.example.common.model.monster.entity.Monster1;
 
-import java.util.List;
-import java.util.Vector;
-
+/**
+ * 怪物实体类
+ *
+ * @author 廖菁璞
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -53,6 +53,5 @@ public class Monster {
      * 击杀怪物后的奖励
      */
     protected Integer reward;
-
 
 }

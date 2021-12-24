@@ -1,10 +1,10 @@
 package org.example.common.model.monster;
 
 import lombok.NoArgsConstructor;
-import org.example.common.config.GameConfig;
-import org.example.common.model.bullet.Bullet;
-import org.example.common.model.monster.entity.Monster1;
 
+/**
+ * 怪物工厂
+ */
 @NoArgsConstructor
 public class MonsterFactory {
     public static Monster makeMonster(int monsterType,

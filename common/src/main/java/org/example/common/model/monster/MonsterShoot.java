@@ -4,10 +4,13 @@ import org.example.common.config.GameConfig;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.entity.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 怪物放大招的工具类，用于获取生成的子弹
+ */
 public class MonsterShoot {
 
     public static List<Bullet> shoot(Monster monster) {
@@ -28,17 +31,7 @@ public class MonsterShoot {
         } else if (monster.monsterType == GameConfig.MonsterType.MONSTER_EIGHT) {
             return (Monster8.shoot(monster));
         }
-        return null;
-        /*try {
-            for(int i=1; i<=8; i++){
-                Class<?> c = Class.forName("org.example.common.model.monster.entity.Monster" + i);
-
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;*/
+        return new ArrayList<>();
     }
 
 }

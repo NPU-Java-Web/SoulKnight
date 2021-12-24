@@ -2,7 +2,6 @@ package org.example.common.config;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
 
 /**
  * 配置文件
@@ -149,7 +148,6 @@ public class GameConfig {
      * 子弹图片-8
      */
     public static Image bullet8 = Toolkit.getDefaultToolkit().createImage("client/src/main/resources/bullet/bullet8.png");
-
 
 
     /**
