@@ -4,7 +4,7 @@
 
 本小组在Github和Gitee双远程仓库更新，在Gitee中可以看到从0开始的所有提交记录。
 
-Gitee仓库地址：https://gitee.com/liaojingpu/TankBattle
+Gitee仓库地址：https://gitee.com/liaojingpu/SoulKnight
 
 
 Github仓库地址：https://github.com/NPU-Java-Web/SoulKnight
@@ -23,12 +23,8 @@ SoulKnight
 │  .gitignore
 │  pom.xml
 │  README.md
-│  soulKnight.iml
-│  
-├─.idea
 │              
 ├─client #客户端
-│  │  client.iml
 │  │  pom.xml
 │  │  
 │  └─src
@@ -55,7 +51,6 @@ SoulKnight
 │     └─test  # 客户端单元测试
 │                          
 ├─common
-│  │  common.iml
 │  │  pom.xml
 │  │  
 │  └─src
@@ -74,11 +69,10 @@ SoulKnight
 │                         │  ├─bullet  # 子弹实体类
 │                         │  ├─monster # 怪物实体类
 │                         │  └─player  # 英雄实体类 
-│                         └─protocal  # 通信格式实体类
+│                         └─protocol  # 通信格式
 │                                 
 └─server
     │  pom.xml
-    │  server.iml
     │  
     └─src
        ├─main
@@ -101,53 +95,31 @@ SoulKnight
 
 ## 构建说明
 
-本项目用使用`Mavean`构建项目，采用IDEA集成开发环境构建，整体结构分为客户端，服务端，Common实体类层。
+本项目用使用`Mavean`构建项目，采用IDEA集成开发环境构建，整体结构分为客户端，服务端。
 
 ## 运行说明
 
-### 1. 本项目使用高性能非关系型数据库`Redis`，如尚未安装：
+### 1. 本项目使用`Redis`缓存游戏数据，如尚未安装请先安装Redis。
 
-Windows：请下载此路径`Redis`安装包https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100。解压后一直点击下一步即可。
+### 2. 用IDE打开项目
 
-Linux：执行以下命令
+（1）修改`server`模块中的`ThreadConfig`类中的Redis连接配置
 
-```bash
-wget http://download.redis.io/releases/redis-6.0.8.tar.gz
-tar -xvf redis-6.0.8.tar.gz
-mkdir /usr/local/redis-6.x
-mv  redis-6.0.8   /usr/local/redis-6.x
-cd  /usr/local/redis-6.x/redis-6.0.8
-make
-make  install  PREFIX=/usr/local/redis-6.x
-cd /usr/local/redis6.x/bin/
-mkdir conf
-cp /usr/local/redis6.x/redis-6.0.8/redis.conf /usr/local/redis6.x/bin/conf/
+（2）先运行服务端：运行`service`模块中的`ServerApplication`类
 
-# 启动测试
-cd /usr/local/redis6.x/bin/
-./redis-server conf/redis.conf
-./redis-cli -p  8081
-```
-
-### 2. 使用IDEA打开项目
-
-（1）先运行服务端：运行`Service`包中的`ServerApplication`类
-
-（2）再运行服务端：运行`Client`包中的`ClientApplication`类
+（3）再运行服务端：运行`client`模块中的`ClientApplication`类
 
 ### 3. 使用方式
 
-本项目无按键冲突，支持多按键同时使用。
-
 #### 菜单界面
 
-|   `↑`    |   `↓`    | Enter | 鼠标右键 |
+|   `↑`    |   `↓`    | Enter | 鼠标 |
 | :------: | :------: | :---: | :------: |
 | 上一选项 | 下一选项 | 确定  | 点击选项 |
 
 #### 游戏界面
 
-|   `↑`    |   `↓`    | `←`      | `→`      | 鼠标右键 |
+|   `↑`    |   `↓`    | `←`      | `→`      | 鼠标 |
 | :------: | :------: | -------- | -------- | -------- |
 | 向上移动 | 向下移动 | 向左移动 | 向右移动 | 射击     |
 

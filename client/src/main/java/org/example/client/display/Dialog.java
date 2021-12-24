@@ -6,8 +6,7 @@ import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
-import org.example.common.model.player.Player;
-import org.example.common.protocal.Order;
+import org.example.common.protocol.Order;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +17,6 @@ import java.awt.event.ItemListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Stack;
 
 /**
  * 本类描述游戏结束弹出的对话框

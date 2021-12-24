@@ -7,7 +7,7 @@ import org.example.common.model.animation.entity.Portal;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.player.Player;
-import org.example.common.protocal.Result;
+import org.example.common.protocol.Result;
 import org.example.server.ServerCore;
 import org.example.server.service.AnimationService;
 import org.example.server.service.BulletService;

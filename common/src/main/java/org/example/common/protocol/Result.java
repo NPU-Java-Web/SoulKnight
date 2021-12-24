@@ -1,4 +1,4 @@
-package org.example.common.protocal;
+package org.example.common.protocol;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

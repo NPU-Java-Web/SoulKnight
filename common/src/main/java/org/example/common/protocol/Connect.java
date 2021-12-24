@@ -1,4 +1,4 @@
-package org.example.common.protocal;
+package org.example.common.protocol;
 
 /**
  * 连接的IP地址和端口号

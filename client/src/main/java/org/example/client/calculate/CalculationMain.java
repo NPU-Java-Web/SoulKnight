@@ -15,7 +15,7 @@ import org.example.client.GameStartCore;
 import org.example.client.calculate.communication.MyClientInboundHandler;
 import org.example.client.calculate.communication.AnalysisMessage;
 import org.example.client.calculate.communication.UploadMessage;
-import org.example.common.protocal.Connect;
+import org.example.common.protocol.Connect;
 
 import java.net.InetSocketAddress;
 

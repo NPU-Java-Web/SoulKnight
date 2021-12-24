@@ -7,7 +7,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.model.bullet.Bullet;
 import org.example.common.model.player.Player;
-import org.example.common.protocal.Order;
+import org.example.common.protocol.Order;
 import org.example.server.ServerCore;
 
 /**

@@ -13,7 +13,7 @@ import org.example.common.model.bullet.Bullet;
 import org.example.common.model.monster.Monster;
 import org.example.common.model.player.PlayerFactory;
 import org.example.common.model.player.Player;
-import org.example.common.protocal.Result;
+import org.example.common.protocol.Result;
 
 import javax.swing.*;
 import java.awt.*;

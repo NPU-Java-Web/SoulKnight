@@ -2,12 +2,11 @@ package org.example.client;
 
 import lombok.Data;
 import org.example.client.calculate.CalculationMain;
-import org.example.client.calculate.service.StaticInfo;
 import org.example.client.display.DisplayMain;
 import org.example.common.config.level.Level;
 import org.example.common.config.level.Level1;
 import org.example.common.model.player.Player;
-import org.example.common.protocal.Result;
+import org.example.common.protocol.Result;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
