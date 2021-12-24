@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 /**
  * 子弹实体类
- *
- * @author 廖菁璞
  */
 @Data
 @NoArgsConstructor

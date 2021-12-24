@@ -9,8 +9,6 @@ import java.util.Queue;
 
 /**
  * 地图实体类
- *
- * @author 廖菁璞
  */
 @Data
 @NoArgsConstructor
