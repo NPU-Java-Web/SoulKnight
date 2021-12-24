@@ -22,22 +22,7 @@ public class Monster1 extends Monster {
     }
 
     public static List<Bullet> shoot(Monster monster) {
-        return null;
-    }
-
-    public List<Bullet> shoot(int x, int y) {
-        List<Bullet> bullets = new ArrayList<>();
-        int tempX = x - this.getX();
-        int tempY = y - this.getY();
-        double l = Math.sqrt(Math.pow(Math.abs(tempX), 2) + Math.pow(Math.abs(tempY), 2));
-        double angle;
-        if (y > 0) {
-            angle = Math.acos(tempX / l);
-        } else {
-            angle = 2 * Math.PI - Math.acos(tempY / l);
-        }
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, this.getMonsterId(), this.getX(), this.getX(), angle));
-        return bullets;
+        return new ArrayList<>();
     }
 
 }
