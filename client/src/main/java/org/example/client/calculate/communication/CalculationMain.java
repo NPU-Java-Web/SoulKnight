@@ -1,4 +1,4 @@
-package org.example.client.calculate;
+package org.example.client.calculate.communication;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
