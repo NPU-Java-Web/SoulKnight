@@ -98,6 +98,27 @@ SoulKnight
 ## 运行说明
 
 ### 1. 本项目使用`Redis`缓存游戏数据，如尚未安装请先安装Redis。
+Windows：请下载此路径`Redis`安装包https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100 解压后一直点击下一步即可。
+
+Linux：执行以下命令
+
+```bash
+wget http://download.redis.io/releases/redis-6.0.8.tar.gz
+tar -xvf redis-6.0.8.tar.gz
+mkdir /usr/local/redis-6.x
+mv  redis-6.0.8   /usr/local/redis-6.x
+cd  /usr/local/redis-6.x/redis-6.0.8
+make
+make  install  PREFIX=/usr/local/redis-6.x
+cd /usr/local/redis6.x/bin/
+mkdir conf
+cp /usr/local/redis6.x/redis-6.0.8/redis.conf /usr/local/redis6.x/bin/conf/
+
+# 启动测试
+cd /usr/local/redis6.x/bin/
+./redis-server conf/redis.conf
+./redis-cli -p  8081
+```
 
 ### 2. 用IDE打开项目
 
