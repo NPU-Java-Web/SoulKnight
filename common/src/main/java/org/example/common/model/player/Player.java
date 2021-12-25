@@ -3,9 +3,10 @@ package org.example.common.model.player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.common.config.GameConfig;
-import org.example.common.keyListener.GameInput;
 
+/**
+ * 玩家实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -43,20 +44,20 @@ public class Player {
      */
     protected Integer score;
 
-    public void moveUp(){
-        this.setY(this.y-this.speed);
+    public void moveUp() {
+        this.setY(this.y - this.speed);
     }
 
-    public void moveDown(){
-        this.setY(this.y+this.speed);
+    public void moveDown() {
+        this.setY(this.y + this.speed);
     }
 
-    public void moveLeft(){
-        this.setX(this.x-this.speed);
+    public void moveLeft() {
+        this.setX(this.x - this.speed);
     }
 
-    public void moveRight(){
-        this.setX(this.x+this.speed);
+    public void moveRight() {
+        this.setX(this.x + this.speed);
     }
 
 

@@ -9,9 +9,19 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.concurrent.Executor;
 
+/**
+ * 配置需要的线程池、Redis连接池，开启组件扫描
+ *
+ * @author 廖菁璞
+ */
 @SpringBootApplication
 @EnableAsync
 public class ThreadConfig {
+    /**
+     * 线程池配置
+     *
+     * @return Executor
+     */
     @Bean
     public Executor getExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -22,6 +32,11 @@ public class ThreadConfig {
         return executor;
     }
 
+    /**
+     * Redis连接池配置
+     *
+     * @return JedisPool
+     */
     @Bean
     public JedisPool jedisPool() {
         JedisPoolConfig config = new JedisPoolConfig();

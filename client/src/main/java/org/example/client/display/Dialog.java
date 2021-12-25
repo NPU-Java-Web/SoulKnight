@@ -6,8 +6,7 @@ import org.example.client.ClientCore;
 import org.example.client.GameStartCore;
 import org.example.client.calculate.service.StaticInfo;
 import org.example.common.config.GameConfig;
-import org.example.common.model.player.Player;
-import org.example.common.protocal.Order;
+import org.example.common.protocol.Order;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,18 +17,20 @@ import java.awt.event.ItemListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Stack;
 
 /**
- *
  * 本类描述游戏结束弹出的对话框
  *
+ * @see JDialog
+ * @see JLabel
+ * @see JButton
+ * @see JRadioButton
+ * @see JCheckBox
  */
 @Slf4j
 
 public class Dialog extends JDialog {
-    private JLabel jlabel_one, jl02, jl03, jl04,jl05,jl06 ,jima01, jima02, jima03, jima04, jima05;
+    private JLabel jlabel_one, jl02, jl03, jl04, jl05, jl06, jima01, jima02, jima03, jima04, jima05;
     private JButton jb02, jb03, jb04, jb05, jb06, jButton;
     private JRadioButton jr01, jr02, jr03, jr04, jr05;
     private JCheckBox jcb1, jcb2, jcb3, jcb4;
@@ -39,9 +40,9 @@ public class Dialog extends JDialog {
     public Dialog(JFrame jFrame, int type) {
         super(jFrame, true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        // 设置布局管理器为无
+        /**设置布局管理器为无*/
         setLayout(null);
-        // 设置对话框不可更改大小
+        /**设置对话框不可更改大小*/
         setResizable(false);
 
         if (type == 1) {
@@ -50,12 +51,14 @@ public class Dialog extends JDialog {
         } else if (type == 2) {
             //说明弹窗
             showInstruction(jFrame);
-
-        } else if (type == 3) {   //暂停弹窗
+        } else if (type == 3) {
+            //暂停弹窗
             showpause(jFrame);
-        } else if (type == 4) {   //游戏内说明弹窗
+        } else if (type == 4) {
+            //游戏内说明弹窗
             showInstructionInGame(jFrame);
-        } else if (type == 5) {   //游戏内设置弹窗
+        } else if (type == 5) {
+            //游戏内设置弹窗
             showSettingInGame(jFrame);
         } else if (type == 6) {
             //失败弹窗
@@ -69,9 +72,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显示设置弹窗
      * @param jFrame jframe
      */
-//显示设置弹窗
     public void showSetting(JFrame jFrame) {
 
         setTitle("设置");
@@ -101,7 +104,6 @@ public class Dialog extends JDialog {
                 GameConfig.playerId = textField.getText();
             }
         });
-
         // 音效标签
         jl02 = new JLabel("声音选项");
         jl02.setFont(new Font("acefont-family", Font.BOLD, 15));
@@ -240,9 +242,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显示设置弹窗
      * @param jFrame jframe
      */
-    //显示设置弹窗
     public void showSettingInGame(JFrame jFrame) {
         setTitle("设置");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
@@ -291,9 +293,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显示说明弹窗
      * @param jFrame jframe
      */
-//显示说明弹窗
     public void showInstruction(JFrame jFrame) {
         setTitle("游戏说明");
         setBounds(jFrame.getBounds().x + 200, jFrame.getBounds().y + 200, 600, 600);
@@ -346,9 +348,9 @@ public class Dialog extends JDialog {
     }
 
     /**
+     * 显游戏内菜单弹窗
      * @param jFrame jframe
      */
-//显游戏内菜单弹窗
     public void showpause(JFrame jFrame) {
         setTitle("菜单");
 
@@ -434,9 +436,9 @@ public class Dialog extends JDialog {
             }
         });
     }
-    //显游戏失败弹窗
 
     /**
+     * 显游戏失败弹窗
      * @param jFrame jframe
      */
     public void showfalse(JFrame jFrame) {
@@ -500,25 +502,33 @@ public class Dialog extends JDialog {
         });
 
     }
-//返回主菜单
 
+    /**
+     * 返回主菜单
+     */
     public void returnMainPanel() {
 
         dispose();
 
     }
 
-    //暂停游戏
+    /**
+     * 暂停游戏
+     */
     public void pause() {
         StaticInfo.isrunning = false;
     }
 
-    //游戏内帮助弹窗
+    /**
+     * 游戏内帮助弹窗
+     */
     public void showHelp(JFrame jFrame) {
         new Dialog(jFrame, 4);
     }
 
-    //游戏内设置弹窗
+    /**
+     * 游戏内设置弹窗
+     */
     public void showSet(JFrame jFrame) {
         new Dialog(jFrame, 5);
     }

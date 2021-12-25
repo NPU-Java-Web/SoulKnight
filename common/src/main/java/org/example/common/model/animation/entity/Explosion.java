@@ -6,15 +6,15 @@ import lombok.NoArgsConstructor;
 import org.example.common.model.animation.Animation;
 
 /**
- * 此特效类为爆炸
+ * 爆炸动画
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 public class Explosion extends Animation {
     public static final int TYPE = 2;
-    public Explosion(int x, int y)
-    {
-        super(TYPE,"",1,x,y);
+
+    public Explosion(int x, int y) {
+        super(TYPE, "", 1, x, y);
     }
 }

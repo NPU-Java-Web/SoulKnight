@@ -7,7 +7,6 @@ import org.example.client.display.Dialog;
 import org.example.client.display.GamePanel;
 import org.example.client.display.MainPanel;
 import org.example.common.config.GameConfig;
-import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,64 +14,49 @@ import java.awt.event.KeyEvent;
 
 /**
  * 此类为主菜单的监听线程，以从总的键盘响应的hashmap中读取对应信息
+ *
+ * @see Runnable
+ * @see MainPanel
  */
 public class KeyEventListener implements Runnable {
     private boolean exited = false;
-    /**每次绘制间隔时间*/
+    /**
+     * 每次绘制间隔时间
+     */
     private int interval;
     private MainPanel mainPanel;
     private boolean flag = true;
 
 
-    public KeyEventListener()
-    {
+    public KeyEventListener() {
         interval = 100;
     }
 
     @Override
-    public void run()
-    {
+    public void run() {
 
-        while (!exited)
-        {
-            if(GameInput.getKeyDown(KeyEvent.VK_DOWN) || GameInput.getKeyDown(KeyEvent.VK_UP))
-            {
+        while (!exited) {
+            if (GameInput.getKeyDown(KeyEvent.VK_DOWN) || GameInput.getKeyDown(KeyEvent.VK_UP)) {
 
-                if(GameInput.getKeyDown(KeyEvent.VK_DOWN))
-                {
-                    if(ClientCore.mainPanel.getFouseIndex() == 1)
-                    {
+                if (GameInput.getKeyDown(KeyEvent.VK_DOWN)) {
+                    if (ClientCore.mainPanel.getFouseIndex() == 1) {
                         ClientCore.mainPanel.setFouseIndex(2);
-                    }
-                    else if(ClientCore.mainPanel.getFouseIndex() == 2)
-                    {
+                    } else if (ClientCore.mainPanel.getFouseIndex() == 2) {
                         ClientCore.mainPanel.setFouseIndex(3);
-                    }
-                    else if(ClientCore.mainPanel.getFouseIndex() == 3)
-                    {
+                    } else if (ClientCore.mainPanel.getFouseIndex() == 3) {
                         ClientCore.mainPanel.setFouseIndex(4);
-                    }
-                    else if(ClientCore.mainPanel.getFouseIndex() == 4)
-                    {
+                    } else if (ClientCore.mainPanel.getFouseIndex() == 4) {
                         ClientCore.mainPanel.setFouseIndex(1);
                     }
                 }
-                if(GameInput.getKeyDown(KeyEvent.VK_UP))
-                {
-                    if(ClientCore.mainPanel.getFouseIndex() == 1)
-                    {
+                if (GameInput.getKeyDown(KeyEvent.VK_UP)) {
+                    if (ClientCore.mainPanel.getFouseIndex() == 1) {
                         ClientCore.mainPanel.setFouseIndex(4);
-                    }
-                    else if(ClientCore.mainPanel.getFouseIndex() == 2)
-                    {
+                    } else if (ClientCore.mainPanel.getFouseIndex() == 2) {
                         ClientCore.mainPanel.setFouseIndex(1);
-                    }
-                    else if(ClientCore.mainPanel.getFouseIndex() == 3)
-                    {
+                    } else if (ClientCore.mainPanel.getFouseIndex() == 3) {
                         ClientCore.mainPanel.setFouseIndex(2);
-                    }
-                    else if(ClientCore.mainPanel.getFouseIndex() == 4)
-                    {
+                    } else if (ClientCore.mainPanel.getFouseIndex() == 4) {
                         ClientCore.mainPanel.setFouseIndex(3);
                     }
                 }
@@ -81,61 +65,57 @@ public class KeyEventListener implements Runnable {
                     ClientCore.mainPanel.label_start.setForeground(Color.red);
                     ClientCore.mainPanel.label_setting.setForeground(Color.white);
                     ClientCore.mainPanel.label_instruction.setForeground(Color.white);
-                    ClientCore.mainPanel.label_quit.setForeground(Color.white );
+                    ClientCore.mainPanel.label_quit.setForeground(Color.white);
                 }
                 if (ClientCore.mainPanel.getFouseIndex() == 2) {
                     // label_setting
                     ClientCore.mainPanel.label_start.setForeground(Color.white);
                     ClientCore.mainPanel.label_setting.setForeground(Color.red);
                     ClientCore.mainPanel.label_instruction.setForeground(Color.white);
-                    ClientCore.mainPanel.label_quit.setForeground(Color.white );
+                    ClientCore.mainPanel.label_quit.setForeground(Color.white);
                 }
-                if(ClientCore.mainPanel.getFouseIndex() == 3)
-                {
+                if (ClientCore.mainPanel.getFouseIndex() == 3) {
                     //label_instruction
                     ClientCore.mainPanel.label_start.setForeground(Color.white);
                     ClientCore.mainPanel.label_setting.setForeground(Color.white);
                     ClientCore.mainPanel.label_instruction.setForeground(Color.red);
-                    ClientCore.mainPanel.label_quit.setForeground(Color.white );
+                    ClientCore.mainPanel.label_quit.setForeground(Color.white);
                 }
-                if(ClientCore.mainPanel.getFouseIndex() == 4)
-                {
+                if (ClientCore.mainPanel.getFouseIndex() == 4) {
                     //label_quit
                     ClientCore.mainPanel.label_start.setForeground(Color.white);
                     ClientCore.mainPanel.label_setting.setForeground(Color.white);
                     ClientCore.mainPanel.label_instruction.setForeground(Color.white);
-                    ClientCore.mainPanel.label_quit.setForeground(Color.red );
+                    ClientCore.mainPanel.label_quit.setForeground(Color.red);
                 }
 
 
             }
             //监听回车键
-            if(GameInput.getKeyDown(KeyEvent.VK_ENTER)) {
+            if (GameInput.getKeyDown(KeyEvent.VK_ENTER)) {
                 //若焦点在开始游戏，则进行游戏面板的渲染
 
-                if(ClientCore.mainPanel.getFouseIndex() == 1)
-                {
+                if (ClientCore.mainPanel.getFouseIndex() == 1) {
                     GameInput.setKeys(KeyEvent.VK_ENTER);
-                if(GameConfig.playerId.equals("")){
-                    Object[] options = { "OK ", "CANCEL " };
-                    JOptionPane.showOptionDialog(null, "您还没有输入玩家Id，请前往设置->输入Id", "提示", JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.WARNING_MESSAGE,null, options, options[0]);
+                    if (GameConfig.playerId.equals("")) {
+                        Object[] options = {"OK ", "CANCEL "};
+                        JOptionPane.showOptionDialog(null, "您还没有输入玩家Id，请前往设置->输入Id", "提示", JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
-                }
-                else {
-                    StaticInfo.isrunning = true;
-                    GamePanel newGamePanel = new GamePanel(ClientCore.mainPanel);
-                    MainPanel.gamePanel = newGamePanel;
-                    StaticInfo.gamePanel = newGamePanel;
-                    ClientCore.mainPanel.add(newGamePanel);
-                    newGamePanel.setSize(1000, 1000);// 设置游戏面板界面大小
+                    } else {
+                        StaticInfo.isrunning = true;
+                        GamePanel newGamePanel = new GamePanel(ClientCore.mainPanel);
+                        MainPanel.gamePanel = newGamePanel;
+                        StaticInfo.gamePanel = newGamePanel;
+                        ClientCore.mainPanel.add(newGamePanel);
+                        // 设置游戏面板界面大小
+                        newGamePanel.setSize(1000, 1000);
 
-                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_setting);
-                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_quit);
-                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_instruction);
-                    ClientCore.mainPanel.remove(ClientCore.mainPanel.label_start);
-                }
-
+                        ClientCore.mainPanel.remove(ClientCore.mainPanel.label_setting);
+                        ClientCore.mainPanel.remove(ClientCore.mainPanel.label_quit);
+                        ClientCore.mainPanel.remove(ClientCore.mainPanel.label_instruction);
+                        ClientCore.mainPanel.remove(ClientCore.mainPanel.label_start);
+                    }
 
 
                 }
@@ -162,13 +142,10 @@ public class KeyEventListener implements Runnable {
 
                 }
             }
-            try
-            {
-                /**稳定fps*/
+            try {
+                //稳定fps
                 Thread.sleep(interval);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 break;
             }
         }

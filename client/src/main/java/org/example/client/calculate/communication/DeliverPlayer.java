@@ -9,6 +9,11 @@ import org.example.common.model.player.Player;
 
 /**
  * 这个类往【发送队列】里放东西，它高频地发送玩家自己的坐标，想要发送给服务器
+ *
+ * @see Runnable
+ * @see GameStartCore
+ * @see Player
+ * @see GameConfig
  */
 @Slf4j
 public class DeliverPlayer implements Runnable {
@@ -25,8 +30,7 @@ public class DeliverPlayer implements Runnable {
             try {
                 //暂时设置为每一秒发1次，上线后要改成一秒发30次
                 Thread.sleep(GameConfig.SLEEP_TIME);
-                if(StaticInfo.isrunning)
-                {
+                if (StaticInfo.isrunning) {
 
                     Player player = new Player();
                     player.setPlayerType(gameStartCore.getPlayer().getPlayerType());
@@ -43,9 +47,8 @@ public class DeliverPlayer implements Runnable {
                         log.warn("队列已满，客户端无法把人物加入队列，消息是" + message);
                     }
                     //按时间增加蓝量
-                    if(GameConfig.playerStrength<100)
-                    {
-                        GameConfig.playerStrength+=0.5;
+                    if (GameConfig.playerStrength < 100) {
+                        GameConfig.playerStrength += 0.5;
                     }
 
                 }

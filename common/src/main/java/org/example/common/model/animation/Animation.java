@@ -4,19 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 动画实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Animation {
 
     /**
-     * 种类
+     * 动画种类
      */
     protected Integer animationType;
 
+    /**
+     * 动画ID
+     */
     protected String animationId;
 
-
+    /**
+     * 动画当前所属的状态（第几帧）
+     */
     protected Integer state;
 
     /**
@@ -27,8 +35,5 @@ public class Animation {
      * Y坐标
      */
     protected Integer y;
-
-
-
 
 }

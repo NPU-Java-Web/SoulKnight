@@ -17,16 +17,17 @@ public class Monster3 extends Monster {
     public static final int VISIBILITY = 400;
     public static final int REWARD = 50;
     private static int count;
-    public Monster3(String monsterId, Integer x, Integer y, Double angle){
+
+    public Monster3(String monsterId, Integer x, Integer y, Double angle) {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, CD, VISIBILITY, REWARD);
         count = 0;
     }
 
-    public static List<Bullet> shoot(Monster monster){
+    public static List<Bullet> shoot(Monster monster) {
         count = count % 180;
         List<Bullet> bullets = new ArrayList<>();
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.LIGHT_BLUE, monster.getMonsterId(), monster.getX(),monster.getY(), Math.toRadians(count)));
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.LIGHT_BLUE, monster.getMonsterId(), monster.getX(),monster.getY(),Math.toRadians(count+180)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.LIGHT_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count)));
+        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.LIGHT_BLUE, monster.getMonsterId(), monster.getX(), monster.getY(), Math.toRadians(count + 180)));
         count += 20;
         return bullets;
     }

@@ -17,27 +17,12 @@ public class Monster1 extends Monster {
     public static final int VISIBILITY = 400;
     public static final int REWARD = 30;
 
-    public Monster1(String monsterId, Integer x, Integer y, Double angle){
+    public Monster1(String monsterId, Integer x, Integer y, Double angle) {
         super(MONSTER_TYPE, monsterId, x, y, angle, SPEED, BLOOD, CD, VISIBILITY, REWARD);
     }
 
-    public static List<Bullet> shoot(Monster monster){
-        return null;
-    }
-
-    public List<Bullet> shoot(int x, int y){
-        List<Bullet> bullets = new ArrayList<>();
-        int tempX = x-this.getX();
-        int tempY = y-this.getY();
-        double l = Math.sqrt(Math.pow(Math.abs(tempX),2)+Math.pow(Math.abs(tempY),2));
-        double angle;
-        if(y>0){
-            angle = Math.acos(tempX/l);
-        } else {
-            angle = 2*Math.PI - Math.acos(tempY/l);
-        }
-        bullets.add(BulletFactory.makeBullet(GameConfig.BulletType.COLORFUL, this.getMonsterId(),this.getX(),this.getX(),angle));
-        return bullets;
+    public static List<Bullet> shoot(Monster monster) {
+        return new ArrayList<>();
     }
 
 }

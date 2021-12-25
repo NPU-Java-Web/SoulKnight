@@ -1,4 +1,4 @@
-package org.example.client.calculate;
+package org.example.client.calculate.communication;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -15,12 +15,23 @@ import org.example.client.GameStartCore;
 import org.example.client.calculate.communication.MyClientInboundHandler;
 import org.example.client.calculate.communication.AnalysisMessage;
 import org.example.client.calculate.communication.UploadMessage;
-import org.example.common.protocal.Connect;
+import org.example.common.protocol.Connect;
 
 import java.net.InetSocketAddress;
 
 /**
- * 客户端计算模块
+ * 客户端计算主模块
+ * <p>启动后开始运行客户端通信模块{@code AnalysisMessage}和{@code UploadMessage}。
+ * 从服务端获取关键信息并将本地客户端信息传输到服务端
+ * </p>
+ *
+ * @see java.lang.Runnable
+ * @see GameStartCore
+ * @see Bootstrap
+ * @see UploadMessage
+ * @see AnalysisMessage
+ * @see Channel
+ * @see NioEventLoopGroup
  */
 public class CalculationMain implements Runnable {
     private final GameStartCore gameStartCore;
@@ -54,7 +65,7 @@ public class CalculationMain implements Runnable {
             Channel channel = future.channel();
 
 
-            Thread uploadMessage = new Thread(new UploadMessage(channel,gameStartCore), "uploadMessage");
+            Thread uploadMessage = new Thread(new UploadMessage(channel, gameStartCore), "uploadMessage");
             uploadMessage.start();
 
             Thread analysisMessage = new Thread(new AnalysisMessage(gameStartCore), "analysisMessage");

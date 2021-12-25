@@ -8,6 +8,10 @@ import org.example.client.GameStartCore;
 
 /**
  * 这个类读取服务器发过来的消息，往【接收队列】里放
+ *
+ * @see io.netty.channel.SimpleChannelInboundHandler
+ * @see GameStartCore
+ * @see Channel
  */
 @Slf4j
 public class MyClientInboundHandler extends SimpleChannelInboundHandler<Object> {

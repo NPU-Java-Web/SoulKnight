@@ -3,8 +3,10 @@ package org.example.common.model.bullet;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.common.config.GameConfig;
 
+/**
+ * 子弹实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -50,6 +52,5 @@ public class Bullet {
      * 子弹创建的时刻（时间戳）
      */
     protected Long createTime;
-    //System.currentTimeMillis();
 
 }

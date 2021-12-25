@@ -15,14 +15,25 @@ import org.example.common.config.GameConfig;
 
 import java.util.Stack;
 
+/**
+ * <p>客户端核心类主要用于启动客户端对应线程</p>
+ *
+ * @see MainPanel
+ * @see PlaySound
+ */
+
 public class ClientCore {
 
-    //主界面对象
+    /**
+     * 主界面对象
+     */
     public static volatile MainPanel mainPanel;
-    //声音对象
+    /**
+     * 声音对象
+     */
     public static PlaySound playSound;
 
-    public static void Start(){
+    public static void Start() {
 
         mainPanel = new MainPanel();
         StaticInfo.mainPanel = mainPanel;
@@ -32,11 +43,10 @@ public class ClientCore {
         mainPanel.setVisible(true);
         //设置不可拉伸
         mainPanel.setResizable(false);
-        //居中显示
-        mainPanel.setLocationRelativeTo(null);//在屏幕中居中显示
+        //在屏幕中居中显示
+        mainPanel.setLocationRelativeTo(null);
 
-        if(playSound == null)
-        {
+        if (playSound == null) {
             playSound = new PlaySound();
             playSound.open(GameConfig.sound);
             playSound.play();

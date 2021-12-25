@@ -8,23 +8,39 @@ import java.io.File;
 
 
 /**
+ * 此类为声音启动类,在游戏过程中播放对应音乐
  *
- * 此类为声音启动类
- *
+ * @see File
+ * @see AudioInputStream
+ * @see AudioFormat
+ * @see DataLine.Info
+ * @see Clip
  **/
 public class PlaySound {
 
-    //音频文件
+    /**
+     * 音频文件
+     */
     private File file;
-    //音频输入
+    /**
+     * 音频输入
+     */
     private AudioInputStream stream;
-    //音频格式
+    /**
+     * 音频格式
+     */
     private AudioFormat format;
-    //音频行信号
+    /**
+     * 音频行信号
+     */
     private DataLine.Info info;
-    //音频
+    /**
+     * 音频
+     */
     private Clip clip;
-    //控制声音播放
+    /**
+     * 控制声音播放
+     */
     public static boolean[] b = new boolean[]{true, true, true, true};
 
 
@@ -32,10 +48,13 @@ public class PlaySound {
      * 建立播放音频的音频行
      */
     public void play() {
-        info = new DataLine.Info(Clip.class, format);//音频行信息
+        //音频行信息
+        info = new DataLine.Info(Clip.class, format);
         try {
-            clip = (Clip) AudioSystem.getLine(info);//音频行
-            clip.open(stream);//将音频数据读入音频行
+            //音频行
+            clip = (Clip) AudioSystem.getLine(info);
+            //将音频数据读入音频行
+            clip.open(stream);
         } catch (LineUnavailableException e) {
 
             e.printStackTrace();
@@ -44,7 +63,8 @@ public class PlaySound {
             e.printStackTrace();
         }
     }
-    public void playByBite(){
+
+    public void playByBite() {
         //AudioInputStream:音频输入流,是具有指定音频格式和长度的输入流。
         AudioInputStream audioInputStream = null;
 
@@ -67,23 +87,23 @@ public class PlaySound {
 
             auline.start();
 
-            int nBytesRead = 0 ;
+            int nBytesRead = 0;
 
             //缓冲大小
             byte[] abData = new byte[512];
 
-            while(nBytesRead != -1) {
+            while (nBytesRead != -1) {
 
-                nBytesRead = audioInputStream.read(abData , 0 , abData.length);
+                nBytesRead = audioInputStream.read(abData, 0, abData.length);
 
-                if(nBytesRead >= 0){
+                if (nBytesRead >= 0) {
                     auline.write(abData, 0, nBytesRead);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             return;
-        }finally{
+        } finally {
 
             auline.drain();
 
@@ -95,7 +115,6 @@ public class PlaySound {
     /**
      * 停止播放
      */
-    //暂停音频播放
     public void stop() {
         clip.stop();
     }
@@ -103,7 +122,6 @@ public class PlaySound {
     /**
      * 开始播放
      */
-    //播放音频
     public void start() {
         clip.start();
     }
@@ -111,7 +129,6 @@ public class PlaySound {
     /**
      * 回放背景音乐设置
      */
-    //回放
     public void loop() {
         clip.loop(20);
     }
@@ -120,11 +137,13 @@ public class PlaySound {
      * 打开声音文件方法
      */
     public void open(String s) {
-
-        file = new File(s);//音频文件对象
+        //音频文件对象
+        file = new File(s);
         try {
-            stream = AudioSystem.getAudioInputStream(file);//音频输入流
-            format = stream.getFormat();//音频格式对象
+            //音频输入流
+            stream = AudioSystem.getAudioInputStream(file);
+            //音频格式对象
+            format = stream.getFormat();
 
         } catch (UnsupportedAudioFileException e) {
 
