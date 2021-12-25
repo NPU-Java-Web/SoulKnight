@@ -3,8 +3,6 @@ package org.example.common.model.player;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.common.config.GameConfig;
-import org.example.common.keyListener.GameInput;
 
 /**
  * 玩家实体类

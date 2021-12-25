@@ -7,7 +7,6 @@ import org.example.client.display.Dialog;
 import org.example.client.display.GamePanel;
 import org.example.client.display.MainPanel;
 import org.example.common.config.GameConfig;
-import org.example.common.keyListener.GameInput;
 
 import javax.swing.*;
 import java.awt.*;

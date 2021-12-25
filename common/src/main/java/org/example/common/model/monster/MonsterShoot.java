@@ -13,6 +13,12 @@ import java.util.Map;
  */
 public class MonsterShoot {
 
+    /**
+     * Desc:
+     * @param monster 将要发射机子弹的Monster
+     * @return 发射出的子弹列表
+     * @date 2021/12/22 10:05
+     */
     public static List<Bullet> shoot(Monster monster) {
         if (monster.monsterType == GameConfig.MonsterType.MONSTER_ONE) {
             return (Monster1.shoot(monster));

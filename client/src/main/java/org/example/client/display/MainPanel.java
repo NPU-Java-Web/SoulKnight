@@ -4,7 +4,7 @@ import org.example.client.ClientCore;
 import org.example.client.Input.GameMouseListener;
 import org.example.client.Input.KeyEventListener;
 import org.example.common.config.GameConfig;
-import org.example.common.keyListener.GameInput;
+import org.example.client.Input.GameInput;
 
 import javax.swing.*;
 import java.awt.*;
